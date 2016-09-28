@@ -1,0 +1,11 @@
+!SESSION 2016-09-28 15:46:59.990 -----------------------------------------------
+eclipse.buildId=4.6.0.I20160606-1100
+java.version=1.8.0_101
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=de_DE
+Framework arguments:  -product org.eclipse.epp.package.java.product -keyring /Users/Remo/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -keyring /Users/Remo/.eclipse_keyring
+
+!ENTRY org.eclipse.m2e.logback.appender 4 0 2016-09-28 15:48:38.513
+!MESSAGE fatal: Could not switch to '/Library/Developer/CommandLineTools/usr/etc/': No such file or directory
+
