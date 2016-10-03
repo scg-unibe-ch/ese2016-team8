@@ -18,7 +18,7 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 	
-	<context:component-scan base-package="ch.unibe.ese.team1" />
+	<context:component-scan base-package="ch.unibe.ese.team8" />
 
 	<!-- handler -->
 	<mvc:default-servlet-handler />
