@@ -1,7 +1,7 @@
 <%@page import="java.util.Iterator"%>
-<%@page import="ch.unibe.ese.team1.model.Location"%>
+<%@page import="ch.unibe.ese.team8.model.Location"%>
 <%@page import="java.util.List"%>
-<%@page import="ch.unibe.ese.team1.controller.service.GeoDataService"%>
+<%@page import="ch.unibe.ese.team8.controller.service.GeoDataService"%>
 <%@page
 	import="org.springframework.web.servlet.support.RequestContextUtils"%>
 <%@page import="org.springframework.context.ApplicationContext"%>

@@ -4,8 +4,8 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
     version="3.0">
 
-	<display-name>team1-room-platform</display-name>
-	<distributable />
+	<display-name>team8-room-platform</display-name>
+	<distributable ></distributable>
 
 	<welcome-file-list>
 		<welcome-file>index</welcome-file>
