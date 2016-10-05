@@ -20,10 +20,10 @@
 			enabled : true,
 			autoFocus : true
 		});
-		
+
 		var price = document.getElementById('prizeInput');
 		var radius = document.getElementById('radiusInput');
-		
+
 		if(price.value == null || price.value == "" || price.value == "0")
 			price.value = "500";
 		if(radius.value == null || radius.value == "" || radius.value == "0")
@@ -41,7 +41,7 @@ function validateType(form)
 	var both = document.getElementById('both');
 	var type = document.getElementById('type');
 	var filtered = document.getElementById('filtered');
-	
+
 	if(room.checked && studio.checked) {
 		both.checked = true;
 		neither.checked = false;
@@ -68,20 +68,20 @@ function validateType(form)
 	<fieldset>
 		<form:checkbox name="room" id="room" path="roomHelper" /><label>Room</label>
 		<form:checkbox name="studio" id="studio" path="studioHelper" /><label>Studio</label>
-		
+
 		<form:checkbox style="display:none" name="neither" id="neither" path="noRoomNoStudio" />
 		<form:checkbox style="display:none" name="both" id="both" path="bothRoomAndStudio" />
 		<form:checkbox style="display:none" name="type" id="type" path="studio" />
 		<form:checkbox style="display:none" name="filtered" id="filtered" path="filtered" />
 		<form:errors path="noRoomNoStudio" cssClass="validationErrorText" />
-		
+
 		<br />
-		
+
 		<label for="city">City / zip code:</label>
 		<form:input type="text" name="city" id="city" path="city"
 			placeholder="e.g. Bern" tabindex="3" />
 		<form:errors path="city" cssClass="validationErrorText" />
-		
+
 
 		<label for="radius">Within radius of (max.):</label>
 		<form:input id="radiusInput" type="number" path="radius"
