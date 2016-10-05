@@ -1,4 +1,4 @@
-/* Basic resets to equalize inconsistencies across browsers */
+﻿/* Basic resets to equalize inconsistencies across browsers */
 html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, img, b, i, fieldset,
 	form, label, legend, caption, article, header, footer, menu, nav,
 	section, ol, ul, li {
@@ -17,27 +17,31 @@ p {
 h1 {
 	margin-bottom: 10px;
 	font-size: 2em;
+	text-shadow: 1px 1px 2px #999;
 }
 
 h2 {
 	font-size: 1.5em;
 	margin-bottom: 10px;
+	text-shadow: 1px 1px 1px #999;
 }
 
 hr {
-	color: #2dc16d;
-	background-color: #2dc16d;
+	color: #000;
+	background-color: #000;
 	height: 4px;
 	margin-bottom: 40px;
 }
 
 .link {
-	color: #48db88;
+	color: #222;
 	text-decoration: none;
+	transition: 0.2s;
 }
 
 .link:hover {
-	color: #62f4a1;
+	color: #666;
+	text-shadow: 1px 1px 1px #cdf;
 }
 
 .slim {
@@ -72,8 +76,8 @@ pre a {
 /*Header is fixed to 60px from top, so with padding of 60px,
 we fix the body in the exactly right position*/
 body {
-	color: gray;
-	padding-top: 60px;
+	color: #333;
+	padding-top: 70px;
 	padding-bottom: 40px;
 	min-width: 1100px;
 }
@@ -99,13 +103,13 @@ but not in one String (i.e. in the header) */
 }
 
 .styledTable {
-	background-color: #3dc16d;
+	background-color: #348;
 	border-radius: 5px;
 	margin-top: 20px;
 }
 
 .styledTable th {
-	background-color: #2dc16d;
+	background-color: #003;
 	color: white;
 }
 
@@ -120,7 +124,7 @@ input, select, textarea {
 	padding-left: 2px;
 }
 
-input[type="number"] {
+input[type=number] {
 	width: 70px;
 }
 
@@ -129,7 +133,7 @@ label {
 }
 
 button {
-	background-color: #2dc16d;
+	background-color: #003;
 	color: white;
 	padding: 5px 10px;
 	border-radius: 5px;
@@ -145,7 +149,7 @@ button {
 }
 
 .button {
-	background-color: #2dc16d;
+	background-color: #003;
 	color: white;
 	padding: 5px 10px;
 	border-radius: 5px;
@@ -157,7 +161,7 @@ button {
 .smallPlusButton {
 	display: inline;
 	font-decoration: none;
-	background-color: #2dc16d;
+	background-color: #003;
 	color: white;
 	width: 15px;
 	height: 15px;
@@ -173,8 +177,8 @@ button {
 	background-color: white;
 	padding: 0px 5px 0px 5px;
 	border-width: 2px;
-	border-radius: 10px;
-	border-color: #2dc16d;
+	border-radius: 3px;
+	border-color: #003;
 	border-style: solid; 
 	color: grey;
 	font-size: 0.9em;
@@ -184,40 +188,40 @@ button {
 	background-color: white;
 	padding: 0px 5px 0px 5px;
 	border-width: 2px;
-	border-radius: 10px;
-	border-color: #ff0000;
+	border-radius: 3px;
+	border-color: gold;
 	border-style: solid; 
 	color: grey;
 	font-size: 0.9em;
 }
 
 button:hover {
-	color: #2dc16d;
+	color: #003;
 	background-color: white;
-	border-color: #2dc16d;
+	border-color: #348;
 	cursor: pointer;
 }
 
 .button:hover {
-	color: #2dc16d;
+	color: #000;
 	background-color: white;
-	border-color: #2dc16d;
+	border-color: #348;
 }
 
 .smallPlusButton:hover {
-	color: #2dc16d;
+	color: #348;
 	background-color: white;
-	border-color: #2dc16d;
+	border-color: #348;
 	cursor: pointer;
 }
 
 #bookmarkButton:hover {
-	border-color: red;
+	border-color: #0a8;
 	border-style: dashed;
 }
 
 #bookmarkedButton:hover {
-	border-color: green;
+	border-color: silver;
 	border-style: dashed;
 }
 
@@ -255,7 +259,7 @@ button {
 	width: 20%;
 	margin: auto;
 	padding: 10px 20px;
-	border-color: #2dc16d;
+	border-color: #003;
 }
 
 .negative-message {
@@ -263,7 +267,7 @@ button {
 	width: 20%;
 	margin: auto;
 	padding: 10px 20px;
-	border-color: #2dc16d;
+	border-color: #003;
 }
 
 .confirmation-message img {
@@ -280,14 +284,15 @@ button {
 /* Header & Footer */
 header {
 	color: white;
-	background: #2dc16d;
+	background: #003;
 	position: fixed;
 	top: 0px;
 	left: 0px;
 	right: 0px;
-	height: 70px;
+	height: 80px;
 	z-index: 1;
 	min-width: 1100px;
+	box-shadow: 1px 0px 6px #000;
 }
 
 header a {
@@ -308,6 +313,9 @@ header h1 a {
 header ul {
 	padding: 0;
 	list-style: none;
+	background: #003;
+	border-radius: 4px;
+	box-shadow: 2px 2px 4px #222;
 }
 
 header ul li {
@@ -340,6 +348,7 @@ header ul li {
 	width: 60px;
 	height: 60px;
 	float: left;
+	border-radius:30px;
 }
 
 #profile_picture a {
@@ -366,15 +375,17 @@ header ul li {
 
 header ul li a {
 	display: block;
-	padding: 5px 10px;
+	padding: 8px 16px;
 	color: #fff;
-	background: #2dc16d;
+	background: #003;
 	text-decoration: none;
+	border-radius: 4px;
+	transition: 0.2s;
 }
 
 header ul li a:hover {
 	color: #fff;
-	background: #48db88;
+	background: #348;
 }
 
 /* it does hide the drop down menu */
@@ -396,18 +407,19 @@ header nav {
 
 footer {
 	color: white;
-	background: #2dc16d;
+	background: #003;
 	position: fixed;
 	bottom: 0px;
 	left: 0px;
 	right: 0px;
-	height: 30px;
+	height: 20px;
 	text-align: center;
-	padding-top: 10px;
+	padding-top: 6px;
+	box-shadow: -1px 0px 6px #000;
 }
 
 footer nav {
-	margin-top: 8px;
+	margin-top: -1px;
 }
 
 footer .link {
@@ -516,7 +528,7 @@ footer nav ul li {
 /* results.jsp */
 #resultTable {
 	border-radius: 5px;
-	background-color: #2dc16d;
+	background-color: #003;
 }
 
 #resultTable tr {
@@ -524,7 +536,7 @@ footer nav ul li {
 }
 
 #resultTable th {
-	background-color: #2dc16d;
+	background-color: #003;
 	color: white;
 	padding: 5px;
 }
@@ -555,7 +567,7 @@ footer nav ul li {
 	padding: 10px;
 	margin-top: 10px;
 	border-style: solid;
-	border-color: #2dc16d;
+	border-color: #003;
 	border-width: 3px;
 	border-radius: 10px;
 }
@@ -571,7 +583,7 @@ footer nav ul li {
 	padding: 10px;
 	margin-top: 20px;
 	border-style: solid;
-	border-color: #2dc16d;
+	border-color: #003;
 	border-width: 3px;
 	border-radius: 10px;
 }
@@ -584,6 +596,7 @@ footer nav ul li {
 	height: 100px;
 	float: left;
 	margin-right: 50px;
+	border-radius: 6px;
 }
 
 #resultsDiv div div {
@@ -731,7 +744,7 @@ footer nav ul li {
 }
 
 .adDescDiv {
-	border-color: #2dc16d;
+	border-color: #003;
 	border-radius: 5px;
 	border-width: 3px;
 	border-style: solid;
@@ -739,7 +752,7 @@ footer nav ul li {
 }
 
 .thinButton {
-	background-color: #2dc16d;
+	background-color: #003;
 	color: white;
 	padding: 2px 10px;
 	border-radius: 5px;
@@ -802,11 +815,12 @@ footer nav ul li {
 	width: 10%;
 	height: 70%;
 	margin-left: 30px;
-	border-color: #2dc16d;
+	border-color: #003;
 	border-radius: 5px;
 	border-width: 3px;
 	border-style: solid;
 	padding: 15px;
+	transition: 0.2s;
 }
 
 #folders h2 {
@@ -815,13 +829,13 @@ footer nav ul li {
 }
 
 #folders h2:hover {
-	background-color: #2dc16d;
+	background-color: #003;
 	color: white;
 	cursor: pointer;
 }
 
 #messageDetail {
-	border-color: #2dc16d;
+	border-color: #003;
 	border-radius: 5px;
 	border-width: 3px;
 	border-style: solid;
@@ -835,7 +849,7 @@ footer nav ul li {
 }
 
 #folders a:hover {
-	background-color: #2dc16d;
+	background-color: #348;
 	color: white;
 	cursor: pointer;
 }
@@ -1003,7 +1017,7 @@ footer nav ul li {
 .pictureThumbnail{
 	width: 200px;
 	border-style: dashed;
-	border-color: #2dc16d;
+	border-color: #003;
 	border-width: 2px;
 	text-align:center;
 	float: left;
