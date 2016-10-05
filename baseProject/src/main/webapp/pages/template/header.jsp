@@ -77,7 +77,7 @@
 							</ul></li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="/login">Login</a></li>
+						<li><a href="/login"><img width=20px hight=20px style="margin-top:-2px"src="../img/key.png"/> Login</a></li>
 					</c:otherwise>
 				</c:choose>
 				<li><a href="<c:url value='/searchAd' />"><img width=20px hight=20px style="margin-right:5px" src="../img/lupe.png"/ >Search</a></li>
