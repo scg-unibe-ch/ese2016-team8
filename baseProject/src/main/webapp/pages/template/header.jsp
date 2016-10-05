@@ -52,15 +52,15 @@
 					<script>
 						$(document).ready(unreadMessages("header"));
 					</script>
-					
+
 					<!-- include user details -->
 					<%@include file='/pages/getUserPicture.jsp' %>
 						<li id="profile_picture"><a href="#">
-						<% 
+						<%
 							out.print("<img src='" + filePath + "' />");
 
 							out.print("<p class='text'>" + realUser.getFirstName() + "<br />"
-								+ realUser.getLastName() + "</p>"); 
+								+ realUser.getLastName() + "</p>");
 						%>
 						</a>
 							<ul>
@@ -77,10 +77,10 @@
 							</ul></li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="/login">Login</a></li>
+						<li><a href="/login"><img width=20px hight=20px style="margin-top:-2px"src="../img/key.png"/> Login</a></li>
 					</c:otherwise>
 				</c:choose>
-				<li><a href="<c:url value='/searchAd' />">Search</a></li>
+				<li><a href="<c:url value='/searchAd' />"><img width=20px hight=20px style="margin-right:5px" src="../img/lupe.png"/ >Search</a></li>
 			</ul>
 		</nav>
 	</div>
