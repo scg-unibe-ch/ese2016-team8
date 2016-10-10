@@ -308,3 +308,26 @@
 2016-09-28 17:16:08,097 [Worker-9] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B tes
 2016-09-28 17:16:12,271 [Worker-10] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/Remo/Dropbox (Privat)/Uni Bern/Informatik/Einführung in Software Engnieering/ESE Projekt/ese2016/baseProject
 2016-09-28 17:16:12,272 [Worker-10] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B tes
+2016-10-10 08:56:52,916 [Worker-2] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2016-10-10 08:56:53,350 [Thread-12] ERROR org.eclipse.jgit.util.FS - fatal: Could not switch to '/Library/Developer/CommandLineTools/usr/etc/': No such file or directory
+
+2016-10-10 08:56:56,711 [Worker-18] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: ch.unibe.ese.team8:team8-room-platform:0.0.1-SNAPSHOT @ /Users/Remo/Desktop/ese2016-team8/baseProject/pom.xml.
+2016-10-10 08:56:57,118 [Worker-22] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: ch.unibe.ese.team8:team8-room-platform:0.0.1-SNAPSHOT @ /Users/Remo/Desktop/ese2016-team8/baseProject/pom.xml.
+2016-10-10 08:56:59,555 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-10-10 08:56:59,556 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Remo/Desktop/ese2016-team8/baseProject/src/main/resources
+2016-10-10 08:56:59,566 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-10-10 08:56:59,567 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Remo/Desktop/ese2016-team8/baseProject/src/test/resources
+2016-10-10 08:57:00,702 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Executing commands
+2016-10-10 08:57:00,794 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - 1 of 1 SQL statements executed successfully
+2016-10-10 08:57:00,844 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Executing commands
+2016-10-10 08:57:00,851 [Worker-22] ERROR o.e.m.c.i.embedder.EclipseLogger - Failed to execute:  drop table zipcodes
+
+2016-10-10 08:57:00,899 [Worker-22] ERROR o.e.m.c.i.embedder.EclipseLogger - com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown table 'team8.zipcodes'
+2016-10-10 08:57:00,902 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - 0 of 1 SQL statements executed successfully
+2016-10-10 08:57:00,957 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Executing file: /var/folders/xq/5pnd36911hs5w_vxmvsz4xcm0000gn/T/zipcodes.1000287857sql
+2016-10-10 08:57:01,193 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - 14 of 14 SQL statements executed successfully
+2016-10-10 08:57:04,554 [Worker-7] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: ch.unibe.ese.team8:team8-room-platform:0.0.1-SNAPSHOT @ /Users/Remo/Desktop/ese2016-team8/baseProject/pom.xml.
+2016-10-10 08:57:06,524 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-10-10 08:57:06,525 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Remo/Desktop/ese2016-team8/baseProject/src/main/resources
+2016-10-10 08:57:06,532 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-10-10 08:57:06,533 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Remo/Desktop/ese2016-team8/baseProject/src/test/resources
