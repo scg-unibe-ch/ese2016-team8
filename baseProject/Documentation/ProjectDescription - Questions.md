@@ -10,23 +10,23 @@ The structure will be as follow:
 
  * Users can place an ad for advertising a room in a shared apartment
 > Can you specify what you mean by can, no pre-knowledge necessary, so kind of a guided tour in order to place the ad.
-> 
-> By shared apartment, would the german aquivalent be "Wohngemeinschaft"?
+>
+> By shared apartment, would the german equivalent be "Wohngemeinschaft"?
 
  * Users can search for relevant ads in a specific area
 > What do you mean with specific area. I.E. Bern and 10 km around it? Or just a city with surrounding zip code (agglomerations)?
 
 * Users can get exhaustive information about a room (e.g. pictures, location, roommate profiles, ..)
-> Should certain information only be accesible when certain criterias are met i.e. only show someones phone number or e-mail address when a verified user is checking?
-> 
+> Should certain information only be accessible when certain criteria are met i.e. only show someones phone number or e-mail address when a verified user is checking?
+>
 > Or make everything visible to everyone?
 >
-> Do pictures have to meet certain criterias? In terms of quality? Off-topic?
-  
+> Do pictures have to meet certain criteria? In terms of quality? Off-topic?
+
  * Users can quickly send an enquiry to the ad placer
 > What does quickly mean? Without any further help? Or under a certain time limit?
 >
-> Does the user need to fulfill criterias in order to be allowed to send an enquiry?
+> Does the user need to fulfill criteria in order to be allowed to send an enquiry?
 
  * Users can conveniently manage enquiries and organize on-site visits
 > Can you explain further what you mean by conveniently manage enquiries? Would you like some sort of inbox where enquiries are shown?
@@ -47,18 +47,18 @@ The structure will be as follow:
 > Should the bookmark-list also be searchable, or in other words does this list need to be dynamic or do you just want a plain list?
 
  * Users can subscribe to alerts to be informed about relevant ads
-> Relevant ads, how are those chosen? Does the user i.e. say if an ad in Bern for less than 1'500.- is placed, I want to get informed? Which information should be chosable as a criteria?
+> Relevant ads, how are those chosen? Does the user i.e. say if an ad in Bern for less than 1'500.- is placed, I want to get informed? Which information should be choosable as a criteria?
 >
 > How should the user be alerted? Through e-mail?
 
  * A user can put an ad to sell properties directly or through an auction.
-> 
-
- * A user can search for properties for sale similarly to the search form for properties for rent
 >
 
+ * A user can search for properties for sale similarly to the search form for properties for rent
+> Please specify: What do you want it to look like? Exactly the same, except the title?
+
  * A user can create search alerts which notify him about new ads corresponding the search criteria.
-> How does this differ from 'Users can subscrbe to alerts to be informed about relevant ads'?
+> How does this differ from 'Users can subscribe to alerts to be informed about relevant ads'?
 >
 > What things are important enough to notify the user? When the ad's object has been sold? 30 minute of bidding time remaining?
 
@@ -76,6 +76,6 @@ The structure will be as follow:
 > What did you have in mind?
 
  * The adds of premium user are a bit higher in the result list
-> 'A bit higher'. 
-> tfw 
+> 'A bit higher'.
+> tfw
 > Does a bit higher mean, premium user's ad will always be listed on top, or more mixed, or what did you have in mind?
