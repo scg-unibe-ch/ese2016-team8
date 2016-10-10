@@ -320,27 +320,28 @@ header ul {
 
 header ul li {
 	float: right;
-	width: 120px;
+	width: 140px;
 	text-align: center;
 	line-height: 21px;
 	margin-top: 20px;
 	text-align: center;
+	vertical-align:middle;
 }
 
 #profile_picture {
-	width: 170px;
+	width: 220px;
 	margin-top: 0px;
 }
 
 #profile_picture_editPage {
 	float: left;
-	width: 340px;
+	width: 380px;
 	margin-top: 0px;
 }
 
 #profile_picture_publicProfile {
 	float: left;
-	width: 340px;
+	width: 380px;
 	margin-top: 0px;
 }
 
@@ -423,7 +424,7 @@ footer nav {
 }
 
 footer .link {
-	color: #AFFFEE;
+	color: #EFF;
 }
 
 footer .link:hover {
