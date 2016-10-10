@@ -331,3 +331,6 @@
 2016-10-10 08:57:06,525 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Remo/Desktop/ese2016-team8/baseProject/src/main/resources
 2016-10-10 08:57:06,532 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2016-10-10 08:57:06,533 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Remo/Desktop/ese2016-team8/baseProject/src/test/resources
+2016-10-10 14:18:22,766 [Worker-1] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2016-10-10 14:18:26,151 [Thread-14] ERROR org.eclipse.jgit.util.FS - fatal: Could not switch to '/Library/Developer/CommandLineTools/usr/etc/': No such file or directory
+
