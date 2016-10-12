@@ -1,5 +1,30 @@
+# eclipse and setting files
 /target
 /bin
 .metadata
 .gitignore
 /temp
+*.classpath
+
+# OS specific files
+.DS_Store
+../.DS_Store
+
+# Hidden files
+.*
+!.gitignore
+!.classpath
+!.project
+
+# Temporary files
+*/tmp
+*~
+*.tmp
+*.bak
+*.orig
+._*
+
+# Java compiled code
+*.class
+*.war
+*.ear
