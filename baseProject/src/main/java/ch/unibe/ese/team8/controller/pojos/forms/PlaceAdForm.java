@@ -47,6 +47,7 @@ public class PlaceAdForm {
 	
 	//true if studio, false if room
 	private boolean studio;
+	private boolean house;
 	
 	private boolean smokers;
 	private boolean animals;
@@ -222,6 +223,14 @@ public class PlaceAdForm {
 	
 	public boolean getStudio() {
 		return studio;
+	}
+	
+	public void setHouse(boolean house) {
+		this.house = house;
+	}
+	
+	public boolean getHouse() {
+		return house;
 	}
 	
 	public void setStudio(boolean studio) {
