@@ -15,12 +15,12 @@
 
 <script>
 	$(document).ready(function() {
-		
+
 		// Go to controller take what you need from user
 		// save it to a hidden field
 		// iterate through it
 		// if there is id == x then make "Bookmark Me" to "bookmarked"
-		
+
 		$("#field-city").autocomplete({
 			minLength : 2
 		});
@@ -37,11 +37,11 @@
 		$("#field-moveOutDate").datepicker({
 			dateFormat : 'dd-mm-yy'
 		});
-		
+
 		$("#field-visitDay").datepicker({
 			dateFormat : 'dd-mm-yy'
 		});
-		
+
 
 		$("#addbutton").click(function() {
 			var text = $("#roomFriends").val();
@@ -59,7 +59,7 @@
 			else {
 				alert("Please enter an e-mail adress");
 			}
-			 
+
 			// Validates the input for Email Syntax
 			function validateForm(text) {
 			    var positionAt = text.indexOf("@");
@@ -71,18 +71,18 @@
 			    }
 			}
 		});
-		
+
 		$("#addVisitButton").click(function() {
 			var date = $("#field-visitDay").val();
 			if(date == ""){
 				return;
 			}
-			
+
 			var startHour = $("#startHour").val();
 			var startMinutes = $("#startMinutes").val();
 			var endHour = $("#endHour").val();
 			var endMinutes = $("#endMinutes").val();
-			
+
 			if (startHour > endHour) {
 				alert("Invalid times. The visit can't end before being started.");
 				return;
@@ -90,17 +90,17 @@
 				alert("Invalid times. The visit can't end before being started.");
 				return;
 			}
-			
-			var newVisit = date + ";" + startHour + ":" + startMinutes + 
-				";" + endHour + ":" + endMinutes; 
-			var newVisitLabel = date + " " + startHour + ":" + startMinutes + 
-			" to " + endHour + ":" + endMinutes; 
-			
+
+			var newVisit = date + ";" + startHour + ":" + startMinutes +
+				";" + endHour + ":" + endMinutes;
+			var newVisitLabel = date + " " + startHour + ":" + startMinutes +
+			" to " + endHour + ":" + endMinutes;
+
 			var index = $("#addedVisits input").length;
-			
+
 			var label = "<p>" + newVisitLabel + "</p>";
 			var input = "<input type='hidden' value='" + newVisit + "' name='visits[" + index + "]' />";
-			
+
 			$("#addedVisits").append(label + input);
 		});
 	});
@@ -129,7 +129,8 @@
 						placeholder="Ad Title" /></td>
 				<td><form:radiobutton id="type-room" path="studio" value="0"
 						checked="checked" />Room <form:radiobutton id="type-studio"
-						path="studio" value="1" />Studio</td>
+						path="studio" value="1" />Studio <form:radiobutton id="type-house"
+						path="studio" value="1" />House</td>
 			</tr>
 
 			<tr>

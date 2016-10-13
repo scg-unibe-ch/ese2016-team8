@@ -53,7 +53,7 @@ public class AdService {
 
 	/**
 	 * Handles persisting a new ad to the database.
-	 * 
+	 *
 	 * @param placeAdForm
 	 *            the form to take the data from
 	 * @param a
@@ -64,7 +64,7 @@ public class AdService {
 	@Transactional
 	public Ad saveFrom(PlaceAdForm placeAdForm, List<String> filePaths,
 			User user) {
-		
+
 		Ad ad = new Ad();
 
 		Date now = new Date();
@@ -76,11 +76,12 @@ public class AdService {
 
 		ad.setStudio(placeAdForm.getStudio());
 
+
 		// take the zipcode - first four digits
 		String zip = placeAdForm.getCity().substring(0, 4);
 		ad.setZipcode(Integer.parseInt(zip));
 		ad.setCity(placeAdForm.getCity().substring(7));
-		
+
 		Calendar calendar = Calendar.getInstance();
 		// java.util.Calendar uses a month range of 0-11 instead of the
 		// XMLGregorianCalendar which uses 1-12
@@ -126,7 +127,7 @@ public class AdService {
 		ad.setCable(placeAdForm.getCable());
 		ad.setGarage(placeAdForm.getGarage());
 		ad.setInternet(placeAdForm.getInternet());
-		
+
 		/*
 		 * Save the paths to the picture files, the pictures are assumed to be
 		 * uploaded at this point!
@@ -182,7 +183,7 @@ public class AdService {
 		}
 
 		ad.setUser(user);
-		
+
 		adDao.save(ad);
 
 		return ad;
@@ -190,7 +191,7 @@ public class AdService {
 
 	/**
 	 * Gets the ad that has the given id.
-	 * 
+	 *
 	 * @param id
 	 *            the id that should be searched for
 	 * @return the found ad or null, if no ad with this id exists
@@ -230,7 +231,7 @@ public class AdService {
 	/**
 	 * Returns all ads that match the parameters given by the form. This list
 	 * can possibly be empty.
-	 * 
+	 *
 	 * @param searchForm
 	 *            the form to take the search parameters from
 	 * @return an Iterable of all search results
@@ -241,8 +242,8 @@ public class AdService {
 
 		// we use this method if we are looking for rooms AND studios
 		if (searchForm.getBothRoomAndStudio()) {
-			results = adDao
-					.findByPrizePerMonthLessThan(searchForm.getPrize() + 1);
+			results = adDao.findByPrizePerMonthLessThan(
+			searchForm.getPrize() + 1);
 		}
 		// we use this method if we are looking EITHER for rooms OR for studios
 		else {
@@ -474,13 +475,13 @@ public class AdService {
 
 	/**
 	 * Checks if the email of a user is already contained in the given string.
-	 * 
+	 *
 	 * @param email
 	 *            the email string to search for
 	 * @param alreadyAdded
 	 *            the string of already added emails, which should be searched
 	 *            in
-	 * 
+	 *
 	 * @return true if the email has been added already, false otherwise
 	 */
 	public Boolean checkIfAlreadyAdded(String email, String alreadyAdded) {

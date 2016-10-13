@@ -15,6 +15,7 @@
 !.gitignore
 !.classpath
 !.project
+.project
 
 # Temporary files
 */tmp

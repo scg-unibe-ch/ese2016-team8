@@ -9,19 +9,19 @@ import org.hibernate.validator.constraints.NotBlank;
 
 /** This form is used when a user wants to place a new ad. */
 public class PlaceAdForm {
-	
+
 	@NotBlank(message = "Required")
 	private String title;
-	
+
 	@NotBlank(message = "Required")
 	private String street;
-	
+
 	@Pattern(regexp = "^[0-9]{4} - [-\\w\\s\\u00C0-\\u00FF]*", message = "Please pick a city from the list")
 	private String city;
-	
+
 	@NotBlank(message = "Required")
 	private String moveInDate;
-	
+
 	private String moveOutDate;
 
 	@Min(value = 1, message = "Has to be equal to 1 or more")
@@ -37,17 +37,18 @@ public class PlaceAdForm {
 
 	// optional free text description
 	private String roommates;
-	
+
 	// First user are added as strings, then transformed
 	// to Users and added to the DB in through adService
 	private List<String> registeredRoommateEmails;
-	
+
 	// optional for input
 	private String roomFriends;
-	
+
 	//true if studio, false if room
 	private boolean studio;
-	
+	private boolean house;
+
 	private boolean smokers;
 	private boolean animals;
 	private boolean garden;
@@ -57,7 +58,7 @@ public class PlaceAdForm {
 	private boolean cable;
 	private boolean garage;
 	private boolean internet;
-	
+
 	private List<String> visits;
 
 	public String getCity() {
@@ -123,7 +124,7 @@ public class PlaceAdForm {
 	public void setAnimals(boolean animals) {
 		this.animals = animals;
 	}
-	
+
 	public boolean getGarden() {
 		return garden;
 	}
@@ -139,7 +140,7 @@ public class PlaceAdForm {
 	public void setBalcony(boolean balcony) {
 		this.balcony = balcony;
 	}
-	
+
 	public boolean getCellar() {
 		return cellar;
 	}
@@ -147,7 +148,7 @@ public class PlaceAdForm {
 	public void setCellar(boolean cellar) {
 		this.cellar = cellar;
 	}
-	
+
 	public boolean isFurnished() {
 		return furnished;
 	}
@@ -163,7 +164,7 @@ public class PlaceAdForm {
 	public void setCable(boolean cable) {
 		this.cable = cable;
 	}
-	
+
 	public boolean getGarage() {
 		return garage;
 	}
@@ -219,13 +220,21 @@ public class PlaceAdForm {
 	public void setRoomFriends(String roomFriends) {
 		this.roomFriends = roomFriends;
 	}
-	
+
 	public boolean getStudio() {
 		return studio;
 	}
-	
+
 	public void setStudio(boolean studio) {
 		this.studio = studio;
+	}
+
+	public boolean getHouse() {
+		return house;
+	}
+
+	public void setHouse(boolean house) {
+		this.studio = house;
 	}
 
 	public List<String> getRegisteredRoommateEmails() {

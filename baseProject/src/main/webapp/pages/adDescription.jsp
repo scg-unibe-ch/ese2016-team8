@@ -20,10 +20,10 @@
 <script>
 	var shownAdvertisementID = "${shownAd.id}";
 	var shownAdvertisement = "${shownAd}";
-	
+
 	function attachBookmarkClickHandler(){
 		$("#bookmarkButton").click(function() {
-			
+
 			$.post("/bookmark", {id: shownAdvertisementID, screening: false, bookmarked: false}, function(data) {
 				$('#bookmarkButton').replaceWith($('<a class="right" id="bookmarkedButton">' + "Bookmarked" + '</a>'));
 				switch(data) {
@@ -38,14 +38,14 @@
 					$('#bookmarkButton').replaceWith($('<a class="right" id="bookmarkedButton">' + "Bookmarked" + '</a>'));
 					break;
 				default:
-					alert("Default error. Please contact the WebAdmin.");	
+					alert("Default error. Please contact the WebAdmin.");
 				}
-				
+
 				attachBookmarkedClickHandler();
 			});
 		});
 	}
-	
+
 	function attachBookmarkedClickHandler(){
 		$("#bookmarkedButton").click(function() {
 			$.post("/bookmark", {id: shownAdvertisementID, screening: false, bookmarked: true}, function(data) {
@@ -63,8 +63,8 @@
 					break;
 				default:
 					alert("Default error. Please contact the WebAdmin.");
-					
-				}			
+
+				}
 				attachBookmarkClickHandler();
 			});
 		});
@@ -73,7 +73,7 @@
 	$(document).ready(function() {
 		attachBookmarkClickHandler();
 		attachBookmarkedClickHandler();
-		
+
 		$.post("/bookmark", {id: shownAdvertisementID, screening: true, bookmarked: true}, function(data) {
 			if(data == 3) {
 				$('#bookmarkButton').replaceWith($('<a class="right" id="bookmarkedButton">' + "Bookmarked" + '</a>'));
@@ -83,20 +83,20 @@
 				$('#shownAdTitle').replaceWith($('<h1>' + "${shownAd.title}" + '</h1>'));
 			}
 		});
-		
+
 		$("#newMsg").click(function(){
 			$("#content").children().animate({opacity: 0.4}, 300, function(){
 				$("#msgDiv").css("display", "block");
 				$("#msgDiv").css("opacity", "1");
 			});
 		});
-		
+
 		$("#messageCancel").click(function(){
 			$("#msgDiv").css("display", "none");
 			$("#msgDiv").css("opacity", "0");
 			$("#content").children().animate({opacity: 1}, 300);
 		});
-		
+
 		$("#messageSend").click(function (){
 			if($("#msgSubject").val() != "" && $("#msgTextarea").val() != ""){
 				var subject = $("#msgSubject").val();
@@ -112,7 +112,7 @@
 			}
 		});
 	});
-		
+
 </script>
 
 
@@ -329,7 +329,7 @@
 				</c:choose>
 			</td>
 		</tr>
-		
+
 		<tr>
 			<td><h2>WiFi available</h2></td>
 			<td>
@@ -410,9 +410,9 @@
 					<img src="/img/avatar.png">
 				</c:otherwise>
 			</c:choose></td>
-		
+
 		<td>${shownAd.user.username}</td>
-		
+
 		<td id="advertiserEmail">
 		<c:choose>
 			<c:when test="${loggedIn}">

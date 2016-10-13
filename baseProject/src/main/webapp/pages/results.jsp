@@ -14,11 +14,12 @@ function validateType(form)
 {
 	var room = document.getElementById('room');
 	var studio = document.getElementById('studio');
+	var house = document.getElementById('house');
 	var neither = document.getElementById('neither');
 	var both = document.getElementById('both');
 	var type = document.getElementById('type');
 	var filtered = document.getElementById('filtered');
-	
+
 	if(room.checked && studio.checked) {
 		both.checked = true;
 		neither.checked = false;
@@ -43,20 +44,20 @@ function validateType(form)
  */
 function sort_div_attribute() {
     //determine sort modus (by which attribute, asc/desc)
-    var sortmode = $('#modus').find(":selected").val();   
-    
+    var sortmode = $('#modus').find(":selected").val();
+
     //only start the process if a modus has been selected
     if(sortmode.length > 0) {
     	var attname;
-		
+
     	//determine which variable we pass to the sort function
 		if(sortmode == "price_asc" || sortmode == "price_desc")
 			attname = 'data-price';
-	    else if(sortmode == "moveIn_asc" || sortmode == "moveIn_desc")	
+	    else if(sortmode == "moveIn_asc" || sortmode == "moveIn_desc")
 			attname = 'data-moveIn';
 	    else
 			attname = 'data-age';
-    	
+
 		//copying divs into an array which we're going to sort
 	    var divsbucket = new Array();
 	    var divslist = $('div.resultAd');
@@ -67,7 +68,7 @@ function sort_div_attribute() {
 			divsbucket[a][1] = divslist[a];
 			divslist[a].remove();
 	    }
-		
+
 	    //sort the array
 		divsbucket.sort(function(a, b) {
 	    if (a[0] == b[0])
@@ -81,7 +82,7 @@ function sort_div_attribute() {
 	    //invert sorted array for certain sort options
 		if(sortmode == "price_desc" || sortmode == "moveIn_asc" || sortmode == "dateAge_asc")
 			divsbucket.reverse();
-        
+
 	    //insert sorted divs into document again
 		for(a = 0; a < divlength; a++)
         	$("#resultsDiv").append($(divsbucket[a][1]));
@@ -101,7 +102,7 @@ function sort_div_attribute() {
 			enabled : true,
 			autoFocus : true
 		});
-		
+
 		$("#field-earliestMoveInDate").datepicker({
 			dateFormat : 'dd-mm-yy'
 		});
@@ -132,16 +133,16 @@ function sort_div_attribute() {
     <option value="dateAge_desc">Date created (oldest to youngest)</option>
 </select>
 
-<button onClick="sort_div_attribute()">Sort</button>	
+<button onClick="sort_div_attribute()">Sort</button>
 </div>
 <c:choose>
 	<c:when test="${empty results}">
 		<p>No results found!
 	</c:when>
 	<c:otherwise>
-		<div id="resultsDiv" class="resultsDiv">			
+		<div id="resultsDiv" class="resultsDiv">
 			<c:forEach var="ad" items="${results}">
-				<div class="resultAd" data-price="${ad.prizePerMonth}" 
+				<div class="resultAd" data-price="${ad.prizePerMonth}"
 								data-moveIn="${ad.moveInDate}" data-age="${ad.moveInDate}">
 					<div class="resultLeft">
 						<a href="<c:url value='/ad?id=${ad.id}' />"><img
@@ -180,18 +181,19 @@ function sort_div_attribute() {
 		<h2>Filter results:</h2>
 		<form:checkbox name="room" id="room" path="roomHelper" /><label>Room</label>
 		<form:checkbox name="studio" id="studio" path="studioHelper" /><label>Studio</label>
-	
+		<form:checkbox name="house" id="house" path="houseHelper" /><label>House</label>
+
 		<form:checkbox style="display:none" name="neither" id="neither" path="noRoomNoStudio" />
 		<form:checkbox style="display:none" name="both" id="both" path="bothRoomAndStudio" />
 		<form:checkbox style="display:none" name="type" id="type" path="studio" />
 		<form:checkbox style="display:none" name="filtered" id="filtered" path="filtered" />
 		<form:errors path="noRoomNoStudio" cssClass="validationErrorText" /> <br />
-	
+
 		<label for="city">City / zip code:</label>
 		<form:input type="text" name="city" id="city" path="city"
 			placeholder="e.g. Bern" tabindex="3" />
 		<form:errors path="city" cssClass="validationErrorText" /><br />
-			
+
 		<label for="radius">Within radius of (max.):</label>
 		<form:input id="radiusInput" type="number" path="radius"
 			placeholder="e.g. 5" step="5" />
@@ -202,9 +204,12 @@ function sort_div_attribute() {
 			placeholder="e.g. 5" step="50" />
 		CHF
 		<form:errors path="prize" cssClass="validationErrorText" /><br />
-		
-		<hr class="slim">		
-		
+		<form:radiobutton name="rent" id="rent" path="houseHelper" /><label>Rent</label>
+		<form:radiobutton name="buy" id="buy" path="houseHelper" /><label>Buy</label>
+		<form:errors path="city" cssClass="validationErrorText" />
+
+		<hr class="slim">
+
 		<table style="width: 80%">
 			<tr>
 				<td><label for="earliestMoveInDate">Earliest move-in date</label></td>
@@ -254,9 +259,9 @@ function sort_div_attribute() {
 				<td><form:checkbox id="field-internet" path="internet" value="1" /><label>WiFi</label></td>
 			</tr>
 		</table>
-			
-		
-		<button type="submit" onClick="validateType(this.form)">Filter</button>	
+
+
+		<button type="submit" onClick="validateType(this.form)">Filter</button>
 		<button type="reset">Cancel</button>
 	</div>
 </form:form>

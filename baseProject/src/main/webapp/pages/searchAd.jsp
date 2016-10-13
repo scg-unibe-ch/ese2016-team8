@@ -37,6 +37,7 @@ function validateType(form)
 {
 	var room = document.getElementById('room');
 	var studio = document.getElementById('studio');
+	var house = document.getElementById('house');
 	var neither = document.getElementById('neither');
 	var both = document.getElementById('both');
 	var type = document.getElementById('type');
@@ -68,6 +69,7 @@ function validateType(form)
 	<fieldset>
 		<form:checkbox name="room" id="room" path="roomHelper" /><label>Room</label>
 		<form:checkbox name="studio" id="studio" path="studioHelper" /><label>Studio</label>
+		<form:checkbox name="house" id="house" path="houseHelper" /><label>House</label>
 
 		<form:checkbox style="display:none" name="neither" id="neither" path="noRoomNoStudio" />
 		<form:checkbox style="display:none" name="both" id="both" path="bothRoomAndStudio" />
@@ -95,6 +97,11 @@ function validateType(form)
 		<form:errors path="prize" cssClass="validationErrorText" />
 		<br />
 
+		<button:radiobutton name="rent" id="rent" path="houseHelper" /><label>Rent</label>
+		<button:radiobutton name="buy" id="buy" path="houseHelper" /><label>Buy</label>
+
+
+		<br />
 		<button type="submit" tabindex="7" onClick="validateType(this.form)">Search</button>
 		<button type="reset" tabindex="8">Cancel</button>
 	</fieldset>
