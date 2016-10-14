@@ -15,6 +15,8 @@ public class SearchForm {
 	// studio: true, room: false
 	private boolean studio;
 	private boolean house;
+	
+	private boolean sale;
 
 	@NotBlank(message = "Required")
 	@Pattern(regexp = "^[0-9]{4} - [-\\w\\s\\u00C0-\\u00FF]*", message = "Please pick a city from the list")
@@ -65,12 +67,20 @@ public class SearchForm {
 		this.studio = studio;
 	}
 
-	public boolean gethouse() {
+	public boolean getHouse() {
 		return house;
 	}
 
 	public void setHouse(boolean house) {
 		this.house = house;
+	}
+	
+	public boolean getSale(){
+		return sale;
+	}
+	
+	public void setSale(boolean sale){
+		this.sale = sale;
 	}
 
 	public boolean getNoRoomNoStudio() {
@@ -122,7 +132,8 @@ public class SearchForm {
 	private boolean studioHelper;
 
 	private boolean houseHelper;
-
+	private boolean saleHelper;
+	
 	public boolean getSmokers() {
 		return smokers;
 	}
@@ -248,5 +259,13 @@ public class SearchForm {
 	}
 	public void setHouseHelper(boolean helper) {
 		this.houseHelper = helper;
+	}
+
+	public boolean getSaleHelper() {
+		return saleHelper;
+	}
+
+	public void setSaleHelper(boolean saleHelper) {
+		this.saleHelper = saleHelper;
 	}
 }

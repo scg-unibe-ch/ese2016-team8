@@ -70,13 +70,15 @@ function validateType(form)
 		<form:checkbox name="room" id="room" path="roomHelper" /><label>Room</label>
 		<form:checkbox name="studio" id="studio" path="studioHelper" /><label>Studio</label>
 		<form:checkbox name="house" id="house" path="houseHelper" /><label>House</label>
-
 		<form:checkbox style="display:none" name="neither" id="neither" path="noRoomNoStudio" />
 		<form:checkbox style="display:none" name="both" id="both" path="bothRoomAndStudio" />
 		<form:checkbox style="display:none" name="type" id="type" path="studio" />
 		<form:checkbox style="display:none" name="filtered" id="filtered" path="filtered" />
 		<form:errors path="noRoomNoStudio" cssClass="validationErrorText" />
 
+		<br />
+		<form:checkbox name="rent" id="rent" path="saleHelper" /><label>Rent</label>
+		<form:checkbox name="sale" id="sale" path="saleHelper" /><label>Sale</label>
 		<br />
 
 		<label for="city">City / zip code:</label>
