@@ -48,6 +48,7 @@ public class PlaceAdForm {
 	//true if studio, false if room
 	private boolean studio;
 	private boolean house;
+	private boolean sale;
 	
 	private boolean smokers;
 	private boolean animals;
@@ -235,6 +236,14 @@ public class PlaceAdForm {
 	
 	public void setStudio(boolean studio) {
 		this.studio = studio;
+	}
+
+	public boolean getSale() {
+		return sale;
+	}
+
+	public void setSale(boolean sale) {
+		this.sale = sale;
 	}
 
 	public List<String> getRegisteredRoommateEmails() {

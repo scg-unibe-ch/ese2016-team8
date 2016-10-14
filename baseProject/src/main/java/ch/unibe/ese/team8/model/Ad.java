@@ -105,6 +105,9 @@ public class Ad {
 	
 	@Column(nullable = false)
 	private boolean house;
+	
+	@Column(nullable = false)
+	private boolean sale;
 
 	@Fetch(FetchMode.SELECT)
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -138,6 +141,14 @@ public class Ad {
 	
 	public boolean getHouse(boolean house){
 		return house;
+	}
+	
+	public void setSale(boolean sale){
+		this.sale = sale;
+	}
+	
+	public boolean getSale(){
+		return sale;
 	}
 
 	public boolean getSmokers() {
