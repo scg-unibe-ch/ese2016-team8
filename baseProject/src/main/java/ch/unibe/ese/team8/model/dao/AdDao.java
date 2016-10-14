@@ -9,6 +9,8 @@ public interface AdDao extends CrudRepository<Ad, Long> {
 
 	/** this will be used if both rooms AND studios AND houses are searched */
 	public Iterable<Ad> findByPrizePerMonthLessThan (int prize);
+	
+	public Iterable<Ad> findBySaleAndPrizePerMonthLessThan(boolean sale, int prize);
 
 	/** this will be used if only rooms or studios are searched */
 	public Iterable<Ad> findByStudioAndPrizePerMonthLessThan(boolean studio,
@@ -16,4 +18,6 @@ public interface AdDao extends CrudRepository<Ad, Long> {
 
 
 	public Iterable<Ad> findByUser(User user);
+
+	public Iterable<Ad> findBySaleAndStudioAndPrizePerMonthLessThan(boolean sale, boolean studio, int i);
 }
