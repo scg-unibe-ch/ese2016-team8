@@ -194,7 +194,11 @@
 		</tr>
 
 		<tr>
-			<td><h2>Monthly Rent</h2></td>
+			<td><h2>
+				<c:choose>
+					<c:when test="${shownAd.sale}">Buy Price</c:when>
+					<c:otherwise>Monthly Rent</c:otherwise>
+				</c:choose></h2></td>
 			<td>${shownAd.prizePerMonth}&#32;CHF</td>
 		</tr>
 
