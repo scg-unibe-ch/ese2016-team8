@@ -122,6 +122,7 @@
 			<tr>
 				<td><label for="field-title">Ad Title</label></td>
 				<td><label for="type-room">Type:</label></td>
+				<td><label for="type-rent">Tenure:</label></td>
 			</tr>
 
 			<tr>
@@ -129,8 +130,10 @@
 						placeholder="Ad Title" /></td>
 				<td><form:radiobutton id="type-room" path="studio" value="0"
 						checked="checked" />Room <form:radiobutton id="type-studio"
-						path="studio" value="1" />Studio <form:radiobutton id="type-house"
-						path="studio" value="1" />House</td>
+						path="studio" value="1" />Studio</td>
+				<td><form:radiobutton id="type-rent" path="sale" value="0"
+						checked="checked" />Rent <form:radiobutton id="type-sale"
+						path="sale" value="1" />Sale</td>
 			</tr>
 
 			<tr>

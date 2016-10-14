@@ -166,7 +166,15 @@
 				</c:choose>
 			</td>
 		</tr>
-
+		<tr>
+			<td><h2>Tenure</h2></td>
+			<td>
+				<c:choose>
+					<c:when test="${shownAd.sale}">Sale</c:when>
+					<c:otherwise>Rent</c:otherwise>
+				</c:choose>
+			</td>
+		</tr>
 		<tr>
 			<td><h2>Address</h2></td>
 			<td>
