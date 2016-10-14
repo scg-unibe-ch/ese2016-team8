@@ -232,8 +232,6 @@ public class AdService {
 	@Transactional
 	public Iterable<Ad> queryResults(SearchForm searchForm) {
 		Iterable<Ad> results = null;
-		
-		System.out.println(searchForm.getBothRentAndSale() + " und "+ searchForm.getBothRoomAndStudio());
 
 		// we use this method if we are looking for rooms AND studios
 		if (searchForm.getBothRoomAndStudio() && searchForm.getBothRentAndSale()) {
