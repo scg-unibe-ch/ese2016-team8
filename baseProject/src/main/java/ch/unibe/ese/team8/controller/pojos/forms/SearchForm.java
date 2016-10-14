@@ -34,6 +34,8 @@ public class SearchForm {
 	private boolean noRoomNoStudio;
 
 	private boolean bothRoomAndStudio;
+	
+	private boolean bothRentAndSale;
 
 	public String getCity() {
 		return city;
@@ -98,6 +100,14 @@ public class SearchForm {
 	public void setBothRoomAndStudio(boolean bothRoomAndStudio) {
 		this.bothRoomAndStudio = bothRoomAndStudio;
 	}
+	
+	public boolean getBothRentAndSale() {
+		return bothRentAndSale;
+	}
+	
+	public void setBothRentAndSale(boolean bothRentAndSale) {
+		this.bothRentAndSale = bothRentAndSale;
+	}
 
 	// //////////////////
 	// Filtered results//
@@ -133,6 +143,7 @@ public class SearchForm {
 
 	private boolean houseHelper;
 	private boolean saleHelper;
+	private boolean rentHelper;
 	
 	public boolean getSmokers() {
 		return smokers;
@@ -268,4 +279,13 @@ public class SearchForm {
 	public void setSaleHelper(boolean saleHelper) {
 		this.saleHelper = saleHelper;
 	}
+	
+	public boolean getRentHelper() {
+		return rentHelper;
+	}
+
+	public void setRentHelper(boolean rentHelper) {
+		this.rentHelper = rentHelper;
+	}
+	
 }

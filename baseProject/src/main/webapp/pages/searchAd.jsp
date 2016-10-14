@@ -42,6 +42,23 @@ function validateType(form)
 	var both = document.getElementById('both');
 	var type = document.getElementById('type');
 	var filtered = document.getElementById('filtered');
+	
+	var sale = document.getElementById('sale');
+	var rent = document.getElementById('rent');
+	var bothType = document.getElementById('bothType');
+	var saleType = document.getElementById('saleType');
+
+
+	if(sale.checked && rent.checked){
+		bothType.checked = true;
+
+	}else if(sale.checked && !rent.checked){
+		bothType.checked = false;
+		saleType.checked = true;
+	}else{
+		bothType.checked = false;
+		saleType.checked = false;
+	}
 
 	if(room.checked && studio.checked) {
 		both.checked = true;
@@ -77,8 +94,10 @@ function validateType(form)
 		<form:errors path="noRoomNoStudio" cssClass="validationErrorText" />
 
 		<br />
-		<form:checkbox name="rent" id="rent" path="saleHelper" /><label>Rent</label>
+		<form:checkbox name="rent" id="rent" path="rentHelper" /><label>Rent</label>
 		<form:checkbox name="sale" id="sale" path="saleHelper" /><label>Sale</label>
+		<form:checkbox style="display:none" name="saleType" id="saleType" path="sale" />
+		<form:checkbox style="display:none" name="bothType" id="bothType" path="bothRentAndSale" />
 		<br />
 
 		<label for="city">City / zip code:</label>
