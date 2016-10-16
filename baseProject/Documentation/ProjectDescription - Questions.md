@@ -1,6 +1,10 @@
 Specification Request
 ============
 
+**Depricated**
+
+See [1st discussion](1st discussion.md)
+
 Create Date: 10.10.2016; 16.05
 
 Preparation for our first customer meeting in order to clarify given specification.
