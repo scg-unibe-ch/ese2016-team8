@@ -128,9 +128,9 @@
 			<tr>
 				<td><form:input id="field-title" path="title"
 						placeholder="Ad Title" /></td>
-				<td><form:radiobutton id="type-room" path="studio" value="0"
+				<td><form:radiobutton id="type-room" path="category" value="room"
 						checked="checked" />Room <form:radiobutton id="type-studio"
-						path="studio" value="1" />Studio</td>
+						path="category" value="studio" />Studio</td>
 				<td><form:radiobutton id="type-rent" path="sale" value="0"
 						checked="checked" />Rent <form:radiobutton id="type-sale"
 						path="sale" value="1" />Sale</td>

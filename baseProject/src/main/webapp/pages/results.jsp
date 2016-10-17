@@ -154,8 +154,8 @@ function sort_div_attribute() {
 						<br />
 						<p>
 							<i><c:choose>
-									<c:when test="${ad.studio}">Studio</c:when>
-									<c:otherwise>Room</c:otherwise>
+									<c:when test="${ad.category} == 'studio">Studio</c:when>
+									<c:when test="${ad.category} == 'room">Room</c:when>
 								</c:choose></i>
 						</p>
 					</div>

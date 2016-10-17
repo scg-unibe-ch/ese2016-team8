@@ -1,5 +1,7 @@
 package ch.unibe.ese.team8.controller.pojos.forms;
 
+import java.util.ArrayList;
+
 import javax.validation.constraints.AssertFalse;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -11,10 +13,6 @@ import org.hibernate.validator.constraints.NotBlank;
 public class SearchForm {
 
 	private boolean filtered;
-
-	// studio: true, room: false
-	private boolean studio;
-	private boolean house;
 	
 	private boolean sale;
 
@@ -31,11 +29,20 @@ public class SearchForm {
 	private Integer prize;
 
 	@AssertFalse(message = "Please select either or both types")
-	private boolean noRoomNoStudio;
-
-	private boolean bothRoomAndStudio;
+	private boolean noCategory;
 	
+	@NotNull(message = "Requires a category")
+	private String category = "";
+
 	private boolean bothRentAndSale;
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
 
 	public String getCity() {
 		return city;
@@ -61,22 +68,6 @@ public class SearchForm {
 		this.prize = prize;
 	}
 
-	public boolean getStudio() {
-		return studio;
-	}
-
-	public void setStudio(boolean studio) {
-		this.studio = studio;
-	}
-
-	public boolean getHouse() {
-		return house;
-	}
-
-	public void setHouse(boolean house) {
-		this.house = house;
-	}
-	
 	public boolean getSale(){
 		return sale;
 	}
@@ -85,20 +76,12 @@ public class SearchForm {
 		this.sale = sale;
 	}
 
-	public boolean getNoRoomNoStudio() {
-		return noRoomNoStudio;
+	public boolean getNoCategory() {
+		return noCategory;
 	}
 
-	public void setNoRoomNoStudio(boolean noRoomNoStudio) {
-		this.noRoomNoStudio = noRoomNoStudio;
-	}
-
-	public boolean getBothRoomAndStudio() {
-		return bothRoomAndStudio;
-	}
-
-	public void setBothRoomAndStudio(boolean bothRoomAndStudio) {
-		this.bothRoomAndStudio = bothRoomAndStudio;
+	public void setNoCategory(boolean noCategory) {
+		this.noCategory = noCategory;
 	}
 	
 	public boolean getBothRentAndSale() {
@@ -108,7 +91,7 @@ public class SearchForm {
 	public void setBothRentAndSale(boolean bothRentAndSale) {
 		this.bothRentAndSale = bothRentAndSale;
 	}
-
+	
 	// //////////////////
 	// Filtered results//
 	// //////////////////
@@ -286,6 +269,16 @@ public class SearchForm {
 
 	public void setRentHelper(boolean rentHelper) {
 		this.rentHelper = rentHelper;
+	}
+	
+	public ArrayList<String> getCategories() {
+		String[] a = category.split(",");
+		System.out.println(a.toString());
+		ArrayList<String> categories = new ArrayList<String>();
+		for(int i = 0; i < a.length; i++){
+			categories.add(a[i]);
+		}
+		return categories;
 	}
 	
 }

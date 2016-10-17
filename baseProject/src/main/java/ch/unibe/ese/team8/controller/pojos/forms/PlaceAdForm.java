@@ -45,9 +45,7 @@ public class PlaceAdForm {
 	// optional for input
 	private String roomFriends;
 
-	//true if studio, false if room
-	private boolean studio;
-	private boolean house;
+	private String category;
 	private boolean sale;
 
 	private boolean smokers;
@@ -222,20 +220,16 @@ public class PlaceAdForm {
 		this.roomFriends = roomFriends;
 	}
 
-	public boolean getStudio() {
-		return studio;
+	public String getCategory() {
+		return category;
 	}
 	
-	public void setStudio(boolean studio) {
-		this.studio = studio;
-	}
-	public
-	boolean getHouse() {
-		return house;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
-	public void setHouse(boolean house) {
-		this.studio = house;
+	public void setSale(String category) {
+		this.category = category;
 	}
 	
 	public boolean getSale() {

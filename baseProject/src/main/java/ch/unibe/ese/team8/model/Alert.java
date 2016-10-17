@@ -32,15 +32,9 @@ public class Alert {
 
 	@Column(nullable = false)
 	private int radius;
-
+	
 	@Column
-	private boolean studio;
-
-	@Column
-	private boolean room;
-
-	@Column
-	private boolean bothRoomAndStudio;
+	private String category;
 
 	public long getId() {
 		return id;
@@ -90,27 +84,12 @@ public class Alert {
 		this.price = price;
 	}
 
-	public boolean getStudio() {
-		return studio;
+	public void setCategory(String category){
+		this.category = category;
 	}
-
-	public void setStudio(boolean studio) {
-		this.studio = studio;
-	}
-
-	public boolean getRoom() {
-		return room;
-	}
-
-	public void setRoom(boolean room) {
-		this.room = room;
-	}
-
-	public boolean getBothRoomAndStudio() {
-		return bothRoomAndStudio;
-	}
-
-	public void setBothRoomAndStudio(boolean bothRoomAndStudio) {
-		this.bothRoomAndStudio = bothRoomAndStudio;
+	
+	public String getCategory() {
+		// TODO Auto-generated method stub
+		return category;
 	}
 }

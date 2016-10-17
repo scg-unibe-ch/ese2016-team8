@@ -42,6 +42,7 @@ function validateType(form)
 	var both = document.getElementById('both');
 	var type = document.getElementById('type');
 	var filtered = document.getElementById('filtered');
+	var types = "";
 	
 	var sale = document.getElementById('sale');
 	var rent = document.getElementById('rent');
@@ -60,19 +61,23 @@ function validateType(form)
 		saleType.checked = false;
 	}
 
-	if(room.checked && studio.checked) {
-		both.checked = true;
-		neither.checked = false;
+	if(room.checked){
+		types += ",room";
 	}
-	else if(!room.checked && !studio.checked) {
-		both.checked = false;
-		neither.checked = true;
+
+	if(studio.checked){
+		types += ",studio";
 	}
-	else {
-		both.checked = false;
-		neither.checked = false;
-		type.checked = studio.checked;
+
+	if(house.checked) {
+		types += ",house";
 	}
+
+	if(!types){
+	}
+
+	document.getElementById('category').value = types;
+	
 	filtered.checked = false;
 }
 </script>
@@ -87,11 +92,8 @@ function validateType(form)
 		<form:checkbox name="room" id="room" path="roomHelper" /><label>Room</label>
 		<form:checkbox name="studio" id="studio" path="studioHelper" /><label>Studio</label>
 		<form:checkbox name="house" id="house" path="houseHelper" /><label>House</label>
-		<form:checkbox style="display:none" name="neither" id="neither" path="noRoomNoStudio" />
-		<form:checkbox style="display:none" name="both" id="both" path="bothRoomAndStudio" />
-		<form:checkbox style="display:none" name="type" id="type" path="studio" />
+		<form:input type="text" name="category" id="category" path="category"/>
 		<form:checkbox style="display:none" name="filtered" id="filtered" path="filtered" />
-		<form:errors path="noRoomNoStudio" cssClass="validationErrorText" />
 
 		<br />
 		<form:checkbox name="rent" id="rent" path="rentHelper" /><label>Rent</label>

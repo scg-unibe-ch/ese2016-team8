@@ -77,7 +77,7 @@ public class EnquiryServiceTest {
 		oltenResidence.setCreationDate(date);
 		oltenResidence.setPrizePerMonth(1200);
 		oltenResidence.setSquareFootage(42);
-		oltenResidence.setStudio(false);
+		oltenResidence.setCategory("room");
 		oltenResidence.setSmokers(true);
 		oltenResidence.setAnimals(false);
 		oltenResidence.setRoomDescription("blah");
@@ -139,7 +139,7 @@ public class EnquiryServiceTest {
 		oltenResidence.setCreationDate(date);
 		oltenResidence.setPrizePerMonth(1200);
 		oltenResidence.setSquareFootage(42);
-		oltenResidence.setStudio(false);
+		oltenResidence.setCategory("room");
 		oltenResidence.setSmokers(true);
 		oltenResidence.setAnimals(false);
 		oltenResidence.setRoomDescription("blah");
