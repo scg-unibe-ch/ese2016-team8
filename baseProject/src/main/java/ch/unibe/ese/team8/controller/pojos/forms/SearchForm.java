@@ -13,7 +13,7 @@ import org.hibernate.validator.constraints.NotBlank;
 public class SearchForm {
 
 	private boolean filtered;
-	
+
 	private boolean sale;
 
 	@NotBlank(message = "Required")
@@ -30,7 +30,7 @@ public class SearchForm {
 
 	@AssertFalse(message = "Please select either or both types")
 	private boolean noCategory;
-	
+
 	@NotNull(message = "Requires a category")
 	private String category = "";
 
@@ -68,11 +68,11 @@ public class SearchForm {
 		this.prize = prize;
 	}
 
-	public boolean getSale(){
+	public boolean getSale() {
 		return sale;
 	}
-	
-	public void setSale(boolean sale){
+
+	public void setSale(boolean sale) {
 		this.sale = sale;
 	}
 
@@ -83,15 +83,15 @@ public class SearchForm {
 	public void setNoCategory(boolean noCategory) {
 		this.noCategory = noCategory;
 	}
-	
+
 	public boolean getBothRentAndSale() {
 		return bothRentAndSale;
 	}
-	
+
 	public void setBothRentAndSale(boolean bothRentAndSale) {
 		this.bothRentAndSale = bothRentAndSale;
 	}
-	
+
 	// //////////////////
 	// Filtered results//
 	// //////////////////
@@ -127,7 +127,7 @@ public class SearchForm {
 	private boolean houseHelper;
 	private boolean saleHelper;
 	private boolean rentHelper;
-	
+
 	public boolean getSmokers() {
 		return smokers;
 	}
@@ -251,6 +251,7 @@ public class SearchForm {
 	public boolean getHouseHelper() {
 		return houseHelper;
 	}
+
 	public void setHouseHelper(boolean helper) {
 		this.houseHelper = helper;
 	}
@@ -262,7 +263,7 @@ public class SearchForm {
 	public void setSaleHelper(boolean saleHelper) {
 		this.saleHelper = saleHelper;
 	}
-	
+
 	public boolean getRentHelper() {
 		return rentHelper;
 	}
@@ -270,15 +271,17 @@ public class SearchForm {
 	public void setRentHelper(boolean rentHelper) {
 		this.rentHelper = rentHelper;
 	}
-	
+
 	public ArrayList<String> getCategories() {
+		if (category.isEmpty()) {
+			setNoCategory(true);
+		}
 		String[] a = category.split(",");
-		System.out.println(a.toString());
 		ArrayList<String> categories = new ArrayList<String>();
-		for(int i = 0; i < a.length; i++){
-			categories.add(a[i]);
+		for (int i = 0; i < a.length; i++) {
+			categories.add(a[i].replace(",", ""));
 		}
 		return categories;
 	}
-	
+
 }

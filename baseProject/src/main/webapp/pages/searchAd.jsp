@@ -72,10 +72,7 @@ function validateType(form)
 	if(house.checked) {
 		types += ",house";
 	}
-
-	if(!types){
-	}
-
+	
 	document.getElementById('category').value = types;
 	
 	filtered.checked = false;
@@ -92,8 +89,9 @@ function validateType(form)
 		<form:checkbox name="room" id="room" path="roomHelper" /><label>Room</label>
 		<form:checkbox name="studio" id="studio" path="studioHelper" /><label>Studio</label>
 		<form:checkbox name="house" id="house" path="houseHelper" /><label>House</label>
-		<form:input type="text" name="category" id="category" path="category"/>
+		<form:input style="display:none" type="text" name="category" id="category" path="category"/>
 		<form:checkbox style="display:none" name="filtered" id="filtered" path="filtered" />
+		
 
 		<br />
 		<form:checkbox name="rent" id="rent" path="rentHelper" /><label>Rent</label>

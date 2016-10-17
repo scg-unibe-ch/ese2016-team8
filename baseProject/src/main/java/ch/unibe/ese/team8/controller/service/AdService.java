@@ -235,11 +235,13 @@ public class AdService {
 
 		// we use this method if we are looking for rooms AND studios
 		if (searchForm.getBothRentAndSale()) {
-			results = adDao.findByPrizePerMonthLessThan(searchForm.getPrize() + 1);
+			results = adDao.findByCategoryInAndPrizePerMonthLessThan(searchForm.getCategories(),
+					searchForm.getPrize() + 1);
 		}
 		// we use this method if we are looking EITHER for rooms OR for studios
 		else {
-			results = adDao.findByCategoryInAndPrizePerMonthLessThan(searchForm.getCategories(), searchForm.getPrize() + 1);
+			results = adDao.findByCategoryInAndSaleAndPrizePerMonthLessThan(searchForm.getCategories(), searchForm.getSale(),
+					searchForm.getPrize() + 1);
 		}
 
 		// filter out zipcode
