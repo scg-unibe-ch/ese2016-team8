@@ -19,20 +19,39 @@ function validateType(form)
 	var both = document.getElementById('both');
 	var type = document.getElementById('type');
 	var filtered = document.getElementById('filtered');
+	var types = "";
 
-	if(room.checked && studio.checked) {
-		both.checked = true;
-		neither.checked = false;
+	var sale = document.getElementById('sale');
+	var rent = document.getElementById('rent');
+	var bothType = document.getElementById('bothType');
+	var saleType = document.getElementById('saleType');
+
+
+	if(sale.checked && rent.checked){
+		bothType.checked = true;
+
+	}else if(sale.checked && !rent.checked){
+		bothType.checked = false;
+		saleType.checked = true;
+	}else{
+		bothType.checked = false;
+		saleType.checked = false;
 	}
-	else if(!room.checked && !studio.checked) {
-		both.checked = false;
-		neither.checked = true;
+
+	if(room.checked){
+		types += ",room";
 	}
-	else {
-		both.checked = false;
-		neither.checked = false;
-		type.checked = studio.checked;
+
+	if(studio.checked){
+		types += ",studio";
 	}
+
+	if(house.checked) {
+		types += ",house";
+	}
+
+	document.getElementById('category').value = types;
+
 	filtered.checked = true;
 }
 </script>
@@ -154,8 +173,8 @@ function sort_div_attribute() {
 						<br />
 						<p>
 							<i><c:choose>
-									<c:when test="${ad.studio}">Studio</c:when>
-									<c:otherwise>Room</c:otherwise>
+									<c:when test="${ad.category} == 'studio">Studio</c:when>
+									<c:when test="${ad.category} == 'room">Room</c:when>
 								</c:choose></i>
 						</p>
 					</div>
@@ -174,6 +193,7 @@ function sort_div_attribute() {
 	</c:otherwise>
 </c:choose>
 
+
 <form:form method="post" modelAttribute="searchForm" action="/results"
 	id="filterForm" autocomplete="off">
 
@@ -182,12 +202,15 @@ function sort_div_attribute() {
 		<form:checkbox name="room" id="room" path="roomHelper" /><label>Room</label>
 		<form:checkbox name="studio" id="studio" path="studioHelper" /><label>Studio</label>
 		<form:checkbox name="house" id="house" path="houseHelper" /><label>House</label>
-
-		<form:checkbox style="display:none" name="neither" id="neither" path="noRoomNoStudio" />
-		<form:checkbox style="display:none" name="both" id="both" path="bothRoomAndStudio" />
-		<form:checkbox style="display:none" name="type" id="type" path="studio" />
+		<form:input type="text" style="display:none" name="category" id="category" path="category" />
 		<form:checkbox style="display:none" name="filtered" id="filtered" path="filtered" />
-		<form:errors path="noRoomNoStudio" cssClass="validationErrorText" /> <br />
+		<form:errors path="noCategory" cssClass="validationErrorText" /> <br />
+
+		<form:checkbox name="rent" id="rent" path="rentHelper" /><label>Rent</label>
+		<form:checkbox name="sale" id="sale" path="saleHelper" /><label>Sale</label>
+		<form:checkbox style="display:none" name="saleType" id="saleType" path="sale" />
+		<form:checkbox style="display:none" name="bothType" id="bothType" path="bothRentAndSale" />
+		<br />
 
 		<label for="city">City / zip code:</label>
 		<form:input type="text" name="city" id="city" path="city"
@@ -204,10 +227,6 @@ function sort_div_attribute() {
 			placeholder="e.g. 5" step="50" />
 		CHF
 		<form:errors path="prize" cssClass="validationErrorText" /><br />
-		<form:radiobutton name="rent" id="rent" path="houseHelper" /><label>Rent</label>
-		<form:radiobutton name="buy" id="buy" path="houseHelper" /><label>Buy</label>
-		<form:errors path="city" cssClass="validationErrorText" />
-
 		<hr class="slim">
 
 		<table style="width: 80%">

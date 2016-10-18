@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="UTF-8"
+﻿<%@ page language="java" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -42,7 +42,8 @@ function validateType(form)
 	var both = document.getElementById('both');
 	var type = document.getElementById('type');
 	var filtered = document.getElementById('filtered');
-	
+	var types = "";
+
 	var sale = document.getElementById('sale');
 	var rent = document.getElementById('rent');
 	var bothType = document.getElementById('bothType');
@@ -60,19 +61,20 @@ function validateType(form)
 		saleType.checked = false;
 	}
 
-	if(room.checked && studio.checked) {
-		both.checked = true;
-		neither.checked = false;
+	if(room.checked){
+		types += ",room";
 	}
-	else if(!room.checked && !studio.checked) {
-		both.checked = false;
-		neither.checked = true;
+
+	if(studio.checked){
+		types += ",studio";
 	}
-	else {
-		both.checked = false;
-		neither.checked = false;
-		type.checked = studio.checked;
+
+	if(house.checked) {
+		types += ",house";
 	}
+
+	document.getElementById('category').value = types;
+
 	filtered.checked = false;
 }
 </script>
@@ -84,22 +86,22 @@ function validateType(form)
 	id="searchForm" autocomplete="off">
 
 	<fieldset>
-		<form:checkbox name="room" id="room" path="roomHelper" /><label>Room</label>
-		<form:checkbox name="studio" id="studio" path="studioHelper" /><label>Studio</label>
-		<form:checkbox name="house" id="house" path="houseHelper" /><label>House</label>
-		<form:checkbox style="display:none" name="neither" id="neither" path="noRoomNoStudio" />
-		<form:checkbox style="display:none" name="both" id="both" path="bothRoomAndStudio" />
-		<form:checkbox style="display:none" name="type" id="type" path="studio" />
-		<form:checkbox style="display:none" name="filtered" id="filtered" path="filtered" />
-		<form:errors path="noRoomNoStudio" cssClass="validationErrorText" />
-
-		<br />
-		<form:checkbox name="rent" id="rent" path="rentHelper" /><label>Rent</label>
-		<form:checkbox name="sale" id="sale" path="saleHelper" /><label>Sale</label>
+		<table>
+		<tr>
+			<td><form:checkbox name="room" id="room" path="roomHelper" /><label>Room</label></td>
+			<td><form:checkbox name="studio" id="studio" path="studioHelper" /><label>Studio</label></td>
+			<td><form:checkbox name="house" id="house" path="houseHelper" /><label>House</label></td>
+			<form:input style="display:none" type="text" name="category" id="category" path="category"/>
+			<form:checkbox style="display:none" name="filtered" id="filtered" path="filtered" />
+		</tr>
+		<tr>
+			<td><form:checkbox name="rent" id="rent" path="rentHelper" checked="checked"/><label>Rent</label></td>
+			<td><form:checkbox name="sale" id="sale" path="saleHelper" checked="checked"/><label>Sale</label></td>
 		<form:checkbox style="display:none" name="saleType" id="saleType" path="sale" />
 		<form:checkbox style="display:none" name="bothType" id="bothType" path="bothRentAndSale" />
-		<br />
-
+		</tr>
+		</table>
+		<br/>
 		<label for="city">City / zip code:</label>
 		<form:input type="text" name="city" id="city" path="city"
 			placeholder="e.g. Bern" tabindex="3" />
@@ -117,10 +119,6 @@ function validateType(form)
 		CHF
 		<form:errors path="prize" cssClass="validationErrorText" />
 		<br />
-
-		<button:radiobutton name="rent" id="rent" path="houseHelper" /><label>Rent</label>
-		<button:radiobutton name="buy" id="buy" path="houseHelper" /><label>Buy</label>
-
 
 		<br />
 		<button type="submit" tabindex="7" onClick="validateType(this.form)">Search</button>

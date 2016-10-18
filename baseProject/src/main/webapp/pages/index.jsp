@@ -36,8 +36,8 @@
 						<br />
 						<p>
 							<i><c:choose>
-									<c:when test="${ad.studio}">Studio</c:when>
-									<c:otherwise>Room</c:otherwise>
+									<c:when test="${shownAd.category} == 'studio'">Studio</c:when>
+									<c:when test="${shownAd.category} == 'room'">Room</c:when>
 								</c:choose></i>
 						</p>
 					</div>

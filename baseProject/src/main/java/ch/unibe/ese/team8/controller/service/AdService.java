@@ -73,7 +73,7 @@ public class AdService {
 
 		ad.setStreet(placeAdForm.getStreet());
 
-		ad.setStudio(placeAdForm.getStudio());
+		ad.setCategory(placeAdForm.getCategory());
 		ad.setSale(placeAdForm.getSale());
 
 		// take the zipcode - first four digits
@@ -234,12 +234,14 @@ public class AdService {
 		Iterable<Ad> results = null;
 
 		// we use this method if we are looking for rooms AND studios
-		if (searchForm.getBothRoomAndStudio() && searchForm.getBothRentAndSale()) {
-			results = adDao.findByPrizePerMonthLessThan(searchForm.getPrize() + 1);
+		if (searchForm.getBothRentAndSale()) {
+			results = adDao.findByCategoryInAndPrizePerMonthLessThan(searchForm.getCategories(),
+					searchForm.getPrize() + 1);
 		}
 		// we use this method if we are looking EITHER for rooms OR for studios
 		else {
-			results = adDao.findBySaleAndStudioAndPrizePerMonthLessThan(searchForm.getSale(), searchForm.getStudio(), searchForm.getPrize() + 1);
+			results = adDao.findByCategoryInAndSaleAndPrizePerMonthLessThan(searchForm.getCategories(), searchForm.getSale(),
+					searchForm.getPrize() + 1);
 		}
 
 		// filter out zipcode

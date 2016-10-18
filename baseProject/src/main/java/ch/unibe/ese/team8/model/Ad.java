@@ -101,10 +101,7 @@ public class Ad {
 
 	// true if studio, false if room
 	@Column(nullable = false)
-	private boolean studio;
-	
-	@Column(nullable = false)
-	private boolean house;
+	private String category;
 	
 	@Column(nullable = false)
 	private boolean sale;
@@ -125,22 +122,6 @@ public class Ad {
 
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
-	}
-
-	public boolean getStudio() {
-		return studio;
-	}
-
-	public void setStudio(boolean studio) {
-		this.studio = studio;
-	}
-	
-	public void setHouse(boolean house){
-		this.house = house;
-	}
-	
-	public boolean getHouse(boolean house){
-		return house;
 	}
 	
 	public void setSale(boolean sale){
@@ -297,6 +278,14 @@ public class Ad {
 
 	public void setPictures(List<AdPicture> pictures) {
 		this.pictures = pictures;
+	}
+	
+	public void setCategory(String category){
+		this.category = category;
+	}
+	
+	public String getCategory(){
+		return category;
 	}
 
 	public Date getMoveOutDate() {
