@@ -130,7 +130,9 @@
 						placeholder="Ad Title" /></td>
 				<td><form:radiobutton id="type-room" path="category" value="room"
 						checked="checked" />Room <form:radiobutton id="type-studio"
-						path="category" value="studio" />Studio</td>
+						path="category" value="studio" />Studio <form:radiobutton id="type-house"
+						path="category" value="house" />House</td>
+
 				<td><form:radiobutton id="type-rent" path="sale" value="0"
 						checked="checked" />Rent <form:radiobutton id="type-sale"
 						path="sale" value="1" />Sale</td>
