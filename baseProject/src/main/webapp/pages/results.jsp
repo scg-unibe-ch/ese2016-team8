@@ -226,10 +226,6 @@ function sort_div_attribute() {
 			placeholder="e.g. 5" step="50" />
 		CHF
 		<form:errors path="prize" cssClass="validationErrorText" /><br />
-		<form:radiobutton name="rent" id="rent" path="houseHelper" /><label>Rent</label>
-		<form:radiobutton name="buy" id="buy" path="houseHelper" /><label>Buy</label>
-		<form:errors path="city" cssClass="validationErrorText" />
-
 		<hr class="slim">
 
 		<table style="width: 80%">
