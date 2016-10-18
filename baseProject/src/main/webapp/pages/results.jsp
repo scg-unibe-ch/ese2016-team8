@@ -193,6 +193,7 @@ function sort_div_attribute() {
 	</c:otherwise>
 </c:choose>
 
+
 <form:form method="post" modelAttribute="searchForm" action="/results"
 	id="filterForm" autocomplete="off">
 
