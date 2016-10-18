@@ -78,6 +78,7 @@ public class AlertForm {
 		return category;
 	}
 
+	// TODO: change dependencies where below 'getCategory(...)' is used to 'setCategory(...)'
 	public void getCategory(String category) {
 		this.category = category;
 	}

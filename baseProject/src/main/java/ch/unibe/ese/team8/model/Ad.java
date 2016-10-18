@@ -124,14 +124,14 @@ public class Ad {
 		this.creationDate = creationDate;
 	}
 	
+	public boolean getSale(){
+		return sale;
+	}
+	
 	public void setSale(boolean sale){
 		this.sale = sale;
 	}
 	
-	public boolean getSale(){
-		return sale;
-	}
-
 	public boolean getSmokers() {
 		return smokers;
 	}
@@ -192,16 +192,16 @@ public class Ad {
 		return garage;
 	}
 
-	public void setGarage(boolean garage) {
-		this.garage = garage;
+	public void setGarage(boolean hasGarage) {
+		this.garage = hasGarage;
 	}
 
 	public boolean getInternet() {
 		return internet;
 	}
 
-	public void setInternet(boolean internet) {
-		this.internet = internet;
+	public void setInternet(boolean hasInternet) {
+		this.internet = hasInternet;
 	}
 
 	public long getId() {
@@ -226,6 +226,10 @@ public class Ad {
 
 	public void setMoveInDate(Date moveInDate) {
 		this.moveInDate = moveInDate;
+	}
+			
+	public Date getMoveOutDate() {
+		return moveOutDate;
 	}
 
 	public void setMoveOutDate(Date moveOutDate) {
@@ -280,16 +284,12 @@ public class Ad {
 		this.pictures = pictures;
 	}
 	
-	public void setCategory(String category){
-		this.category = category;
-	}
-	
 	public String getCategory(){
 		return category;
 	}
-
-	public Date getMoveOutDate() {
-		return moveOutDate;
+	
+	public void setCategory(String category){
+		this.category = category;
 	}
 
 	public User getUser() {
@@ -324,13 +324,13 @@ public class Ad {
 		this.city = city;
 	}
 
-	public Date getDate(boolean date) {
-		if (date)
-			return moveInDate;
+	public Date getDate(boolean hasDate) {
+		if (hasDate)
+			return getMoveInDate();
 		else
-			return moveOutDate;
+			return getMoveOutDate();
 	}
-
+	
 	public List<User> getRegisteredRoommates() {
 		return registeredRoommates;
 	}
