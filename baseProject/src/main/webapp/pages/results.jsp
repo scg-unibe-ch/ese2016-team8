@@ -205,8 +205,8 @@ function sort_div_attribute() {
 		<form:checkbox style="display:none" name="filtered" id="filtered" path="filtered" />
 		<form:errors path="noCategory" cssClass="validationErrorText" /> <br />
 
-		<form:checkbox name="rent" id="rent" path="rentHelper" checked="checked"/><label>Rent</label>
-		<form:checkbox name="sale" id="sale" path="saleHelper" checked="checked"/><label>Sale</label>
+		<form:checkbox name="rent" id="rent" path="rentHelper" /><label>Rent</label>
+		<form:checkbox name="sale" id="sale" path="saleHelper" /><label>Sale</label>
 		<form:checkbox style="display:none" name="saleType" id="saleType" path="sale" />
 		<form:checkbox style="display:none" name="bothType" id="bothType" path="bothRentAndSale" />
 		<br />
