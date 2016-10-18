@@ -112,6 +112,7 @@
 			if(moveOutDate == ""){
 				return true;
 			}else if(moveOutDate <= moveInDate){
+				alert("Invalid dates. The move out date can't be before the move in.")
 				return false;
 			}else{
 				return true;
