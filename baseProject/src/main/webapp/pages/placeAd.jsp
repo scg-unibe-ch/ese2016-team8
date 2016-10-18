@@ -104,6 +104,21 @@
 			$("#addedVisits").append(label + input);
 		});
 	});
+
+	function checkDates(){
+			var moveInDate = $("#field-moveInDate").val();
+			var moveOutDate = $("#field-moveOutDate").val();
+
+			if(moveOutDate == ""){
+				return true;
+			}else if(moveOutDate <= moveInDate){
+				alert("Invalid dates. The move out date can't be before the move in.")
+				return false;
+			}else{
+				return true;
+			}
+		};
+		
 </script>
 
 <pre>
@@ -327,7 +342,7 @@
 
 	<br />
 	<div>
-		<button type="submit">Submit</button>
+		<button id="submit" type="submit" onclick="return checkDates();">Submit</button>
 		<a href="/"><button type="button">Cancel</button></a>
 	</div>
 

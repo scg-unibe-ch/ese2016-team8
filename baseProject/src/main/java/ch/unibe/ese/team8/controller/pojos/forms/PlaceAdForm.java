@@ -112,72 +112,72 @@ public class PlaceAdForm {
 		return smokers;
 	}
 
-	public void setSmokers(boolean smoker) {
-		this.smokers = smoker;
+	public void setSmokers(boolean allowsSmokers) {
+		this.smokers = allowsSmokers;
 	}
 
 	public boolean isAnimals() {
 		return animals;
 	}
 
-	public void setAnimals(boolean animals) {
-		this.animals = animals;
+	public void setAnimals(boolean allowsAnimals) {
+		this.animals = allowsAnimals;
 	}
 
 	public boolean getGarden() {
 		return garden;
 	}
 
-	public void setGarden(boolean garden) {
-		this.garden = garden;
+	public void setGarden(boolean hasGarden) {
+		this.garden = hasGarden;
 	}
 
 	public boolean getBalcony() {
 		return balcony;
 	}
 
-	public void setBalcony(boolean balcony) {
-		this.balcony = balcony;
+	public void setBalcony(boolean hasBalcony) {
+		this.balcony = hasBalcony;
 	}
 
 	public boolean getCellar() {
 		return cellar;
 	}
 
-	public void setCellar(boolean cellar) {
-		this.cellar = cellar;
+	public void setCellar(boolean hasCellar) {
+		this.cellar = hasCellar;
 	}
 
 	public boolean isFurnished() {
 		return furnished;
 	}
 
-	public void setFurnished(boolean furnished) {
-		this.furnished = furnished;
+	public void setFurnished(boolean isFurnished) {
+		this.furnished = isFurnished;
 	}
 
 	public boolean getCable() {
 		return cable;
 	}
 
-	public void setCable(boolean cable) {
-		this.cable = cable;
+	public void setCable(boolean hasCable) {
+		this.cable = hasCable;
 	}
 
 	public boolean getGarage() {
 		return garage;
 	}
 
-	public void setGarage(boolean garage) {
-		this.garage = garage;
+	public void setGarage(boolean hasGarage) {
+		this.garage = hasGarage;
 	}
 
 	public boolean getInternet() {
 		return internet;
 	}
 
-	public void setInternet(boolean internet) {
-		this.internet = internet;
+	public void setInternet(boolean hasInternet) {
+		this.internet = hasInternet;
 	}
 
 	public String getMoveInDate() {

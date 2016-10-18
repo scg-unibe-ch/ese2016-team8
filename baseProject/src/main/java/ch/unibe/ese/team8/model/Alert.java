@@ -84,12 +84,12 @@ public class Alert {
 		this.price = price;
 	}
 
-	public void setCategory(String category){
-		this.category = category;
-	}
-	
 	public String getCategory() {
 		// TODO Auto-generated method stub
 		return category;
+	}
+	
+	public void setCategory(String category){
+		this.category = category;
 	}
 }
