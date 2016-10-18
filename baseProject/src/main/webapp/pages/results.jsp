@@ -20,7 +20,7 @@ function validateType(form)
 	var type = document.getElementById('type');
 	var filtered = document.getElementById('filtered');
 	var types = "";
-	
+
 	var sale = document.getElementById('sale');
 	var rent = document.getElementById('rent');
 	var bothType = document.getElementById('bothType');
@@ -49,9 +49,9 @@ function validateType(form)
 	if(house.checked) {
 		types += ",house";
 	}
-	
+
 	document.getElementById('category').value = types;
-	
+
 	filtered.checked = true;
 }
 </script>
@@ -193,6 +193,7 @@ function sort_div_attribute() {
 	</c:otherwise>
 </c:choose>
 
+
 <form:form method="post" modelAttribute="searchForm" action="/results"
 	id="filterForm" autocomplete="off">
 
@@ -226,10 +227,6 @@ function sort_div_attribute() {
 			placeholder="e.g. 5" step="50" />
 		CHF
 		<form:errors path="prize" cssClass="validationErrorText" /><br />
-		<form:radiobutton name="rent" id="rent" path="houseHelper" /><label>Rent</label>
-		<form:radiobutton name="buy" id="buy" path="houseHelper" /><label>Buy</label>
-		<form:errors path="city" cssClass="validationErrorText" />
-
 		<hr class="slim">
 
 		<table style="width: 80%">
