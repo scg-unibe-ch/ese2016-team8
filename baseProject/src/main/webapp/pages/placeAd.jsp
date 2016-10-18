@@ -21,6 +21,14 @@
 		// iterate through it
 		// if there is id == x then make "Bookmark Me" to "bookmarked"
 
+		//changes between Sale prize/ Prize per month
+    $("#type-sale").on("click", function(){
+          document.getElementById('month-Prize').innerHTML="Sale prize";
+    });
+    $("#type-rent").on("click", function(){
+          document.getElementById('month-Prize').innerHTML="Prize per Month";
+    }); 
+
 		$("#field-city").autocomplete({
 			minLength : 2
 		});
@@ -118,7 +126,7 @@
 				return true;
 			}
 		};
-		
+
 </script>
 
 <pre>
