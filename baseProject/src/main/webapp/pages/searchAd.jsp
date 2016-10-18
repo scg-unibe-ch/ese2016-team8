@@ -43,7 +43,7 @@ function validateType(form)
 	var type = document.getElementById('type');
 	var filtered = document.getElementById('filtered');
 	var types = "";
-	
+
 	var sale = document.getElementById('sale');
 	var rent = document.getElementById('rent');
 	var bothType = document.getElementById('bothType');
@@ -72,9 +72,9 @@ function validateType(form)
 	if(house.checked) {
 		types += ",house";
 	}
-	
+
 	document.getElementById('category').value = types;
-	
+
 	filtered.checked = false;
 }
 </script>
@@ -95,8 +95,8 @@ function validateType(form)
 			<form:checkbox style="display:none" name="filtered" id="filtered" path="filtered" />
 		</tr>
 		<tr>
-			<td><form:checkbox name="rent" id="rent" path="rentHelper" /><label>Rent</label></td>
-			<td><form:checkbox name="sale" id="sale" path="saleHelper" /><label>Sale</label></td>
+			<td><form:checkbox name="rent" id="rent" path="rentHelper" checked="checked"/><label>Rent</label></td>
+			<td><form:checkbox name="sale" id="sale" path="saleHelper" checked="checked"/><label>Sale</label></td>
 		<form:checkbox style="display:none" name="saleType" id="saleType" path="sale" />
 		<form:checkbox style="display:none" name="bothType" id="bothType" path="bothRentAndSale" />
 		</tr>
