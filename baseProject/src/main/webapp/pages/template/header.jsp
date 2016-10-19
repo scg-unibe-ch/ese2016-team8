@@ -22,8 +22,22 @@
 	href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
 
 <script src="/js/unreadMessages.js"></script>
+<script>
 
+function confirmPremium(){
 
+    var r = confirm("Do you want to pay us 5$ for premium access?");
+    if (r == true) {
+			//document.getElementById("premiumButton").style.display= 'none';
+				setPremium(true);
+				alert("thanks you now owe us 5$");
+
+    } else {
+        alert("maybe next time");
+    }
+
+};
+</script>
 <style>
 /* ensure that autocomplete lists are not too long and have a scrollbar */
 .ui-autocomplete {
@@ -73,6 +87,7 @@
 								<li>
 								<% out.print("<a href=\"/user?id=" + realUser.getId() + "\">Public Profile</a>"); %>
 								</li>
+								<li><a id="premiumButton"  onclick="confirmPremium()" >Premium?</a></li>
 								<li><a href="/logout">Logout</a></li>
 							</ul></li>
 					</c:when>
@@ -80,6 +95,7 @@
 						<li><a href="/login"><img width=20px hight=20px style="margin-top:-2px"src="../img/key.png"/> Login</a></li>
 					</c:otherwise>
 				</c:choose>
+
 				<li><a href="<c:url value='/searchAd' />"><img width=20px hight=20px style="margin-right:5px" src="../img/lupe.png"/ >Search</a></li>
 			</ul>
 		</nav>

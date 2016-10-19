@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "users")
 public class User {
-	
+
 	@Id
 	@GeneratedValue
 	private long id;
@@ -47,6 +47,9 @@ public class User {
 	@Column(nullable = false)
 	private boolean enabled;
 
+	private boolean premium;
+
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<UserRole> userRoles;
@@ -54,15 +57,24 @@ public class User {
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	private UserPicture picture;
-	
+
 	@Column(nullable = true)
 	@Lob
 	private String aboutMe;
-	
+
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Ad> bookmarkedAds;
 
+
+	public boolean getPremium(){
+		return premium;
+	}
+
+	public void setPremium(boolean premium){
+		this.premium = premium;
+	}
+	
 	public long getId() {
 		return id;
 	}
@@ -150,11 +162,11 @@ public class User {
 	public void setAboutMe(String aboutMe) {
 		this.aboutMe = aboutMe;
 	}
-	
+
 	public List<Ad> getBookmarkedAds() {
 		return bookmarkedAds;
 	}
-	
+
 	public void setBookmarkedAds(List<Ad> bookmarkedAds) {
 		this.bookmarkedAds = bookmarkedAds;
 	}
@@ -181,5 +193,5 @@ public class User {
 			return false;
 		return true;
 	}
-	
+
 }
