@@ -38,7 +38,7 @@ public class Ad {
 
 	@Column(nullable = false)
 	private String city;
-	
+
 	@Column(nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date creationDate;
@@ -73,36 +73,35 @@ public class Ad {
 	private List<User> registeredRoommates;
 
 	@Column(nullable = false)
-	private boolean smokers;
+	private boolean allowsSmokers;
 
 	@Column(nullable = false)
-	private boolean animals;
+	private boolean allosAnimals;
 
 	@Column(nullable = false)
-	private boolean garden;
+	private boolean hasGarden;
 
 	@Column(nullable = false)
-	private boolean balcony;
+	private boolean hasBalcony;
 
 	@Column(nullable = false)
-	private boolean cellar;
+	private boolean hasCellar;
 
 	@Column(nullable = false)
-	private boolean furnished;
+	private boolean isFurnished;
 
 	@Column(nullable = false)
-	private boolean cable;
+	private boolean hasCable;
 
 	@Column(nullable = false)
-	private boolean garage;
+	private boolean hasGarage;
 
 	@Column(nullable = false)
-	private boolean internet;
+	private boolean hasInternet;
 
-	// true if studio, false if room
 	@Column(nullable = false)
 	private String category;
-	
+
 	@Column(nullable = false)
 	private boolean sale;
 
@@ -112,7 +111,7 @@ public class Ad {
 
 	@ManyToOne(optional = false)
 	private User user;
-	
+
 	@OneToMany(mappedBy = "ad", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Visit> visits;
 
@@ -120,95 +119,95 @@ public class Ad {
 		return creationDate;
 	}
 
-	public void setCreationDate(Date creationDate) {
+	public void setCreationDate(final Date creationDate) {
 		this.creationDate = creationDate;
 	}
-	
+
 	public boolean getSale(){
 		return sale;
 	}
-	
-	public void setSale(boolean sale){
+
+	public void setSale(final boolean sale){
 		this.sale = sale;
 	}
-	
+
 	public boolean getSmokers() {
-		return smokers;
+		return allowsSmokers;
 	}
 
-	public void setSmokers(boolean allowsSmokers) {
-		this.smokers = allowsSmokers;
+	public void setSmokers(final boolean allowsSmokers) {
+		this.allowsSmokers = allowsSmokers;
 	}
 
 	public boolean getAnimals() {
-		return animals;
+		return allosAnimals;
 	}
 
-	public void setAnimals(boolean allowsAnimals) {
-		this.animals = allowsAnimals;
+	public void setAnimals(final boolean allowsAnimals) {
+		this.allosAnimals = allowsAnimals;
 	}
 
 	public boolean getGarden() {
-		return garden;
+		return hasGarden;
 	}
 
-	public void setGarden(boolean hasGarden) {
-		this.garden = hasGarden;
+	public void setGarden(final boolean hasGarden) {
+		this.hasGarden = hasGarden;
 	}
 
 	public boolean getBalcony() {
-		return balcony;
+		return hasBalcony;
 	}
 
-	public void setBalcony(boolean hasBalcony) {
-		this.balcony = hasBalcony;
+	public void setBalcony(final boolean hasBalcony) {
+		this.hasBalcony = hasBalcony;
 	}
 
 	public boolean getCellar() {
-		return cellar;
+		return hasCellar;
 	}
 
-	public void setCellar(boolean hasCellar) {
-		this.cellar = hasCellar;
+	public void setCellar(final boolean hasCellar) {
+		this.hasCellar = hasCellar;
 	}
 
 	public boolean getFurnished() {
-		return furnished;
+		return isFurnished;
 	}
 
-	public void setFurnished(boolean furnished) {
-		this.furnished = furnished;
+	public void setFurnished(final boolean furnished) {
+		this.isFurnished = furnished;
 	}
 
 	public boolean getCable() {
-		return cable;
+		return hasCable;
 	}
 
-	public void setCable(boolean hasCable) {
-		this.cable = hasCable;
+	public void setCable(final boolean hasCable) {
+		this.hasCable = hasCable;
 	}
 
 	public boolean getGarage() {
-		return garage;
+		return hasGarage;
 	}
 
-	public void setGarage(boolean hasGarage) {
-		this.garage = hasGarage;
+	public void setGarage(final boolean hasGarage) {
+		this.hasGarage = hasGarage;
 	}
 
 	public boolean getInternet() {
-		return internet;
+		return hasInternet;
 	}
 
-	public void setInternet(boolean hasInternet) {
-		this.internet = hasInternet;
+	public void setInternet(final boolean hasInternet) {
+		this.hasInternet = hasInternet;
 	}
 
 	public long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(final long id) {
 		this.id = id;
 	}
 
@@ -216,7 +215,7 @@ public class Ad {
 		return zipcode;
 	}
 
-	public void setZipcode(int zipcode) {
+	public void setZipcode(final int zipcode) {
 		this.zipcode = zipcode;
 	}
 
@@ -224,15 +223,15 @@ public class Ad {
 		return moveInDate;
 	}
 
-	public void setMoveInDate(Date moveInDate) {
+	public void setMoveInDate(final Date moveInDate) {
 		this.moveInDate = moveInDate;
 	}
-			
+
 	public Date getMoveOutDate() {
 		return moveOutDate;
 	}
 
-	public void setMoveOutDate(Date moveOutDate) {
+	public void setMoveOutDate(final Date moveOutDate) {
 		this.moveOutDate = moveOutDate;
 	}
 
@@ -240,7 +239,7 @@ public class Ad {
 		return prizePerMonth;
 	}
 
-	public void setPrizePerMonth(int prizePerMonth) {
+	public void setPrizePerMonth(final int prizePerMonth) {
 		this.prizePerMonth = prizePerMonth;
 	}
 
@@ -248,7 +247,7 @@ public class Ad {
 		return squareFootage;
 	}
 
-	public void setSquareFootage(int squareFootage) {
+	public void setSquareFootage(final int squareFootage) {
 		this.squareFootage = squareFootage;
 	}
 
@@ -256,7 +255,7 @@ public class Ad {
 		return roomDescription;
 	}
 
-	public void setRoomDescription(String roomDescription) {
+	public void setRoomDescription(final String roomDescription) {
 		this.roomDescription = roomDescription;
 	}
 
@@ -264,7 +263,7 @@ public class Ad {
 		return preferences;
 	}
 
-	public void setPreferences(String preferences) {
+	public void setPreferences(final String preferences) {
 		this.preferences = preferences;
 	}
 
@@ -272,7 +271,7 @@ public class Ad {
 		return roommates;
 	}
 
-	public void setRoommates(String roommates) {
+	public void setRoommates(final String roommates) {
 		this.roommates = roommates;
 	}
 
@@ -280,15 +279,15 @@ public class Ad {
 		return pictures;
 	}
 
-	public void setPictures(List<AdPicture> pictures) {
+	public void setPictures(final List<AdPicture> pictures) {
 		this.pictures = pictures;
 	}
-	
+
 	public String getCategory(){
 		return category;
 	}
-	
-	public void setCategory(String category){
+
+	public void setCategory(final String category){
 		this.category = category;
 	}
 
@@ -296,7 +295,7 @@ public class Ad {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(final User user) {
 		this.user = user;
 	}
 
@@ -304,7 +303,7 @@ public class Ad {
 		return title;
 	}
 
-	public void setTitle(String title) {
+	public void setTitle(final String title) {
 		this.title = title;
 	}
 
@@ -312,7 +311,7 @@ public class Ad {
 		return street;
 	}
 
-	public void setStreet(String street) {
+	public void setStreet(final String street) {
 		this.street = street;
 	}
 
@@ -320,22 +319,22 @@ public class Ad {
 		return city;
 	}
 
-	public void setCity(String city) {
+	public void setCity(final String city) {
 		this.city = city;
 	}
 
-	public Date getDate(boolean hasDate) {
+	public Date getDate(final boolean hasDate) {
 		if (hasDate)
 			return getMoveInDate();
 		else
 			return getMoveOutDate();
 	}
-	
+
 	public List<User> getRegisteredRoommates() {
 		return registeredRoommates;
 	}
 
-	public void setRegisteredRoommates(List<User> registeredRoommates) {
+	public void setRegisteredRoommates(final List<User> registeredRoommates) {
 		this.registeredRoommates = registeredRoommates;
 	}
 
@@ -343,7 +342,7 @@ public class Ad {
 		return visits;
 	}
 
-	public void setVisits(List<Visit> visits) {
+	public void setVisits(final List<Visit> visits) {
 		this.visits = visits;
 	}
 
@@ -357,7 +356,7 @@ public class Ad {
 
 	// equals method is defined to check for id only
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
