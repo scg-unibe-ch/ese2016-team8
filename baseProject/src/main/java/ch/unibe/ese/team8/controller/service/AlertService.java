@@ -139,7 +139,7 @@ public class AlertService {
 	/** Checks if an ad is conforming to the criteria in an alert. */
 	private boolean typeMismatchWith(Ad ad, Alert alert) {
 		boolean mismatch = false;
-		if (alert.getCategory() != ad.getCategory())
+		if (!alert.getCategory().equals(ad.getCategory()))
 			mismatch = true;
 		return mismatch;
 	}

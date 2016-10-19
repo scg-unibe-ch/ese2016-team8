@@ -33,7 +33,7 @@ public class Alert {
 	@Column(nullable = false)
 	private int radius;
 	
-	@Column
+	@Column(nullable = false)
 	private String category;
 
 	public long getId() {

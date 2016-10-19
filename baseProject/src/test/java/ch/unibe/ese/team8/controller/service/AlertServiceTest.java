@@ -108,7 +108,7 @@ public class AlertServiceTest {
 		
 		alert = new Alert();
 		alert.setUser(thomyF);
-		alert.setCategory("studio");
+		alert.setCategory("room");
 		alert.setCity("Bern");
 		alert.setZipcode(3002);
 		alert.setPrice(1000);
