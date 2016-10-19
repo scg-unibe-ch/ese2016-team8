@@ -173,9 +173,15 @@ function sort_div_attribute() {
 						<br />
 						<p>
 							<i><c:choose>
-									<c:when test="${ad.category} == 'studio">Studio</c:when>
-									<c:when test="${ad.category} == 'room">Room</c:when>
-								</c:choose></i>
+									<c:when test="${ad.category == 'house'}">House</c:when>
+									<c:when test="${ad.category == 'studio'}">Studio</c:when>
+									<c:otherwise>Room</c:otherwise>
+								</c:choose> to
+								<c:choose>
+									<c:when test="${ad.sale}">Sell</c:when>
+									<c:otherwise>Rent</c:otherwise>
+								</c:choose>
+								</i>
 						</p>
 					</div>
 					<div class="resultRight">
