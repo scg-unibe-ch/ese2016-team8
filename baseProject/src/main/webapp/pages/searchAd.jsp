@@ -10,6 +10,37 @@
 
 <script>
 	$(document).ready(function() {
+
+		//changes between Sale prize/ Prize per month
+		$("#sale").change(function(){
+				if($("#sale").is(':checked')&& ! $("#rent").is(':checked')){
+					document.getElementById('field-earliestMoveOutDate').style.display="none";
+					document.getElementById('field-latestMoveOutDate').style.display="none";
+					document.getElementById('earliestMoveOutDateLabel').innerHTML="";
+					document.getElementById('latestMoveOutDateLabel').innerHTML="";
+				}
+				else{
+					document.getElementById('field-earliestMoveOutDate').style.display="block";
+					document.getElementById('field-latestMoveOutDate').style.display="block";
+					document.getElementById('earliestMoveOutDateLabel').innerHTML="Earliest move-out date (optional)"
+					document.getElementById('latestMoveOutDateLabel').innerHTML="Latest move-out date (optional)";
+				}
+		});
+		$("#rent").change(function(){
+			if(!$("#rent").is(':checked')&&  $("#sale").is(':checked')){
+				document.getElementById('field-earliestMoveOutDate').style.display="none";
+				document.getElementById('field-latestMoveOutDate').style.display="none";
+				document.getElementById('earliestMoveOutDateLabel').innerHTML="";
+				document.getElementById('latestMoveOutDateLabel').innerHTML="";
+			}
+			if($("#rent").is(':checked')){
+					document.getElementById('field-earliestMoveOutDate').style.display="block";
+					document.getElementById('field-latestMoveOutDate').style.display="block";
+					document.getElementById('earliestMoveOutDateLabel').innerHTML="Earliest move-out date (optional)"
+					document.getElementById('latestMoveOutDateLabel').innerHTML="Latest move-out date (optional)";
+				}
+		});
+
 		$("#city").autocomplete({
 			minLength : 2
 		});
@@ -101,8 +132,8 @@ function moreOptions(){
 			<form:checkbox style="display:none" name="filtered" id="filtered" path="filtered" />
 		</tr>
 		<tr>
-			<td><form:checkbox name="rent" id="rent" path="rentHelper" checked="checked"/><label>Rent</label></td>
-			<td><form:checkbox name="sale" id="sale" path="saleHelper" checked="checked"/><label>Sale</label></td>
+			<td><form:checkbox name="rent" id="rent" path="rentHelper" /><label>Rent</label></td>
+			<td><form:checkbox name="sale" id="sale" path="saleHelper" /><label>Sale</label></td>
 		<form:checkbox style="display:none" name="saleType" id="saleType" path="sale" />
 		<form:checkbox style="display:none" name="bothType" id="bothType" path="bothRentAndSale" />
 		</tr>
@@ -129,7 +160,7 @@ function moreOptions(){
 		<table style="margin-left: 400px;">
 		<tr>
 				<td><label for="earliestMoveInDate">Earliest move-in date</label></td>
-				<td><label for="earliestMoveOutDate">Earliest move-out date (optional)</label></td>
+				<td><label id="earliestMoveOutDateLabel"for="earliestMoveOutDate">Earliest move-out date (optional)</label></td>
 			</tr>
 			<tr>
 				<td><form:input type="text" id="field-earliestMoveInDate"
@@ -139,7 +170,7 @@ function moreOptions(){
 			</tr>
 			<tr>
 				<td><label for="latestMoveInDate">Latest move-in date</label></td>
-				<td><label for="latestMoveOutDate">Latest move-out date (optional)</label></td>
+				<td><label id="latestMoveOutDateLabel"for="latestMoveOutDate">Latest move-out date (optional)</label></td>
 			</tr>
 			<tr>
 				<td><form:input type="text" id="field-latestMoveInDate"
