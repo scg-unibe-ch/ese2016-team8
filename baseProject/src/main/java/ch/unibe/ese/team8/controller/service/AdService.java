@@ -254,6 +254,7 @@ public class AdService {
 		// create a list of the results and of their locations
 		List<Ad> locatedResults = new ArrayList<>();
 		for (Ad ad : results) {
+			System.out.println(ad.getZipcode());
 			locatedResults.add(ad);
 		}
 
@@ -268,6 +269,7 @@ public class AdService {
 		 * The distance is calculated using the law of cosines.
 		 * http://www.movable-type.co.uk/scripts/latlong.html
 		 */
+		if(searchForm.getRadius() > 0){
 		List<Integer> zipcodes = locations.parallelStream().filter(location -> {
 			double radLongitude = Math.toRadians(location.getLongitude());
 			double radLatitude = Math.toRadians(location.getLatitude());
@@ -278,6 +280,11 @@ public class AdService {
 
 		locatedResults = locatedResults.stream().filter(ad -> zipcodes.contains(ad.getZipcode()))
 				.collect(Collectors.toList());
+		}else{
+			locatedResults = locatedResults.stream().filter(ad -> searchForm.getCity().substring(0,4).equals(String.valueOf(ad.getZipcode())))
+					.collect(Collectors.toList());
+			System.out.println("City: " + searchForm.getCity().substring(0,4) + " und ZIP: " + locatedResults.toString().toString());
+		}
 
 		// filter for additional criteria
 		if (searchForm.getFiltered()) {
