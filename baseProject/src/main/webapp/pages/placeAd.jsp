@@ -24,9 +24,13 @@
 		//changes between Sale prize/ Prize per month
     $("#type-sale").on("click", function(){
           document.getElementById('month-Prize').innerHTML="Sale prize";
+          document.getElementById('field-moveOutDate').style.display="none";
+          document.getElementById('moveOutDate').innerHTML="";
     });
     $("#type-rent").on("click", function(){
           document.getElementById('month-Prize').innerHTML="Prize per Month";
+          document.getElementById('field-moveOutDate').style.display="block";
+          document.getElementById('moveOutDate').innerHTML="Move-out date (optional)";
     }); 
 
 		$("#field-city").autocomplete({
@@ -175,7 +179,7 @@
 
 			<tr>
 				<td><label for="moveInDate">Move-in date</label></td>
-				<td><label for="moveOutDate">Move-out date (optional)</label></td>
+				<td><label id="moveOutDate" for="moveOutDate">Move-out date (optional)</label></td>
 			</tr>
 			<tr>
 				<td><form:input type="text" id="field-moveInDate"
@@ -185,7 +189,7 @@
 			</tr>
 
 			<tr>
-				<td><label for="field-Prize">Prize per month</label></td>
+				<td><label id="month-Prize" for="field-Prize">Prize per month</label></td>
 				<td><label for="field-SquareFootage">Square Meters</label></td>
 			</tr>
 			<tr>

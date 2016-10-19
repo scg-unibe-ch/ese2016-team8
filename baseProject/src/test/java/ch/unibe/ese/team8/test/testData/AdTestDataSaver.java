@@ -271,7 +271,41 @@ public class AdTestDataSaver {
 		pictures.add(createPicture(adNeuchâtel, "/img/test/ad5_3.jpg"));
 		adNeuchâtel.setPictures(pictures);
 		adDao.save(adNeuchâtel);
-
+		
+		String houseDescription = "This house is for sale! Good price good value! ;)";
+		String housePreference = "Blablabla... usw.";
+		
+		Ad adHouse = new Ad();
+		adHouse.setZipcode(2503);
+		adHouse.setMoveInDate(moveInDate6);
+		adHouse.setMoveOutDate(moveOutDate5);
+		adHouse.setCreationDate(creationDate6);
+		adHouse.setPrizePerMonth(100000);
+		adHouse.setSquareFootage(400);
+		adHouse.setCategory("house");
+		adHouse.setSmokers(true);
+		adHouse.setAnimals(false);
+		adHouse.setRoomDescription(houseDescription);
+		adHouse.setPreferences(housePreference);
+		adHouse.setRoommates("None");
+		adHouse.setUser(ese);
+		adHouse.setTitle("Direkt am Quai: hübsches Studio");
+		adHouse.setStreet("Oberer Quai 12");
+		adHouse.setCity("Biel/Bienne");
+		adHouse.setGarden(true);
+		adHouse.setBalcony(true);
+		adHouse.setCellar(true);
+		adHouse.setFurnished(false);
+		adHouse.setCable(false);
+		adHouse.setGarage(true);
+		adHouse.setInternet(false);
+		adHouse.setSale(true);
+		pictures = new ArrayList<>();
+		pictures.add(createPicture(adHouse, "/img/test/house_1.jpg"));
+		pictures.add(createPicture(adHouse, "/img/test/house_2.jpg"));
+		adHouse.setPictures(pictures);
+		adDao.save(adHouse);
+		
 		String studioDescription6 = "A place just for yourself in a very nice part of Biel."
 				+ "A studio for 1-2 persons with a big balcony, bathroom, kitchen and furniture already there."
 				+ "It's quiet and nice, very close to the old city of Biel.";
