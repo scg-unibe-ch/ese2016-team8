@@ -33,6 +33,17 @@ hr {
 	margin-bottom: 40px;
 }
 
+img.logo
+{
+	transition: 0.4s;
+}
+
+img.logo:hover
+{
+	-webkit-filter: drop-shadow(1px 1px 3px #99d);
+  filter: drop-shadow(1px 1px 3px #99d);
+}
+
 .link {
 	color: #222;
 	text-decoration: none;
