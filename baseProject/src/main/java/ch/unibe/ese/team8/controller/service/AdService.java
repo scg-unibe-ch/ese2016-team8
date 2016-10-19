@@ -254,7 +254,6 @@ public class AdService {
 		// create a list of the results and of their locations
 		List<Ad> locatedResults = new ArrayList<>();
 		for (Ad ad : results) {
-			System.out.println(ad.getZipcode());
 			locatedResults.add(ad);
 		}
 
@@ -283,7 +282,6 @@ public class AdService {
 		}else{
 			locatedResults = locatedResults.stream().filter(ad -> searchForm.getCity().substring(0,4).equals(String.valueOf(ad.getZipcode())))
 					.collect(Collectors.toList());
-			System.out.println("City: " + searchForm.getCity().substring(0,4) + " und ZIP: " + locatedResults.toString().toString());
 		}
 
 		// filter for additional criteria
