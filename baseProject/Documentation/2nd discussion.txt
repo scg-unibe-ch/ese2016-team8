@@ -1,0 +1,22 @@
+Team 8 and Claudio, 19.10.2016
+
+SRS ist in Ordnung, keine SIcherheitsnotwendig, aber nur in die Datenbaniks chreiben, keine Local File, evtl. Log Files, nicht in andere Ordner schreiben. 
+--> Unsere Intentionen für die Sicherheit aufschreiben und dann auf die Spezifikation schreiben.
+
+
+--> Distanz 0 ausschliesslich Postleitzahl, und sonst einfach den Radius sehen, 0 km auch als default wert setzten.
+
+--> Admin aus Enum entfernen
+
+--> Enum für 'room', 'studio', 'house'.
+
+--> Start/ Backlog aufhalten und/ oder discussion aufrechterhalten.
+
+Nächste Woche:
+Auktion: beschreibung 'sattelfest' in dem SRS.doc verankern. So, dass immer klar ist, was und wie's passiert.
+--> Auktion anfangen zu implementieren, falls nicht lauffähig ein INterface auf papier zu gestaleten, damit der Kunde nachher noch seine Wünsche ausformulieren kann. 
+
+---> Piazza post erstellen über die Bewertungskriterien (Refactoring oder neue Funktionalität?)
+
+
+

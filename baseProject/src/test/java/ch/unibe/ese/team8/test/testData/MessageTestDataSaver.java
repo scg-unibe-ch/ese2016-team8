@@ -1,5 +1,7 @@
 package ch.unibe.ese.team8.test.testData;
 
+import static ch.unibe.ese.team8.test.testData.TestDataUtils.polyfillMessage;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
@@ -43,87 +45,105 @@ public class MessageTestDataSaver {
 
 		// Messages for testerMuster
 		message = new Message();
-		message.setSubject("Cool ad");
-		message.setText("Hello Mr. Wayne\n\n" + getDummyText1());
-		message.setSender(jane);
-		message.setRecipient(testerMuster);
-		message.setState(MessageState.UNREAD);
-		message.setDateSent(dateFormat.parse("12:02 24.02.2014"));
+		polyfillMessage(message,
+				"Cool ad",
+				"Hello Mr. Wayne\n\n" + getDummyText1(),
+				jane,
+				testerMuster,
+				MessageState.UNREAD,
+				dateFormat.parse("12:02 24.02.2014"));
+
 		messageDao.save(message);
 
 		message = new Message();
-		message.setSubject("I agree");
-		message.setText("Hey again Mr. Wayne\n\n" + getDummyText2());
-		message.setSender(bernerBaer);
-		message.setRecipient(testerMuster);
-		message.setState(MessageState.UNREAD);
-		message.setDateSent(dateFormat.parse("12:30 24.02.2014"));
+		polyfillMessage(message,
+				"I agree",
+				"Hey again Mr. Wayne\n\n" + getDummyText2(),
+				bernerBaer,
+				testerMuster,
+				MessageState.UNREAD,
+				dateFormat.parse("12:30 24.02.2014"));
+
 		messageDao.save(message);
 
 		message = new Message();
-		message.setSubject("Check this out");
-		message.setText("Hello Mr. Bär\n " + getDummyText3());
-		message.setSender(oprah);
-		message.setRecipient(testerMuster);
-		message.setState(MessageState.READ);
-		message.setDateSent(dateFormat.parse("11:30 24.02.2014"));
+		polyfillMessage(message,
+				"Check this out",
+				"Hello Mr. Bär\n " + getDummyText3(),
+				oprah,
+				testerMuster,
+				MessageState.READ,
+				dateFormat.parse("11:30 24.02.2014"));
+
 		messageDao.save(message);
 
 		// Messages for JaneDoe
 		message = new Message();
-		message.setSubject("I agree");
-		message.setText("Hey Jane\n\n" + getDummyText2());
-		message.setSender(bernerBaer);
-		message.setRecipient(jane);
-		message.setState(MessageState.UNREAD);
-		message.setDateSent(dateFormat.parse("12:30 24.02.2014"));
+		polyfillMessage(message,
+				"I agree",
+				"Hey Jane\n\n" + getDummyText2(),
+				bernerBaer,
+				jane,
+				MessageState.UNREAD,
+				dateFormat.parse("12:30 24.02.2014"));
+
 		messageDao.save(message);
 
 		message = new Message();
-		message.setSubject("Check this out");
-		message.setText("Whats up Jane?\n\n" + getDummyText3());
-		message.setSender(oprah);
-		message.setRecipient(jane);
-		message.setState(MessageState.READ);
-		message.setDateSent(dateFormat.parse("11:30 24.02.2014"));
+		polyfillMessage(message,
+				"Check this out",
+				"Whats up Jane?\n\n" + getDummyText3(),
+				oprah,
+				jane,
+				MessageState.READ,
+				dateFormat.parse("11:30 24.02.2014"));
+
 		messageDao.save(message);
 
 		// Messages for Berner Bär
 		message = new Message();
-		message.setSubject("Awesome Ad");
-		message.setText("Hey Huggy bear\n\n" + getDummyText1());
-		message.setSender(jane);
-		message.setRecipient(bernerBaer);
-		message.setState(MessageState.UNREAD);
-		message.setDateSent(dateFormat.parse("12:30 24.02.2014"));
+		polyfillMessage(message,
+				"Awesome Ad",
+				"Hey Huggy bear\n\n" + getDummyText1(),
+				jane,
+				bernerBaer,
+				MessageState.UNREAD,
+				dateFormat.parse("12:30 24.02.2014"));
+
 		messageDao.save(message);
 
 		message = new Message();
-		message.setSubject("Insane Ad");
-		message.setText("Whats up Mr. bear?\n\n" + getDummyText3());
-		message.setSender(oprah);
-		message.setRecipient(bernerBaer);
-		message.setState(MessageState.READ);
-		message.setDateSent(dateFormat.parse("11:30 24.02.2014"));
+		polyfillMessage(message,
+				"Insane Ad",
+				"Whats up Mr. bear?\n\n" + getDummyText3(),
+				oprah,
+				bernerBaer,
+				MessageState.READ,
+				dateFormat.parse("11:30 24.02.2014"));
+
 		messageDao.save(message);
 
 		// Messages for Oprah
 		message = new Message();
-		message.setSubject("Best Ad ever");
-		message.setText("Hey Oprah\n\n" + getDummyText1());
-		message.setSender(jane);
-		message.setRecipient(oprah);
-		message.setState(MessageState.UNREAD);
-		message.setDateSent(dateFormat.parse("12:30 24.02.2014"));
+		polyfillMessage(message,
+				"Best Ad ever",
+				"Hey Oprah\n\n" + getDummyText1(),
+				jane,
+				oprah,
+				MessageState.UNREAD,
+				dateFormat.parse("12:30 24.02.2014"));
+
 		messageDao.save(message);
 
 		message = new Message();
-		message.setSubject("You gotta see this");
-		message.setText("Whats up Oprah?\n\n" + getDummyText2());
-		message.setSender(bernerBaer);
-		message.setRecipient(oprah);
-		message.setState(MessageState.UNREAD);
-		message.setDateSent(dateFormat.parse("11:30 24.02.2014"));
+		polyfillMessage(message,
+				"You gotta see this",
+				"Whats up Oprah?\n\n" + getDummyText2(),
+				bernerBaer,
+				oprah,
+				MessageState.UNREAD,
+				dateFormat.parse("11:30 24.02.2014"));
+
 		messageDao.save(message);
 	}
 

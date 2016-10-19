@@ -1,5 +1,7 @@
 package ch.unibe.ese.team8.test.testData;
 
+import static ch.unibe.ese.team8.test.testData.TestDataUtils.polyfillBookmarkedAdsById;
+
 import java.util.LinkedList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,42 +33,41 @@ public class BookmarkTestDataSaver{
 
 		// 5 bookmarks for Ese test-user
 		LinkedList<Ad> bookmarkedAds = new LinkedList<>();
-		bookmarkedAds.add(adService.getAdById(1));
-		bookmarkedAds.add(adService.getAdById(3));
-		bookmarkedAds.add(adService.getAdById(5));
-		bookmarkedAds.add(adService.getAdById(7));
-		bookmarkedAds.add(adService.getAdById(8));
+		long[] longArray1 = {1,3,5,7,8};
+
+		polyfillBookmarkedAdsById(bookmarkedAds, adService, longArray1);
+
 		ese.setBookmarkedAds(bookmarkedAds);
-		
 		userDao.save(ese);
 
 		// 4 bookmarks for Jane Doe
 		bookmarkedAds = new LinkedList<>();
-		bookmarkedAds.add(adService.getAdById(6));
-		bookmarkedAds.add(adService.getAdById(9));
-		bookmarkedAds.add(adService.getAdById(10));
-		bookmarkedAds.add(adService.getAdById(11));
+
+		long[] longArray2 = {6,9,10,11};
+
+		polyfillBookmarkedAdsById(bookmarkedAds, adService, longArray2);
+
 		jane.setBookmarkedAds(bookmarkedAds);
 		userDao.save(jane);
 
 		// 5 bookmarks for user berner bear
 		bookmarkedAds = new LinkedList<>();
-		bookmarkedAds.add(adService.getAdById(2));
-		bookmarkedAds.add(adService.getAdById(4));
-		bookmarkedAds.add(adService.getAdById(6));
-		bookmarkedAds.add(adService.getAdById(8));
-		bookmarkedAds.add(adService.getAdById(12));
+
+		long[] longArray3 = {2,4,6,8,12};
+
+		polyfillBookmarkedAdsById(bookmarkedAds, adService, longArray3);
+
 		bernerBaer.setBookmarkedAds(bookmarkedAds);
 		userDao.save(bernerBaer);
 
 		// 4 bookmarks for Oprah
 		bookmarkedAds = new LinkedList<>();
-		bookmarkedAds.add(adService.getAdById(2));
-		bookmarkedAds.add(adService.getAdById(3));
-		bookmarkedAds.add(adService.getAdById(6));
-		bookmarkedAds.add(adService.getAdById(12));
+
+		long[] longArray4 = {2,3,6,12};
+
+		polyfillBookmarkedAdsById(bookmarkedAds, adService, longArray4);
+
 		oprah.setBookmarkedAds(bookmarkedAds);
 		userDao.save(oprah);
 	}
-
 }
