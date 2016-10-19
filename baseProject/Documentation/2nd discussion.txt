@@ -1,6 +1,6 @@
 Team 8 and Claudio, 19.10.2016
 
-SRS ist in Ordnung, keine SIcherheitsnotwendig, aber nur in die Datenbaniks chreiben, keine Local File, evtl. Log Files, nicht in andere Ordner schreiben. 
+SRS ist in Ordnung, keine Sicherheit notwendig, aber nur in die Datenbank schreiben, keine Local File, evtl. Log Files, nicht in andere Ordner schreiben. 
 --> Unsere Intentionen für die Sicherheit aufschreiben und dann auf die Spezifikation schreiben.
 
 
