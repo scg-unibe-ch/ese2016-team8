@@ -61,80 +61,98 @@ public class VisitEnquiryTestDataSaver {
 		// Add 2 Enquiries to Visit 1
 		enquiry = new VisitEnquiry();
 		visit = visitDao.findOne(1L);
-		enquiry.setDateSent(dateFormat.parse(getRandomDummyTime()));
-		enquiry.setSender(jane);
-		enquiry.setState(VisitEnquiryState.OPEN);
-		enquiry.setVisit(visit);
+		TestDataUtils.polyfillEnquiry(enquiry,
+				dateFormat.parse(getRandomDummyTime()),
+				jane,
+				VisitEnquiryState.OPEN,
+				visit);
+
 		visitEnquiryDao.save(enquiry);
 
 		enquiry = new VisitEnquiry();
-		enquiry.setDateSent(dateFormat.parse(getRandomDummyTime()));
-		enquiry.setSender(oprah);
-		enquiry.setState(VisitEnquiryState.DECLINED);
-		enquiry.setVisit(visit);
+		TestDataUtils.polyfillEnquiry(enquiry,
+				dateFormat.parse(getRandomDummyTime()),
+				oprah,
+				VisitEnquiryState.DECLINED,
+				visit);
+
 		visitEnquiryDao.save(enquiry);
 
 		// Add 1 Enquiry to Visit 6
 		enquiry = new VisitEnquiry();
 		visit = visitDao.findOne(6L);
-		enquiry.setDateSent(dateFormat.parse(getRandomDummyTime()));
-		enquiry.setSender(jane);
-		enquiry.setState(VisitEnquiryState.OPEN);
-		enquiry.setVisit(visit);
+		TestDataUtils.polyfillEnquiry(enquiry,
+				dateFormat.parse(getRandomDummyTime()),
+				jane,
+				VisitEnquiryState.OPEN,
+				visit);
+
 		visitEnquiryDao.save(enquiry);
 
 		// Enquiries for advertiser ese (ese@unibe.ch)
 		// Add 2 Enquiries to Visit 5
 		enquiry = new VisitEnquiry();
 		visit = visitDao.findOne(5L);
-		enquiry.setDateSent(dateFormat.parse(getRandomDummyTime()));
-		enquiry.setSender(jane);
-		enquiry.setState(VisitEnquiryState.OPEN);
-		enquiry.setVisit(visit);
+		TestDataUtils.polyfillEnquiry(enquiry,
+				dateFormat.parse(getRandomDummyTime()),
+				jane,
+				VisitEnquiryState.OPEN,
+				visit);
+
 		visitEnquiryDao.save(enquiry);
 
 		enquiry = new VisitEnquiry();
-		enquiry.setDateSent(dateFormat.parse(getRandomDummyTime()));
-		enquiry.setSender(bernerBaer);
-		enquiry.setState(VisitEnquiryState.DECLINED);
-		enquiry.setVisit(visit);
+		TestDataUtils.polyfillEnquiry(enquiry,
+				dateFormat.parse(getRandomDummyTime()),
+				bernerBaer,
+				VisitEnquiryState.DECLINED,
+				visit);
+
 		visitEnquiryDao.save(enquiry);
 
 		// Add 1 Enquiriy to Visit 9
 		enquiry = new VisitEnquiry();
 		visit = visitDao.findOne(9L);
-		enquiry.setDateSent(dateFormat.parse(getRandomDummyTime()));
-		enquiry.setSender(jane);
-		enquiry.setState(VisitEnquiryState.OPEN);
-		enquiry.setVisit(visit);
+		TestDataUtils.polyfillEnquiry(enquiry,
+				dateFormat.parse(getRandomDummyTime()),
+				jane,
+				VisitEnquiryState.OPEN,
+				visit);
+
 		visitEnquiryDao.save(enquiry);
 
 		// Add 1 Enquiriy to Visit 10
 		enquiry = new VisitEnquiry();
 		visit = visitDao.findOne(10L);
-		enquiry.setDateSent(dateFormat.parse(getRandomDummyTime()));
-		enquiry.setSender(oprah);
-		enquiry.setState(VisitEnquiryState.OPEN);
-		enquiry.setVisit(visit);
+		TestDataUtils.polyfillEnquiry(enquiry,
+				dateFormat.parse(getRandomDummyTime()),
+				oprah,
+				VisitEnquiryState.OPEN,
+				visit);
+
 		visitEnquiryDao.save(enquiry);
 
 		// Enquiries for advertiser oprah
 		// Add 2 Enquiries to Visit 22
 		enquiry = new VisitEnquiry();
 		visit = visitDao.findOne(22L);
-		enquiry.setDateSent(dateFormat.parse(getRandomDummyTime()));
-		enquiry.setSender(bernerBaer);
-		enquiry.setState(VisitEnquiryState.OPEN);
-		enquiry.setVisit(visit);
+		TestDataUtils.polyfillEnquiry(enquiry,
+				dateFormat.parse(getRandomDummyTime()),
+				bernerBaer,
+				VisitEnquiryState.OPEN,
+				visit);
+
 		visitEnquiryDao.save(enquiry);
-		
+
 		enquiry = new VisitEnquiry();
-		enquiry.setDateSent(dateFormat.parse(getRandomDummyTime()));
-		enquiry.setSender(testerMuster);
-		enquiry.setState(VisitEnquiryState.DECLINED);
-		enquiry.setVisit(visit);
+		TestDataUtils.polyfillEnquiry(enquiry,
+				dateFormat.parse(getRandomDummyTime()),
+				testerMuster,
+				VisitEnquiryState.DECLINED,
+				visit);
+
 		visitEnquiryDao.save(enquiry);
-		
+
 		// Accept all enquiries which are already added to the searcher-lists
 		// in the Visits (user accepted those enquiries already)
 		acceptEnquiries();
@@ -143,7 +161,7 @@ public class VisitEnquiryTestDataSaver {
 	/**
 	 * Accept all enquiries that have been added already to the searcher-Lists
 	 * in the VisitTestDataSaver (to be consequent).
-	 * 
+	 *
 	 * @throws ParseException
 	 */
 	private void acceptEnquiries() throws ParseException {

@@ -38,7 +38,7 @@ public class AlertForm {
 		return city;
 	}
 
-	public void setCity(String city) {
+	public void setCity(final String city) {
 		this.city = city;
 	}
 
@@ -46,7 +46,7 @@ public class AlertForm {
 		return zipCode;
 	}
 
-	public void setZipCode(int zip) {
+	public void setZipCode(final int zip) {
 		this.zipCode = zip;
 	}
 
@@ -54,7 +54,7 @@ public class AlertForm {
 		return radius;
 	}
 
-	public void setRadius(Integer radius) {
+	public void setRadius(final Integer radius) {
 		this.radius = radius;
 	}
 
@@ -62,7 +62,7 @@ public class AlertForm {
 		return price;
 	}
 
-	public void setPrice(Integer price) {
+	public void setPrice(final Integer price) {
 		this.price = price;
 	}
 
@@ -70,7 +70,7 @@ public class AlertForm {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(final User user) {
 		this.user = user;
 	}
 
@@ -79,7 +79,7 @@ public class AlertForm {
 	}
 
 	// TODO: change dependencies where below 'getCategory(...)' is used to 'setCategory(...)'
-	public void getCategory(String category) {
+	public void setCategory(final String category) {
 		this.category = category;
 	}
 }
