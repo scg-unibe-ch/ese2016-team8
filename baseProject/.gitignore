@@ -9,10 +9,11 @@
 # OS specific files
 .DS_Store
 ../.DS_Store
+desktop.ini
 
 # Hidden files
 .*
-!.gitignore
+*.gitignore
 !.classpath
 !.project
 .project
@@ -24,6 +25,7 @@
 *.bak
 *.orig
 ._*
+_vti_*
 
 # Java compiled code
 *.class
