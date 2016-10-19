@@ -51,23 +51,23 @@ public class AlertServiceTest {
 		ArrayList<Alert> alertList = new ArrayList<Alert>();
 		
 		// Create user Adolf Ogi
-		User adolfOgi = createUser("adolf@ogi.ch", "password", "Adolf", "Ogi",
+		User adolfOgi2 = createUser("adolf@ogi2.ch", "password", "Adolf", "Ogi",
 				Gender.MALE);
-		adolfOgi.setAboutMe("Wallis rocks");
-		userDao.save(adolfOgi);
+		adolfOgi2.setAboutMe("Wallis rocks");
+		userDao.save(adolfOgi2);
 		
 		// Create 2 alerts for Adolf Ogi
 		Alert alert = new Alert();
-		alert.setUser(adolfOgi);
+		alert.setUser(adolfOgi2);
 		alert.setCategory("studio");
 		alert.setCity("Bern");
-		alert.setZipcode(3000);
+		alert.setZipcode(3001);
 		alert.setPrice(1500);
 		alert.setRadius(100);
 		alertDao.save(alert);
 		
 		alert = new Alert();
-		alert.setUser(adolfOgi);
+		alert.setUser(adolfOgi2);
 		alert.setCategory("studio");
 		alert.setCity("Bern");
 		alert.setZipcode(3002);
@@ -76,13 +76,13 @@ public class AlertServiceTest {
 		alertDao.save(alert);
 		
 		//copy alerts to a list
-		Iterable<Alert> alerts = alertService.getAlertsByUser(adolfOgi);
+		Iterable<Alert> alerts = alertService.getAlertsByUser(adolfOgi2);
 		for(Alert returnedAlert: alerts)
 			alertList.add(returnedAlert);
 		
 		//begin the actual testing
 		assertEquals(2, alertList.size());
-		assertEquals(adolfOgi, alertList.get(0).getUser());
+		assertEquals(adolfOgi2, alertList.get(0).getUser());
 		assertEquals("Bern", alertList.get(1).getCity());
 		assertTrue(alertList.get(0).getRadius() > alertList.get(1).getRadius());
 	}
@@ -91,23 +91,23 @@ public class AlertServiceTest {
 	public void mismatchChecks() {
 		ArrayList<Alert> alertList = new ArrayList<Alert>();
 		
-		User thomyF = createUser("thomy@f.ch", "password", "Thomy", "F",
+		User thomyF2 = createUser("thomy@f2.ch", "password", "Thomy", "F",
 				Gender.MALE);
-		thomyF.setAboutMe("Supreme hustler");
-		userDao.save(thomyF);
+		thomyF2.setAboutMe("Supreme hustler");
+		userDao.save(thomyF2);
 		
 		// Create 2 alerts for Thomy F
 		Alert alert = new Alert();
-		alert.setUser(thomyF);
+		alert.setUser(thomyF2);
 		alert.setCategory("studio");
 		alert.setCity("Bern");
-		alert.setZipcode(3000);
+		alert.setZipcode(3003);
 		alert.setPrice(1500);
 		alert.setRadius(100);
 		alertDao.save(alert);
 		
 		alert = new Alert();
-		alert.setUser(thomyF);
+		alert.setUser(thomyF2);
 		alert.setCategory("room");
 		alert.setCity("Bern");
 		alert.setZipcode(3002);
@@ -115,41 +115,41 @@ public class AlertServiceTest {
 		alert.setRadius(5);
 		alertDao.save(alert);
 		
-		Iterable<Alert> alerts = alertService.getAlertsByUser(userDao.findByUsername("thomy@f.ch"));
+		Iterable<Alert> alerts = alertService.getAlertsByUser(userDao.findByUsername("thomy@f2.ch"));
 		for(Alert returnedAlert: alerts)
 			alertList.add(returnedAlert);
 		
 		//save an ad
 		Date date = new Date();
-		Ad oltenResidence= new Ad();
-		oltenResidence.setZipcode(4600);
-		oltenResidence.setMoveInDate(date);
-		oltenResidence.setCreationDate(date);
-		oltenResidence.setPrizePerMonth(1200);
-		oltenResidence.setSquareFootage(42);
-		oltenResidence.setCategory("room");
-		oltenResidence.setSmokers(true);
-		oltenResidence.setAnimals(false);
-		oltenResidence.setRoomDescription("blah");
-		oltenResidence.setPreferences("blah");
-		oltenResidence.setRoommates("None");
-		oltenResidence.setUser(thomyF);
-		oltenResidence.setTitle("Olten Residence");
-		oltenResidence.setStreet("Florastr. 100");
-		oltenResidence.setCity("Olten");
-		oltenResidence.setGarden(false);
-		oltenResidence.setBalcony(false);
-		oltenResidence.setCellar(false);
-		oltenResidence.setFurnished(false);
-		oltenResidence.setCable(false);
-		oltenResidence.setGarage(false);
-		oltenResidence.setInternet(false);
-		adDao.save(oltenResidence);
+		Ad oltenResidence2= new Ad();
+		oltenResidence2.setZipcode(4600);
+		oltenResidence2.setMoveInDate(date);
+		oltenResidence2.setCreationDate(date);
+		oltenResidence2.setPrizePerMonth(1200);
+		oltenResidence2.setSquareFootage(42);
+		oltenResidence2.setCategory("room");
+		oltenResidence2.setSmokers(true);
+		oltenResidence2.setAnimals(false);
+		oltenResidence2.setRoomDescription("blah");
+		oltenResidence2.setPreferences("blah");
+		oltenResidence2.setRoommates("None");
+		oltenResidence2.setUser(thomyF2);
+		oltenResidence2.setTitle("Olten Residence");
+		oltenResidence2.setStreet("Florastr. 100");
+		oltenResidence2.setCity("Olten");
+		oltenResidence2.setGarden(false);
+		oltenResidence2.setBalcony(false);
+		oltenResidence2.setCellar(false);
+		oltenResidence2.setFurnished(false);
+		oltenResidence2.setCable(false);
+		oltenResidence2.setGarage(false);
+		oltenResidence2.setInternet(false);
+		adDao.save(oltenResidence2);
 		
-		assertFalse(alertService.radiusMismatch(oltenResidence, alertList.get(0)));
-		assertTrue(alertService.radiusMismatch(oltenResidence, alertList.get(1)));
-		assertTrue(alertService.typeMismatch(oltenResidence, alertList.get(0)));
-		assertFalse(alertService.typeMismatch(oltenResidence, alertList.get(1)));
+		assertFalse(alertService.radiusMismatch(oltenResidence2, alertList.get(0)));
+		assertTrue(alertService.radiusMismatch(oltenResidence2, alertList.get(1)));
+		assertTrue(alertService.typeMismatch(oltenResidence2, alertList.get(0)));
+		assertFalse(alertService.typeMismatch(oltenResidence2, alertList.get(1)));
 	}
 	
 	//Lean user creating method
