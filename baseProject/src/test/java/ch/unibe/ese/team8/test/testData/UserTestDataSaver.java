@@ -75,8 +75,33 @@ public class UserTestDataSaver {
 		mathilda.setAboutMe("Hello, I am the dummy user Mathilda for the AdBern. I am living" +
 				"at Kramgasse 22 and I am very very happy there.");
 		userDao.save(mathilda);
+		
+		//the premium User
+		User premiumUser= createPremiumUser("prem@coolguy.com", "pw", "Johny", "Bravo", Gender.MALE, true);
+				premiumUser.setAboutMe("I am the coolest guy here");
+		userDao.save(premiumUser);
 	}
 
+	public User createPremiumUser(String email, String password, String firstName,
+			String lastName, Gender gender, boolean prem) {
+		User user = new User();
+		user.setUsername(email);
+		user.setPassword(password);
+		user.setEmail(email);
+		user.setFirstName(firstName);
+		user.setLastName(lastName);
+		user.setEnabled(true);
+		user.setGender(gender);
+		Set<UserRole> userRoles = new HashSet<>();
+		UserRole role = new UserRole();
+		role.setRole("ROLE_USER");
+		role.setUser(user);
+		userRoles.add(role);
+		user.setUserRoles(userRoles);
+		user.setPremium(prem);
+		return user;
+	}
+	
 	public User createUser(String email, String password, String firstName,
 			String lastName, Gender gender) {
 		User user = new User();

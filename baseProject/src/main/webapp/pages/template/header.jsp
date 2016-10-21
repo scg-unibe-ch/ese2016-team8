@@ -22,19 +22,7 @@
 	href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
 
 <script src="/js/unreadMessages.js"></script>
-<script>
 
-function redirectMessage(){
-
-    var r = confirm("Do you want to pay us 5$ for premium access?");
-    if (r == true) {
-			alert("you have to update your profile to do so");
-    } else {
-        alert("maybe next time");
-    }
-
-};
-</script>
 <style>
 /* ensure that autocomplete lists are not too long and have a scrollbar */
 .ui-autocomplete {
@@ -84,7 +72,7 @@ function redirectMessage(){
 								<li>
 								<% out.print("<a href=\"/user?id=" + realUser.getId() + "\">Public Profile</a>"); %>
 								</li>
-								<li><a id="premiumButton"  onclick="confirmPremium()"  href="/profile/editProfile">get Premium</a></li>
+								<li><a id="premiumButtonH"  onclick="confirmPremium()"  href="/profile/editProfile">Premium</a></li>
 								<li><a href="/logout">Logout</a></li>
 							</ul></li>
 					</c:when>

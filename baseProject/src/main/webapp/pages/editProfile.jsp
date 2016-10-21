@@ -13,6 +13,16 @@
 		});
 </script>
 <script>
+function revokePremium(){
+	var m = confirm("Are you sure you dont want premium status no more?");
+	if(m==true){
+		document.getElementById("premium").value= false;
+		alert("We are sorry to lose you as a premium member.\n Click on Update to confirm");
+	}else{
+		alert("happy to keep you ");
+	}
+
+}
 
 function confirmPremium(){
 
@@ -49,10 +59,12 @@ function confirmPremium(){
 
 <c:choose>
 	<c:when test="${currentUser.premium}">
-		<h2>You are a premium User </h2>
+		<h2>You are a premium User </h2><br>
+		<button class="button" id="nomorePremium" onclick="revokePremium()">revoke premium</button>
 	</c:when>
 <c:otherwise>
-	<a class="button" id="premiumButton"  onclick="confirmPremium()" >get your Premium</a>
+	<h4> click here to get your premium access: </h4><br>
+	<button class="button" id="premiumButton"  onclick="confirmPremium()">get your Premium</button>
 	</c:otherwise>
 </c:choose>
 
