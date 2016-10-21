@@ -121,10 +121,10 @@
 			var moveInDate = $("#field-moveInDate").val();
 			var moveOutDate = $("#field-moveOutDate").val();
 
-			if(moveOutDate == ""){
+			if(!moveOutDate || moveOutDate.length == 0){
 				return true;
-			}else if(moveOutDate <= moveInDate){
-				alert("Invalid dates. The move out date can't be before the move in.")
+			}else if(moveOutDate < moveInDate){
+				alert("Invalid dates. The move out date can't be before the move in.");
 				return false;
 			}else{
 				return true;
@@ -178,7 +178,7 @@
 			</tr>
 
 			<tr>
-				<td><label for="moveInDate">Move-in date</label></td>
+				<td><label for="moveInDate">Move-in date (required)</label></td>
 				<td><label id="moveOutDate" for="moveOutDate">Move-out date (optional)</label></td>
 			</tr>
 			<tr>
