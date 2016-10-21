@@ -44,7 +44,7 @@ public class UserTestDataSaver {
 
 		// Another advertiser & searcher
 		User bernerBaer = createUser("user@bern.com", "password",
-				"Berner", "Bär", Gender.MALE);
+				"Berner", "Baer", Gender.MALE);
 		UserPicture picture = new UserPicture();
 		picture.setFilePath("/img/test/berner_baer.png");
 		picture.setUser(bernerBaer);
