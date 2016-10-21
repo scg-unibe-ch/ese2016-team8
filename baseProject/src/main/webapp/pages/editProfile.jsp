@@ -18,6 +18,7 @@ function revokePremium(){
 	if(m==true){
 		document.getElementById("premium").value= false;
 		alert("We are sorry to lose you as a premium member.\n Click on Update to confirm");
+		document.forms['editProfile'].submit();
 	}else{
 		alert("happy to keep you ");
 	}
@@ -30,6 +31,7 @@ function confirmPremium(){
     if (r == true) {
 			document.getElementById("premium").value= true;
 			alert("now please click on Update to confirm the transaction");
+			document.forms['editProfile'].submit();
     } else {
         alert("maybe next time");
     }
@@ -70,7 +72,7 @@ function confirmPremium(){
 
 
 <form:form method="post" modelAttribute="editProfileForm"
-	action="/profile/editProfile" id="editProfileForm" autocomplete="off"
+	action="/profile/editProfile" name="editProfile" id="editProfileForm" autocomplete="off"
 	enctype="multipart/form-data">
 
 <table class="editProfileTable">
