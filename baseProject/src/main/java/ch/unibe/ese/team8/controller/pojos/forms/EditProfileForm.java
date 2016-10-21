@@ -7,7 +7,7 @@ public class EditProfileForm {
 
 	@NotBlank(message = "Required")
 	private String username;
-	
+
 	@NotBlank(message = "Required")
 	private String password;
 
@@ -16,8 +16,19 @@ public class EditProfileForm {
 
 	@NotBlank(message = "Required")
 	private String lastName;
-	
+
 	private String aboutMe;
+
+
+	private boolean premium;
+
+	public boolean getPremium(){
+		return premium;
+	}
+
+	public void setPremium(boolean premium){
+		this.premium= premium;
+	}
 
 	public String getPassword() {
 		return password;

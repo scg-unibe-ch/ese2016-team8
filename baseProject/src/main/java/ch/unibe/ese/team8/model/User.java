@@ -47,6 +47,7 @@ public class User {
 	@Column(nullable = false)
 	private boolean enabled;
 
+	@Column(nullable = false)
 	private boolean premium;
 
 
@@ -74,7 +75,7 @@ public class User {
 	public void setPremium(boolean premium){
 		this.premium = premium;
 	}
-	
+
 	public long getId() {
 		return id;
 	}

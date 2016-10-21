@@ -10,7 +10,21 @@
 <script>
 	$(document).ready(function() {
 		$("#about-me").val("${currentUser.aboutMe}")
-		});		
+		});
+</script>
+<script>
+
+function confirmPremium(){
+
+    var r = confirm("Do you want to pay us 5$ for premium access?");
+    if (r == true) {
+			document.getElementById("premium").value= true;
+			alert("now please click on Update to confirm the transaction");
+    } else {
+        alert("maybe next time");
+    }
+
+};
 </script>
 
 <pre><a href="/">Home</a>   &gt;   <a href="/user?id=${currentUser.id}">Public Profile</a>   &gt;   Edit profile</pre>
@@ -33,6 +47,16 @@
 	</c:otherwise>
 </c:choose>
 
+<c:choose>
+	<c:when test="${currentUser.premium}">
+		<h2>You are a premium User </h2>
+	</c:when>
+<c:otherwise>
+	<a class="button" id="premiumButton"  onclick="confirmPremium()" >get your Premium</a>
+	</c:otherwise>
+</c:choose>
+
+
 <form:form method="post" modelAttribute="editProfileForm"
 	action="/profile/editProfile" id="editProfileForm" autocomplete="off"
 	enctype="multipart/form-data">
@@ -41,19 +65,24 @@
 	<tr>
 		<td class="spacingTable"><label for="user-name">Username:</label><a>&emsp;</a>
 		<form:input id="user-name" path="username" value="${currentUser.username}" /></td>
-		
+
 	</tr>
 	<tr>
 		<td class="spacingTable"><label for="first-name">First name:</label><a>&emsp;</a>
 		<form:input id="first-name" path="firstName" value="${currentUser.firstName}" /></td>
 	</tr>
-	<tr>	
+	<tr>
 		<td class="spacingTable"><label for="last-name">Last name:</label><a>&emsp;</a>
 		<form:input id="last-name" path="lastName" value="${currentUser.lastName}" /></td>
 	</tr>
-	<tr>	
+	<tr>
 		<td class="spacingTable"><label for="password">Password:</label><a>&emsp;&thinsp;</a>
 		<form:input type="password" id="password" path="password" value="${currentUser.password}" /></td>
+	</tr>
+
+	<tr style="display: none">
+		<td class="spacingTable"><label  for="premium">Premium:</label><a>&emsp;&thinsp;</a>
+		<form:input type="premium" id="premium" path="premium" value="${currentUser.premium}" /></td>
 	</tr>
 
 	<tr>
@@ -70,4 +99,3 @@
 
 
 <c:import url="template/footer.jsp" />
-

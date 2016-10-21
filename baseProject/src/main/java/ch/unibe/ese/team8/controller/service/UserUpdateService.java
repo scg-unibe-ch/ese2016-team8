@@ -33,6 +33,7 @@ public class UserUpdateService {
 		currentUser.setFirstName(editProfileForm.getFirstName());
 		currentUser.setLastName(editProfileForm.getLastName());
 		currentUser.setPassword(editProfileForm.getPassword());
+		currentUser.setPremium(editProfileForm.getPremium());
 		currentUser.setAboutMe(editProfileForm.getAboutMe());
 
 		userDao.save(currentUser);

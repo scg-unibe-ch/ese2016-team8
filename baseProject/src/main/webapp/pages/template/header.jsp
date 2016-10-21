@@ -24,14 +24,11 @@
 <script src="/js/unreadMessages.js"></script>
 <script>
 
-function confirmPremium(){
+function redirectMessage(){
 
     var r = confirm("Do you want to pay us 5$ for premium access?");
     if (r == true) {
-			//document.getElementById("premiumButton").style.display= 'none';
-				setPremium(true);
-				alert("thanks you now owe us 5$");
-
+			alert("you have to update your profile to do so");
     } else {
         alert("maybe next time");
     }
@@ -87,7 +84,7 @@ function confirmPremium(){
 								<li>
 								<% out.print("<a href=\"/user?id=" + realUser.getId() + "\">Public Profile</a>"); %>
 								</li>
-								<li><a id="premiumButton"  onclick="confirmPremium()" >Premium?</a></li>
+								<li><a id="premiumButton"  onclick="confirmPremium()"  href="/profile/editProfile">get Premium</a></li>
 								<li><a href="/logout">Logout</a></li>
 							</ul></li>
 					</c:when>
