@@ -107,12 +107,32 @@ function validateType(form)
 	document.getElementById('category').value = types;
 }
 
+function decide(){
+	var currentButton = document.getElementById('moreButton').innerHTML;
+
+	if(currentButton == "More Options"){
+		moreOptions();
+	}else{
+		lessOptions();
+	}
+}
+
 function moreOptions(){
 	document.getElementById('basic').style.float="left";
 	document.getElementById('moreOptions').style.display="block";
+	document.getElementById('moreButton').innerHTML="Less Options";
 	var filtered = document.getElementById('filtered');
 	filtered.checked = true;
 }
+
+function lessOptions(){
+	document.getElementById('basic').style.float="none";
+	document.getElementById('moreOptions').style.display="none";
+	document.getElementById('moreButton').innerHTML="More Options";
+	var filtered = document.getElementById('filtered');
+	filtered.checked = false;
+}
+
 </script>
 
 <h1>Search for an ad</h1>
@@ -209,7 +229,7 @@ function moreOptions(){
 		<br />
 		</div>
 		<button type="submit" tabindex="7" onClick="validateType(this.form)">Search</button>
-		<button type="button" tabindex="8" onClick="moreOptions()">More Options</button>
+		<button type="button" tabindex="8" onClick="decide()" id="moreButton">More Options</button>
 		<button type="reset" tabindex="9">Cancel</button>
 		</div>
 	</fieldset>
