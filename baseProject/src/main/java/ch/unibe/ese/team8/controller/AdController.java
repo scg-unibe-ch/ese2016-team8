@@ -62,6 +62,24 @@ public class AdController {
 
 		return model;
 	}
+	
+	/** Gets the auction description for the ad with the given id */
+	@RequestMapping(value = "/auction", method = RequestMethod.GET)
+	public ModelAndView auction(@RequestParam("id") long id, Principal principal) {
+		ModelAndView model = new ModelAndView("auctionDescription");
+		Ad ad = adService.getAdById(id);
+		model.addObject("shownAd", ad);
+		model.addObject("messageForm", new MessageForm());
+
+		String loggedInUserEmail = (principal == null) ? "" : principal
+				.getName();
+		model.addObject("loggedInUserEmail", loggedInUserEmail);
+
+		model.addObject("visits", visitService.getVisitsByAd(ad));
+
+		return model;
+	}
+	
 
 	/**
 	 * Gets the ad description page for the ad with the given id and also

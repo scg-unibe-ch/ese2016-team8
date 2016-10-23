@@ -76,7 +76,7 @@ public class Ad {
 	private boolean allowsSmokers;
 
 	@Column(nullable = false)
-	private boolean allosAnimals;
+	private boolean allowsAnimals;
 
 	@Column(nullable = false)
 	private boolean hasGarden;
@@ -104,6 +104,19 @@ public class Ad {
 
 	@Column(nullable = false)
 	private boolean sale;
+	
+	@Column(nullable = false)
+	private boolean auction;
+	
+	@Column(nullable = false)
+	private int startPrize;
+	
+//	@Column(nullable = false)
+	@Temporal(TemporalType.DATE)
+	private Date auctionDuration;
+	
+	@ManyToOne(optional = true)
+	private User maxBidder;
 
 	@Fetch(FetchMode.SELECT)
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -131,6 +144,38 @@ public class Ad {
 		this.sale = sale;
 	}
 
+	public boolean getAuction() {
+		return auction;
+	}
+
+	public void setAuction(boolean auction) {
+		this.auction = auction;
+	}
+
+	public int getStartPrize() {
+		return startPrize;
+	}
+
+	public void setStartPrize(int startPrize) {
+		this.startPrize = startPrize;
+	}
+
+	public Date getAuctionDuration() {
+		return auctionDuration;
+	}
+
+	public void setAuctionDuration(Date auctionDuration) {
+		this.auctionDuration = auctionDuration;
+	}
+
+	public User getMaxBidder() {
+		return maxBidder;
+	}
+
+	public void setMaxBidder(User maxBidder) {
+		this.maxBidder = maxBidder;
+	}
+
 	public boolean getSmokers() {
 		return allowsSmokers;
 	}
@@ -140,11 +185,11 @@ public class Ad {
 	}
 
 	public boolean getAnimals() {
-		return allosAnimals;
+		return allowsAnimals;
 	}
 
 	public void setAnimals(final boolean allowsAnimals) {
-		this.allosAnimals = allowsAnimals;
+		this.allowsAnimals = allowsAnimals;
 	}
 
 	public boolean getGarden() {

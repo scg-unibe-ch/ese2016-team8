@@ -27,6 +27,8 @@ public class PlaceAdForm {
 	@Min(value = 1, message = "Has to be equal to 1 or more")
 	private int prize;
 
+	private int startPrize;
+	
 	@Min(value = 1, message = "Has to be equal to 1 or more")
 	private int squareFootage;
 
@@ -47,6 +49,7 @@ public class PlaceAdForm {
 
 	private String category;
 	private boolean sale;
+	private boolean auction;
 
 	private boolean smokers;
 	private boolean animals;
@@ -74,6 +77,14 @@ public class PlaceAdForm {
 
 	public void setPrize(int prize) {
 		this.prize = prize;
+	}
+
+	public int getStartPrize() {
+		return startPrize;
+	}
+
+	public void setStartPrize(int startPrize) {
+		this.startPrize = startPrize;
 	}
 
 	public String getRoomDescription() {
@@ -238,6 +249,14 @@ public class PlaceAdForm {
 
 	public void setSale(boolean sale) {
 		this.sale = sale;
+	}
+
+	public boolean getAuction() {
+		return auction;
+	}
+
+	public void setAuction(boolean auction) {
+		this.auction = auction;
 	}
 
 	public List<String> getRegisteredRoommateEmails() {

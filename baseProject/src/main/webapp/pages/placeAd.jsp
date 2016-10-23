@@ -23,15 +23,27 @@
 
 		//changes between Sale prize/ Prize per month
     $("#type-sale").on("click", function(){
+					document.getElementById('type-rent').checked="";
+					document.getElementById('type-auction').checked="";
           document.getElementById('month-Prize').innerHTML="Sale prize";
           document.getElementById('field-moveOutDate').style.display="none";
           document.getElementById('moveOutDate').innerHTML="";
     });
     $("#type-rent").on("click", function(){
+					document.getElementById('type-sale').checked="";
+					document.getElementById('type-auction').checked="";
           document.getElementById('month-Prize').innerHTML="Prize per Month";
           document.getElementById('field-moveOutDate').style.display="block";
           document.getElementById('moveOutDate').innerHTML="Move-out date (optional)";
-    }); 
+    });
+
+    $("#type-auction").on("click", function(){
+					document.getElementById('type-rent').checked="";
+					document.getElementById('type-sale').checked="";
+          document.getElementById('month-Prize').style.display="none";
+          document.getElementById('field-moveOutDate').style.display="none";
+          document.getElementById('moveOutDate').style.display="none";
+    });
 
 		$("#field-city").autocomplete({
 			minLength : 2
@@ -163,6 +175,7 @@
 				<td><form:radiobutton id="type-rent" path="sale" value="0"
 						checked="checked" />Rent <form:radiobutton id="type-sale"
 						path="sale" value="1" />Sale</td>
+				<td><form:radiobutton id="type-auction" path="auction" value="1" />Auction</td>
 			</tr>
 
 			<tr>
