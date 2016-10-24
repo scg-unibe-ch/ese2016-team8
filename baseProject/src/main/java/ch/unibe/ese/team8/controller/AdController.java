@@ -66,7 +66,7 @@ public class AdController {
 	/** Gets the auction description for the ad with the given id */
 	@RequestMapping(value = "/auction", method = RequestMethod.GET)
 	public ModelAndView auction(@RequestParam("id") long id, Principal principal) {
-		ModelAndView model = new ModelAndView("auctionDescription");
+		ModelAndView model = new ModelAndView("auction");
 		Ad ad = adService.getAdById(id);
 		model.addObject("shownAd", ad);
 		model.addObject("messageForm", new MessageForm());

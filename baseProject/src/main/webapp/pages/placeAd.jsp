@@ -23,26 +23,28 @@
 
 		//changes between Sale prize/ Prize per month
     $("#type-sale").on("click", function(){
-					document.getElementById('type-rent').checked="";
-					document.getElementById('type-auction').checked="";
-          document.getElementById('month-Prize').innerHTML="Sale prize";
-          document.getElementById('field-moveOutDate').style.display="none";
-          document.getElementById('moveOutDate').innerHTML="";
+		document.getElementById('type-rent').checked="";
+		document.getElementById('type-auction').checked="";
+        document.getElementById('month-Prize').innerHTML="Sale prize";
+        document.getElementById('field-moveOutDate').style.display="none";
+        document.getElementById('moveOutDate').innerHTML="";
     });
     $("#type-rent").on("click", function(){
-					document.getElementById('type-sale').checked="";
-					document.getElementById('type-auction').checked="";
-          document.getElementById('month-Prize').innerHTML="Prize per Month";
-          document.getElementById('field-moveOutDate').style.display="block";
-          document.getElementById('moveOutDate').innerHTML="Move-out date (optional)";
+		document.getElementById('type-sale').checked="";
+		document.getElementById('type-auction').checked="";
+        document.getElementById('month-Prize').innerHTML="Prize per Month";
+        document.getElementById('field-moveOutDate').style.display="block";
+        document.getElementById('moveOutDate').innerHTML="Move-out date (optional)";
     });
 
     $("#type-auction").on("click", function(){
-					document.getElementById('type-rent').checked="";
-					document.getElementById('type-sale').checked="";
-          document.getElementById('month-Prize').style.display="none";
-          document.getElementById('field-moveOutDate').style.display="none";
-          document.getElementById('moveOutDate').style.display="none";
+    	document.getElementById('type-rent').checked="";
+		document.getElementById('type-sale').checked="checked";
+        document.getElementById('month-Prize').innerHTML="Start Prize";
+        document.getElementById('field-Prize').path="startPrize";
+        document.getElementById('field-Prize').placeholder="Start Prize";
+        document.getElementById('field-moveOutDate').style.display="none";
+        document.getElementById('moveOutDate').style.display="none";
     });
 
 		$("#field-city").autocomplete({

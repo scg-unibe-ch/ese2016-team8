@@ -41,7 +41,7 @@
 									<c:otherwise>Room</c:otherwise>
 								</c:choose> to
 								<c:choose>
-									<c:when test="${ad.sale}">Sell</c:when>
+									<c:when test="${ad.sale}">Buy</c:when>
 									<c:otherwise>Rent</c:otherwise>
 								</c:choose></i>
 						</p>
