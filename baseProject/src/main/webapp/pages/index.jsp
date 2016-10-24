@@ -30,7 +30,8 @@
 						<a href="<c:url value='/ad?id=${ad.id}' />"><img
 							src="${ad.pictures[0].filePath}" /></a>
 						<h2>
-							<a class="link" href="<c:url value='/ad?id=${ad.id}' />">${ad.title}</a>
+							<c:if test="${ad.auction}"><a class="link" href="<c:url value='/auction?id=${ad.id}' />">${ad.title}</a></c:if>
+							<c:if test="${!ad.auction}"><a class="link" href="<c:url value='/ad?id=${ad.id}' />">${ad.title}</a></c:if>
 						</h2>
 						<p>${ad.street}, ${ad.zipcode} ${ad.city}</p>
 						<br />

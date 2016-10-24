@@ -14,18 +14,20 @@
 
 <pre><a href="/">Home</a>   &gt;   <a href="/profile/myRooms">My Rooms</a>   &gt;   Ad Description</pre>
 
+<script src="/js/jquery.ui.widget.js"></script>
+<script src="/js/jquery.iframe-transport.js"></script>
 <script src="/js/image_slider.js"></script>
 <script src="/js/adDescription.js"></script>
 
 <script>
 	var shownAdvertisementID = "${shownAd.id}";
 	var shownAdvertisement = "${shownAd}";
+	
+	function attachBidClickHandler(currentOffer){
+		var offer = parseInt(currentOffer);
+		$("#makeBid").click(function() {
+			$.post("/auctionBid", {id: shownAdvertisementID, screening: false, bid: offer}, function(data) {
 
-	function attachBookmarkClickHandler(){
-		$("#bookmarkButton").click(function() {
-			var currentOffer = parseInt("500");
-			$.post("/auctionBid", {id: shownAdvertisementID, screening: false, bid: currentOffer}, function(data) {
-				$('#bookmarkButton').replaceWith($('<a class="right" id="bookmarkedButton">' + "Bookmarked" + '</a>'));
 				switch(data) {
 				case 0:
 					alert("You must be logged in to bookmark ads.");
@@ -35,49 +37,20 @@
 					alert("Return value 1. Please contact the WebAdmin.");
 					break;
 				case 3:
-					$('#bookmarkButton').replaceWith($('<a class="right" id="bookmarkedButton">' + "Bookmarked" + '</a>'));
 					break;
 				default:
 					alert("Default error. Please contact the WebAdmin.");
 				}
-
-				attachBookmarkedClickHandler();
-			});
-		});
-	}
-
-	function attachBookmarkedClickHandler(){
-		$("#bookmarkedButton").click(function() {
-			$.post("/bookmark", {id: shownAdvertisementID, screening: false, bookmarked: true}, function(data) {
-				$('#bookmarkedButton').replaceWith($('<a class="right" id="bookmarkButton">' + "Bookmark Ad" + '</a>'));
-				switch(data) {
-				case 0:
-					alert("You must be logged in to bookmark ads.");
-					break;
-				case 1:
-					// Something went wrong with the principal object
-					alert("Return value 1. Please contact the WebAdmin.");
-					break;
-				case 2:
-					$('#bookmarkedButton').replaceWith($('<a class="right" id="bookmarkButton">' + "Bookmark Ad" + '</a>'));
-					break;
-				default:
-					alert("Default error. Please contact the WebAdmin.");
-
-				}
-				attachBookmarkClickHandler();
 			});
 		});
 	}
 
 	$(document).ready(function() {
-		attachBookmarkClickHandler();
-		attachBookmarkedClickHandler();
+		attachBidClickHandler(document.getElementById('bid').value);
 
 		$.post("/bookmark", {id: shownAdvertisementID, screening: true, bookmarked: true}, function(data) {
 			if(data == 3) {
-				$('#bookmarkButton').replaceWith($('<a class="right" id="bookmarkedButton">' + "Bookmarked" + '</a>'));
-				attachBookmarkedClickHandler();
+				attachBidClickHandler();
 			}
 			if(data == 4) {
 				$('#shownAdTitle').replaceWith($('<h1>' + "${shownAd.title}" + '</h1>'));
@@ -135,7 +108,9 @@
 <h1 id="shownAdTitle">${shownAd.title}
 	<c:choose>
 		<c:when test="${loggedIn}">
-			<a class="right" id="bookmarkButton">Bookmark Ad</a>
+			<input style="float:right; margin-left: 10px;" align="right" type="number" name="bid" id="bid" min="${ad.prizePerMonth}" value="0">
+			<a class="right" id="makeBid">Make bid</a>
+
 		</c:when>
 	</c:choose>
 </h1>
