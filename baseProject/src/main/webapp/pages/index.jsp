@@ -27,11 +27,15 @@
 			<c:forEach var="ad" items="${newest}">
 				<div class="resultAd">
 					<div class="resultLeft">
-						<a href="<c:url value='/ad?id=${ad.id}' />"><img
-							src="${ad.pictures[0].filePath}" /></a>
+						<c:choose>
+							<c:when test="${!ad.auction}"><a href="<c:url value='/ad?id=${ad.id}' />"><img src="${ad.pictures[0].filePath}" /></a></c:when>
+							<c:otherwise><a href="<c:url value='/auction?id=${ad.id}' />"><img src="${ad.pictures[0].filePath}" /></a></c:otherwise>
+						</c:choose>
 						<h2>
-							<c:if test="${ad.auction}"><a class="link" href="<c:url value='/auction?id=${ad.id}' />">${ad.title}</a></c:if>
-							<c:if test="${!ad.auction}"><a class="link" href="<c:url value='/ad?id=${ad.id}' />">${ad.title}</a></c:if>
+						<c:choose>
+							<c:when test="${!ad.auction}"><a class="link" href="<c:url value='/ad?id=${ad.id}' />">${ad.title}</a></c:when>
+							<c:otherwise><a class="link" href="<c:url value='/auction?id=${ad.id}' />">${ad.title}</a></c:otherwise>
+						</c:choose>
 						</h2>
 						<p>${ad.street}, ${ad.zipcode} ${ad.city}</p>
 						<br />
