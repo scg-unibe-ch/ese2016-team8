@@ -23,18 +23,20 @@
 	var shownAdvertisementID = "${shownAd.id}";
 	var shownAdvertisement = "${shownAd}";
 	
-	function attachBidClickHandler(currentOffer){
-		var offer = parseInt(currentOffer);
+	
+	$(document).ready(function() {
+		console.log(document.getElementById('bid').value);
 		$("#makeBid").click(function() {
-			$.post("/auctionBid", {id: shownAdvertisementID, screening: false, bid: offer}, function(data) {
+			var offer = document.getElementById('bid').value;
+			console.log(offer);
+			$.post("/auctionBid", {id: shownAdvertisementID, screening: true, bid: offer}, function(data) {
 
 				switch(data) {
 				case 0:
-					alert("You must be logged in to bookmark ads.");
+					alert("The bid must be higher than the current one!");
 					break;
 				case 1:
-					// Something went wrong with the principal object
-					alert("Return value 1. Please contact the WebAdmin.");
+					alert("Everything worked fine!");
 					break;
 				case 3:
 					break;
@@ -43,14 +45,9 @@
 				}
 			});
 		});
-	}
-
-	$(document).ready(function() {
-		attachBidClickHandler(document.getElementById('bid').value);
 
 		$.post("/bookmark", {id: shownAdvertisementID, screening: true, bookmarked: true}, function(data) {
 			if(data == 3) {
-				attachBidClickHandler();
 			}
 			if(data == 4) {
 				$('#shownAdTitle').replaceWith($('<h1>' + "${shownAd.title}" + '</h1>'));
