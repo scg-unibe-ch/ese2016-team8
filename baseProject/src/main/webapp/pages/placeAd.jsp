@@ -133,12 +133,12 @@
 	});
 
 	function checkDates(){
-			var moveInDate = $("#field-moveInDate").val();
-			var moveOutDate = $("#field-moveOutDate").val();
+			var moveInDate = new Date($("#field-moveInDate").val());
+			var moveOutDate = new Date($("#field-moveOutDate").val());
 
 			if(!moveOutDate || moveOutDate.length == 0){
 				return true;
-			}else if(moveOutDate < moveInDate){
+			}else if(moveOutDate.getTime() < moveInDate.getTime()){
 				alert("Invalid dates. The move out date can't be before the move in.");
 				return false;
 			}else{
