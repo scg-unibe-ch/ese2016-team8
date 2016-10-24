@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ch.unibe.ese.team8.controller.pojos.forms.MessageForm;
 import ch.unibe.ese.team8.controller.service.AdService;
+import ch.unibe.ese.team8.controller.service.BidService;
 import ch.unibe.ese.team8.controller.service.BookmarkService;
 import ch.unibe.ese.team8.controller.service.MessageService;
 import ch.unibe.ese.team8.controller.service.UserService;
@@ -39,6 +40,9 @@ public class AdController {
 
 	@Autowired
 	private BookmarkService bookmarkService;
+	
+	@Autowired
+	private BidService bidService;
 
 	@Autowired
 	private MessageService messageService;
@@ -144,6 +148,32 @@ public class AdController {
 		Ad ad = adService.getAdById(id);
 
 		return bookmarkService.getBookmarkStatus(ad, bookmarked, user);
+	}
+	
+	@RequestMapping(value = "/auctionBid", method = RequestMethod.POST)
+	@Transactional
+	@ResponseBody
+	public boolean bidOnAuction(@RequestParam("id") long id,
+			@RequestParam("screening") boolean screening, @RequestParam("bid") int currentBid, Principal principal) {
+		// should never happen since no bookmark button when not logged in
+		if (principal == null) {
+			return false;
+		}
+		String username = principal.getName();
+		User user = userService.findUserByUsername(username);
+		if (user == null) {
+			// that should not happen...
+			return false;
+		}
+
+		if (screening) {
+			
+		}
+
+		int bid = currentBid;
+		Ad ad = adService.getAdById(id);
+
+		return bidService.bid(ad, bid, user);
 	}
 
 	/**

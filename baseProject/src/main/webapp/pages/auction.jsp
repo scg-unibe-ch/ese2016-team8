@@ -23,8 +23,8 @@
 
 	function attachBookmarkClickHandler(){
 		$("#bookmarkButton").click(function() {
-
-			$.post("/bookmark", {id: shownAdvertisementID, screening: false, bookmarked: false}, function(data) {
+			var currentOffer = parseInt("500");
+			$.post("/auctionBid", {id: shownAdvertisementID, screening: false, bid: currentOffer}, function(data) {
 				$('#bookmarkButton').replaceWith($('<a class="right" id="bookmarkedButton">' + "Bookmarked" + '</a>'));
 				switch(data) {
 				case 0:
@@ -171,8 +171,8 @@
 			<td><h2>Tenure</h2></td>
 			<td>
 				<c:choose>
-					<c:when test="${shownAd.sale}">Sale</c:when>
-					<c:otherwise>Rent</c:otherwise>
+					<c:when test="${shownAd.sale}">Auction</c:when>
+					<c:otherwise>Something is messed up here!</c:otherwise>
 				</c:choose>
 			</td>
 		</tr>
@@ -190,15 +190,15 @@
 		</tr>
 
 		<tr>
-			<td><h2>Move-out Date</h2></td>
+			<td><h2>Auction ends on</h2></td>
 			<td>${formattedMoveOutDate}</td>
 		</tr>
 
 		<tr>
 			<td><h2>
 				<c:choose>
-					<c:when test="${shownAd.sale}">Buy Price</c:when>
-					<c:otherwise>Monthly Rent</c:otherwise>
+					<c:when test="${shownAd.sale}">Current price</c:when>
+					<c:otherwise>Something is meesed up here!</c:otherwise>
 				</c:choose></h2></td>
 			<td>${shownAd.prizePerMonth}&#32;CHF</td>
 		</tr>
@@ -210,6 +210,10 @@
 		<tr>
 			<td><h2>Ad created on</h2></td>
 			<td>${formattedCreationDate}</td>
+		</tr>
+		<tr>
+			<td><h2>Current max. bidder</h2></td>
+			<td></td>
 		</tr>
 	</table>
 </section>

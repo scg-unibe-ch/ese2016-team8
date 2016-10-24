@@ -40,6 +40,7 @@
     $("#type-auction").on("click", function(){
     	document.getElementById('type-rent').checked="";
 		document.getElementById('type-sale').checked="checked";
+		document.getElementById('type-auction').checked="checked";
         document.getElementById('month-Prize').innerHTML="Start Prize";
         document.getElementById('field-Prize').path="startPrize";
         document.getElementById('field-Prize').placeholder="Start Prize";
