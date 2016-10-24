@@ -51,6 +51,10 @@ public class Ad {
 	@Column(nullable = true)
 	private Date moveOutDate;
 
+	@Temporal(TemporalType.DATE)
+	@Column(nullable = true)
+	private Date auctionEnd;
+
 	@Column(nullable = false)
 	private int prizePerMonth;
 
@@ -130,6 +134,15 @@ public class Ad {
 
 	@Column(nullable = false)
 	private boolean premium;
+
+	public Date getAuctionEnd(){
+		return auctionEnd;
+	}
+
+	public void setAuctionEnd(final Date auctionEnd){
+		this.auctionEnd= auctionEnd;
+
+	}
 
 	public Date getCreationDate() {
 		return creationDate;

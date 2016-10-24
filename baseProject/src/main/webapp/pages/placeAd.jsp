@@ -65,6 +65,10 @@
 			dateFormat : 'dd-mm-yy'
 		});
 
+		$("#field-auctionEnd").datepicker({
+			dateFormat : 'dd-mm-yy'
+		});
+
 		$("#field-visitDay").datepicker({
 			dateFormat : 'dd-mm-yy'
 		});
@@ -196,12 +200,15 @@
 			<tr>
 				<td><label for="moveInDate">Move-in date (required)</label></td>
 				<td><label id="moveOutDate" for="moveOutDate">Move-out date (optional)</label></td>
+				<td><label id="auctionEnd"	 for="auctionEnd">Auction end date</label></td>
 			</tr>
 			<tr>
 				<td><form:input type="text" id="field-moveInDate"
 						path="moveInDate" /></td>
 				<td><form:input type="text" id="field-moveOutDate"
 						path="moveOutDate" /></td>
+						<td><form:input type="text" id="field-auctionEnd"
+								path="auctionEnd" /></td>
 			</tr>
 
 			<tr>

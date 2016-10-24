@@ -24,11 +24,13 @@ public class PlaceAdForm {
 
 	private String moveOutDate;
 
+	private String auctionEnd;
+
 	@Min(value = 1, message = "Has to be equal to 1 or more")
 	private int prize;
 
 	private int startPrize;
-	
+
 	@Min(value = 1, message = "Has to be equal to 1 or more")
 	private int squareFootage;
 
@@ -199,6 +201,12 @@ public class PlaceAdForm {
 		this.moveInDate = moveInDate;
 	}
 
+	public String getAuctionEnd(){
+		return auctionEnd;
+	}
+	public void setAuctionEnd(String auctionEnd){
+		this.auctionEnd = auctionEnd;
+	}
 	public String getMoveOutDate() {
 		return moveOutDate;
 	}
@@ -234,7 +242,7 @@ public class PlaceAdForm {
 	public String getCategory() {
 		return category;
 	}
-	
+
 	public void setCategory(String category) {
 		this.category = category;
 	}
@@ -242,7 +250,7 @@ public class PlaceAdForm {
 	public void setSale(String category) {
 		this.category = category;
 	}
-	
+
 	public boolean getSale() {
 		return sale;
 	}
