@@ -153,17 +153,17 @@ public class AdController {
 	@RequestMapping(value = "/auctionBid", method = RequestMethod.POST)
 	@Transactional
 	@ResponseBody
-	public boolean bidOnAuction(@RequestParam("id") long id,
+	public int bidOnAuction(@RequestParam("id") long id,
 			@RequestParam("screening") boolean screening, @RequestParam("bid") int currentBid, Principal principal) {
 		// should never happen since no bookmark button when not logged in
 		if (principal == null) {
-			return false;
+			return 0;
 		}
 		String username = principal.getName();
 		User user = userService.findUserByUsername(username);
 		if (user == null) {
 			// that should not happen...
-			return false;
+			return 0;
 		}
 
 		if (screening) {
