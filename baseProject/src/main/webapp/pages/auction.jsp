@@ -55,7 +55,6 @@
 			if(data == 3) {
 			}
 			if(data == 4) {
-				$('#shownAdTitle').replaceWith($('<h1>' + "${shownAd.title}" + '</h1>'));
 			}
 		});
 
@@ -107,15 +106,7 @@
 </c:choose>
 
 
-<h1 id="shownAdTitle">${shownAd.title}
-	<c:choose>
-		<c:when test="${loggedIn}">
-			<input style="float:right; margin-left: 10px;" align="right" type="number" name="bid" id="bid" min="${ad.prizePerMonth}" value="${shownAd.prizePerMonth}">
-			<a class="right" id="makeBid">Make bid</a>
-
-		</c:when>
-	</c:choose>
-</h1>
+<h1 id="shownAdTitle">${shownAd.title}</h1>
 
 
 <hr />
@@ -190,7 +181,7 @@
 		</tr>
 		<tr>
 			<td><h2>Current max. bidder</h2></td>
-			<td></td>
+			<td><i>none yet</i></td>
 		</tr>
 	</table>
 </section>
@@ -207,6 +198,18 @@
 	<div id="right-arrow">
 		<img src="/img/right-arrow.png" />
 	</div>
+</div>
+<div id="bidDiv">
+	<c:choose>
+		<c:when test="${loggedIn}">
+			<table>
+			<tr height="44px">
+			<td width="50%" style="vertical-align:top"><a class="right" id="makeBid">Place bid</a></td>
+			<td width="50%" style="vertical-align:middle"><input style="float:right; margin-left: 10px;" 
+			align="right" type="number" step="50" name="bid" id="bid" min="${ad.prizePerMonth}" value="${shownAd.prizePerMonth}">
+			</td></tr></table>
+		</c:when>
+	</c:choose>
 </div>
 
 <hr class="clearBoth" />

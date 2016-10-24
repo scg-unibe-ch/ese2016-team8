@@ -26,6 +26,10 @@ h2 {
 	text-shadow: 1px 1px 1px #999;
 }
 
+h3 {
+	font-size: 1.9em;
+}
+
 hr {
 	color: #000;
 	background-color: #000;
@@ -183,17 +187,34 @@ button {
 	border-style: solid;
 	font-size: 1.5em;
 }
+#bidDiv {
+	font-size: 1.5em;
+	color:white;	
+	position: absolute;
+	right: 120px;
+	top: 150px;
+	width: 240px;
+	height: 40px;
+}
+
 
 #makeBid {
-	background-color: white;
-	padding: 0px 5px 0px 5px;
+	cursor:pointer;
+	background-color: #003;
+	padding: 4px 12px 2px 10px;
 	border-width: 2px;
-	border-radius: 3px;
+	border-radius: 6px;
 	border-color: #003;
 	border-style: solid; 
-	color: grey;
-	font-size: 0.9em;
+	color: white;
 }
+
+#makeBid:hover {
+	background-color: white;
+	border-style: solid; 
+	color: #002;
+}
+
 
 #bookmarkButton {
 	background-color: white;
@@ -701,7 +722,7 @@ footer nav ul li {
 }
 
 #image-slider {
-	height: 350px;
+	height: 390px;
 	float: right;
 	width: 600px;
 	margin-bottom: 30px;
@@ -710,12 +731,12 @@ footer nav ul li {
 #images {
 	float: left;
 	width: 500px;
-	height: 350px;
+	height: 380px;
 	position: relative;
 }
 
 #images img {
-	height: 350px;
+	height: 360px;
 	position: absolute;
 	top: 0;
 	left: 0;

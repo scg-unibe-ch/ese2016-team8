@@ -48,6 +48,7 @@ public class AdTestDataSaver {
 		Date creationDate6 = formatter.parse("01.12.2014");
 		Date creationDate7 = formatter.parse("16.11.2014");
 		Date creationDate8 = formatter.parse("27.11.2014");
+		Date creationDate9 = formatter.parse("01.05.2016");
 
 		Date moveInDate1 = formatter.parse("15.12.2014");
 		Date moveInDate2 = formatter.parse("21.12.2014");
@@ -57,6 +58,7 @@ public class AdTestDataSaver {
 		Date moveInDate6 = formatter.parse("01.03.2015");
 		Date moveInDate7 = formatter.parse("15.03.2015");
 		Date moveInDate8 = formatter.parse("16.02.2015");
+		Date moveInDate9 = formatter.parse("01.11.2016");
 
 		Date moveOutDate1 = formatter.parse("31.03.2015");
 		Date moveOutDate2 = formatter.parse("30.04.2015");
@@ -106,6 +108,7 @@ public class AdTestDataSaver {
 				true,
 				true,
 				true,
+				false,
 				false,
 				pictures);
 
@@ -157,6 +160,7 @@ public class AdTestDataSaver {
 				false,
 				true,
 				false,
+				false,
 				pictures);
 
 		adDao.save(adBern2);
@@ -197,6 +201,7 @@ public class AdTestDataSaver {
 				"Nice, bright studio in the center of Basel",
 				"Bruderholzstrasse 32",
 				"Basel",
+				false,
 				false,
 				false,
 				false,
@@ -251,6 +256,7 @@ public class AdTestDataSaver {
 				false,
 				false,
 				false,
+				false,
 				pictures);
 
 		adDao.save(adOlten);
@@ -295,6 +301,7 @@ public class AdTestDataSaver {
 				false,
 				true,
 				false,
+				false,
 				pictures);
 
 		adDao.save(adNeuchâtel);
@@ -332,6 +339,7 @@ public class AdTestDataSaver {
 				true,
 				false,
 				true,
+				false,
 				pictures);
 
 		adDao.save(adHouse);
@@ -365,6 +373,7 @@ public class AdTestDataSaver {
 				"Direkt am Quai: hübsches Studio",
 				"Oberer Quai 12",
 				"Biel/Bienne",
+				false,
 				false,
 				false,
 				false,
@@ -421,6 +430,7 @@ public class AdTestDataSaver {
 				true,
 				true,
 				false,
+				false,
 				pictures);
 
 		adDao.save(adZurich);
@@ -464,6 +474,7 @@ public class AdTestDataSaver {
 				"Elegant Studio in Lucerne",
 				"Schwanenplatz 61",
 				"Luzern",
+				false,
 				false,
 				false,
 				false,
@@ -523,6 +534,7 @@ public class AdTestDataSaver {
 				false,
 				false,
 				false,
+				false,
 				pictures);
 
 		adDao.save(adAarau);
@@ -566,6 +578,7 @@ public class AdTestDataSaver {
 				true,
 				true,
 				true,
+				false,
 				false,
 				false,
 				false,
@@ -613,6 +626,7 @@ public class AdTestDataSaver {
 				false,
 				false,
 				false,
+				false,
 				pictures);
 
 		adDao.save(adLausanne);
@@ -655,9 +669,52 @@ public class AdTestDataSaver {
 				false,
 				false,
 				false,
+				false,
 				pictures);
 
 		adDao.save(adLocarno);
+		
+		String studioDescriptionAuction = "Schönes Studio im Herzen von Schwamendingen! Einkaufsgelegenheiten am Schwamendingerplatz"
+				+ ", welcher sich in Laufweite befindet. Tram bis zum HB in nur 15 Minuten";
+		String roomPreferencesAuction = "Raucher, Patriot, bevorzugt männlich";
+
+		Ad adAuction = new Ad();
+
+		pictures = new ArrayList<>();
+		pictures.add(createPicture(adAuction, "/img/test/ad6_3.png"));
+		pictures.add(createPicture(adAuction, "/img/test/ad6_2.png"));
+		pictures.add(createPicture(adAuction, "/img/test/ad6_1.png"));
+
+		TestDataUtils.polyfillAd(adAuction,
+				8051,
+				moveInDate9,
+				creationDate9,
+				null,
+				10000,
+				30,
+				"studio",
+				true,
+				false,
+				studioDescriptionAuction,
+				roomPreferencesAuction,
+				"None",
+				oprah,
+				null, // Roommates list
+				"Studio in Schwamendingen zur Auktion",
+				"Aprikosenstrass 20",
+				"Zürich",
+				false,
+				true,
+				false,
+				false,
+				false,
+				false,
+				false,
+				true,
+				true,
+				pictures);
+
+		adDao.save(adAuction);
 
 	}
 
