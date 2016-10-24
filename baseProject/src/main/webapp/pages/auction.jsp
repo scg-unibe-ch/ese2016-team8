@@ -22,13 +22,17 @@
 <script>
 	var shownAdvertisementID = "${shownAd.id}";
 	var shownAdvertisement = "${shownAd}";
-	
-	
+
+
 	$(document).ready(function() {
 		console.log(document.getElementById('bid').value);
 		$("#makeBid").click(function() {
 			var offer = document.getElementById('bid').value;
 			console.log(offer);
+
+			if(document.getElementById('bid').value < ${shownAd.prizePerMonth}){
+				alert("you have to bid higher");
+			}else{
 			$.post("/auctionBid", {id: shownAdvertisementID, screening: true, bid: offer}, function(data) {
 
 				switch(data) {
@@ -44,6 +48,7 @@
 					alert("Default error. Please contact the WebAdmin.");
 				}
 			});
+		}
 		});
 
 		$.post("/bookmark", {id: shownAdvertisementID, screening: true, bookmarked: true}, function(data) {
@@ -105,7 +110,7 @@
 <h1 id="shownAdTitle">${shownAd.title}
 	<c:choose>
 		<c:when test="${loggedIn}">
-			<input style="float:right; margin-left: 10px;" align="right" type="number" name="bid" id="bid" min="${ad.prizePerMonth}" value="0">
+			<input style="float:right; margin-left: 10px;" align="right" type="number" name="bid" id="bid" min="${ad.prizePerMonth}" value="${shownAd.prizePerMonth}">
 			<a class="right" id="makeBid">Make bid</a>
 
 		</c:when>
