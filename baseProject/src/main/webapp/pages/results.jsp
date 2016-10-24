@@ -164,13 +164,13 @@ function sort_div_attribute() {
 				<div class="resultAd" data-price="${ad.prizePerMonth}"
 								data-moveIn="${ad.moveInDate}" data-age="${ad.moveInDate}">
 					<div class="resultLeft">
-						<c:when test="${ad.isAcution}"><a href="<c:url value='/auction?id=${ad.id}' />"><img
-							src="${ad.pictures[0].filePath}" /></a></c:when>
-						<c:otherwise><a href="<c:url value='/ad?id=${ad.id}' />"><img
-							src="${ad.pictures[0].filePath}" /></a></c:otherwise>
+						<c:if test="${ad.auction}"><a href="<c:url value='/auction?id=${ad.id}' />"><img
+							src="${ad.pictures[0].filePath}" /></a></c:if>
+						<c:if test="${!ad.auction}"><a href="<c:url value='/ad?id=${ad.id}' />"><img
+							src="${ad.pictures[0].filePath}" /></a></c:if>
 						<h2>
-							<c:when test="${ad.isAuction}"><a class="link" href="<c:url value='/auction?id=${ad.id}' />">${ad.title }</a></c:when>
-							<c:otherwise><a class="link" href="<c:url value='/ad?id=${ad.id}' />">${ad.title }</a></c:otherwise>
+							<c:if test="${ad.auction}"><a class="link" href="<c:url value='/auction?id=${ad.id}' />">${ad.title }</a></c:if>
+							<c:if test="${!ad.auction}"><a class="link" href="<c:url value='/ad?id=${ad.id}' />">${ad.title }</a></c:if>
 						</h2>
 						<p>${ad.street}, ${ad.zipcode} ${ad.city}</p>
 						<br />

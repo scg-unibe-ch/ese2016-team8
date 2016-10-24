@@ -104,17 +104,17 @@ public class Ad {
 
 	@Column(nullable = false)
 	private boolean sale;
-	
+
 	@Column(nullable = false)
 	private boolean auction;
-	
+
 	@Column(nullable = false)
 	private int startPrize;
-	
-//	@Column(nullable = false)
+
+	// @Column(nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date auctionDuration;
-	
+
 	@ManyToOne(optional = true)
 	private User maxBidder;
 
@@ -128,6 +128,9 @@ public class Ad {
 	@OneToMany(mappedBy = "ad", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Visit> visits;
 
+	@Column(nullable = false)
+	private boolean premium;
+
 	public Date getCreationDate() {
 		return creationDate;
 	}
@@ -136,11 +139,11 @@ public class Ad {
 		this.creationDate = creationDate;
 	}
 
-	public boolean getSale(){
+	public boolean getSale() {
 		return sale;
 	}
 
-	public void setSale(final boolean sale){
+	public void setSale(final boolean sale) {
 		this.sale = sale;
 	}
 
@@ -174,6 +177,14 @@ public class Ad {
 
 	public void setMaxBidder(User maxBidder) {
 		this.maxBidder = maxBidder;
+	}
+
+	public void setPremium(boolean premium) {
+		this.premium = premium;
+	}
+
+	public boolean getPremium() {
+		return premium;
 	}
 
 	public boolean getSmokers() {
@@ -328,11 +339,11 @@ public class Ad {
 		this.pictures = pictures;
 	}
 
-	public String getCategory(){
+	public String getCategory() {
 		return category;
 	}
 
-	public void setCategory(final String category){
+	public void setCategory(final String category) {
 		this.category = category;
 	}
 

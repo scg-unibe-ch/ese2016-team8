@@ -176,7 +176,7 @@ public class AdService {
 		}
 
 		ad.setUser(user);
-
+		ad.setPremium(user.getPremium());
 		adDao.save(ad);
 
 		return ad;
@@ -235,12 +235,12 @@ public class AdService {
 
 		// we use this method if we are looking for rooms AND studios
 		if (searchForm.getBothRentAndSale()) {
-			results = adDao.findByCategoryInAndPrizePerMonthLessThan(searchForm.getCategories(),
+			results = adDao.findByCategoryInAndPrizePerMonthLessThanOrderByPremiumDesc(searchForm.getCategories(),
 					searchForm.getPrize() + 1);
 		}
 		// we use this method if we are looking EITHER for rooms OR for studios
 		else {
-			results = adDao.findByCategoryInAndSaleAndPrizePerMonthLessThan(searchForm.getCategories(), searchForm.getSale(),
+			results = adDao.findByCategoryInAndSaleAndPrizePerMonthLessThanOrderByPremiumDesc(searchForm.getCategories(), searchForm.getSale(),
 					searchForm.getPrize() + 1);
 		}
 
