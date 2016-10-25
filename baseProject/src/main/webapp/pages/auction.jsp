@@ -91,12 +91,17 @@
 
 </script>
 
+    <jsp:useBean id="today" class="java.util.Date" />
+
+
 
 <!-- format the dates -->
 <fmt:formatDate value="${shownAd.moveInDate}" var="formattedMoveInDate"
 	type="date" pattern="dd.MM.yyyy" />
 <fmt:formatDate value="${shownAd.creationDate}" var="formattedCreationDate"
 	type="date" pattern="dd.MM.yyyy" />
+	<fmt:formatDate value="${today}" var="formattedToday"
+		type="date" pattern="dd.MM.yyyy" />
 <c:choose>
 	<c:when test="${empty shownAd.moveOutDate }">
 		<c:set var="formattedMoveOutDate" value="unlimited" />
@@ -106,7 +111,6 @@
 			var="formattedMoveOutDate" type="date" pattern="dd.MM.yyyy" />
 	</c:otherwise>
 </c:choose>
-
 
 <h1 id="shownAdTitle">${shownAd.title}</h1>
 
@@ -202,16 +206,23 @@
 	</div>
 </div>
 <div id="bidDiv">
+<c:choose>
+	<c:when test="${formattedMoveOutDate lt formattedToday}">
+<a class="right" id="makeBidDisabled">Auction over</a>
+	</c:when>
+	<c:otherwise>
 	<c:choose>
 		<c:when test="${loggedIn}">
 			<table>
 			<tr height="44px">
 			<td width="50%" style="vertical-align:top"><a class="right" id="makeBid">Place bid</a></td>
-			<td width="50%" style="vertical-align:middle"><input style="float:right; margin-left: 10px;" 
+			<td width="50%" style="vertical-align:middle"><input style="float:right; margin-left: 10px;"
 			align="right" type="number" step="50" name="bid" id="bid" min="${ad.prizePerMonth}" value="${shownAd.prizePerMonth}">
 			</td></tr></table>
 		</c:when>
 	</c:choose>
+</c:otherwise>
+</c:choose>
 </div>
 
 <hr class="clearBoth" />
