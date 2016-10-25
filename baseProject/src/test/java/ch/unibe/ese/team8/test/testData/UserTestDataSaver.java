@@ -79,6 +79,10 @@ public class UserTestDataSaver {
 		//the premium User
 		User premiumUser= createPremiumUser("prem@coolguy.com", "pw", "Johny", "Bravo", Gender.MALE, true);
 				premiumUser.setAboutMe("I am the coolest guy here");
+				UserPicture picture2 = new UserPicture();
+				picture2.setFilePath("/img/test/bravo.png");
+				picture2.setUser(premiumUser);
+				premiumUser.setPicture(picture2);
 		userDao.save(premiumUser);
 	}
 
