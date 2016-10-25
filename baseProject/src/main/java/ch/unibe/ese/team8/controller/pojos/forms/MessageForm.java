@@ -18,7 +18,7 @@ public class MessageForm {
 		return recipient;
 	}
 
-	public void setRecipient(String recipient) {
+	public void setRecipient(final String recipient) {
 		this.recipient = recipient;
 	}
 
@@ -26,7 +26,7 @@ public class MessageForm {
 		return subject;
 	}
 
-	public void setSubject(String subject) {
+	public void setSubject(final String subject) {
 		this.subject = subject;
 	}
 
@@ -34,7 +34,7 @@ public class MessageForm {
 		return text;
 	}
 
-	public void setText(String text) {
+	public void setText(final String text) {
 		this.text = text;
 	}
 }

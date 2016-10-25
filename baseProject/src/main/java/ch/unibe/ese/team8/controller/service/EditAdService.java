@@ -39,7 +39,7 @@ public class EditAdService {
 
 	/**
 	 * Handles persisting an edited ad to the database.
-	 * 
+	 *
 	 * @param placeAdForm
 	 *            the form to take the data from
 	 * @param a
@@ -48,8 +48,8 @@ public class EditAdService {
 	 *            currently logged in user
 	 */
 	@Transactional
-	public Ad saveFrom(PlaceAdForm placeAdForm, List<String> filePaths,
-			User user, long adId) {
+	public Ad saveFrom(final PlaceAdForm placeAdForm, final List<String> filePaths,
+			final User user, final long adId) {
 
 		Ad ad = adService.getAdById(adId);
 
@@ -192,7 +192,7 @@ public class EditAdService {
 	 * with the given id.
 	 */
 	@Transactional
-	public void deletePictureFromAd(long adId, long pictureId) {
+	public void deletePictureFromAd(final long adId, final long pictureId) {
 		Ad ad = adService.getAdById(adId);
 		List<AdPicture> pictures = ad.getPictures();
 		AdPicture picture = adPictureDao.findOne(pictureId);
@@ -204,7 +204,7 @@ public class EditAdService {
 	/**
 	 * Fills a Form with the data of an ad.
 	 */
-	public PlaceAdForm fillForm(Ad ad) {
+	public PlaceAdForm fillForm(final Ad ad) {
 		PlaceAdForm adForm = new PlaceAdForm();
 
 		adForm.setRoomDescription(ad.getRoomDescription());
@@ -216,13 +216,13 @@ public class EditAdService {
 
 	/**
 	 * Deletes the roommate with the given id from the ad with the given id.
-	 * 
+	 *
 	 * @param roommateId
 	 *            the user to delete as roommate
 	 * @param adId
 	 *            the ad to delete the roommate from
 	 */
-	public void deleteRoommate(long roommateId, long adId) {
+	public void deleteRoommate(final long roommateId, final long adId) {
 		Ad ad = adService.getAdById(adId);
 		User roommate = userService.findUserById(roommateId);
 		ad.getRegisteredRoommates().remove(roommate);

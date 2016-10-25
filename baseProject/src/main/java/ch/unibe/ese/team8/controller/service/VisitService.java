@@ -27,23 +27,23 @@ public class VisitService {
 
 	/**
 	 * Returns all possible visits of an advertisement.
-	 * 
+	 *
 	 * @return an Iterable of all matching visits
 	 */
 	@Transactional
-	public Iterable<Visit> getVisitsByAd(Ad ad) {
+	public Iterable<Visit> getVisitsByAd(final Ad ad) {
 		return visitDao.findByAd(ad);
 	}
 
 	/** Returns the visit with the given id. */
 	@Transactional
-	public Visit getVisitById(long id) {
+	public Visit getVisitById(final long id) {
 		return visitDao.findOne(id);
 	}
 
 	/** Returns all visits that a user has applied for and was also accepted to. */
 	@Transactional
-	public Iterable<Visit> getVisitsForUser(User user) {
+	public Iterable<Visit> getVisitsForUser(final User user) {
 		// all enquiries sent by user
 		Iterable<VisitEnquiry> usersEnquiries = visitEnquiryDao
 				.findBySender(user);
@@ -58,7 +58,7 @@ public class VisitService {
 	}
 
 	/** Returns all visitors for the visit with the given id. */
-	public Iterable<User> getVisitorsForVisit(long id) {
+	public Iterable<User> getVisitorsForVisit(final long id) {
 		Visit visit = visitDao.findOne(id);
 		return visit.getSearchers();
 	}

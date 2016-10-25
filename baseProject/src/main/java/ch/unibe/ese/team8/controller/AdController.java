@@ -33,7 +33,7 @@ public class AdController {
 
 	@Autowired
 	private AdService adService;
-	
+
 	@Autowired
 	private UserService userService;
 
@@ -48,7 +48,7 @@ public class AdController {
 
 	/** Gets the ad description page for the ad with the given id. */
 	@RequestMapping(value = "/ad", method = RequestMethod.GET)
-	public ModelAndView ad(@RequestParam("id") long id, Principal principal) {
+	public ModelAndView ad(@RequestParam("id") final long id, final Principal principal) {
 		ModelAndView model = new ModelAndView("adDescription");
 		Ad ad = adService.getAdById(id);
 		model.addObject("shownAd", ad);
@@ -68,8 +68,8 @@ public class AdController {
 	 * validates and persists the message passed as post data.
 	 */
 	@RequestMapping(value = "/ad", method = RequestMethod.POST)
-	public ModelAndView messageSent(@RequestParam("id") long id,
-			@Valid MessageForm messageForm, BindingResult bindingResult) {
+	public ModelAndView messageSent(@RequestParam("id") final long id,
+			@Valid final MessageForm messageForm, final BindingResult bindingResult) {
 
 		ModelAndView model = new ModelAndView("adDescription");
 		Ad ad = adService.getAdById(id);
@@ -87,7 +87,7 @@ public class AdController {
 	 * List bookmarkedAds. In case it is present, true is returned changing
 	 * the "Bookmark Ad" button to "Bookmarked". If it is not present it is
 	 * added to the List bookmarkedAds.
-	 * 
+	 *
 	 * @return 0 and 1 for errors; 3 to update the button to bookmarked 3 and 2
 	 *         for bookmarking or undo bookmarking respectively 4 for removing
 	 *         button completly (because its the users ad)
@@ -95,9 +95,9 @@ public class AdController {
 	@RequestMapping(value = "/bookmark", method = RequestMethod.POST)
 	@Transactional
 	@ResponseBody
-	public int isBookmarked(@RequestParam("id") long id,
-			@RequestParam("screening") boolean screening,
-			@RequestParam("bookmarked") boolean bookmarked, Principal principal) {
+	public int isBookmarked(@RequestParam("id") final long id,
+			@RequestParam("screening") final boolean screening,
+			@RequestParam("bookmarked") final boolean bookmarked, final Principal principal) {
 		// should never happen since no bookmark button when not logged in
 		if (principal == null) {
 			return 0;
@@ -133,7 +133,7 @@ public class AdController {
 	 * information to the myRooms page in order to be displayed.
 	 */
 	@RequestMapping(value = "/profile/myRooms", method = RequestMethod.GET)
-	public ModelAndView myRooms(Principal principal) {
+	public ModelAndView myRooms(final Principal principal) {
 		ModelAndView model;
 		User user;
 		if (principal != null) {

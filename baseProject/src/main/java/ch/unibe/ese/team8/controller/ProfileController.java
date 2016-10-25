@@ -64,8 +64,8 @@ public class ProfileController {
 
 	/** Validates the signup form and on success persists the new user. */
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
-	public ModelAndView signupResultPage(@Valid SignupForm signupForm,
-			BindingResult bindingResult) {
+	public ModelAndView signupResultPage(@Valid final SignupForm signupForm,
+			final BindingResult bindingResult) {
 		ModelAndView model;
 		if (!bindingResult.hasErrors()) {
 			signupService.saveFrom(signupForm);
@@ -80,13 +80,13 @@ public class ProfileController {
 
 	/** Checks and returns whether a user with the given email already exists. */
 	@RequestMapping(value = "/signup/doesEmailExist", method = RequestMethod.POST)
-	public @ResponseBody boolean doesEmailExist(@RequestParam String email) {
+	public @ResponseBody boolean doesEmailExist(@RequestParam final String email) {
 		return signupService.doesUserWithUsernameExist(email);
 	}
 
 	/** Shows the edit profile page. */
 	@RequestMapping(value = "/profile/editProfile", method = RequestMethod.GET)
-	public ModelAndView editProfilePage(Principal principal) {
+	public ModelAndView editProfilePage(final Principal principal) {
 		ModelAndView model = new ModelAndView("editProfile");
 		String username = principal.getName();
 		User user = userService.findUserByUsername(username);
@@ -98,8 +98,8 @@ public class ProfileController {
 	/** Handles the request for editing the user profile. */
 	@RequestMapping(value = "/profile/editProfile", method = RequestMethod.POST)
 	public ModelAndView editProfileResultPage(
-			@Valid EditProfileForm editProfileForm,
-			BindingResult bindingResult, Principal principal) {
+			@Valid final EditProfileForm editProfileForm,
+			final BindingResult bindingResult, final Principal principal) {
 		ModelAndView model;
 		String username = principal.getName();
 		User user = userService.findUserByUsername(username);
@@ -119,7 +119,7 @@ public class ProfileController {
 
 	/** Displays the public profile of the user with the given id. */
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
-	public ModelAndView user(@RequestParam("id") long id, Principal principal) {
+	public ModelAndView user(@RequestParam("id") final long id, final Principal principal) {
 		ModelAndView model = new ModelAndView("user");
 		User user = userService.findUserById(id);
 		if (principal != null) {
@@ -135,7 +135,7 @@ public class ProfileController {
 
 	/** Displays the schedule page of the currently logged in user. */
 	@RequestMapping(value = "/profile/schedule", method = RequestMethod.GET)
-	public ModelAndView schedule(Principal principal) {
+	public ModelAndView schedule(final Principal principal) {
 		ModelAndView model = new ModelAndView("schedule");
 		User user = userService.findUserByUsername(principal.getName());
 
@@ -161,7 +161,7 @@ public class ProfileController {
 
 	/** Returns the visitors page for the visit with the given id. */
 	@RequestMapping(value = "/profile/visitors", method = RequestMethod.GET)
-	public ModelAndView visitors(@RequestParam("visit") long id) {
+	public ModelAndView visitors(@RequestParam("visit") final long id) {
 		ModelAndView model = new ModelAndView("visitors");
 		Visit visit = visitService.getVisitById(id);
 		Iterable<User> visitors = visit.getSearchers();

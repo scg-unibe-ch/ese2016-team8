@@ -12,13 +12,13 @@ import ch.unibe.ese.team8.model.dao.UserDao;
 /** Adds or removes bookmarked ads from the user and updates the user accordingly */
 @Service
 public class BookmarkService {
-	
+
 	@Autowired
 	private UserDao userDao;
-	
+
 	/**
 	 * This method adds or removes ads from the ArrayList.
-	 * 
+	 *
 	 * @param id
 	 *          it's the current ads' id
 	 * @param bookmarked
@@ -27,32 +27,32 @@ public class BookmarkService {
 	 *          users current list of bookmarked ads
 	 * @param user
 	 *          current user
-	 *          
+	 *
 	 * @return returns an integer 3 bookmark it
 	 *                            2 undo the bookmark
-	 * 
+	 *
 	 */
-	public int getBookmarkStatus(Ad ad, boolean bookmarked, User user) {
+	public int getBookmarkStatus(final Ad ad, final boolean bookmarked, final User user) {
 		List<Ad> tempAdList = user.getBookmarkedAds();
 		if(bookmarked) {
 			tempAdList.remove(ad);
 			updateUser(tempAdList, user);
 			return 2;
 		}
-		
+
 		if(!bookmarked) {
 			tempAdList.add(ad);
 			updateUser(tempAdList, user);
 			return 3;
 		}
-		
+
 		return 1;
 	}
-	
+
 	// updates effectively the new List into DB
-	private void updateUser(List<Ad> bookmarkedAds, User user) {
+	private void updateUser(final List<Ad> bookmarkedAds, final User user) {
 		user.setBookmarkedAds(bookmarkedAds);
 		userDao.save(user);
-	
+
 	}
 }

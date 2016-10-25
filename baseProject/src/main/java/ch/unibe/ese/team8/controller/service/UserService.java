@@ -12,19 +12,19 @@ import ch.unibe.ese.team8.model.dao.UserDao;
  */
 @Service
 public class UserService {
-	
+
 	@Autowired
 	private UserDao userDao;
 
 	/** Gets the user with the given username. */
 	@Transactional
-	public User findUserByUsername(String username) {
+	public User findUserByUsername(final String username) {
 		return userDao.findByUsername(username);
 	}
-	
+
 	/** Gets the user with the given id. */
 	@Transactional
-	public User findUserById(long id) {
+	public User findUserById(final long id) {
 		return userDao.findUserById(id);
 	}
 

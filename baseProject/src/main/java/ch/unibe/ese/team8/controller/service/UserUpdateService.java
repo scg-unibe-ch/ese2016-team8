@@ -14,10 +14,10 @@ import ch.unibe.ese.team8.model.dao.UserDao;
 /** Handles updating a user's profile. */
 @Service
 public class UserUpdateService {
-	
+
 	@PersistenceContext
 	private EntityManager entityManager;
-	
+
 	@Autowired
 	private UserDao userDao;
 
@@ -26,10 +26,10 @@ public class UserUpdateService {
 
 	/** Handles updating an existing user in the database. */
 	@Transactional
-	public void updateFrom(EditProfileForm editProfileForm) {
-		
+	public void updateFrom(final EditProfileForm editProfileForm) {
+
 		User currentUser = userService.findUserByUsername(editProfileForm.getUsername());
-		
+
 		currentUser.setFirstName(editProfileForm.getFirstName());
 		currentUser.setLastName(editProfileForm.getLastName());
 		currentUser.setPassword(editProfileForm.getPassword());
@@ -39,6 +39,6 @@ public class UserUpdateService {
 		userDao.save(currentUser);
 	}
 
-	
-	
+
+
 }

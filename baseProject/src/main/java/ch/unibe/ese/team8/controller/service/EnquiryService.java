@@ -36,13 +36,13 @@ public class EnquiryService {
 	/**
 	 * Returns all enquiries that were sent to the given user sorted by date
 	 * sent
-	 * 
+	 *
 	 * @param recipient
 	 *            the user to search for
 	 * @return an Iterable of all matching enquiries
 	 */
 	@Transactional
-	public Iterable<VisitEnquiry> getEnquiriesByRecipient(User recipient) {
+	public Iterable<VisitEnquiry> getEnquiriesByRecipient(final User recipient) {
 		List<VisitEnquiry> enquiries = new LinkedList<VisitEnquiry>();
 		for (VisitEnquiry enquiry : enquiryDao.findAll()) {
 			if (enquiry.getVisit().getAd().getUser().getId() == recipient
@@ -52,7 +52,7 @@ public class EnquiryService {
 		}
 		Collections.sort(enquiries, new Comparator<VisitEnquiry>() {
 			@Override
-			public int compare(VisitEnquiry enquiry1, VisitEnquiry enquiry2) {
+			public int compare(final VisitEnquiry enquiry1, final VisitEnquiry enquiry2) {
 				return enquiry2.getDateSent().compareTo(enquiry1.getDateSent());
 			}
 		});
@@ -61,13 +61,13 @@ public class EnquiryService {
 
 	/** Saves the given visit enquiry. */
 	@Transactional
-	public void saveVisitEnquiry(VisitEnquiry visitEnquiry) {
+	public void saveVisitEnquiry(final VisitEnquiry visitEnquiry) {
 		enquiryDao.save(visitEnquiry);
 	}
 
 	/** Accepts the enquiry with the given id. */
 	@Transactional
-	public void acceptEnquiry(long enquiryId) {
+	public void acceptEnquiry(final long enquiryId) {
 		// accept visit
 		VisitEnquiry enquiry = enquiryDao.findOne(enquiryId);
 		enquiry.setState(VisitEnquiryState.ACCEPTED);
@@ -90,7 +90,7 @@ public class EnquiryService {
 
 	/** Declines the enquiry with the given id. */
 	@Transactional
-	public void declineEnquiry(long enquiryId) {
+	public void declineEnquiry(final long enquiryId) {
 		VisitEnquiry enquiry = enquiryDao.findOne(enquiryId);
 		enquiry.setState(VisitEnquiryState.DECLINED);
 		enquiryDao.save(enquiry);
@@ -101,7 +101,7 @@ public class EnquiryService {
 	 * to open again.
 	 */
 	@Transactional
-	public void reopenEnquiry(long enquiryId) {
+	public void reopenEnquiry(final long enquiryId) {
 		VisitEnquiry enquiry = enquiryDao.findOne(enquiryId);
 		enquiry.setState(VisitEnquiryState.OPEN);
 		enquiryDao.save(enquiry);
@@ -113,7 +113,7 @@ public class EnquiryService {
 
 	/**
 	 * Gives the ratee the given rating by the rater.
-	 * 
+	 *
 	 * @param rater
 	 *            the user that issued the rating
 	 * @param ratee
@@ -122,7 +122,7 @@ public class EnquiryService {
 	 *            the rating that was associated with the ratee
 	 */
 	@Transactional
-	public void rate(User rater, User ratee, int rating) {
+	public void rate(final User rater, final User ratee, final int rating) {
 		Rating newRating = getRatingByRaterAndRatee(rater, ratee);
 		newRating.setRating(rating);
 		ratingDao.save(newRating);
@@ -130,7 +130,7 @@ public class EnquiryService {
 
 	/** Returns all ratings that were made by the given user. */
 	@Transactional
-	public Iterable<Rating> getRatingsByRater(User rater) {
+	public Iterable<Rating> getRatingsByRater(final User rater) {
 		return ratingDao.findByRater(rater);
 	}
 
@@ -140,7 +140,7 @@ public class EnquiryService {
 	 * one rating to another user.
 	 */
 	@Transactional
-	public Rating getRatingByRaterAndRatee(User rater, User ratee) {
+	public Rating getRatingByRaterAndRatee(final User rater, final User ratee) {
 		Iterable<Rating> ratings = ratingDao.findByRaterAndRatee(rater, ratee);
 
 		// ugly hack, but works

@@ -34,7 +34,7 @@ public class MessageController {
 	 * the user is shown.
 	 */
 	@RequestMapping(value = "/profile/messages", method = RequestMethod.GET)
-	public ModelAndView messages(Principal principal) {
+	public ModelAndView messages(final Principal principal) {
 		ModelAndView model = new ModelAndView("messages");
 		User user = userService.findUserByUsername(principal.getName());
 		model.addObject("messageForm", new MessageForm());
@@ -46,21 +46,21 @@ public class MessageController {
 	 * Gets all messages in the inbox for the currently logged in user.
 	 */
 	@RequestMapping(value = "/profile/message/inbox", method = RequestMethod.POST)
-	public @ResponseBody Iterable<Message> getInbox(Principal principal) {
+	public @ResponseBody Iterable<Message> getInbox(final Principal principal) {
 		User user = userService.findUserByUsername(principal.getName());
 		return messageService.getInboxForUser(user);
 	}
 
 	/** Gets all messages in the sent folder for the currently logged in user. */
 	@RequestMapping(value = "/profile/message/sent", method = RequestMethod.POST)
-	public @ResponseBody Iterable<Message> getSent(Principal principal) {
+	public @ResponseBody Iterable<Message> getSent(final Principal principal) {
 		User user = userService.findUserByUsername(principal.getName());
 		return messageService.getSentForUser(user);
 	}
 
 	/** Gets the message with the given id */
 	@RequestMapping(value = "/profile/messages/getMessage", method = RequestMethod.GET)
-	public @ResponseBody Message getMessage(@RequestParam Long id) {
+	public @ResponseBody Message getMessage(@RequestParam final Long id) {
 		return messageService.getMessage(id);
 	}
 
@@ -69,8 +69,8 @@ public class MessageController {
 	 * post data.
 	 */
 	@RequestMapping(value = "/profile/messages", method = RequestMethod.POST)
-	public ModelAndView messageSent(@Valid MessageForm messageForm,
-			BindingResult bindingResult, Principal principal) {
+	public ModelAndView messageSent(@Valid final MessageForm messageForm,
+			final BindingResult bindingResult, final Principal principal) {
 		ModelAndView model = new ModelAndView("messages");
 		if (!bindingResult.hasErrors()) {
 			messageService.saveFrom(messageForm);
@@ -80,20 +80,20 @@ public class MessageController {
 		}
 		return model;
 	}
-	
+
 	/**
 	 * Sets the MessageState of a given Message to "READ".
 	 */
 	@RequestMapping(value="/profile/readMessage", method = RequestMethod.GET)
-	public @ResponseBody void readMessage(@RequestParam("id") long id) {
+	public @ResponseBody void readMessage(@RequestParam("id") final long id) {
 		messageService.readMessage(id);
 	}
-	
+
 	/**
 	 * Returns the number of unread messages of the logged in user.
 	 */
 	@RequestMapping(value="/profile/unread", method = RequestMethod.GET)
-	public @ResponseBody int unread(Principal principal) {
+	public @ResponseBody int unread(final Principal principal) {
 		long id = userService.findUserByUsername(principal.getName()).getId();
 		return messageService.unread(id);
 	}
@@ -105,7 +105,7 @@ public class MessageController {
 	 */
 	@RequestMapping(value = "/profile/messages/validateEmail", method = RequestMethod.POST)
 	@ResponseBody
-	public String validateEmail(@RequestParam String email) {
+	public String validateEmail(@RequestParam final String email) {
 		User user = userService.findUserByUsername(email);
 		if (user == null) {
 			return "This user does not exist.";
@@ -116,9 +116,9 @@ public class MessageController {
 
 	/** Sends a message with the passed parameters */
 	@RequestMapping(value = "/profile/messages/sendMessage", method = RequestMethod.POST)
-	public @ResponseBody void sendMessage(@RequestParam String subject,
-			@RequestParam String text, @RequestParam String recipientEmail,
-			Principal principal) {
+	public @ResponseBody void sendMessage(@RequestParam final String subject,
+			@RequestParam final String text, @RequestParam final String recipientEmail,
+			final Principal principal) {
 		User recipient = userService.findUserByUsername(recipientEmail);
 		User sender = userService.findUserByUsername(principal.getName());
 		messageService.sendMessage(sender, recipient, subject, text);

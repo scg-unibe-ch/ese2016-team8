@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.lang.Math;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,14 +41,14 @@ public class AlertService {
 
 	/**
 	 * Persists a new alert with the data from the alert form to the database.
-	 * 
+	 *
 	 * @param alertForm
 	 *            the form to take the data from
 	 * @param user
 	 *            the user to associate the new alert to
 	 */
 	@Transactional
-	public void saveFrom(AlertForm alertForm, User user) {
+	public void saveFrom(final AlertForm alertForm, final User user) {
 		Alert alert = new Alert();
 
 		String zip = alertForm.getCity().substring(0, 4);
@@ -67,13 +66,13 @@ public class AlertService {
 	 * Returns all alerts that belong to the given user.
 	 */
 	@Transactional
-	public Iterable<Alert> getAlertsByUser(User user) {
+	public Iterable<Alert> getAlertsByUser(final User user) {
 		return alertDao.findByUser(user);
 	}
 
 	/** Deletes the alert with the given id. */
 	@Transactional
-	public void deleteAlert(Long id) {
+	public void deleteAlert(final Long id) {
 		alertDao.delete(id);
 	}
 
@@ -82,7 +81,7 @@ public class AlertService {
 	 * message is sent.
 	 */
 	@Transactional
-	public void triggerAlerts(Ad ad) {
+	public void triggerAlerts(final Ad ad) {
 		int adPrice = ad.getPrizePerMonth();
 		Iterable<Alert> alerts = alertDao.findByPriceGreaterThan(adPrice - 1);
 
@@ -124,7 +123,7 @@ public class AlertService {
 	 * Returns the text for an alert message with the properties of the given
 	 * ad.
 	 */
-	private String getAlertText(Ad ad) {
+	private String getAlertText(final Ad ad) {
 		return "Dear user,<br>good news. A new ad matching one of your alerts has been "
 				+ "entered into our system. You can visit it here:<br><br>"
 				+ "<a class=\"link\" href=/ad?id="
@@ -137,7 +136,7 @@ public class AlertService {
 	}
 
 	/** Checks if an ad is conforming to the criteria in an alert. */
-	private boolean typeMismatchWith(Ad ad, Alert alert) {
+	private boolean typeMismatchWith(final Ad ad, final Alert alert) {
 		boolean mismatch = false;
 		if (!alert.getCategory().equals(ad.getCategory()))
 			mismatch = true;
@@ -146,16 +145,16 @@ public class AlertService {
 
 	/**
 	 * Checks whether an ad is for a place too far away from the alert.
-	 * 
+	 *
 	 * @param ad
 	 *            the ad to compare to the alert
 	 * @param alert
 	 *            the alert to compare to the ad
-	 * 
+	 *
 	 * @return true in case the alert does not match the ad (the ad is too far
 	 *         away), false otherwise
 	 */
-	private boolean radiusMismatchWith(Ad ad, Alert alert) {
+	private boolean radiusMismatchWith(final Ad ad, final Alert alert) {
 		final int earthRadiusKm = 6380;
 		Location adLocation = geoDataService.getLocationsByCity(ad.getCity())
 				.get(0);
@@ -173,14 +172,14 @@ public class AlertService {
 				* earthRadiusKm;
 		return (distance > alert.getRadius());
 	}
-	
+
 	//for testing
-	public boolean radiusMismatch(Ad ad, Alert alert) {
+	public boolean radiusMismatch(final Ad ad, final Alert alert) {
 		return radiusMismatchWith(ad, alert);
 	}
-	
+
 	//for testing
-	public boolean typeMismatch(Ad ad, Alert alert) {
+	public boolean typeMismatch(final Ad ad, final Alert alert) {
 		return typeMismatchWith(ad, alert);
 	}
 }

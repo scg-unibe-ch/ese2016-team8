@@ -22,6 +22,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import ch.unibe.ese.team8.controller.pojos.PictureUploader;
 import ch.unibe.ese.team8.controller.pojos.forms.PlaceAdForm;
 import ch.unibe.ese.team8.controller.service.AdService;
@@ -33,9 +36,6 @@ import ch.unibe.ese.team8.controller.service.VisitService;
 import ch.unibe.ese.team8.model.Ad;
 import ch.unibe.ese.team8.model.PictureMeta;
 import ch.unibe.ese.team8.model.User;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * This controller handles all requests concerning placing ads.
@@ -100,12 +100,12 @@ public class PlaceAdController {
 	 * Uploads the pictures that are attached as multipart files to the request.
 	 * The JSON representation, that is returned, is generated manually because
 	 * the jQuery Fileupload plugin requires this special format.
-	 * 
+	 *
 	 * @return A JSON representation of the uploaded files
 	 */
 	@RequestMapping(value = "/profile/placeAd/uploadPictures", method = RequestMethod.POST)
 	public @ResponseBody String uploadPictures(
-			MultipartHttpServletRequest request) {
+			final MultipartHttpServletRequest request) {
 		List<MultipartFile> pictures = new LinkedList<>();
 		Iterator<String> iter = request.getFileNames();
 
@@ -139,9 +139,9 @@ public class PlaceAdController {
 	 * again.
 	 */
 	@RequestMapping(value = "/profile/placeAd", method = RequestMethod.POST)
-	public ModelAndView create(@Valid PlaceAdForm placeAdForm,
-			BindingResult result, RedirectAttributes redirectAttributes,
-			Principal principal) {
+	public ModelAndView create(@Valid final PlaceAdForm placeAdForm,
+			final BindingResult result, final RedirectAttributes redirectAttributes,
+			final Principal principal) {
 		ModelAndView model = new ModelAndView("placeAd");
 		if (!result.hasErrors()) {
 			String username = principal.getName();
@@ -170,7 +170,7 @@ public class PlaceAdController {
 	/**
 	 * Gets the descriptions for the pictures that were uploaded with the
 	 * current picture uploader.
-	 * 
+	 *
 	 * @return a list of picture descriptions or null if no pictures were
 	 *         uploaded
 	 */
@@ -187,7 +187,7 @@ public class PlaceAdController {
 	 * webapp folder).
 	 */
 	@RequestMapping(value = "/profile/placeAd/deletePicture", method = RequestMethod.POST)
-	public @ResponseBody void deleteUploadedPicture(@RequestParam String url) {
+	public @ResponseBody void deleteUploadedPicture(@RequestParam final String url) {
 		if (pictureUploader != null) {
 			String realPath = servletContext.getRealPath(url);
 			pictureUploader.deletePicture(url, realPath);
@@ -201,8 +201,8 @@ public class PlaceAdController {
 	 */
 	@RequestMapping(value = "/profile/placeAd/validateEmail", method = RequestMethod.POST)
 	@ResponseBody
-	public String validateEmail(@RequestParam String email,
-			@RequestParam String alreadyIn) {
+	public String validateEmail(@RequestParam final String email,
+			@RequestParam final String alreadyIn) {
 		User user = userService.findUserByUsername(email);
 
 		Boolean isAdded = adService.checkIfAlreadyAdded(email, alreadyIn);

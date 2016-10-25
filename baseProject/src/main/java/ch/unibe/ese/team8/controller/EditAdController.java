@@ -20,6 +20,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import ch.unibe.ese.team8.controller.pojos.PictureUploader;
 import ch.unibe.ese.team8.controller.pojos.forms.PlaceAdForm;
 import ch.unibe.ese.team8.controller.service.AdService;
@@ -29,9 +32,6 @@ import ch.unibe.ese.team8.controller.service.UserService;
 import ch.unibe.ese.team8.model.Ad;
 import ch.unibe.ese.team8.model.PictureMeta;
 import ch.unibe.ese.team8.model.User;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * This controller handles all requests concerning editing ads.
@@ -64,7 +64,7 @@ public class EditAdController {
 	 * Serves the page that allows the user to edit the ad with the given id.
 	 */
 	@RequestMapping(value = "/profile/editAd", method = RequestMethod.GET)
-	public ModelAndView editAdPage(@RequestParam long id, Principal principal) {
+	public ModelAndView editAdPage(@RequestParam final long id, final Principal principal) {
 		ModelAndView model = new ModelAndView("editAd");
 		Ad ad = adService.getAdById(id);
 		model.addObject("ad", ad);
@@ -85,9 +85,9 @@ public class EditAdController {
 	 * Processes the edit ad form and displays the result page to the user.
 	 */
 	@RequestMapping(value = "/profile/editAd", method = RequestMethod.POST)
-	public ModelAndView editAdPageWithForm(@Valid PlaceAdForm placeAdForm,
-			BindingResult result, Principal principal,
-			RedirectAttributes redirectAttributes, @RequestParam long adId) {
+	public ModelAndView editAdPageWithForm(@Valid final PlaceAdForm placeAdForm,
+			final BindingResult result, final Principal principal,
+			final RedirectAttributes redirectAttributes, @RequestParam final long adId) {
 		ModelAndView model = new ModelAndView("placeAd");
 		if (!result.hasErrors()) {
 			String username = principal.getName();
@@ -119,15 +119,15 @@ public class EditAdController {
 	 * the ad, but not from the server.
 	 */
 	@RequestMapping(value = "/profile/editAd/deletePictureFromAd", method = RequestMethod.POST)
-	public @ResponseBody void deletePictureFromAd(@RequestParam long adId,
-			@RequestParam long pictureId) {
+	public @ResponseBody void deletePictureFromAd(@RequestParam final long adId,
+			@RequestParam final long pictureId) {
 		editAdService.deletePictureFromAd(adId, pictureId);
 	}
 
 	/**
 	 * Gets the descriptions for the pictures that were uploaded with the
 	 * current picture uploader.
-	 * 
+	 *
 	 * @return a list of picture descriptions or null if no pictures were
 	 *         uploaded
 	 */
@@ -143,12 +143,12 @@ public class EditAdController {
 	 * Uploads the pictures that are attached as multipart files to the request.
 	 * The JSON representation, that is returned, is generated manually because
 	 * the jQuery Fileupload plugin requires this special format.
-	 * 
+	 *
 	 * @return A JSON representation of the uploaded files
 	 */
 	@RequestMapping(value = "/profile/editAd/uploadPictures", method = RequestMethod.POST)
 	public @ResponseBody String uploadPictures(
-			MultipartHttpServletRequest request) {
+			final MultipartHttpServletRequest request) {
 		List<MultipartFile> pictures = new LinkedList<>();
 		Iterator<String> iter = request.getFileNames();
 
@@ -176,7 +176,7 @@ public class EditAdController {
 	 * webapp folder).
 	 */
 	@RequestMapping(value = "/profile/editAd/deletePicture", method = RequestMethod.POST)
-	public @ResponseBody void deleteUploadedPicture(@RequestParam String url) {
+	public @ResponseBody void deleteUploadedPicture(@RequestParam final String url) {
 		if (pictureUploader != null) {
 			String realPath = servletContext.getRealPath(url);
 			pictureUploader.deletePicture(url, realPath);
@@ -185,15 +185,15 @@ public class EditAdController {
 
 	/**
 	 * Deletes the roommate with the given id.
-	 * 
+	 *
 	 * @param userId
 	 *            the id of the user to delete
 	 * @param adId
 	 *            the id of the ad to delete the user from
 	 */
 	@RequestMapping(value = "/profile/editAd/deleteRoommate", method = RequestMethod.POST)
-	public @ResponseBody void deleteRoommate(@RequestParam long userId,
-			@RequestParam long adId) {
+	public @ResponseBody void deleteRoommate(@RequestParam final long userId,
+			@RequestParam final long adId) {
 		editAdService.deleteRoommate(userId, adId);
 	}
 }

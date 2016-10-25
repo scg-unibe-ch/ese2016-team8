@@ -8,7 +8,7 @@ import ch.unibe.ese.team8.model.Gender;
 
 /** This form is used when a user want to sign up for an account. */
 public class SignupForm {
-	
+
 	@Size(min = 6, message = "Password must be at least 6 characters long")
 	@NotNull
 	private String password;
@@ -24,7 +24,7 @@ public class SignupForm {
 	@Pattern(regexp = "[a-zA-Z]+", message = "Last name must be a valid name")
 	@NotNull
 	private String lastName;
-	
+
 	@NotNull
 	private Gender gender;
 
@@ -32,7 +32,7 @@ public class SignupForm {
 		return email;
 	}
 
-	public void setEmail(String email) {
+	public void setEmail(final String email) {
 		this.email = email;
 	}
 
@@ -40,7 +40,7 @@ public class SignupForm {
 		return firstName;
 	}
 
-	public void setFirstName(String firstName) {
+	public void setFirstName(final String firstName) {
 		this.firstName = firstName;
 	}
 
@@ -48,7 +48,7 @@ public class SignupForm {
 		return lastName;
 	}
 
-	public void setLastName(String lastName) {
+	public void setLastName(final String lastName) {
 		this.lastName = lastName;
 	}
 
@@ -56,7 +56,7 @@ public class SignupForm {
 		return password;
 	}
 
-	public void setPassword(String password) {
+	public void setPassword(final String password) {
 		this.password = password;
 	}
 
@@ -64,8 +64,8 @@ public class SignupForm {
 		return gender;
 	}
 
-	public void setGender(Gender gender) {
+	public void setGender(final Gender gender) {
 		this.gender = gender;
 	}
-	
+
 }

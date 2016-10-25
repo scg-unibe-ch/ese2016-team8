@@ -33,7 +33,7 @@ public class AlertController {
 
 	/** Serves the page that allows the user to view their alerts. */
 	@RequestMapping(value = "/profile/alerts", method = RequestMethod.GET)
-	public ModelAndView alerts(Principal principal) {
+	public ModelAndView alerts(final Principal principal) {
 		return prepareAlertPage(principal, false, new AlertForm());
 	}
 
@@ -42,8 +42,8 @@ public class AlertController {
 	 * and persisting the new alert through the alert form.
 	 */
 	@RequestMapping(value = "/profile/alerts", method = RequestMethod.POST)
-	public ModelAndView savedAlert(Principal principal,
-			@Valid AlertForm alertForm, BindingResult result) {
+	public ModelAndView savedAlert(final Principal principal,
+			@Valid final AlertForm alertForm, final BindingResult result) {
 		if (!result.hasErrors())
 			return prepareAlertPage(principal, true, alertForm);
 		else
@@ -52,7 +52,7 @@ public class AlertController {
 
 	/** Deletes the alert with the given id */
 	@RequestMapping(value = "/profile/alerts/deleteAlert", method = RequestMethod.GET)
-	public @ResponseBody void deleteAlert(@RequestParam("id") long id) {
+	public @ResponseBody void deleteAlert(@RequestParam("id") final long id) {
 		alertService.deleteAlert(id);
 	}
 
@@ -60,8 +60,8 @@ public class AlertController {
 	 * Prepares the model for an alert page, filling in the user, an alert form
 	 * and the alerts of the user.
 	 */
-	private ModelAndView prepareAlertPage(Principal principal,
-			boolean alreadySet, AlertForm alertForm) {
+	private ModelAndView prepareAlertPage(final Principal principal,
+			final boolean alreadySet, final AlertForm alertForm) {
 		String username = principal.getName();
 		User user = userService.findUserByUsername(username);
 		if (alreadySet)

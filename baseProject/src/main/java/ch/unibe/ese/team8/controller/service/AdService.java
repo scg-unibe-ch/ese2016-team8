@@ -62,7 +62,7 @@ public class AdService {
 	 *            currently logged in user
 	 */
 	@Transactional
-	public Ad saveFrom(PlaceAdForm placeAdForm, List<String> filePaths, User user) {
+	public Ad saveFrom(final PlaceAdForm placeAdForm, final List<String> filePaths, final User user) {
 
 		Ad ad = new Ad();
 
@@ -190,7 +190,7 @@ public class AdService {
 	 * @return the found ad or null, if no ad with this id exists
 	 */
 	@Transactional
-	public Ad getAdById(long id) {
+	public Ad getAdById(final long id) {
 		return adDao.findOne(id);
 	}
 
@@ -204,14 +204,14 @@ public class AdService {
 	 * Returns the newest ads in the database. Parameter 'newest' says how many.
 	 */
 	@Transactional
-	public Iterable<Ad> getNewestAds(int newest) {
+	public Iterable<Ad> getNewestAds(final int newest) {
 		Iterable<Ad> allAds = adDao.findAll();
 		List<Ad> ads = new ArrayList<Ad>();
 		for (Ad ad : allAds)
 			ads.add(ad);
 		Collections.sort(ads, new Comparator<Ad>() {
 			@Override
-			public int compare(Ad ad1, Ad ad2) {
+			public int compare(final Ad ad1, final Ad ad2) {
 				return ad2.getCreationDate().compareTo(ad1.getCreationDate());
 			}
 		});
@@ -230,7 +230,7 @@ public class AdService {
 	 * @return an Iterable of all search results
 	 */
 	@Transactional
-	public Iterable<Ad> queryResults(SearchForm searchForm) {
+	public Iterable<Ad> queryResults(final SearchForm searchForm) {
 		Iterable<Ad> results = null;
 
 		// we use this method if we are looking for rooms AND studios
@@ -409,7 +409,7 @@ public class AdService {
 		return locatedResults;
 	}
 
-	private List<Ad> validateDate(List<Ad> ads, boolean inOrOut, Date earliestDate, Date latestDate) {
+	private List<Ad> validateDate(final List<Ad> ads, final boolean inOrOut, final Date earliestDate, final Date latestDate) {
 		if (ads.size() > 0) {
 			// Move-in dates
 			// Both an earliest AND a latest date to compare to
@@ -449,7 +449,7 @@ public class AdService {
 	}
 
 	/** Returns all ads that were placed by the given user. */
-	public Iterable<Ad> getAdsByUser(User user) {
+	public Iterable<Ad> getAdsByUser(final User user) {
 		return adDao.findByUser(user);
 	}
 

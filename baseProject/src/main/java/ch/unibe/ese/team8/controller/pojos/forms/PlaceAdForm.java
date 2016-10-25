@@ -64,7 +64,7 @@ public class PlaceAdForm {
 		return city;
 	}
 
-	public void setCity(String city) {
+	public void setCity(final String city) {
 		this.city = city;
 	}
 
@@ -72,7 +72,7 @@ public class PlaceAdForm {
 		return prize;
 	}
 
-	public void setPrize(int prize) {
+	public void setPrize(final int prize) {
 		this.prize = prize;
 	}
 
@@ -80,7 +80,7 @@ public class PlaceAdForm {
 		return roomDescription;
 	}
 
-	public void setRoomDescription(String roomDescription) {
+	public void setRoomDescription(final String roomDescription) {
 		this.roomDescription = roomDescription;
 	}
 
@@ -88,7 +88,7 @@ public class PlaceAdForm {
 		return preferences;
 	}
 
-	public void setPreferences(String preferences) {
+	public void setPreferences(final String preferences) {
 		this.preferences = preferences;
 	}
 
@@ -96,7 +96,7 @@ public class PlaceAdForm {
 		return squareFootage;
 	}
 
-	public void setSquareFootage(int squareFootage) {
+	public void setSquareFootage(final int squareFootage) {
 		this.squareFootage = squareFootage;
 	}
 
@@ -104,7 +104,7 @@ public class PlaceAdForm {
 		return roommates;
 	}
 
-	public void setRoommates(String roommates) {
+	public void setRoommates(final String roommates) {
 		this.roommates = roommates;
 	}
 
@@ -112,7 +112,7 @@ public class PlaceAdForm {
 		return smokers;
 	}
 
-	public void setSmokers(boolean allowsSmokers) {
+	public void setSmokers(final boolean allowsSmokers) {
 		this.smokers = allowsSmokers;
 	}
 
@@ -120,7 +120,7 @@ public class PlaceAdForm {
 		return animals;
 	}
 
-	public void setAnimals(boolean allowsAnimals) {
+	public void setAnimals(final boolean allowsAnimals) {
 		this.animals = allowsAnimals;
 	}
 
@@ -128,7 +128,7 @@ public class PlaceAdForm {
 		return garden;
 	}
 
-	public void setGarden(boolean hasGarden) {
+	public void setGarden(final boolean hasGarden) {
 		this.garden = hasGarden;
 	}
 
@@ -136,7 +136,7 @@ public class PlaceAdForm {
 		return balcony;
 	}
 
-	public void setBalcony(boolean hasBalcony) {
+	public void setBalcony(final boolean hasBalcony) {
 		this.balcony = hasBalcony;
 	}
 
@@ -144,7 +144,7 @@ public class PlaceAdForm {
 		return cellar;
 	}
 
-	public void setCellar(boolean hasCellar) {
+	public void setCellar(final boolean hasCellar) {
 		this.cellar = hasCellar;
 	}
 
@@ -152,7 +152,7 @@ public class PlaceAdForm {
 		return furnished;
 	}
 
-	public void setFurnished(boolean isFurnished) {
+	public void setFurnished(final boolean isFurnished) {
 		this.furnished = isFurnished;
 	}
 
@@ -160,7 +160,7 @@ public class PlaceAdForm {
 		return cable;
 	}
 
-	public void setCable(boolean hasCable) {
+	public void setCable(final boolean hasCable) {
 		this.cable = hasCable;
 	}
 
@@ -168,7 +168,7 @@ public class PlaceAdForm {
 		return garage;
 	}
 
-	public void setGarage(boolean hasGarage) {
+	public void setGarage(final boolean hasGarage) {
 		this.garage = hasGarage;
 	}
 
@@ -176,7 +176,7 @@ public class PlaceAdForm {
 		return internet;
 	}
 
-	public void setInternet(boolean hasInternet) {
+	public void setInternet(final boolean hasInternet) {
 		this.internet = hasInternet;
 	}
 
@@ -184,7 +184,7 @@ public class PlaceAdForm {
 		return moveInDate;
 	}
 
-	public void setMoveInDate(String moveInDate) {
+	public void setMoveInDate(final String moveInDate) {
 		this.moveInDate = moveInDate;
 	}
 
@@ -192,7 +192,7 @@ public class PlaceAdForm {
 		return moveOutDate;
 	}
 
-	public void setMoveOutDate(String moveOutDate) {
+	public void setMoveOutDate(final String moveOutDate) {
 		this.moveOutDate = moveOutDate;
 	}
 
@@ -200,7 +200,7 @@ public class PlaceAdForm {
 		return title;
 	}
 
-	public void setTitle(String title) {
+	public void setTitle(final String title) {
 		this.title = title;
 	}
 
@@ -208,7 +208,7 @@ public class PlaceAdForm {
 		return street;
 	}
 
-	public void setStreet(String street) {
+	public void setStreet(final String street) {
 		this.street = street;
 	}
 
@@ -216,27 +216,27 @@ public class PlaceAdForm {
 		return roomFriends;
 	}
 
-	public void setRoomFriends(String roomFriends) {
+	public void setRoomFriends(final String roomFriends) {
 		this.roomFriends = roomFriends;
 	}
 
 	public String getCategory() {
 		return category;
 	}
-	
-	public void setCategory(String category) {
+
+	public void setCategory(final String category) {
 		this.category = category;
 	}
 
-	public void setSale(String category) {
+	public void setSale(final String category) {
 		this.category = category;
 	}
-	
+
 	public boolean getSale() {
 		return sale;
 	}
 
-	public void setSale(boolean sale) {
+	public void setSale(final boolean sale) {
 		this.sale = sale;
 	}
 
@@ -244,7 +244,7 @@ public class PlaceAdForm {
 		return registeredRoommateEmails;
 	}
 
-	public void setRegisteredRoommateEmails(List<String> registeredRoommateEmails) {
+	public void setRegisteredRoommateEmails(final List<String> registeredRoommateEmails) {
 		this.registeredRoommateEmails = registeredRoommateEmails;
 	}
 
@@ -252,7 +252,7 @@ public class PlaceAdForm {
 		return visits;
 	}
 
-	public void setVisits(List<String> visits) {
+	public void setVisits(final List<String> visits) {
 		this.visits = visits;
 	}
 }

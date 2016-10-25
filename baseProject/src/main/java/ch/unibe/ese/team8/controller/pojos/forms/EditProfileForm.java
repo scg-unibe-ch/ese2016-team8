@@ -26,7 +26,7 @@ public class EditProfileForm {
 		return premium;
 	}
 
-	public void setPremium(boolean premium){
+	public void setPremium(final boolean premium){
 		this.premium= premium;
 	}
 
@@ -34,7 +34,7 @@ public class EditProfileForm {
 		return password;
 	}
 
-	public void setPassword(String password) {
+	public void setPassword(final String password) {
 		this.password = password;
 	}
 
@@ -42,7 +42,7 @@ public class EditProfileForm {
 		return firstName;
 	}
 
-	public void setFirstName(String firstName) {
+	public void setFirstName(final String firstName) {
 		this.firstName = firstName;
 	}
 
@@ -50,7 +50,7 @@ public class EditProfileForm {
 		return lastName;
 	}
 
-	public void setLastName(String lastName) {
+	public void setLastName(final String lastName) {
 		this.lastName = lastName;
 	}
 
@@ -58,7 +58,7 @@ public class EditProfileForm {
 		return aboutMe;
 	}
 
-	public void setAboutMe(String aboutMe) {
+	public void setAboutMe(final String aboutMe) {
 		this.aboutMe = aboutMe;
 	}
 
@@ -66,7 +66,7 @@ public class EditProfileForm {
 		return username;
 	}
 
-	public void setUsername(String username) {
+	public void setUsername(final String username) {
 		this.username = username;
 	}
 }

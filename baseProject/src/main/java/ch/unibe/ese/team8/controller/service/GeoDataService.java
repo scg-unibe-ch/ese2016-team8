@@ -34,7 +34,7 @@ public class GeoDataService {
 	/**
 	 * Gets all locations that match the given city. The locations are ordered
 	 * in ascending order in relation to the zip code.
-	 * 
+	 *
 	 * @param city
 	 *            the city to look for
 	 * @return a list of all locations that match the given city
@@ -50,17 +50,17 @@ public class GeoDataService {
 
 	/**
 	 * Gets all locations that have the given zipcode.
-	 * 
+	 *
 	 * @param zipcode
 	 *            the zipcode to search for
 	 * @return a list of all locations that match
 	 */
-	public List<Location> getLocationsByZipcode(int zipcode) {
+	public List<Location> getLocationsByZipcode(final int zipcode) {
 		return executeQuery("SELECT zip.zip, zip.location, zip.lat, zip.lon FROM `zipcodes` zip WHERE zip = "
 				+ zipcode + ";");
 	}
 
-	private List<Location> executeQuery(String query) {
+	private List<Location> executeQuery(final String query) {
 		Connection connection = null;
 		Statement statement = null;
 		ResultSet resultSet = null;
@@ -94,8 +94,8 @@ public class GeoDataService {
 	/**
 	 * Fills the given list with the results from resultSet.
 	 */
-	private List<Location> writeResultSet(ResultSet resultSet,
-			List<Location> locationList) throws SQLException {
+	private List<Location> writeResultSet(final ResultSet resultSet,
+			final List<Location> locationList) throws SQLException {
 		while (resultSet.next()) {
 			int zip = resultSet.getInt("zip");
 			String city = resultSet.getString("location");

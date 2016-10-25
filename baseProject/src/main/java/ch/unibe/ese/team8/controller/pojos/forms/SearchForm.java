@@ -40,7 +40,7 @@ public class SearchForm {
 		return category;
 	}
 
-	public void setCategory(String category) {
+	public void setCategory(final String category) {
 		this.category = category;
 	}
 
@@ -48,7 +48,7 @@ public class SearchForm {
 		return city;
 	}
 
-	public void setCity(String city) {
+	public void setCity(final String city) {
 		this.city = city;
 	}
 
@@ -56,7 +56,7 @@ public class SearchForm {
 		return radius;
 	}
 
-	public void setRadius(Integer radius) {
+	public void setRadius(final Integer radius) {
 		this.radius = radius;
 	}
 
@@ -64,7 +64,7 @@ public class SearchForm {
 		return prize;
 	}
 
-	public void setPrize(Integer prize) {
+	public void setPrize(final Integer prize) {
 		this.prize = prize;
 	}
 
@@ -72,7 +72,7 @@ public class SearchForm {
 		return sale;
 	}
 
-	public void setSale(boolean sale) {
+	public void setSale(final boolean sale) {
 		this.sale = sale;
 	}
 
@@ -80,7 +80,7 @@ public class SearchForm {
 		return noCategory;
 	}
 
-	public void setNoCategory(boolean noCategory) {
+	public void setNoCategory(final boolean noCategory) {
 		this.noCategory = noCategory;
 	}
 
@@ -88,7 +88,7 @@ public class SearchForm {
 		return bothRentAndSale;
 	}
 
-	public void setBothRentAndSale(boolean bothRentAndSale) {
+	public void setBothRentAndSale(final boolean bothRentAndSale) {
 		this.bothRentAndSale = bothRentAndSale;
 	}
 
@@ -100,7 +100,7 @@ public class SearchForm {
 		return filtered;
 	}
 
-	public void setFiltered(boolean filtered) {
+	public void setFiltered(final boolean filtered) {
 		this.filtered = filtered;
 	}
 
@@ -109,15 +109,15 @@ public class SearchForm {
 	private String earliestMoveOutDate;
 	private String latestMoveOutDate;
 
-	private boolean smokers;
-	private boolean animals;
-	private boolean garden;
-	private boolean balcony;
-	private boolean cellar;
-	private boolean furnished;
-	private boolean cable;
-	private boolean garage;
-	private boolean internet;
+	private boolean allowsSmokers;
+	private boolean allowsAnimals;
+	private boolean hasGarden;
+	private boolean hasBalcony;
+	private boolean hasCellar;
+	private boolean isFurnished;
+	private boolean hasCable;
+	private boolean hasGarage;
+	private boolean hasInternet;
 
 	private boolean roomHelper;
 
@@ -129,82 +129,82 @@ public class SearchForm {
 	private boolean rentHelper;
 
 	public boolean getSmokers() {
-		return smokers;
+		return allowsSmokers;
 	}
 
-	public void setSmokers(boolean smokers) {
-		this.smokers = smokers;
+	public void setSmokers(final boolean smokers) {
+		this.allowsSmokers = smokers;
 	}
 
 	public boolean getAnimals() {
-		return animals;
+		return allowsAnimals;
 	}
 
-	public void setAnimals(boolean animals) {
-		this.animals = animals;
+	public void setAnimals(final boolean animals) {
+		this.allowsAnimals = animals;
 	}
 
 	public boolean getGarden() {
-		return garden;
+		return hasGarden;
 	}
 
-	public void setGarden(boolean hasGarden) {
-		this.garden = hasGarden;
+	public void setGarden(final boolean hasGarden) {
+		this.hasGarden = hasGarden;
 	}
 
 	public boolean getBalcony() {
-		return balcony;
+		return hasBalcony;
 	}
 
-	public void setBalcony(boolean hasBalcony) {
-		this.balcony = hasBalcony;
+	public void setBalcony(final boolean hasBalcony) {
+		this.hasBalcony = hasBalcony;
 	}
 
 	public boolean getCellar() {
-		return cellar;
+		return hasCellar;
 	}
 
-	public void setCellar(boolean hasCellar) {
-		this.cellar = hasCellar;
+	public void setCellar(final boolean hasCellar) {
+		this.hasCellar = hasCellar;
 	}
 
 	public boolean getFurnished() {
-		return furnished;
+		return isFurnished;
 	}
 
-	public void setFurnished(boolean isFurnished) {
-		this.furnished = isFurnished;
+	public void setFurnished(final boolean isFurnished) {
+		this.isFurnished = isFurnished;
 	}
 
 	public boolean getCable() {
-		return cable;
+		return hasCable;
 	}
 
-	public void setCable(boolean hasCable) {
-		this.cable = hasCable;
+	public void setCable(final boolean hasCable) {
+		this.hasCable = hasCable;
 	}
 
 	public boolean getGarage() {
-		return garage;
+		return hasGarage;
 	}
 
-	public void setGarage(boolean hasGarage) {
-		this.garage = hasGarage;
+	public void setGarage(final boolean hasGarage) {
+		this.hasGarage = hasGarage;
 	}
 
 	public boolean getInternet() {
-		return internet;
+		return hasInternet;
 	}
 
-	public void setInternet(boolean hasInternet) {
-		this.internet = hasInternet;
+	public void setInternet(final boolean hasInternet) {
+		this.hasInternet = hasInternet;
 	}
 
 	public String getEarliestMoveInDate() {
 		return earliestMoveInDate;
 	}
 
-	public void setEarliestMoveInDate(String earliestMoveInDate) {
+	public void setEarliestMoveInDate(final String earliestMoveInDate) {
 		this.earliestMoveInDate = earliestMoveInDate;
 	}
 
@@ -212,7 +212,7 @@ public class SearchForm {
 		return latestMoveInDate;
 	}
 
-	public void setLatestMoveInDate(String latestMoveInDate) {
+	public void setLatestMoveInDate(final String latestMoveInDate) {
 		this.latestMoveInDate = latestMoveInDate;
 	}
 
@@ -220,7 +220,7 @@ public class SearchForm {
 		return earliestMoveOutDate;
 	}
 
-	public void setEarliestMoveOutDate(String earliestMoveOutDate) {
+	public void setEarliestMoveOutDate(final String earliestMoveOutDate) {
 		this.earliestMoveOutDate = earliestMoveOutDate;
 	}
 
@@ -228,7 +228,7 @@ public class SearchForm {
 		return latestMoveOutDate;
 	}
 
-	public void setLatestMoveOutDate(String latestMoveOutDate) {
+	public void setLatestMoveOutDate(final String latestMoveOutDate) {
 		this.latestMoveOutDate = latestMoveOutDate;
 	}
 
@@ -236,7 +236,7 @@ public class SearchForm {
 		return studioHelper;
 	}
 
-	public void setStudioHelper(boolean helper) {
+	public void setStudioHelper(final boolean helper) {
 		this.studioHelper = helper;
 	}
 
@@ -244,7 +244,7 @@ public class SearchForm {
 		return roomHelper;
 	}
 
-	public void setRoomHelper(boolean helper) {
+	public void setRoomHelper(final boolean helper) {
 		this.roomHelper = helper;
 	}
 
@@ -252,7 +252,7 @@ public class SearchForm {
 		return houseHelper;
 	}
 
-	public void setHouseHelper(boolean helper) {
+	public void setHouseHelper(final boolean helper) {
 		this.houseHelper = helper;
 	}
 
@@ -260,7 +260,7 @@ public class SearchForm {
 		return saleHelper;
 	}
 
-	public void setSaleHelper(boolean saleHelper) {
+	public void setSaleHelper(final boolean saleHelper) {
 		this.saleHelper = saleHelper;
 	}
 
@@ -268,7 +268,7 @@ public class SearchForm {
 		return rentHelper;
 	}
 
-	public void setRentHelper(boolean rentHelper) {
+	public void setRentHelper(final boolean rentHelper) {
 		this.rentHelper = rentHelper;
 	}
 
