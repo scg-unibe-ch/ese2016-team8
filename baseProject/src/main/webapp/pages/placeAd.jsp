@@ -33,6 +33,7 @@
 		document.getElementById('type-sale').checked="";
 		document.getElementById('type-auction').checked="";
         document.getElementById('month-Prize').innerHTML="Prize per Month";
+				document.getElementById('month-Prize').innerHTML="Prize per Month";
         document.getElementById('field-moveOutDate').style.display="block";
         document.getElementById('moveOutDate').innerHTML="Move-out date (optional)";
     });
@@ -44,8 +45,7 @@
         document.getElementById('month-Prize').innerHTML="Start Prize";
         document.getElementById('field-Prize').path="startPrize";
         document.getElementById('field-Prize').placeholder="Start Prize";
-        document.getElementById('field-moveOutDate').style.display="none";
-        document.getElementById('moveOutDate').style.display="none";
+        document.getElementById('moveOutDate').innerHTML="Auction end date";
     });
 
 		$("#field-city").autocomplete({
@@ -200,15 +200,12 @@
 			<tr>
 				<td><label for="moveInDate">Move-in date (required)</label></td>
 				<td><label id="moveOutDate" for="moveOutDate">Move-out date (optional)</label></td>
-				<td><label id="auctionEnd"	 for="auctionEnd">Auction end date</label></td>
 			</tr>
 			<tr>
 				<td><form:input type="text" id="field-moveInDate"
 						path="moveInDate" /></td>
 				<td><form:input type="text" id="field-moveOutDate"
 						path="moveOutDate" /></td>
-						<td><form:input type="text" id="field-auctionEnd"
-								path="auctionEnd" /></td>
 			</tr>
 
 			<tr>
