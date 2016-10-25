@@ -41,11 +41,13 @@
 					break;
 				case 1:
 					alert("Everything worked fine!");
+					window.location.reload();
 					break;
 				case 3:
 					break;
 				default:
 					alert("Default error. Please contact the WebAdmin.");
+					window.location.reload();
 				}
 			});
 		}
