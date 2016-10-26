@@ -112,6 +112,9 @@ public class EditAdService {
 		ad.setCable(placeAdForm.getCable());
 		ad.setGarage(placeAdForm.getGarage());
 		ad.setInternet(placeAdForm.getInternet());
+		
+		ad.setSale(placeAdForm.getSale());
+		ad.setAuction(placeAdForm.getAuction());
 
 		/*
 		 * Save the paths to the picture files, the pictures are assumed to be
