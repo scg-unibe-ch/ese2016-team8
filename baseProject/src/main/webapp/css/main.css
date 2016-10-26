@@ -191,9 +191,9 @@ button {
 	font-size: 1.5em;
 	color:white;	
 	position: absolute;
-	right: 120px;
+	right: 130px;
 	top: 150px;
-	width: 240px;
+	width: 250px;
 	height: 40px;
 }
 
@@ -201,19 +201,29 @@ button {
 #makeBid {
 	cursor:pointer;
 	background-color: #003;
-	padding: 4px 12px 2px 10px;
+	padding: 4px 12px 4px 10px;
 	border-width: 2px;
 	border-radius: 6px;
-	border-color: #003;
+	border-color: #000;
 	border-style: solid; 
 	color: white;
 }
 
 #makeBid:hover {
 	background-color: white;
-	border-style: solid; 
 	color: #002;
 }
+
+#makeBidDisabled {
+	background-color: #777;
+	padding: 4px 12px 4px 10px;
+	border-width: 2px;
+	border-radius: 6px;
+	border-color: #555;
+	border-style: solid; 
+	color: white;
+}
+
 
 
 #bookmarkButton {

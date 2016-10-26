@@ -45,7 +45,7 @@
         document.getElementById('month-Prize').innerHTML="Start Prize";
         document.getElementById('field-Prize').path="startPrize";
         document.getElementById('field-Prize').placeholder="Start Prize";
-				document.getElementById('field-moveOutDate').style.display="none";
+		document.getElementById('field-moveOutDate').style.display="block";
         document.getElementById('moveOutDate').innerHTML="Auction end date";
     });
 
