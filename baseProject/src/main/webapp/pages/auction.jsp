@@ -1,4 +1,6 @@
-<%@page import="ch.unibe.ese.team8.model.Ad"%>
+<%@ page import="ch.unibe.ese.team8.model.Ad"%>
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*" %>
 <%@ page language="java" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -6,6 +8,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
 <!-- check if user is logged in -->
 <security:authorize var="loggedIn" url="/profile" />
@@ -19,6 +22,13 @@
 <script src="/js/image_slider.js"></script>
 <script src="/js/adDescription.js"></script>
 
+<script language="javascript" type="text/javascript">
+
+var maxBidderProfile = ${shownAd.maxBidder.id};
+openPage = function() {
+location.href = "user?id="+maxBidderProfile;
+}
+</script>
 <script>
 	var shownAdvertisementID = "${shownAd.id}";
 	var shownAdvertisement = "${shownAd}";
@@ -102,6 +112,7 @@
 	type="date" pattern="dd.MM.yyyy" />
 	<fmt:formatDate value="${today}" var="formattedToday"
 		type="date" pattern="dd.MM.yyyy" />
+
 <c:choose>
 	<c:when test="${empty shownAd.moveOutDate }">
 		<c:set var="formattedMoveOutDate" value="unlimited" />
@@ -113,7 +124,6 @@
 </c:choose>
 
 <h1 id="shownAdTitle">${shownAd.title}</h1>
-
 
 <hr />
 
@@ -186,11 +196,12 @@
 			<td>${formattedCreationDate}</td>
 		</tr>
 		<tr>
-			<td><h2>Current max. bidder</h2></td>
-			<td><i>none yet</i></td>
+			<td><h2>Current max. bidder </h2></td>
+			<td><a href="javascript:openPage()">${shownAd.maxBidder.firstName} ${shownAd.maxBidder.lastName}</a></td>
 		</tr>
 	</table>
 </section>
+
 
 <div id="image-slider">
 	<div id="left-arrow">
