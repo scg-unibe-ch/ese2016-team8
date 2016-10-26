@@ -36,6 +36,7 @@
 
 <!-- check if user is logged in -->
 <security:authorize var="loggedIn" url="/profile" />
+<security:authorize var="premium" url="/profile" />
 
 <!-- check if user has a profile picture -->
 
@@ -43,6 +44,12 @@
 	<div class="left">
 		<a href="/"><img class="logo" src="/img/logo.png"></a>
 	</div>
+	<c:choose>
+		<c:when test="${premium}">
+			<img id="premiumStar" style="width:40px; height:40px;" src="/img/Star.png">
+		</c:when>
+		<c:otherwise></c:otherwise>
+	</c:choose>
 	<div class="right">
 		<nav>
 			<ul>
