@@ -1,0 +1,20 @@
+Team 8 and Claudio, 26.10.2016
+
+Input von Claudio: Allg:
+--> Issuetracker: Das ganze SCRUM-Issuetracker verwenden, indem wir die einzelnen Task aufspliten in mehrere kleinerere Aufgaben; Gut für uns auf Stufe Organisation und auch 	für Bewertung, da erleichterte Übersicht
+--> Issuetracker positiver formulieren und auch grösser aufspliten, da so wie sie jetzt sind zu grosse Themen bilden.
+--> Features noch weiter aufteilen für bessere Übersicht.
+
+Stand der verlangten Features von 2nd Discussion:
+i) Premium: Updaten für Premium, Nachfrage fürs Bezahlen, autom. Update für Premium; 
+--> Roter Stern neben Usernamen für aktuellen Premiumstatus zu zeigen.
+ii) Auktion: Default kein Name, Unterbieten nicht möglich, Verlinkung zum Userprofile
+--> Verlinkung zum höchstbietenden User rausnehmen, dafür nur seinen Usernamen anzeigen.
+
+TODO:
+--> Was passiert wenn das Angebot gemacht wird? (E-Mail an Überbotenen). see Issue #7 at https://github.com/scg-unibe-ch/ese2016-team8/issues/7 
+--> Roommates rausnehmen wenn ein Angebot erstellt wird. see Issue #8 https://github.com/scg-unibe-ch/ese2016-team8/issues/8
+--> Keine Werbungen mit bestehenden Wohngemeinschaften erlauben.  see Issue #9 https://github.com/scg-unibe-ch/ese2016-team8/issues/9
+--> Sterndli für Premiumuser. see Issue #10 https://github.com/scg-unibe-ch/ese2016-team8/issues/10
+--> Design modernisieren:
+	Mock-ups malen für Präsentation für Kunden (Papier), können aber auch schon implementieren.
