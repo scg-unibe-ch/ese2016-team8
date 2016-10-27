@@ -196,8 +196,11 @@ location.href = "user?id="+maxBidderProfile;
 			<td>${formattedCreationDate}</td>
 		</tr>
 		<tr>
+			<c:choose>
+				<c:when test="${loggedIn}">
 			<td><h2>Current max. bidder </h2></td>
-			<td><a href="javascript:openPage()">${shownAd.maxBidder.firstName} ${shownAd.maxBidder.lastName}</a></td>
+			<td><a id="highestBidder"></a></td>
+		</c:when></c:choose>
 		</tr>
 	</table>
 </section>
@@ -470,7 +473,6 @@ function amIMaxBidder(){
 var currentUserId1 = document.getElementById('currentUserId').innerHTML;
 var currentUserId = parseInt(currentUserId1);
 var maxBidderID = ${shownAd.maxBidder.id};
-
 if(currentUserId - maxBidderID == 0){
 	document.getElementById('highestBidder').innerHTML="yes";
 }else{
