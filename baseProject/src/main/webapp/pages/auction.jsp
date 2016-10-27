@@ -28,6 +28,14 @@ var maxBidderProfile = ${shownAd.maxBidder.id};
 openPage = function() {
 location.href = "user?id="+maxBidderProfile;
 }
+
+noticeLastBidder = function(){
+	var subject = "${shownAd.title}";
+	var text = "Hello ${shownAd.maxBidder.firstName} I just overbid you";
+	var recipientEmail = "${shownAd.maxBidder.username}";
+	$.post("profile/messages/sendMessage", {subject : subject, text: text, recipientEmail : recipientEmail});
+}
+
 </script>
 <script>
 	var shownAdvertisementID = "${shownAd.id}";
@@ -229,7 +237,7 @@ location.href = "user?id="+maxBidderProfile;
 		<c:when test="${loggedIn}">
 			<table>
 			<tr height="44px">
-			<td width="50%" style="vertical-align:top"><a class="right" id="makeBid">Place bid</a></td>
+			<td width="50%" style="vertical-align:top"><a class="right" href="javascript:noticeLastBidder()" id="makeBid">Place bid</a></td>
 			<td width="50%" style="vertical-align:middle"><input style="float:right; margin-left: 10px;"
 			align="right" type="number" step="50" name="bid" id="bid" min="${ad.prizePerMonth}" value="${shownAd.prizePerMonth}">
 			</td></tr></table>
