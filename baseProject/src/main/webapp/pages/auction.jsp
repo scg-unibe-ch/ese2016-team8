@@ -437,6 +437,9 @@ location.href = "user?id="+maxBidderProfile;
 		<td id="advertiserEmail">
 		<c:choose>
 			<c:when test="${loggedIn}">
+				<%@include file='/pages/getUserPicture.jsp' %>
+				<a id="currentUserId" style=" display: none" ><% out.print( realUser.getId() ); %></a>
+
 				<a href="/user?id=${shownAd.user.id}"><button type="button">Visit profile</button></a>
 			</c:when>
 			<c:otherwise>
@@ -461,6 +464,20 @@ location.href = "user?id="+maxBidderProfile;
 	</tr>
 </table>
 
+<script>
+$(window).ready(amIMaxBidder());
+function amIMaxBidder(){
+var currentUserId1 = document.getElementById('currentUserId').innerHTML;
+var currentUserId = parseInt(currentUserId1);
+var maxBidderID = ${shownAd.maxBidder.id};
+
+if(currentUserId - maxBidderID == 0){
+	document.getElementById('highestBidder').innerHTML="yes";
+}else{
+	document.getElementById('highestBidder').innerHTML="nope someone bid higher";
+}}
+
+</script>
 <div id="msgDiv">
 <form class="msgForm">
 	<h2>Contact the advertiser</h2>
@@ -476,7 +493,6 @@ location.href = "user?id="+maxBidderProfile;
 	<button type="button" id="messageCancel">Cancel</button>
 	</form>
 </div>
-
 <div id="confirmationDialog">
 	<form>
 	<p>Send enquiry to advertiser?</p>
