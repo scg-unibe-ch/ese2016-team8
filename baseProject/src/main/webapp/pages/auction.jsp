@@ -31,7 +31,7 @@ location.href = "user?id="+maxBidderProfile;
 
 noticeLastBidder = function(){
 	var subject = "${shownAd.title}";
-	var text = "Hello ${shownAd.maxBidder.firstName} I just overbid you";
+	var text = "Hello ${shownAd.maxBidder.firstName} I just overbid you for ${shownAd.title}.";
 	var recipientEmail = "${shownAd.maxBidder.username}";
 	$.post("profile/messages/sendMessage", {subject : subject, text: text, recipientEmail : recipientEmail});
 }
@@ -59,6 +59,7 @@ noticeLastBidder = function(){
 					break;
 				case 1:
 					alert("Everything worked fine!");
+					noticeLastBidder();
 					window.location.reload();
 					break;
 				case 3:
@@ -237,7 +238,7 @@ noticeLastBidder = function(){
 		<c:when test="${loggedIn}">
 			<table>
 			<tr height="44px">
-			<td width="50%" style="vertical-align:top"><a class="right" href="javascript:noticeLastBidder()" id="makeBid">Place bid</a></td>
+			<td width="50%" style="vertical-align:top"><a class="right"  id="makeBid">Place bid</a></td>
 			<td width="50%" style="vertical-align:middle"><input style="float:right; margin-left: 10px;"
 			align="right" type="number" step="50" name="bid" id="bid" min="${ad.prizePerMonth}" value="${shownAd.prizePerMonth}">
 			</td></tr></table>
