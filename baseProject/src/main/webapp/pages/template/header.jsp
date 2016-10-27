@@ -36,7 +36,7 @@
 
 <!-- check if user is logged in -->
 <security:authorize var="loggedIn" url="/profile" />
-<security:authorize var="premium" url="/profile" />
+
 
 <!-- check if user has a profile picture -->
 
@@ -44,12 +44,10 @@
 	<div class="left">
 		<a href="/"><img class="logo" src="/img/logo.png"></a>
 	</div>
-	<c:choose>
-		<c:when test="${premium}">
-			<img id="premiumStar" style="width:40px; height:40px;" src="/img/Star.png">
-		</c:when>
-		<c:otherwise></c:otherwise>
-	</c:choose>
+			<a id="premiumStatus" style="display: none">
+				<img id="premiumStar" style="width:40px; height:40px;" src="/img/Star.png"><br>
+			<p>You are a premium member!</p>
+	</a>
 	<div class="right">
 		<nav>
 			<ul>
@@ -70,6 +68,7 @@
 						%>
 						</a>
 							<ul>
+								<a id="premStatus" style="display: none"> <% out.print( realUser.getPremium() ); %></a>
 								<li><a href="/profile/placeAd">Place an ad</a></li>
 								<li><a href="/profile/myRooms">My rooms</a></li>
 								<li><a id="messageLink" href="/profile/messages"></a></li>
@@ -92,6 +91,26 @@
 			</ul>
 		</nav>
 	</div>
+	<script>
+	$(window).ready(premStatusDisplay());
+	function premStatusDisplay(){
+		var prem1 = document.getElementById('premStatus').innerHTML;
+
+ function stringToBoolean(string){
+    switch(string.toLowerCase().trim()){
+        case "true": return true;
+        case "false": case null: return false;
+        default: return Boolean(string);
+    }
+}
+	var prem = stringToBoolean(prem1);
+	if(prem){
+		document.getElementById('premiumStatus').style.display="block";
+	}else{
+		document.getElementById('premiumStatus').style.display="none";
+	}
+	}
+	</script>
 </header>
 
 <body>
