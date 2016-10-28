@@ -121,7 +121,7 @@
 	type="date" pattern="dd.MM.yyyy" />
 <fmt:formatDate value="${shownAd.creationDate}" var="formattedCreationDate"
 	type="date" pattern="dd.MM.yyyy" />
-	<fmt:formatDate value="${shownAd.auctionEnd}" var="formattedAuctionEnd"
+	<fmt:formatDate value="${shownAd.auctionEndDate}" var="formattedAuctionEnd"
 		type="date" pattern="dd.MM.yyyy" />
 <c:choose>
 	<c:when test="${empty shownAd.moveOutDate }">
