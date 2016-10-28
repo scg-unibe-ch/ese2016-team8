@@ -493,7 +493,7 @@ if(currentUserId - maxBidderID == 0){
 $(document).ready(hasEnded());
 function hasEnded(){
 
-	if(${formattedMoveOutDate lt formattedToday}&& !${shownAd.hasEnded}){
+	if(${formattedMoveOutDate gt formattedToday}&& !${shownAd.hasEnded}){
 		//maxBidder
 		var subject = "${shownAd.title}";
 		var text = "Hello ${shownAd.maxBidder.firstName} the auction for ${shownAd.title} has ended and you are the winner. You will be contacted by: ${shownAd.user.firstName} ${shownAd.user.lastName} as soon as possible.";

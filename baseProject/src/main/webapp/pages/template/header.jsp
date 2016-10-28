@@ -89,10 +89,11 @@
 		</nav>
 	</div>
 	<div style="float: right">
-			<a id="premiumStatus" >
+			<a id="premiumStatus" style="display:none">
 				<img id="premiumStar" style="width:40px; height:40px; margin-left: 60px" src="/img/Star.png"><br>
 			<p>You are a premium member!</p>
 	</a>
+</div>
 	<script>
 	$(window).ready(premStatusDisplay());
 	function premStatusDisplay(){
