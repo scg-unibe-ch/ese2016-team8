@@ -135,6 +135,16 @@ public class Ad {
 	@Column(nullable = false)
 	private boolean premium;
 
+	@Column(nullable = false)
+	private boolean hasEnded;
+
+	public void setHasEnded(boolean end){
+		this.hasEnded = end;
+	}
+
+	public boolean getHasEnded(){
+		return hasEnded;
+	}
 	public Date getAuctionEnd(){
 		return auctionEnd;
 	}

@@ -487,7 +487,27 @@ if(currentUserId - maxBidderID == 0){
 }else{
 	document.getElementById('highestBidder').innerHTML="nope someone bid higher";
 }}
+</script>
+<script>
+//contacts the advertiser and maxBidder when the auction is over.
+$(document).ready(hasEnded());
+function hasEnded(){
 
+	if(${formattedMoveOutDate lt formattedToday}&& !${shownAd.hasEnded}){
+		//maxBidder
+		var subject = "${shownAd.title}";
+		var text = "Hello ${shownAd.maxBidder.firstName} the auction for ${shownAd.title} has ended and you are the winner. You will be contacted by: ${shownAd.user.firstName} ${shownAd.user.lastName} as soon as possible.";
+		var recipientEmail = "${shownAd.maxBidder.username}";
+		$.post("profile/messages/sendMessage", {subject : subject, text: text, recipientEmail : recipientEmail});
+		//advertiser
+		var subject1 = "${shownAd.title}";
+		var text1 = "Hello ${shownAd.user.firstName} the auction for ${shownAd.title} has ended and ${shownAd.maxBidder.firstName} ${shownAd.maxBidder.lastName} is the winner. Contact him: ${shownAd.maxBidder.username}";
+		var recipientEmail1 = "${shownAd.user.username}";
+		$.post("profile/messages/sendMessage", {subject : subject1, text: text1, recipientEmail : recipientEmail1});
+		// to be added: hasEnded has to be updated on the ad
+
+
+}}
 </script>
 <div id="msgDiv">
 <form class="msgForm">

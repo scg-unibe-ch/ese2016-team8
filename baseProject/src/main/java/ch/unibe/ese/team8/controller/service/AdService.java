@@ -174,7 +174,7 @@ public class AdService {
 			}
 			ad.setVisits(visits);
 		}
-		
+
 		ad.setAuction(placeAdForm.getAuction());
 
 		ad.setUser(user);
