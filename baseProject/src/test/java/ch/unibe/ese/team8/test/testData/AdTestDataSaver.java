@@ -306,30 +306,30 @@ public class AdTestDataSaver {
 
 		adDao.save(adNeuchâtel);
 
-		String houseDescription = "This house is for sale! Good price good value! ;)";
-		String housePreference = "Blablabla... usw.";
+		String houseDescription = "This house is for sale! Good price good value! In a very quiet part of town";
+		String housePreference = "Families with kids and animals";
 
 		Ad adHouse = new Ad();
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adHouse, "/img/test/house_1.jpg"));
 		pictures.add(createPicture(adHouse, "/img/test/house_2.jpg"));
 		TestDataUtils.polyfillAd(adHouse,
-				2503,
+				2504,
 				moveInDate6,
 				creationDate6,
 				moveOutDate5,
-				100000,
+				400000,
 				400,
 				"house",
 				true,
-				false,
+				true,
 				houseDescription,
 				housePreference,
 				"None",
 				ese,
 				((List<User>) null), // Roommates list
-				"Direkt am See: hüsches Haus",
-				"Dorfgasse 12",
+				"Direkt am See: hübsches Haus",
+				"Am Wald 4",
 				"Biel/Bienne",
 				true,
 				true,
