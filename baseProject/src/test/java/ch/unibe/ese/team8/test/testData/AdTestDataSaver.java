@@ -715,6 +715,7 @@ public class AdTestDataSaver {
 				pictures);
 		
 		adAuction.setAuctionEndDate(moveInDate6);
+		adAuction.setMaxBidder(ese);
 
 		adDao.save(adAuction);
 
