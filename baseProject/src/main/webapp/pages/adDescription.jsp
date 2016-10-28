@@ -241,43 +241,6 @@
 		<br />
 
 		<div class="adDescDiv">
-			<h2>Roommates</h2>
-			<p>${shownAd.roommates}</p>
-			<c:forEach var="mate" items="${shownAd.registeredRoommates}">
-				<div class="roommate">
-				<table id="mate">
-					<tr>
-						<td>
-						<a href="/user?id=${mate.id}">
-						<c:choose>
-							<c:when test="${mate.picture.filePath != null}">
-								<img src="${mate.picture.filePath}">
-							</c:when>
-							<c:otherwise>
-								<img src="/img/avatar.png">
-							</c:otherwise>
-						</c:choose>
-						</a>
-						</td>
-						<td>${mate.firstName} ${mate.lastName}</td>
-						<td>${mate.username}</td>
-						<td>
-						<c:choose>
-							<c:when test="${mate.gender == 'MALE'}">
-								male
-							</c:when>
-							<c:otherwise>
-								female
-							</c:otherwise>
-						</c:choose></td>
-					</tr>
-				</table>
-			</div>
-			</c:forEach>
-		</div>
-		<br />
-
-		<div class="adDescDiv">
 			<h2>Preferences</h2>
 			<p>${shownAd.preferences}</p>
 		</div>

@@ -208,7 +208,7 @@ noticeLastBidder = function(){
 			<c:choose>
 				<c:when test="${loggedIn}">
 			<td><h2>Current max. bidder </h2></td>
-			<td><a id="highestBidder"></a></td>
+			<td><p id="highestBidder"></p></td>
 		</c:when></c:choose>
 		</tr>
 	</table>
@@ -255,49 +255,6 @@ noticeLastBidder = function(){
 		<div class="adDescDiv">
 			<h2>Room Description</h2>
 			<p>${shownAd.roomDescription}</p>
-		</div>
-		<br />
-
-		<div class="adDescDiv">
-			<h2>Roommates</h2>
-			<p>${shownAd.roommates}</p>
-			<c:forEach var="mate" items="${shownAd.registeredRoommates}">
-				<div class="roommate">
-				<table id="mate">
-					<tr>
-						<td>
-						<a href="/user?id=${mate.id}">
-						<c:choose>
-							<c:when test="${mate.picture.filePath != null}">
-								<img src="${mate.picture.filePath}">
-							</c:when>
-							<c:otherwise>
-								<img src="/img/avatar.png">
-							</c:otherwise>
-						</c:choose>
-						</a>
-						</td>
-						<td>${mate.firstName} ${mate.lastName}</td>
-						<td>${mate.username}</td>
-						<td>
-						<c:choose>
-							<c:when test="${mate.gender == 'MALE'}">
-								male
-							</c:when>
-							<c:otherwise>
-								female
-							</c:otherwise>
-						</c:choose></td>
-					</tr>
-				</table>
-			</div>
-			</c:forEach>
-		</div>
-		<br />
-
-		<div class="adDescDiv">
-			<h2>Preferences</h2>
-			<p>${shownAd.preferences}</p>
 		</div>
 		<br />
 
@@ -483,9 +440,9 @@ var currentUserId1 = document.getElementById('currentUserId').innerHTML;
 var currentUserId = parseInt(currentUserId1);
 var maxBidderID = ${shownAd.maxBidder.id};
 if(currentUserId - maxBidderID == 0){
-	document.getElementById('highestBidder').innerHTML="yes";
+	document.getElementById('highestBidder').innerHTML="You are the highest bidder";
 }else{
-	document.getElementById('highestBidder').innerHTML="nope someone bid higher";
+	document.getElementById('highestBidder').innerHTML="Someone else placed a higher bid";
 }}
 </script>
 <script>
