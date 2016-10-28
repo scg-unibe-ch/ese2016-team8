@@ -22,6 +22,60 @@
 <script src="/js/image_slider.js"></script>
 <script src="/js/adDescription.js"></script>
 
+<script type="text/javascript">
+	function startTimer(duration, display) {
+    var start = Date.now(),
+        diff,
+        days,
+        hours,
+        minutes,
+        seconds;
+    function timer() {
+        // get the number of seconds that have elapsed since 
+        // startTimer() was called
+        diff = ((Date.now() - start) / 1000);
+
+        // does the same job as parseInt truncates the float
+        days = (duration - diff)/60/60/24 | 0; 
+        hours = (duration - diff - days*60*60*24)/60/60 | 0;
+        minutes = (duration - diff - days*60*60*24 - hours*60*60)/60 | 0;
+        seconds = (duration - diff - days*60*60*24 - hours*60*60 - minutes*60)| 0;
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = days +" Days " + hours + " Hours "+minutes + " Minutes " + seconds + " Seconds"; 
+
+        if (diff <= 0) {
+            // add one second so that the count down starts at the full duration
+            // example 05:00 not 04:59
+            start = Date.now() + 1000;
+        }
+    };
+    // we don't want to wait a full second before the timer starts
+    timer();
+    setInterval(timer, 1000);
+}
+
+window.onload = function () {
+    var ending = "${shownAd.auctionEndDate}",
+        display = document.querySelector('#time');
+
+    var endDate = new Date(ending.substring(0,4), ending.substring(5,7), ending.substring(9,11));
+  
+  	var now = Date.now();
+
+    seconds = endDate.getTime()-now;
+    seconds = seconds / 1000;
+    console.log(seconds);
+
+    startTimer(seconds, display);
+};
+
+
+</script>
+
+
 <script>
 	var shownAdvertisementID = "${shownAd.id}";
 	var shownAdvertisement = "${shownAd}";
@@ -168,8 +222,8 @@
 		</tr>
 
 		<tr>
-			<td><h2>Auction ends on</h2></td>
-			<td>${formattedMoveOutDate}</td>
+			<td><h2>Auction ends in</h2></td>
+			<td><span id="time"></span></td>
 		</tr>
 
 		<tr>
@@ -453,6 +507,5 @@ if(currentUserId - maxBidderID == 0){
 	<button type="button" id="confirmationDialogCancel">Cancel</button>
 	</form>
 </div>
-
 
 <c:import url="template/footer.jsp" />
