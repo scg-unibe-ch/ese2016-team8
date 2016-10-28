@@ -30,7 +30,6 @@ function confirmPremium(){
     var r = confirm("Do you want to pay us 5$ for premium access?");
     if (r == true) {
 			document.getElementById("premium").value= true;
-			alert("now please click on Update to confirm the transaction");
 			document.forms['editProfile'].submit();
     } else {
         alert("maybe next time");

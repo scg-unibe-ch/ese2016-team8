@@ -22,6 +22,9 @@ public class IndexController {
 	public ModelAndView index() {
 		ModelAndView model = new ModelAndView("index");
 		model.addObject("newest", adService.getNewestAds(4));
+		
+		adService.checkExpiredAuctions();
+		
 		return model;
 	}
 

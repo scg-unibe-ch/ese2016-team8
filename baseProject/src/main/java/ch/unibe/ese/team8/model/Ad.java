@@ -53,7 +53,7 @@ public class Ad {
 
 	@Temporal(TemporalType.DATE)
 	@Column(nullable = true)
-	private Date auctionEnd;
+	private Date auctionEndDate;
 
 	@Column(nullable = false)
 	private int prizePerMonth;
@@ -69,7 +69,7 @@ public class Ad {
 	@Lob
 	private String preferences;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String roommates;
 
 	@Fetch(FetchMode.SELECT)
@@ -136,21 +136,21 @@ public class Ad {
 	private boolean premium;
 
 	@Column(nullable = false)
-	private boolean hasEnded;
+	private boolean auctionOver;
 
-	public void setHasEnded(boolean end){
-		this.hasEnded = end;
+	public void setAuctionOver(boolean end){
+		this.auctionOver = end;
 	}
 
-	public boolean getHasEnded(){
-		return hasEnded;
+	public boolean getAuctionOver(){
+		return auctionOver;
 	}
-	public Date getAuctionEnd(){
-		return auctionEnd;
+	public Date getAuctionEndDate(){
+		return auctionEndDate;
 	}
 
-	public void setAuctionEnd(final Date auctionEnd){
-		this.auctionEnd= auctionEnd;
+	public void setAuctionEndDate(final Date auctionEndDate){
+		this.auctionEndDate= auctionEndDate;
 
 	}
 

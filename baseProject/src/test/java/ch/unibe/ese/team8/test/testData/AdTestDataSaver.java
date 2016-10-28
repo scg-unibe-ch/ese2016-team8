@@ -713,6 +713,8 @@ public class AdTestDataSaver {
 				true,
 				true,
 				pictures);
+		
+		adAuction.setAuctionEndDate(moveInDate6);
 
 		adDao.save(adAuction);
 

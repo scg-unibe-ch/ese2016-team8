@@ -41,4 +41,5 @@ public class BidService {
 			return 1;
 		}
 	}
+
 }

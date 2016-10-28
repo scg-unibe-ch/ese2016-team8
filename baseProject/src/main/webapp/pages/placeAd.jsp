@@ -28,14 +28,16 @@
         document.getElementById('month-Prize').innerHTML="Sale prize";
         document.getElementById('field-moveOutDate').style.display="none";
         document.getElementById('moveOutDate').innerHTML="";
+		document.getElementById('field-auctionEndDate').style.display="none";
     });
     $("#type-rent").on("click", function(){
 		document.getElementById('type-sale').checked="";
 		document.getElementById('type-auction').checked="";
         document.getElementById('month-Prize').innerHTML="Prize per Month";
-				document.getElementById('month-Prize').innerHTML="Prize per Month";
+		document.getElementById('month-Prize').innerHTML="Prize per Month";
         document.getElementById('field-moveOutDate').style.display="block";
         document.getElementById('moveOutDate').innerHTML="Move-out date (optional)";
+		document.getElementById('field-auctionEndDate').style.display="none";
     });
 
     $("#type-auction").on("click", function(){
@@ -45,7 +47,8 @@
         document.getElementById('month-Prize').innerHTML="Start Prize";
         document.getElementById('field-Prize').path="startPrize";
         document.getElementById('field-Prize').placeholder="Start Prize";
-		document.getElementById('field-moveOutDate').style.display="block";
+		document.getElementById('field-moveOutDate').style.display="none";
+		document.getElementById('field-auctionEndDate').style.display="block";
         document.getElementById('moveOutDate').innerHTML="Auction end date";
     });
 
@@ -206,7 +209,9 @@
 				<td><form:input type="text" id="field-moveInDate"
 						path="moveInDate" /></td>
 				<td><form:input type="text" id="field-moveOutDate"
-						path="moveOutDate" /></td>
+						path="moveOutDate" />
+					<form:input type="text" id="field-auctionEndDate" style="display:none;"
+						path="auctionEndDate" /></td>
 			</tr>
 
 			<tr>

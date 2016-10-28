@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +23,8 @@ import ch.unibe.ese.team8.controller.pojos.forms.SearchForm;
 import ch.unibe.ese.team8.model.Ad;
 import ch.unibe.ese.team8.model.AdPicture;
 import ch.unibe.ese.team8.model.Location;
+import ch.unibe.ese.team8.model.Message;
+import ch.unibe.ese.team8.model.MessageState;
 import ch.unibe.ese.team8.model.User;
 import ch.unibe.ese.team8.model.Visit;
 import ch.unibe.ese.team8.model.dao.AdDao;
@@ -100,6 +103,15 @@ public class AdService {
 				calendar.set(yearMoveOut, monthMoveOut - 1, dayMoveOut);
 				ad.setMoveOutDate(calendar.getTime());
 			}
+			
+			if (placeAdForm.getAuctionEndDate().length() >= 1) {
+				int dayAuctionEnd = Integer.parseInt(placeAdForm.getAuctionEndDate().substring(0, 2));
+				int monthAuctionEnd = Integer.parseInt(placeAdForm.getAuctionEndDate().substring(3, 5));
+				int yearAuctionEnd = Integer.parseInt(placeAdForm.getAuctionEndDate().substring(6, 10));
+				calendar.set(yearAuctionEnd, monthAuctionEnd - 1, dayAuctionEnd);
+				ad.setAuctionEndDate(calendar.getTime());
+			}
+			
 		} catch (NumberFormatException e) {
 		}
 
@@ -477,5 +489,30 @@ public class AdService {
 			}
 		}
 		return false;
+	}
+	
+	public void checkExpiredAuctions(){
+		Iterable<Ad> allAuctions = adDao.findByAuction(true);
+		for(Ad auction : allAuctions){
+			if(auction.getAuctionEndDate().before(new Date())){
+				if(!auction.getAuctionOver()){
+					auction.setAuctionOver(true);
+					Message message = new Message();
+					
+					message.setRecipient(auction.getMaxBidder());
+					message.setSubject("Auction " + auction.getId() + " has ended!");
+					message.setText("The auction has ended and you are the max bidder! Congrats");
+					message.setState(MessageState.UNREAD);
+					message.setSender(auction.getUser());
+
+					Calendar calendar = Calendar.getInstance();
+					calendar.setTimeInMillis(System.currentTimeMillis());
+					message.setDateSent(calendar.getTime());
+					
+					adDao.save(auction);
+					messageDao.save(message);
+				}
+			}
+		}
 	}
 }
