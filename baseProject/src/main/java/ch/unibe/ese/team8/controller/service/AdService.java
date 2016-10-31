@@ -492,29 +492,5 @@ public class AdService {
 		}
 		return false;
 	}
-	
-	public void checkExpiredAuctions(){
-		Iterable<Ad> allAuctions = adDao.findByAuction(true);
-		for(Ad auction : allAuctions){
-			if(auction.getAuctionEndDate().before(new Date())){
-				if(!auction.getAuctionOver()){
-					auction.setAuctionOver(true);
-					Message message = new Message();
-					
-					message.setRecipient(auction.getMaxBidder());
-					message.setSubject("Auction " + auction.getId() + " has ended!");
-					message.setText("The auction has ended and you are the max bidder! Congrats");
-					message.setState(MessageState.UNREAD);
-					message.setSender(auction.getUser());
 
-					Calendar calendar = Calendar.getInstance();
-					calendar.setTimeInMillis(System.currentTimeMillis());
-					message.setDateSent(calendar.getTime());
-					
-					adDao.save(auction);
-					messageDao.save(message);
-				}
-			}
-		}
-	}
 }

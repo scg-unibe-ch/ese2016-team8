@@ -475,8 +475,7 @@ window.onload = function () {
 </table>
 
 <script>
-$(window).ready(amIMaxBidder());
-function amIMaxBidder(){
+window.onload = function amIMaxBidder(){
 var currentUserId1 = document.getElementById('currentUserId').innerHTML;
 var currentUserId = parseInt(currentUserId1);
 var maxBidderID = ${shownAd.maxBidder.id};
@@ -484,7 +483,8 @@ if(currentUserId - maxBidderID == 0){
 	document.getElementById('highestBidder').innerHTML="You are the highest bidder";
 }else{
 	document.getElementById('highestBidder').innerHTML="Someone else placed a higher bid";
-}}
+}
+};
 </script>
 
 <div id="msgDiv">
