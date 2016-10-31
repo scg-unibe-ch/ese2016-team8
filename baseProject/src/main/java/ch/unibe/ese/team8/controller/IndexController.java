@@ -21,9 +21,8 @@ public class IndexController {
 	@RequestMapping(value = "/")
 	public ModelAndView index() {
 		ModelAndView model = new ModelAndView("index");
-		model.addObject("newest", adService.getNewestAds(4));
-		
 		adService.checkExpiredAuctions();
+		model.addObject("newest", adService.getNewestAds(4));
 		
 		return model;
 	}

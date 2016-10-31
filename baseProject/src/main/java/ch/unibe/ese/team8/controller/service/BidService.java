@@ -19,8 +19,12 @@ public class BidService {
 	
 	@Autowired
 	private AdDao adDao;
+	
 	@Autowired
 	private MessageDao messageDao;
+	
+	@Autowired
+	private SystemService systemService;
 	
 	/**
 	 * This method adds or removes ads from the ArrayList.
@@ -43,9 +47,10 @@ public class BidService {
 			Message message = new Message();
 			
 			message.setRecipient(ad.getMaxBidder());
-			message.setSubject("You have been overbidden!");
-			message.setText("Just some text");
+			message.setSubject(systemService.getBidNotification());
+			message.setText(systemService.getBidText(ad.getMaxBidder(), ad.getId(), ad.getAuctionEndDate()));
 			message.setState(MessageState.UNREAD);
+			message.setSender(systemService.getAdmin());
 			
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTimeInMillis(System.currentTimeMillis());
@@ -56,6 +61,7 @@ public class BidService {
 			ad.setPrizePerMonth(bid);
 			ad.setMaxBidder(user);
 			adDao.save(ad);
+			
 			return 1;
 		}
 	}

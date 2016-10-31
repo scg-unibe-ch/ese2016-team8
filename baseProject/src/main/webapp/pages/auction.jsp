@@ -87,7 +87,7 @@ window.onload = function () {
 			var offer = document.getElementById('bid').value;
 			console.log(offer);
 
-			if(document.getElementById('bid').value < ${shownAd.prizePerMonth}){
+			if(document.getElementById('bid').value <= ${shownAd.prizePerMonth}){
 				alert("you have to bid higher");
 			}else{
 			$.post("/auctionBid", {id: shownAdvertisementID, screening: true, bid: offer}, function(data) {
@@ -98,7 +98,6 @@ window.onload = function () {
 					break;
 				case 1:
 					alert("Everything worked fine!");
-					noticeLastBidder();
 					window.location.reload();
 					break;
 				case 3:
@@ -223,7 +222,10 @@ window.onload = function () {
 
 		<tr>
 			<td><h2>Auction ends in</h2></td>
-			<td><span id="time"></span></td>
+			<c:choose>
+			<c:when test="${shownAd.auctionOver}"><td>The auction is over!</td></c:when>
+			<c:otherwise><td><span id="time"></span></td></c:otherwise>
+			</c:choose>
 		</tr>
 
 		<tr>
@@ -269,7 +271,7 @@ window.onload = function () {
 </div>
 <div id="bidDiv">
 <c:choose>
-	<c:when test="${formattedMoveOutDate lt formattedToday}">
+	<c:when test="${shownAd.auctionOver}">
 <a class="right" id="makeBidDisabled">Auction over</a>
 	</c:when>
 	<c:otherwise>
@@ -279,7 +281,7 @@ window.onload = function () {
 			<tr height="44px">
 			<td width="50%" style="vertical-align:top"><a class="right"  id="makeBid">Place bid</a></td>
 			<td width="50%" style="vertical-align:middle"><input style="float:right; margin-left: 10px;"
-			align="right" type="number" step="50" name="bid" id="bid" min="${ad.prizePerMonth}" value="${shownAd.prizePerMonth}">
+			align="right" type="number" step="50" name="bid" id="bid" min="${ad.prizePerMonth+1}" value="${shownAd.prizePerMonth+1}">
 			</td></tr></table>
 		</c:when>
 	</c:choose>

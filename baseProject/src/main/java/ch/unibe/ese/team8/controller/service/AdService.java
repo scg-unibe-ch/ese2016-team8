@@ -219,7 +219,9 @@ public class AdService {
 	 */
 	@Transactional
 	public Iterable<Ad> getNewestAds(int newest) {
-		Iterable<Ad> allAds = adDao.findAll();
+		
+		Iterable<Ad> allAds = adDao.findByAuctionOver(false);
+		
 		List<Ad> ads = new ArrayList<Ad>();
 		for (Ad ad : allAds)
 			ads.add(ad);

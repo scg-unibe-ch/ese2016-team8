@@ -55,7 +55,7 @@ public class AdTestDataSaver {
 		Date moveInDate3 = formatter.parse("01.01.2015");
 		Date moveInDate4 = formatter.parse("15.01.2015");
 		Date moveInDate5 = formatter.parse("01.02.2015");
-		Date moveInDate6 = formatter.parse("01.03.2015");
+		Date moveInDate6 = formatter.parse("01.03.2017");
 		Date moveInDate7 = formatter.parse("15.03.2015");
 		Date moveInDate8 = formatter.parse("16.02.2015");
 		Date moveInDate9 = formatter.parse("01.11.2016");
