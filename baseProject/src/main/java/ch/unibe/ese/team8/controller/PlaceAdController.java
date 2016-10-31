@@ -117,14 +117,12 @@ public class PlaceAdController {
 			String realPath = servletContext.getRealPath(IMAGE_DIRECTORY);
 			pictureUploader = new PictureUploader(realPath, IMAGE_DIRECTORY);
 		}
-		List<PictureMeta> uploadedPicturesMeta = pictureUploader
-				.upload(pictures);
+		List<PictureMeta> uploadedPicturesMeta = pictureUploader.upload(pictures);
 
 		objectMapper = new ObjectMapper();
 		String jsonResponse = "{\"files\": ";
 		try {
-			jsonResponse += objectMapper
-					.writeValueAsString(uploadedPicturesMeta);
+			jsonResponse += objectMapper.writeValueAsString(uploadedPicturesMeta);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
@@ -158,9 +156,15 @@ public class PlaceAdController {
 			// reset the picture uploader
 			this.pictureUploader = null;
 
-			model = new ModelAndView("redirect:/ad?id=" + ad.getId());
-			redirectAttributes.addFlashAttribute("confirmationMessage",
-					"Ad placed successfully. You can take a look at it below.");
+			if (placeAdForm.getAuction()) {
+				model = new ModelAndView("redirect:/auction?id=" + ad.getId());
+				redirectAttributes.addFlashAttribute("confirmationMessage",
+						"Ad placed successfully. You can take a look at it below.");
+			}else{
+				model = new ModelAndView("redirect:/ad?id=" + ad.getId());
+				redirectAttributes.addFlashAttribute("confirmationMessage",
+						"Ad placed successfully. You can take a look at it below.");
+			}
 		} else {
 			model = new ModelAndView("placeAd");
 		}

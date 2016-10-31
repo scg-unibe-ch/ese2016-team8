@@ -23,15 +23,34 @@
 
 		//changes between Sale prize/ Prize per month
     $("#type-sale").on("click", function(){
-          document.getElementById('month-Prize').innerHTML="Sale prize";
-          document.getElementById('field-moveOutDate').style.display="none";
-          document.getElementById('moveOutDate').innerHTML="";
+		document.getElementById('type-rent').checked="";
+		document.getElementById('type-auction').checked="";
+        document.getElementById('month-Prize').innerHTML="Sale prize";
+        document.getElementById('field-moveOutDate').style.display="none";
+        document.getElementById('moveOutDate').innerHTML="";
+		document.getElementById('field-auctionEndDate').style.display="none";
     });
     $("#type-rent").on("click", function(){
-          document.getElementById('month-Prize').innerHTML="Prize per Month";
-          document.getElementById('field-moveOutDate').style.display="block";
-          document.getElementById('moveOutDate').innerHTML="Move-out date (optional)";
-    }); 
+		document.getElementById('type-sale').checked="";
+		document.getElementById('type-auction').checked="";
+        document.getElementById('month-Prize').innerHTML="Prize per Month";
+		document.getElementById('month-Prize').innerHTML="Prize per Month";
+        document.getElementById('field-moveOutDate').style.display="block";
+        document.getElementById('moveOutDate').innerHTML="Move-out date (optional)";
+		document.getElementById('field-auctionEndDate').style.display="none";
+    });
+
+    $("#type-auction").on("click", function(){
+    	document.getElementById('type-rent').checked="";
+		document.getElementById('type-sale').checked="checked";
+		document.getElementById('type-auction').checked="checked";
+        document.getElementById('month-Prize').innerHTML="Start Prize";
+        document.getElementById('field-Prize').path="startPrize";
+        document.getElementById('field-Prize').placeholder="Start Prize";
+		document.getElementById('field-moveOutDate').style.display="none";
+		document.getElementById('field-auctionEndDate').style.display="block";
+        document.getElementById('moveOutDate').innerHTML="Auction end date";
+    });
 
 		$("#field-city").autocomplete({
 			minLength : 2
@@ -47,6 +66,10 @@
 			dateFormat : 'dd-mm-yy'
 		});
 		$("#field-moveOutDate").datepicker({
+			dateFormat : 'dd-mm-yy'
+		});
+
+		$("#field-auctionEnd").datepicker({
 			dateFormat : 'dd-mm-yy'
 		});
 
@@ -163,6 +186,7 @@
 				<td><form:radiobutton id="type-rent" path="sale" value="0"
 						checked="checked" />Rent <form:radiobutton id="type-sale"
 						path="sale" value="1" />Sale</td>
+				<td><form:radiobutton id="type-auction" path="auction" value="1" />Auction</td>
 			</tr>
 
 			<tr>
@@ -185,7 +209,9 @@
 				<td><form:input type="text" id="field-moveInDate"
 						path="moveInDate" /></td>
 				<td><form:input type="text" id="field-moveOutDate"
-						path="moveOutDate" /></td>
+						path="moveOutDate" />
+					<form:input type="text" id="field-auctionEndDate" style="display:none;"
+						path="auctionEndDate" /></td>
 			</tr>
 
 			<tr>
@@ -246,38 +272,7 @@
 	</fieldset>
 
 	<br />
-	<fieldset>
-		<legend>Roommates (optional)</legend>
-		<p>If your roommates have an account, simply add them by email.</p>
-
-		<table class="placeAdTable">
-			<tr>
-				<td><label for="roomFriends">Add by email</label></td>
-			</tr>
-
-			<tr>
-				<td id="roommateCell"><form:input type="text" id="roomFriends"
-						path="roomFriends" placeholder="email" />
-
-					<div id="addbutton" class="smallPlusButton">+</div></td>
-			</tr>
-			<tr>
-				<td><p id="addedRoommates" path="addedRoommates">Added
-						roommates:</p></td>
-			</tr>
-		</table>
-
-		<br />
-		<p>If the roommates do not have accounts or you wish to give
-			further information, you can add a text in which you describe the
-			roommates.</p>
-		<br/>
-		<form:textarea path="roommates" rows="10" cols="100"
-			placeholder="Roommates" />
-		<form:errors path="roommates" cssClass="validationErrorText" />
-	</fieldset>
-
-	<br />
+	
 	<fieldset>
 		<legend>Preferences (optional)</legend>
 		<form:textarea path="preferences" rows="5" cols="100"

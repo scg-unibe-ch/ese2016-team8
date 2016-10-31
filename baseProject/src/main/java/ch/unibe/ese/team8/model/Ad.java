@@ -51,6 +51,10 @@ public class Ad {
 	@Column(nullable = true)
 	private Date moveOutDate;
 
+	@Temporal(TemporalType.DATE)
+	@Column(nullable = true)
+	private Date auctionEndDate;
+
 	@Column(nullable = false)
 	private int prizePerMonth;
 
@@ -65,7 +69,7 @@ public class Ad {
 	@Lob
 	private String preferences;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String roommates;
 
 	@Fetch(FetchMode.SELECT)
@@ -76,7 +80,7 @@ public class Ad {
 	private boolean allowsSmokers;
 
 	@Column(nullable = false)
-	private boolean allosAnimals;
+	private boolean allowsAnimals;
 
 	@Column(nullable = false)
 	private boolean hasGarden;
@@ -105,6 +109,19 @@ public class Ad {
 	@Column(nullable = false)
 	private boolean sale;
 
+	@Column(nullable = false)
+	private boolean auction;
+
+	@Column(nullable = false)
+	private int startPrize;
+
+	// @Column(nullable = false)
+	@Temporal(TemporalType.DATE)
+	private Date auctionDuration;
+
+	@ManyToOne(optional = true)
+	private User maxBidder;
+
 	@Fetch(FetchMode.SELECT)
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<AdPicture> pictures;
@@ -115,6 +132,28 @@ public class Ad {
 	@OneToMany(mappedBy = "ad", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Visit> visits;
 
+	@Column(nullable = false)
+	private boolean premium;
+
+	@Column(nullable = false)
+	private boolean auctionOver;
+
+	public void setAuctionOver(boolean end){
+		this.auctionOver = end;
+	}
+
+	public boolean getAuctionOver(){
+		return auctionOver;
+	}
+	public Date getAuctionEndDate(){
+		return auctionEndDate;
+	}
+
+	public void setAuctionEndDate(final Date auctionEndDate){
+		this.auctionEndDate= auctionEndDate;
+
+	}
+
 	public Date getCreationDate() {
 		return creationDate;
 	}
@@ -123,12 +162,52 @@ public class Ad {
 		this.creationDate = creationDate;
 	}
 
-	public boolean getSale(){
+	public boolean getSale() {
 		return sale;
 	}
 
-	public void setSale(final boolean sale){
+	public void setSale(final boolean sale) {
 		this.sale = sale;
+	}
+
+	public boolean getAuction() {
+		return auction;
+	}
+
+	public void setAuction(boolean auction) {
+		this.auction = auction;
+	}
+
+	public int getStartPrize() {
+		return startPrize;
+	}
+
+	public void setStartPrize(int startPrize) {
+		this.startPrize = startPrize;
+	}
+
+	public Date getAuctionDuration() {
+		return auctionDuration;
+	}
+
+	public void setAuctionDuration(Date auctionDuration) {
+		this.auctionDuration = auctionDuration;
+	}
+
+	public User getMaxBidder() {
+		return maxBidder;
+	}
+
+	public void setMaxBidder(User maxBidder) {
+		this.maxBidder = maxBidder;
+	}
+
+	public void setPremium(boolean premium) {
+		this.premium = premium;
+	}
+
+	public boolean getPremium() {
+		return premium;
 	}
 
 	public boolean getSmokers() {
@@ -140,11 +219,11 @@ public class Ad {
 	}
 
 	public boolean getAnimals() {
-		return allosAnimals;
+		return allowsAnimals;
 	}
 
 	public void setAnimals(final boolean allowsAnimals) {
-		this.allosAnimals = allowsAnimals;
+		this.allowsAnimals = allowsAnimals;
 	}
 
 	public boolean getGarden() {
@@ -283,11 +362,11 @@ public class Ad {
 		this.pictures = pictures;
 	}
 
-	public String getCategory(){
+	public String getCategory() {
 		return category;
 	}
 
-	public void setCategory(final String category){
+	public void setCategory(final String category) {
 		this.category = category;
 	}
 

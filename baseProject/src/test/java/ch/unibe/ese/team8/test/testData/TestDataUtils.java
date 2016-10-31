@@ -55,6 +55,8 @@ public class TestDataUtils
 	 * @param hasCable
 	 * @param hasGarage
 	 * @param hasInternet
+	 * @param sale
+	 * @param auction
 	 */
 	public static Ad polyfillAd(
 			final Ad ad,
@@ -83,6 +85,7 @@ public class TestDataUtils
 			final boolean hasGarage,
 			final boolean hasInternet,
 			final boolean sale,
+			final boolean auction,
 			final List<AdPicture> pictures)
 	{
 		ad.setZipcode( zipcode );
@@ -110,6 +113,7 @@ public class TestDataUtils
 		ad.setGarage( hasGarage );
 		ad.setInternet( hasInternet );
 		ad.setSale( sale );
+		ad.setAuction( auction );
 		ad.setPictures( pictures );
 
 		return ad;

@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +23,8 @@ import ch.unibe.ese.team8.controller.pojos.forms.SearchForm;
 import ch.unibe.ese.team8.model.Ad;
 import ch.unibe.ese.team8.model.AdPicture;
 import ch.unibe.ese.team8.model.Location;
+import ch.unibe.ese.team8.model.Message;
+import ch.unibe.ese.team8.model.MessageState;
 import ch.unibe.ese.team8.model.User;
 import ch.unibe.ese.team8.model.Visit;
 import ch.unibe.ese.team8.model.dao.AdDao;
@@ -100,6 +103,15 @@ public class AdService {
 				calendar.set(yearMoveOut, monthMoveOut - 1, dayMoveOut);
 				ad.setMoveOutDate(calendar.getTime());
 			}
+			
+			if (placeAdForm.getAuctionEndDate().length() >= 1) {
+				int dayAuctionEnd = Integer.parseInt(placeAdForm.getAuctionEndDate().substring(0, 2));
+				int monthAuctionEnd = Integer.parseInt(placeAdForm.getAuctionEndDate().substring(3, 5));
+				int yearAuctionEnd = Integer.parseInt(placeAdForm.getAuctionEndDate().substring(6, 10));
+				calendar.set(yearAuctionEnd, monthAuctionEnd - 1, dayAuctionEnd);
+				ad.setAuctionEndDate(calendar.getTime());
+			}
+			
 		} catch (NumberFormatException e) {
 		}
 
@@ -175,8 +187,10 @@ public class AdService {
 			ad.setVisits(visits);
 		}
 
-		ad.setUser(user);
+		ad.setAuction(placeAdForm.getAuction());
 
+		ad.setUser(user);
+		ad.setPremium(user.getPremium());
 		adDao.save(ad);
 
 		return ad;
@@ -205,7 +219,7 @@ public class AdService {
 	 */
 	@Transactional
 	public Iterable<Ad> getNewestAds(final int newest) {
-		Iterable<Ad> allAds = adDao.findAll();
+		Iterable<Ad> allAds = adDao.findByAuctionOver(false);
 		List<Ad> ads = new ArrayList<Ad>();
 		for (Ad ad : allAds)
 			ads.add(ad);
@@ -235,12 +249,12 @@ public class AdService {
 
 		// we use this method if we are looking for rooms AND studios
 		if (searchForm.getBothRentAndSale()) {
-			results = adDao.findByCategoryInAndPrizePerMonthLessThan(searchForm.getCategories(),
+			results = adDao.findByCategoryInAndPrizePerMonthLessThanOrderByPremiumDesc(searchForm.getCategories(),
 					searchForm.getPrize() + 1);
 		}
 		// we use this method if we are looking EITHER for rooms OR for studios
 		else {
-			results = adDao.findByCategoryInAndSaleAndPrizePerMonthLessThan(searchForm.getCategories(), searchForm.getSale(),
+			results = adDao.findByCategoryInAndSaleAndPrizePerMonthLessThanOrderByPremiumDesc(searchForm.getCategories(), searchForm.getSale(),
 					searchForm.getPrize() + 1);
 		}
 
@@ -476,4 +490,5 @@ public class AdService {
 		}
 		return false;
 	}
+
 }

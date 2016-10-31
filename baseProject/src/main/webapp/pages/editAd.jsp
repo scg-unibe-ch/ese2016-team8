@@ -17,7 +17,36 @@
 
 
 <script>
-	$(document).ready(function() {		
+	$(document).ready(function() {
+	
+		//changes between Sale prize/ Prize per month
+    $("#type-sale").on("click", function(){
+		document.getElementById('type-rent').checked="";
+		document.getElementById('type-auction').checked="";
+        document.getElementById('month-Prize').innerHTML="Sale prize";
+        document.getElementById('field-moveOutDate').style.display="none";
+        document.getElementById('moveOutDate').innerHTML="";
+    });
+    $("#type-rent").on("click", function(){
+		document.getElementById('type-sale').checked="";
+		document.getElementById('type-auction').checked="";
+        document.getElementById('month-Prize').innerHTML="Prize per Month";
+				document.getElementById('month-Prize').innerHTML="Prize per Month";
+        document.getElementById('field-moveOutDate').style.display="block";
+        document.getElementById('moveOutDate').innerHTML="Move-out date (optional)";
+    });
+
+    $("#type-auction").on("click", function(){
+    	document.getElementById('type-rent').checked="";
+		document.getElementById('type-sale').checked="checked";
+		document.getElementById('type-auction').checked="checked";
+        document.getElementById('month-Prize').innerHTML="Start Prize";
+        document.getElementById('field-Prize').path="startPrize";
+        document.getElementById('field-Prize').placeholder="Start Prize";
+		document.getElementById('field-moveOutDate').style.display="block";
+        document.getElementById('moveOutDate').innerHTML="Auction end date";
+    });
+		
 		$("#field-city").autocomplete({
 			minLength : 2
 		});
@@ -38,6 +67,8 @@
 		$("#field-visitDay").datepicker({
 			dateFormat : 'dd-mm-yy'
 		});
+		
+
 		
 		$("#addbutton").click(function() {
 			var text = $("#roomFriends").val();
@@ -138,22 +169,55 @@
 				<td><label for="field-title">Ad Title</label></td>
 				<td><label for="type-room">Type:</label></td>
 			</tr>
-
-			<tr>
-				<td><form:input id="field-title" path="title" value="${ad.title}" /></td>
+			<tr height="40px">
+				<td><form:input id="field-title" path="title"
+						value="${ad.title}"/></td>
 				<td>
+				<c:choose>
+				<c:when test="${ad.category == 'room' }">
+					<form:radiobutton id="type-room" path="category" value="room" checked="checked"/>Room 
+					<form:radiobutton id="type-studio" path="category" value="studio" />Studio 
+					<form:radiobutton id="type-house" path="category" value="house" />House
+				</c:when>
+				<c:when test="${ad.category == 'studio'}">
+					<form:radiobutton id="type-room" path="category" value="room" />Room 
+					<form:radiobutton id="type-studio" path="category" value="studio" checked="checked"/>Studio 
+					<form:radiobutton id="type-house" path="category" value="house" />House
+				</c:when>
+				<c:when test="${ad.category == 'house'}">
+					<form:radiobutton id="type-room" path="category" value="room" />Room 
+					<form:radiobutton id="type-studio" path="category" value="studio" />Studio 
+					<form:radiobutton id="type-house" path="category" value="house" checked="checked"/>House
+				</c:when>
+				</c:choose>
+				</td>
+				<td>
+				<c:choose>
+				<c:when test="${!ad.auction}">
 					<c:choose>
-						<c:when test="${ad.studio == 'true'}">
-							<form:radiobutton id="type-room" path="studio" value="1"
-								checked="checked" />Room <form:radiobutton id="type-studio"
-								path="studio" value="0" />Studio
-						</c:when>
-						<c:otherwise>
-							<form:radiobutton id="type-room" path="studio" value="0"
-								checked="checked" />Room <form:radiobutton id="type-studio"
-								path="studio" value="1" />Studio
-						</c:otherwise>
+					<c:when test="${ad.sale}">
+						<form:radiobutton id="type-rent" path="sale" value="0" />Rent 
+						<form:radiobutton id="type-sale" path="sale" value="1" checked="checked" />Sale
+					</c:when>
+					<c:otherwise>
+						<form:radiobutton id="type-rent" path="sale" value="0" checked="checked"/>Rent 
+						<form:radiobutton id="type-sale" path="sale" value="1" />Sale
+					</c:otherwise>
 					</c:choose>
+					</td>
+					<td>
+					<form:radiobutton id="type-auction" path="auction" value="1"/>Auction
+					</td>
+				</c:when>
+				<c:otherwise>
+				With auctions, type can't be changed
+				<div style="display:none;">
+				<form:radiobutton id="type-sale" path="sale" value="1" checked="checked" />
+				<form:radiobutton id="type-auction" path="auction" value="1" checked="checked"/>Auction
+				</div>
+				</td>
+				</c:otherwise>
+				</c:choose>
 			</tr>
 
 			<tr>
@@ -172,7 +236,7 @@
 
 			<tr>
 				<td><label for="moveInDate">Move-in date</label></td>
-				<td><label for="moveOutDate">Move-out date (optional)</label></td>
+				<td><label id="moveOutDate" for="moveOutDate">Move-out date (optional)</label></td>
 			</tr>
 			<tr>
 				<td>
@@ -186,14 +250,29 @@
 			</tr>
 
 			<tr>
-				<td><label for="field-Prize">Prize per month</label></td>
+				<td>
+				<c:choose>
+				<c:when test="${ad.auction}"><label for="field-Prize">Price not changeable</label></c:when>
+				<c:when test="${ad.sale}"><label for="field-Prize">Buy price</label></c:when>
+				<c:otherwise><label for="field-Prize">Price per month</label></c:otherwise>
+				</c:choose>
+				</td>
 				<td><label for="field-SquareFootage">Square Meters</label></td>
 			</tr>
 			<tr>
 				<td>
-					<form:input id="field-Prize" type="number" path="prize"
-						placeholder="Prize per month" step="50" value="${ad.prizePerMonth }"/> <form:errors
+				<c:choose>
+				<c:when test="${ad.auction}">
+				<div style="display:none;">
+				<form:input id="field-Prize" path="prize" value="${ad.prizePerMonth }" readonly="readonly" />
+				</div>
+				Actual: ${ad.prizePerMonth} CHF
+				</c:when>
+				<c:otherwise><form:input id="field-Prize" type="number" path="prize"
+						placeholder="Prize per month" step="50" value="${ad.prizePerMonth }" /> <form:errors
 						path="prize" cssClass="validationErrorText" />
+				</c:otherwise>
+				</c:choose>
 				</td>
 				<td>
 					<form:input id="field-SquareFootage" type="number"
@@ -335,57 +414,6 @@
 		<form:errors path="roomDescription" cssClass="validationErrorText" />
 	</fieldset>
 
-
-	<br />
-	<fieldset>
-		<legend>Change roommates</legend>
-		
-		<h3>Add new roommates</h3>
-		<br />
-		<p>If your roommates have an account, simply add them by email.</p>
-
-		<table class="placeAdTable">
-			<tr>
-				<td><label for="roomFriends">Add by email</label></td>
-			</tr>
-
-			<tr>
-				<td id="roommateCell"><form:input type="text" id="roomFriends"
-						path="roomFriends" placeholder="email" /> 
-
-				<div id="addbutton" class="smallPlusButton">+</div></td>
-			</tr>
-			
-			<tr>
-				<td><p id="addedRoommates" path="addedRoommates">Newly added roommates: </p></td>
-			</tr>
-		</table>
-
-
-		<p>Edit the description of the roommates:</p>
-		<br />
-		<form:textarea path="roommates" rows="10" cols="100"
-			placeholder="Roommates" />
-		<form:errors path="roommates" cssClass="validationErrorText" />
-		<hr />
-		<h3>Delete existing roommates</h3>
-		<br />
-		<table class="styledTable">
-					<tr>
-						<th>Username</th>
-						<th>Delete</th>
-					</tr>
-					
-					<c:forEach var="user" items="${ad.registeredRoommates}">
-							<tr>
-								<td>${user.username}</td>
-								<td><button type="button" data-user-id="${user.id}" data-ad-id="${ad.id}" class="deleteRoommateButton">Delete</button></td>
-							</tr>
-							<tr>
-					</c:forEach>
-		</table>
-	</fieldset>
-
 	<br />
 	<fieldset>
 		<legend>Change preferences</legend>
@@ -487,7 +515,12 @@
 
 	<div>
 		<button type="submit">Submit</button>
-		<a href="<c:url value='/ad?id=${ad.id}' />"> 
+		<c:choose>
+		<c:when test="${ad.auction}">
+		<a href="<c:url value='/auction?id=${ad.id}' />">
+		</c:when>
+		<c:otherwise><a href="<c:url value='/ad?id=${ad.id}' />"></c:otherwise>
+		</c:choose> 
 			<button type="button">Cancel</button>
 		</a>
 	</div>
