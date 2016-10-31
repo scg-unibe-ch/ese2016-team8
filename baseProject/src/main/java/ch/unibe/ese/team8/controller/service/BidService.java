@@ -49,7 +49,7 @@ public class BidService {
 
 			message.setRecipient(ad.getMaxBidder());
 			message.setSubject(systemService.getBidNotification());
-			message.setText(systemService.getBidText(ad.getMaxBidder(), ad.getId(), ad.getAuctionEndDate()));
+			message.setText(systemService.getBidText(ad.getMaxBidder(), ad.getId(), ad.getAuctionEndDate(), bid));
 			message.setState(MessageState.UNREAD);
 			message.setSender(systemService.getAdmin());
 

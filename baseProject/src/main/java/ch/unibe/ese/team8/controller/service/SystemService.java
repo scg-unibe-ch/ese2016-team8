@@ -24,14 +24,14 @@ public class SystemService {
 		return "Somebody just bid more than you";
 	}
 
-	public String getBidText(User maxBidder, long id, Date auctionEndDate) {
+	public String getBidText(User maxBidder, long id, Date auctionEndDate, int prize) {
 		StringBuffer message = new StringBuffer();
 
 		message.append("Dear " + maxBidder.getFirstName() + " " + maxBidder.getLastName() + "</br>");
 		message.append(
-				"Somebody just bid more than youd did, on the following ad: <a href=\"http://localhost:8080/auction?id="
-						+ id + "\">Find the Auction</a></br>");
-		message.append("</br>Note: The auction will end on the: " + auctionEndDate.toString());
+				"Somebody just bid more than you did, on the following ad: <a href=\"http://localhost:8080/auction?id="
+						+ id + "\">"+ adService.getAdById(id).getTitle()  +"</a></br>");
+		message.append("</br>Note: The auction will end on the " + auctionEndDate.toString() +" and the current price is " + prize);
 
 		return message.toString();
 	}
