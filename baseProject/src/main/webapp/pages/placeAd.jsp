@@ -69,7 +69,7 @@
 			dateFormat : 'dd-mm-yy'
 		});
 
-		$("#field-auctionEnd").datepicker({
+		$("#field-auctionEndDate").datepicker({
 			dateFormat : 'dd-mm-yy'
 		});
 

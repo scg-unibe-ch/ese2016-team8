@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,8 +22,6 @@ import ch.unibe.ese.team8.controller.pojos.forms.SearchForm;
 import ch.unibe.ese.team8.model.Ad;
 import ch.unibe.ese.team8.model.AdPicture;
 import ch.unibe.ese.team8.model.Location;
-import ch.unibe.ese.team8.model.Message;
-import ch.unibe.ese.team8.model.MessageState;
 import ch.unibe.ese.team8.model.User;
 import ch.unibe.ese.team8.model.Visit;
 import ch.unibe.ese.team8.model.dao.AdDao;
@@ -53,6 +50,9 @@ public class AdService {
 
 	@Autowired
 	private GeoDataService geoDataService;
+
+	@Autowired
+	private SystemService systemService;
 
 	/**
 	 * Handles persisting a new ad to the database.
@@ -188,7 +188,7 @@ public class AdService {
 		}
 
 		ad.setAuction(placeAdForm.getAuction());
-
+		ad.setMaxBidder(systemService.getAdmin());
 		ad.setUser(user);
 		ad.setPremium(user.getPremium());
 		adDao.save(ad);

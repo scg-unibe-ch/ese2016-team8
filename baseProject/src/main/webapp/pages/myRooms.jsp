@@ -32,12 +32,23 @@
 				<div class="resultAd" data-price="${ad.prizePerMonth}" 
 								data-moveIn="${ad.moveInDate}" data-age="${ad.moveInDate}">
 					<div class="resultLeft">
-						<a href="<c:url value='/ad?id=${ad.id}' />"><img
-							src="${ad.pictures[0].filePath}" /></a>
-						<h2>
-							<a href="<c:url value='/ad?id=${ad.id}' />">${ad.title }</a>
-						</h2>
-						<p>${ad.street}, ${ad.zipcode} ${ad.city}</p>
+						<c:choose>
+							<c:when test="${ad.auction}">
+							<a href="<c:url value='/auction?id=${ad.id}' />"><img
+								src="${ad.pictures[0].filePath}" /></a>
+							<h2>
+								<a href="<c:url value='/auction?id=${ad.id}' />">${ad.title }</a>
+							</h2>
+							</c:when>
+							<c:otherwise>
+							<a href="<c:url value='/ad?id=${ad.id}' />"><img
+								src="${ad.pictures[0].filePath}" /></a>
+							<h2>
+								<a href="<c:url value='/ad?id=${ad.id}' />">${ad.title }</a>
+							</h2>
+							</c:otherwise>
+						</c:choose>
+							<p>${ad.street}, ${ad.zipcode} ${ad.city}</p>
 						<br />
 						<p>
 							<i><c:choose>

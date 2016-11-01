@@ -74,11 +74,14 @@ window.onload = function () {
     var currentUserId1 = document.getElementById('currentUserId').innerHTML;
 	var currentUserId = parseInt(currentUserId1);
 	var maxBidderID = ${shownAd.maxBidder.id};
+
 	if(currentUserId - maxBidderID == 0){
 		document.getElementById('highestBidder').innerHTML="You are the highest bidder";
+	}else if(maxBidderID == 1){
+		document.getElementById('highestBidder').innerHTML="None yet!";
 	}else{
 		document.getElementById('highestBidder').innerHTML="Someone else placed a higher bid";
-}
+	}
 };
 
 
