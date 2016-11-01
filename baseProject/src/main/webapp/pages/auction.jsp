@@ -31,7 +31,7 @@
         minutes,
         seconds;
     function timer() {
-        // get the number of seconds that have elapsed since 
+        // get the number of seconds that have elapsed since
         // startTimer() was called
         diff = ((Date.now() - start) / 1000);
 
@@ -44,7 +44,7 @@
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        display.textContent = days +" Days " + hours + " Hours "+minutes + " Minutes " + seconds + " Seconds"; 
+        display.textContent = days +" Days " + hours + " Hours "+minutes + " Minutes " + seconds + " Seconds";
 
         if (diff <= 0) {
             // add one second so that the count down starts at the full duration
@@ -63,7 +63,7 @@ window.onload = function () {
 
 	// Ugly method, since JS Date works with month in [0-11] range WTF :D
     var endDate = new Date(ending.substring(0,4), ending.substring(5,7)-1, ending.substring(8,10));
-  
+
   	var now = new Date();
   	console.log(now);
     seconds = endDate.getTime()-now.getTime();
@@ -293,7 +293,7 @@ window.onload = function () {
 			<tr height="44px">
 			<td width="50%" style="vertical-align:top"><a class="right"  id="makeBid">Place bid</a></td>
 			<td width="50%" style="vertical-align:middle"><input style="float:right; margin-left: 10px;"
-			align="right" type="number" step="50" name="bid" id="bid" min="${ad.prizePerMonth+1}" value="${shownAd.prizePerMonth+1}">
+			align="right" type="number" step="50" name="bid" id="bid" min="${ad.prizePerMonth+50}" value="${shownAd.prizePerMonth+50}">
 			</td></tr></table>
 		</c:when>
 	</c:choose>
