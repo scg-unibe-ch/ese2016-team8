@@ -71,11 +71,11 @@
 								<li><a id="messageLink" href="/profile/messages"></a></li>
 								<li><a href="/profile/enquiries">Enquiries</a></li>
 								<li><a href="/profile/schedule">Schedule</a></li>
-								<li><a href="/profile/alerts">Alerts</a></li>
+								<li><a href="/profile/alerts" style="display: none">Alerts</a></li>
 								<li>
 								<% out.print("<a href=\"/user?id=" + realUser.getId() + "\">Public Profile</a>"); %>
 								</li>
-								<li><a id="premiumButtonH"  onclick="confirmPremium()"  href="/profile/editProfile">Premium</a></li>
+								<li><a id="premiumButtonH"   href="/profile/editProfile">Premium</a></li>
 								<li><a href="/logout">Logout</a></li>
 							</ul></li>
 					</c:when>
