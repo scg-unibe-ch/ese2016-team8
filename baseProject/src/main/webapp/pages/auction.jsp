@@ -36,7 +36,7 @@
         diff = ((Date.now() - start) / 1000);
 
         // does the same job as parseInt truncates the float
-        days = (duration - diff)/60/60/24 | 0; 
+        days = (duration - diff)/60/60/24 | 0;
         hours = (duration - diff - days*60*60*24)/60/60 | 0;
         minutes = (duration - diff - days*60*60*24 - hours*60*60)/60 | 0;
         seconds = (duration - diff - days*60*60*24 - hours*60*60 - minutes*60)| 0;
@@ -58,16 +58,16 @@
 }
 
 window.onload = function () {
-    var ending = "${shownAd.auctionEndDate}",
-        display = document.querySelector('#time');
+	var ending = "${shownAd.auctionEndDate}",
+	    display = document.querySelector('#time');
 
-    var endDate = new Date(ending.substring(0,4), ending.substring(5,7), ending.substring(9,11));
+	// Ugly method, since JS Date works with month in [0-11] range WTF :D
+    var endDate = new Date(ending.substring(0,4), ending.substring(5,7)-1, ending.substring(8,10));
   
-  	var now = Date.now();
-
-    seconds = endDate.getTime()-now;
+  	var now = new Date();
+  	console.log(now);
+    seconds = endDate.getTime()-now.getTime();
     seconds = seconds / 1000;
-    console.log(seconds);
 
     startTimer(seconds, display);
 
