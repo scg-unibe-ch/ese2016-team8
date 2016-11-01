@@ -69,7 +69,7 @@
 			dateFormat : 'dd-mm-yy'
 		});
 
-		$("#field-auctionEnd").datepicker({
+		$("#field-auctionEndDate").datepicker({
 			dateFormat : 'dd-mm-yy'
 		});
 
@@ -272,7 +272,7 @@
 	</fieldset>
 
 	<br />
-	
+
 	<fieldset>
 		<legend>Preferences (optional)</legend>
 		<form:textarea path="preferences" rows="5" cols="100"
