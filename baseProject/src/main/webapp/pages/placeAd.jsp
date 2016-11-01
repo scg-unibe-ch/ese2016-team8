@@ -272,7 +272,7 @@
 	</fieldset>
 
 	<br />
-	
+
 	<fieldset>
 		<legend>Preferences (optional)</legend>
 		<form:textarea path="preferences" rows="5" cols="100"
