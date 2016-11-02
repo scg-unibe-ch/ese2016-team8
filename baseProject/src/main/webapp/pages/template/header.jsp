@@ -53,6 +53,7 @@
 					<script>
 						$(document).ready(unreadMessages("header"));
 					</script>
+
 					<!-- include user details -->
 					<%@include file='/pages/getUserPicture.jsp' %>
 						<li id="profile_picture"><a href="#">
@@ -67,7 +68,7 @@
 								<a id="premStatus" style="display: none"> <% out.print( realUser.getPremium() ); %></a>
 								<li><a href="/profile/placeAd">Place an ad</a></li>
 								<li><a href="/profile/myRooms">My rooms</a></li>
-				
+								<li><a id="messageLink" href="/profile/messages"></a></li>
 								<li><a href="/profile/enquiries">Enquiries</a></li>
 								<li><a href="/profile/schedule">Schedule</a></li>
 								<li><a href="/profile/alerts" style="display: none">Alerts</a></li>
@@ -82,7 +83,7 @@
 						<li><a href="/login"><img width=20px hight=20px style="margin-top:-2px"src="../img/key.png"/> Login</a></li>
 					</c:otherwise>
 				</c:choose>
-				<li><a id="messageLink" href="/profile/messages"></a></li>
+
 				<li><a href="<c:url value='/searchAd' />"><img width=20px hight=20px style="margin-right:5px" src="../img/lupe.png"/ >Search</a></li>
 			</ul>
 		</nav>
