@@ -89,19 +89,35 @@ public class BidService {
 		long auctionId = auction.getId();
 		
 		Message message = new Message();
+		Date now = new Date();
 		
 		message.setRecipient(seller);
 		message.setSender(maxBidder);
 		message.setSubject(systemService.getSaleNotification(seller, auctionId, maxBidder));
 		message.setText(systemService.getSaleText(maxBidder, auctionId, seller));
-		
+		message.setState(MessageState.UNREAD);
+		message.setDateSent(now);
 				
 		messageDao.save(message);
 		
 	}
 
 	private void sendMessageToMaxBidder(Ad auction) {
-		// TODO Auto-generated method stub
+		User maxBidder = auction.getMaxBidder();
+		User seller = auction.getUser();
+		long auctionId = auction.getId();
+		
+		Message message = new Message();
+		Date now = new Date();
+		
+		message.setRecipient(maxBidder);
+		message.setSender(seller);
+		message.setSubject(systemService.getBuyNotification());
+		message.setText(systemService.getBuyText(maxBidder, auctionId, seller));
+		message.setState(MessageState.UNREAD);
+		message.setDateSent(now);
+				
+		messageDao.save(message);
 		
 	}
 

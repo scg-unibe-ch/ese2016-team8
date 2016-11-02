@@ -65,6 +65,7 @@ public class AdServiceTest {
 		placeAdForm.setCategory("studio");
 		placeAdForm.setMoveInDate("27-02-2015");
 		placeAdForm.setMoveOutDate("27-04-2015");
+		placeAdForm.setAuctionEndDate("");
 		
 		placeAdForm.setSmokers(true);
 		placeAdForm.setAnimals(false);

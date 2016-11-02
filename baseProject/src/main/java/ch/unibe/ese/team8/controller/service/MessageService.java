@@ -43,8 +43,12 @@ public class MessageService {
 				return message2.getDateSent().compareTo(message1.getDateSent());
 			}
 		});
+		
+		if(!messages.isEmpty()){
 		messages.get(0).setState(MessageState.READ);
 		messageDao.save(messages.get(0));
+		}
+		
 		return messages;
 	}
 

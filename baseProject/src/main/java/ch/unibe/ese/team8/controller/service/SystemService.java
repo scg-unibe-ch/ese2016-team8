@@ -37,29 +37,47 @@ public class SystemService {
 	}
 
 	public String getSaleNotification(User user, long id, User buyer) {
+//		StringBuffer message = new StringBuffer();
+//
+//		message.append("Dear " + user.getFirstName() + " " + user.getLastName() + "</br>");
+//		message.append(
+//				"Congratulations, your auction ended successfully! The see your ad: <a href=\"http://localhost:8080/auction?id="
+//						+ id + "\">click here</a></br>");
+//		message.append(
+//				"</br> Please get in contact with the buyer, as soon as possible. You find his contact information below!");
+//		message.append("</br> " + buyer.getFirstName() + " " + buyer.getLastName() + " " + buyer.getEmail());
+
+		return "Your auction \"" + adService.getAdById(id).getTitle() + "\" ended";
+	}
+	
+	public String getBuyNotification(){
+		return "You won an auction!";
+	}
+
+	public String getBuyText(User user, long id, User seller){
 		StringBuffer message = new StringBuffer();
 
 		message.append("Dear " + user.getFirstName() + " " + user.getLastName() + "</br>");
 		message.append(
-				"Congratulations, your auction ended successfully! The see your ad: <a href=\"http://localhost:8080/auction?id="
+				"Congratulations, your made the highest bid on an auction! The see your ad: <a href=\"http://localhost:8080/auction?id="
 						+ id + "\">click here</a></br>");
 		message.append(
-				"</br> Please get in contact with the buyer, as soon as possible. You find his contact information below!");
-		message.append("</br> " + buyer.getFirstName() + " " + buyer.getLastName() + " " + buyer.getEmail());
+				"</br> Please get in contact with the seller, as soon as possible. You find his contact information below!");
+		message.append("</br> " + seller.getFirstName() + " " + seller.getLastName() + " " + seller.getEmail());
 
 		return message.toString();
 	}
-
+	
 	public String getSaleText(User user, long id, User seller) {
 		StringBuffer message = new StringBuffer();
 
-		message.append("Dear " + user.getFirstName() + " " + user.getLastName() + "</br>");
+		message.append("Dear " + seller.getFirstName() + " " + seller.getLastName() + "</br>");
 		message.append(
 				"Congratulations, your auction ended successfully! The see your ad: <a href=\"http://localhost:8080/auction?id="
 						+ id + "\">click here</a></br>");
 		message.append(
 				"</br> Please get in contact with the buyer, as soon as possible. You find his contact information below!");
-		message.append("</br> " + seller.getFirstName() + " " + seller.getLastName() + " " + seller.getEmail());
+		message.append("</br> " + user.getFirstName() + " " + user.getLastName() + " " + user.getEmail());
 
 		return message.toString();
 	}
