@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 
 <c:import url="template/header.jsp" />
 
@@ -22,20 +24,25 @@ function validateType(form)
 {
 	var room = document.getElementById('room');
 	var studio = document.getElementById('studio');
-	var neither = document.getElementById('neither');
-	var both = document.getElementById('both');
-	
-	if(room.checked && studio.checked) {
-		both.checked = true;
-		neither.checked = false;
+	var house = document.getElementById('house');
+	var types = "";
+
+	if(room.checked){
+		types += ",room";
 	}
-	else if(!room.checked && !studio.checked) {
-		both.checked = false;
-		neither.checked = true;
+
+	if(studio.checked){
+		types += ",studio";
 	}
-	else {
-		both.checked = false;
-		neither.checked = false;
+
+	if(house.checked) {
+		types += ",house";
+	}
+
+	document.getElementById('category').value = types;
+
+	if(types == ""){
+		return false;
 	}
 }
 </script>
@@ -73,6 +80,7 @@ function validateType(form)
 	<fieldset>
 		<form:checkbox name="room" id="room" path="roomHelper" /><label>Room</label>
 		<form:checkbox name="studio" id="studio" path="studioHelper" /><label>Studio</label>
+		<form:checkbox name="house" id="house" path="houseHelper" /><label>House</label>
 		<form:input style="display:none" type="text" name="category" id="category" path="category"/>
 		
 		<label for="city">City / zip code:</label>
@@ -118,17 +126,15 @@ function validateType(form)
 		<c:forEach var="alert" items="${alerts}">
 			<tr>
 				<td>
-				<c:choose>
-					<c:when test="${alert.category == 'room'}">
-						Both
-					</c:when>
-					<c:when test="${alert.category == 'studio'}">
-						Studio
-					</c:when>
-					<c:otherwise>
-						Room
-					</c:otherwise>
-				</c:choose>
+				<c:if test="${fn:containsIgnoreCase(alert.category, 'house')}">
+					House 
+				</c:if>
+				<c:if test="${fn:containsIgnoreCase(alert.category, 'room')}">
+					Room 
+				</c:if>
+				<c:if test="${fn:containsIgnoreCase(alert.category, 'studio')}">
+					Studio
+				</c:if>
 				</td>
 				<td>${alert.city}</td>
 				<td>${alert.radius} km</td>
