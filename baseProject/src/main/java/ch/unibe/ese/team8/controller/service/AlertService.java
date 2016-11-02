@@ -133,7 +133,7 @@ public class AlertService {
 		} else {
 			message.append("href=/ad?id=");
 		}
-		message.append("ad.getId()" + ">" + ad.getTitle() + "</a><br><br>" + "Good luck and enjoy,<br>"
+		message.append(ad.getId() + ">" + ad.getTitle() + "</a><br><br>" + "Good luck and enjoy,<br>"
 				+ "Your FlatFindr crew");
 
 		return message.toString();
