@@ -23,6 +23,7 @@ public class LoggerForm
 	{
 		// Streams args and for every String adds him to to Return
 		Arrays.stream(args).forEach(s -> (body + "").concat(String.format("%s %s", s, System.lineSeparator())));
+		body += System.lineSeparator();
 	}
 
 	public void createResult()
