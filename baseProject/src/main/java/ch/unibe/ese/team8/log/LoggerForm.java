@@ -17,7 +17,7 @@ public class LoggerForm
 	{
 		// Fills first line of toReturn with the State and adds a new line at the end
 		// Adds the current Date to the toReturn
-		header = String.format("State: %s %s Date: %s", state.toString(), System.lineSeparator(), Calendar.getInstance().getTime().toString());
+		header = String.format("State: %s %s Date: %s %s", state.toString(), System.lineSeparator(), Calendar.getInstance().getTime().toString(), System.lineSeparator());
 	}
 	public void createBody(final String... args)
 	{
