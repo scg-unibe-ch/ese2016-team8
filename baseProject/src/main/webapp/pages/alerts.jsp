@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 
 <c:import url="template/header.jsp" />
 
@@ -22,33 +24,27 @@ function validateType(form)
 {
 	var room = document.getElementById('room');
 	var studio = document.getElementById('studio');
-	var neither = document.getElementById('neither');
-	var both = document.getElementById('both');
-	
-	if(room.checked && studio.checked) {
-		both.checked = true;
-		neither.checked = false;
+	var house = document.getElementById('house');
+	var types = "";
+
+	if(room.checked){
+		types += ",room";
 	}
-	else if(!room.checked && !studio.checked) {
-		both.checked = false;
-		neither.checked = true;
+
+	if(studio.checked){
+		types += ",studio";
 	}
-	else {
-		both.checked = false;
-		neither.checked = false;
+
+	if(house.checked) {
+		types += ",house";
+	}
+
+	document.getElementById('category').value = types;
+
+	if(types == ""){
+		return false;
 	}
 }
-</script>
-
-<script>
-function typeOfAlert(alert) {
-	if(alert.getBothRoomAndStudio())
-		return "Both"
-	else if(alert.getStudio())
-		return "Studio"
-	else
-		return "Room"
-}	
 </script>
 	
 <script>
@@ -82,12 +78,10 @@ function typeOfAlert(alert) {
 	id="alertForm" autocomplete="off">
 
 	<fieldset>
-		<form:checkbox name="room" id="room" path="room" /><label>Room</label>
-		<form:checkbox name="studio" id="studio" path="studio" /><label>Studio</label>
-		
-		<form:checkbox style="display:none" name="neither" id="neither" path="noRoomNoStudio" />
-		<form:checkbox style="display:none" name="both" id="both" path="bothRoomAndStudio" />
-		<form:errors path="noRoomNoStudio" cssClass="validationErrorText" /><br />
+		<form:checkbox name="room" id="room" path="roomHelper" /><label>Room</label>
+		<form:checkbox name="studio" id="studio" path="studioHelper" /><label>Studio</label>
+		<form:checkbox name="house" id="house" path="houseHelper" /><label>House</label>
+		<form:input style="display:none" type="text" name="category" id="category" path="category"/>
 		
 		<label for="city">City / zip code:</label>
 		<form:input type="text" name="city" id="city" path="city"
@@ -132,17 +126,15 @@ function typeOfAlert(alert) {
 		<c:forEach var="alert" items="${alerts}">
 			<tr>
 				<td>
-				<c:choose>
-					<c:when test="${alert.bothRoomAndStudio}">
-						Both
-					</c:when>
-					<c:when test="${alert.studio}">
-						Studio
-					</c:when>
-					<c:otherwise>
-						Room
-					</c:otherwise>
-				</c:choose>
+				<c:if test="${fn:containsIgnoreCase(alert.category, 'house')}">
+					House 
+				</c:if>
+				<c:if test="${fn:containsIgnoreCase(alert.category, 'room')}">
+					Room 
+				</c:if>
+				<c:if test="${fn:containsIgnoreCase(alert.category, 'studio')}">
+					Studio
+				</c:if>
 				</td>
 				<td>${alert.city}</td>
 				<td>${alert.radius} km</td>

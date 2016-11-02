@@ -1,0 +1,15 @@
+Team 8 and Claudio, 02.11.2016
+
+Input from developers:
+--> Star and Position are ok
+--> Biddings must be at least 50.- highter than the current bid
+--> The highest bidder will no more be linked, and therefore his personal information are no longer visible.
+--> Auctions and Notifiers are ok as is.
+--> design is ok.
+
+TODO:
+i) Show somehow that new things have happened, i.e. like Facebook. So that users don't need to check everytime.
+
+!!! On the 02.11.16 the customer will check thoroughly tested, and everything that he sees will be checked (it's better to remove things that don't work rather than to leave them not working).
+
+ii) Get the Alerts working again.

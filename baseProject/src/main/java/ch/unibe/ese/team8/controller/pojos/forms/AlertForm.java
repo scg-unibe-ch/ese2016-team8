@@ -34,6 +34,10 @@ public class AlertForm {
 	@NotNull(message = "Requires a category")
 	private String category;
 
+	private boolean houseHelper;
+	private boolean roomHelper;
+	private boolean studioHelper;
+	
 	public String getCity() {
 		return city;
 	}
@@ -81,5 +85,29 @@ public class AlertForm {
 	// TODO: change dependencies where below 'getCategory(...)' is used to 'setCategory(...)'
 	public void setCategory(final String category) {
 		this.category = category;
+	}
+
+	public boolean getHouseHelper() {
+		return houseHelper;
+	}
+
+	public void setHouseHelper(boolean houseHelper) {
+		this.houseHelper = houseHelper;
+	}
+
+	public boolean getRoomHelper() {
+		return roomHelper;
+	}
+
+	public void setRoomHelper(boolean roomHelper) {
+		this.roomHelper = roomHelper;
+	}
+
+	public boolean getStudioHelper() {
+		return studioHelper;
+	}
+
+	public void setStudioHelper(boolean studioHelper) {
+		this.studioHelper = studioHelper;
 	}
 }
