@@ -6,37 +6,19 @@ import java.io.IOException;
 
 public class Logger {
 
-	private final String toWrite;
-
-	public Logger(final String message, final RequestState state)
-	{
-		toWrite = createTemplate(message, state);
-	}
-
 	/**
-	 * TODO: Define template in which things should be added to a file
-	 * @param message
-	 * @param state
-	 * @return
-	 */
-	private String createTemplate(final String message, final RequestState state)
-	{
-		// System.lineSepeartor() returns the String which adds a new line
-		String toReturn = message.concat(" " + state.toString()).concat(System.lineSeparator());
-		return toReturn;
-	}
-
-	/**
-	 * Logs the current message and state to the given file.
+	 * Gets the result from the LoggerForm and write it to the 'controller.log'.
 	 *
 	 * @param file
 	 * @throws IOException
 	 */
-	public void logToFile(final File file) throws IOException
+	public void logToFile(final LoggerForm lf) throws IOException
 	{
 		try {
+			File file = new File("baseProject/controller.log");
 			FileWriter fw = new FileWriter(file);
-			fw.write(toWrite);
+			fw.write( lf.getResult() );
+			fw.close();
 		}
 		catch (IOException e)
 		{
