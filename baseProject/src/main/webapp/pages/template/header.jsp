@@ -71,7 +71,7 @@
 								<li><a id="messageLink" href="/profile/messages"></a></li>
 								<li><a href="/profile/enquiries">Enquiries</a></li>
 								<li><a href="/profile/schedule">Schedule</a></li>
-								<li><a href="/profile/alerts" style="display: none">Alerts</a></li>
+								<li><a href="/profile/alerts" style="display: block">Alerts</a></li>
 								<li>
 								<% out.print("<a href=\"/user?id=" + realUser.getId() + "\">Public Profile</a>"); %>
 								</li>

@@ -39,17 +39,6 @@ function validateType(form)
 	}
 }
 </script>
-
-<script>
-function typeOfAlert(alert) {
-	if(alert.getBothRoomAndStudio())
-		return "Both"
-	else if(alert.getStudio())
-		return "Studio"
-	else
-		return "Room"
-}	
-</script>
 	
 <script>
 	$(document).ready(function() {
@@ -82,12 +71,9 @@ function typeOfAlert(alert) {
 	id="alertForm" autocomplete="off">
 
 	<fieldset>
-		<form:checkbox name="room" id="room" path="room" /><label>Room</label>
-		<form:checkbox name="studio" id="studio" path="studio" /><label>Studio</label>
-		
-		<form:checkbox style="display:none" name="neither" id="neither" path="noRoomNoStudio" />
-		<form:checkbox style="display:none" name="both" id="both" path="bothRoomAndStudio" />
-		<form:errors path="noRoomNoStudio" cssClass="validationErrorText" /><br />
+		<form:checkbox name="room" id="room" path="roomHelper" /><label>Room</label>
+		<form:checkbox name="studio" id="studio" path="studioHelper" /><label>Studio</label>
+		<form:input style="display:none" type="text" name="category" id="category" path="category"/>
 		
 		<label for="city">City / zip code:</label>
 		<form:input type="text" name="city" id="city" path="city"
@@ -133,10 +119,10 @@ function typeOfAlert(alert) {
 			<tr>
 				<td>
 				<c:choose>
-					<c:when test="${alert.bothRoomAndStudio}">
+					<c:when test="${alert.category == 'room'}">
 						Both
 					</c:when>
-					<c:when test="${alert.studio}">
+					<c:when test="${alert.category == 'studio'}">
 						Studio
 					</c:when>
 					<c:otherwise>
