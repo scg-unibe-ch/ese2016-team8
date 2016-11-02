@@ -94,7 +94,7 @@ public class BidService {
 		message.setSender(maxBidder);
 		message.setSubject(systemService.getSaleNotification(seller, auctionId, maxBidder));
 		message.setText(systemService.getSaleText(maxBidder, auctionId, seller));
-		
+		message.setState(MessageState.UNREAD);
 				
 		messageDao.save(message);
 		
