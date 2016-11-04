@@ -1,4 +1,4 @@
-<%@ page import="ch.unibe.ese.team8.model.Ad"%>
+﻿<%@ page import="ch.unibe.ese.team8.model.Ad"%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>
 <%@ page language="java" pageEncoding="UTF-8"
@@ -222,7 +222,7 @@ window.onload = function () {
 		<tr>
 			<td><h2>Address</h2></td>
 			<td>
-				<a class="link" href="http://maps.google.com/?q=${shownAd.street}, ${shownAd.zipcode}, ${shownAd.city}">${shownAd.street},
+				<a class="link" href="http://maps.google.com/?q=${shownAd.street}, ${shownAd.zipcode}, ${shownAd.city}" target="_blank">${shownAd.street},
 						${shownAd.zipcode} ${shownAd.city}</a>
 			</td>
 		</tr>
@@ -265,6 +265,26 @@ window.onload = function () {
 		</c:when></c:choose>
 		</tr>
 	</table>
+	
+	<div id="bidDiv">
+		<c:choose>
+			<c:when test="${shownAd.auctionOver}">
+				<a class="right" id="makeBidDisabled">Auction over</a>
+			</c:when>
+			<c:otherwise>
+				<c:choose>
+					<c:when test="${loggedIn}">
+						<table>
+						<tr height="44px">
+						<td width="50%" style="vertical-align:top"><a class="right"  id="makeBid">Place bid</a></td>
+						<td width="50%" style="vertical-align:middle"><input style="float:right; margin-left: 10px;"
+						align="right" type="number" step="50" name="bid" id="bid" min="${ad.prizePerMonth+50}" value="${shownAd.prizePerMonth+50}">
+						</td></tr></table>
+					</c:when>
+				</c:choose>
+			</c:otherwise>
+		</c:choose>
+	</div>
 </section>
 
 
@@ -280,25 +300,6 @@ window.onload = function () {
 	<div id="right-arrow">
 		<img src="/img/right-arrow.png" />
 	</div>
-</div>
-<div id="bidDiv">
-<c:choose>
-	<c:when test="${shownAd.auctionOver}">
-<a class="right" id="makeBidDisabled">Auction over</a>
-	</c:when>
-	<c:otherwise>
-	<c:choose>
-		<c:when test="${loggedIn}">
-			<table>
-			<tr height="44px">
-			<td width="50%" style="vertical-align:top"><a class="right"  id="makeBid">Place bid</a></td>
-			<td width="50%" style="vertical-align:middle"><input style="float:right; margin-left: 10px;"
-			align="right" type="number" step="50" name="bid" id="bid" min="${ad.prizePerMonth+50}" value="${shownAd.prizePerMonth+50}">
-			</td></tr></table>
-		</c:when>
-	</c:choose>
-</c:otherwise>
-</c:choose>
 </div>
 
 <hr class="clearBoth" />

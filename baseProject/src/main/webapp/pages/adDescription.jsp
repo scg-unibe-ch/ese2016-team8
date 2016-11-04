@@ -181,7 +181,7 @@
 		<tr>
 			<td><h2>Address</h2></td>
 			<td>
-				<a class="link" href="http://maps.google.com/?q=${shownAd.street}, ${shownAd.zipcode}, ${shownAd.city}">${shownAd.street},
+				<a class="link" href="http://maps.google.com/?q=${shownAd.street}, ${shownAd.zipcode}, ${shownAd.city}" target="_blank">${shownAd.street},
 						${shownAd.zipcode} ${shownAd.city}</a>
 			</td>
 		</tr>
