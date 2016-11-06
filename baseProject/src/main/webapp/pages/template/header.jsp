@@ -11,7 +11,7 @@
 <!-- 	<link rel="stylesheet" media="screen and (max-width: 1000px)" href="css/mobile.css" />
 	<link rel='stylesheet' media='screen and (min-width: 1001px)' href='css/main.css' />
 -->
-<link rel='stylesheet' media='screen' href='css/main.css' />
+<link rel="stylesheet" media="screen" type="text/css" href="/css/main.css" />
 <link rel="icon" href="img/fav.png" type="image/vnd.microsoft.icon" />
 <Title>FlatFindr | It's good real estate</Title>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
