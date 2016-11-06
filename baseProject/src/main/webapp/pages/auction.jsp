@@ -58,18 +58,21 @@
 }
 
 window.onload = function () {
-	var ending = "${shownAd.auctionEndDate}",
-	    display = document.querySelector('#time');
 
-	// Ugly method, since JS Date works with month in [0-11] range WTF :D
-    var endDate = new Date(ending.substring(0,4), ending.substring(5,7)-1, ending.substring(8,10));
+	if(${shownAd.auctionOver} == 0){
+		var ending = "${shownAd.auctionEndDate}",
+		    display = document.querySelector('#time');
 
-  	var now = new Date();
-  	console.log(now);
-    seconds = endDate.getTime()-now.getTime();
-    seconds = seconds / 1000;
+		// Ugly method, since JS Date works with month in [0-11] range WTF :D
+	    var endDate = new Date(ending.substring(0,4), ending.substring(5,7)-1, ending.substring(8,10));
 
-    startTimer(seconds, display);
+	  	var now = new Date();
+
+	    seconds = endDate.getTime()-now.getTime();
+	    seconds = seconds / 1000;
+
+    	startTimer(seconds, display);
+	}
 
     var currentUserId1 = document.getElementById('currentUserId').innerHTML;
 	var currentUserId = parseInt(currentUserId1);
@@ -112,7 +115,9 @@ window.onload = function () {
 					alert("Everything worked fine!");
 					window.location.reload();
 					break;
-				case 3:
+				case 2:
+					alert("Sorry, but the auction is over!");
+					window.location.reload();
 					break;
 				default:
 					alert("Default error. Please contact the WebAdmin.");

@@ -44,7 +44,17 @@ public class BidService {
 	public int bid(Ad ad, int bid, User user) {
 		if (ad.getPrizePerMonth() >= bid && ad.getStartPrize() > bid) {
 			return 0;
+		} else if (ad.getAuctionEndDate().before(new Date()) || ad.getAuctionOver()) {
+			ad.setAuctionOver(true);
+
+			sendMessageToMaxBidder(ad);
+			sendMessageToSeller(ad);
+
+			adDao.save(ad);
+
+			return 2;
 		} else {
+
 			Message message = new Message();
 
 			message.setRecipient(ad.getMaxBidder());
@@ -64,6 +74,7 @@ public class BidService {
 			adDao.save(ad);
 
 			return 1;
+
 		}
 	}
 
@@ -87,38 +98,38 @@ public class BidService {
 		User maxBidder = auction.getMaxBidder();
 		User seller = auction.getUser();
 		long auctionId = auction.getId();
-		
+
 		Message message = new Message();
 		Date now = new Date();
-		
+
 		message.setRecipient(seller);
 		message.setSender(maxBidder);
 		message.setSubject(systemService.getSaleNotification(seller, auctionId, maxBidder));
 		message.setText(systemService.getSaleText(maxBidder, auctionId, seller));
 		message.setState(MessageState.UNREAD);
 		message.setDateSent(now);
-				
+
 		messageDao.save(message);
-		
+
 	}
 
 	private void sendMessageToMaxBidder(Ad auction) {
 		User maxBidder = auction.getMaxBidder();
 		User seller = auction.getUser();
 		long auctionId = auction.getId();
-		
+
 		Message message = new Message();
 		Date now = new Date();
-		
+
 		message.setRecipient(maxBidder);
 		message.setSender(seller);
 		message.setSubject(systemService.getBuyNotification());
 		message.setText(systemService.getBuyText(maxBidder, auctionId, seller));
 		message.setState(MessageState.UNREAD);
 		message.setDateSent(now);
-				
+
 		messageDao.save(message);
-		
+
 	}
 
 }
