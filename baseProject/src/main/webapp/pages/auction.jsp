@@ -119,6 +119,10 @@ window.onload = function () {
 					alert("Sorry, but the auction is over!");
 					window.location.reload();
 					break;
+				case 3:
+					alert("You are already the max bidder and you don't need to raise more money!");
+					window.location.reload();
+					break;
 				default:
 					alert("Default error. Please contact the WebAdmin.");
 					window.location.reload();

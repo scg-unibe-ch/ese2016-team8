@@ -53,7 +53,9 @@ public class BidService {
 			adDao.save(ad);
 
 			return 2;
-		} else {
+		} else if(ad.getMaxBidder().getId() == user.getId()){
+			return 3;
+		}else{
 
 			Message message = new Message();
 
