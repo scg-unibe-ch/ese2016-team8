@@ -603,7 +603,7 @@ footer nav ul li {
 	float: left;
 	margin-top:10px;
 	margin-right: 30px;
-	transition:0.2s;
+	transition:0.3s;
 }
 
 #resultsDiv div div {
@@ -619,6 +619,7 @@ footer nav ul li {
 
 #resultsDiv img:hover {
 	box-shadow: 0px 0px 2px #113;
+	opacity:0.9;
 }
 
 
@@ -654,6 +655,7 @@ footer nav ul li {
 
 #checkBoxTable h2 {
 	margin: 4px;
+	font-size:1.2em;
 }
 
 #checkBoxTable img {
@@ -666,7 +668,7 @@ footer nav ul li {
 }
 
 #advertiserTable{
-	width:600px;
+	width:640px;
 	background: #eee;
 	padding: 15px;
 	margin-left:auto;
@@ -760,7 +762,7 @@ footer nav ul li {
 }
 
 .adDescDiv {
-	width:400px;
+	width:460px;
 	background: #eee;
 	padding: 15px;
 	margin-top:5px;
