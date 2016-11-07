@@ -190,12 +190,14 @@
 			<td><h2>Available from</h2></td>
 			<td>${formattedMoveInDate}</td>
 		</tr>
-
+		<c:choose>
+		<c:when test="${!shownAd.sale}">
 		<tr>
 			<td><h2>Move-out Date</h2></td>
 			<td>${formattedMoveOutDate}</td>
 		</tr>
-
+		</c:when>
+		</c:choose>
 		<tr>
 			<td><h2>
 				<c:choose>
