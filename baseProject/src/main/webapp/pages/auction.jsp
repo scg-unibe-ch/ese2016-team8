@@ -278,7 +278,11 @@ window.onload = function () {
 	<div id="bidDiv">
 		<c:choose>
 			<c:when test="${shownAd.auctionOver}">
-				<a class="right" id="makeBidDisabled">Auction over</a>
+				<table>
+						<tr height="44px">
+						<td width="60%" style="vertical-align:top"><a class="right" id="makeBidDisabled">Auction over</a></td>
+						<td width="40%" style="vertical-align:middle"></td>
+						</tr></table>
 			</c:when>
 			<c:otherwise>
 				<c:choose>
