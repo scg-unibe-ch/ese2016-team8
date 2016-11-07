@@ -190,12 +190,14 @@
 			<td><h2>Available from</h2></td>
 			<td>${formattedMoveInDate}</td>
 		</tr>
-
+		<c:choose>
+		<c:when test="${!shownAd.sale}">
 		<tr>
 			<td><h2>Move-out Date</h2></td>
 			<td>${formattedMoveOutDate}</td>
 		</tr>
-
+		</c:when>
+		</c:choose>
 		<tr>
 			<td><h2>
 				<c:choose>
@@ -218,7 +220,7 @@
 
 <div id="image-slider">
 	<div id="left-arrow">
-		<img src="/img/left-arrow.png" />
+		<img src="/img/left-arrow.png" title="Show previous image"/>
 	</div>
 	<div id="images">
 		<c:forEach items="${shownAd.pictures}" var="picture">
@@ -226,7 +228,7 @@
 		</c:forEach>
 	</div>
 	<div id="right-arrow">
-		<img src="/img/right-arrow.png" />
+		<img src="/img/right-arrow.png" title="Show next image"/>
 	</div>
 </div>
 
@@ -282,8 +284,8 @@
 			<td><h2>Smoking inside allowed</h2></td>
 			<td>
 				<c:choose>
-					<c:when test="${shownAd.smokers}"><img src="/img/check-mark.png"></c:when>
-					<c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
+					<c:when test="${shownAd.smokers}"><img src="/img/check-mark.png" title="Smoking allowed"></c:when>
+					<c:otherwise><img src="/img/check-mark-negative.png" title="Smoking not allowed"></c:otherwise>
 				</c:choose>
 			</td>
 		</tr>
@@ -292,8 +294,8 @@
 			<td><h2>Animals allowed</h2></td>
 			<td>
 				<c:choose>
-					<c:when test="${shownAd.animals}"><img src="/img/check-mark.png"></c:when>
-					<c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
+					<c:when test="${shownAd.animals}"><img src="/img/check-mark.png" title="Animals allowed"></c:when>
+					<c:otherwise><img src="/img/check-mark-negative.png" title="Animals not allowed"></c:otherwise>
 				</c:choose>
 			</td>
 		</tr>
@@ -302,8 +304,8 @@
 			<td><h2>Furnished Room</h2></td>
 			<td>
 				<c:choose>
-					<c:when test="${shownAd.furnished}"><img src="/img/check-mark.png"></c:when>
-					<c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
+					<c:when test="${shownAd.furnished}"><img src="/img/check-mark.png" title="Room is furnished"></c:when>
+					<c:otherwise><img src="/img/check-mark-negative.png" title="Room not furnished"></c:otherwise>
 				</c:choose>
 			</td>
 		</tr>
@@ -312,8 +314,8 @@
 			<td><h2>WiFi available</h2></td>
 			<td>
 				<c:choose>
-					<c:when test="${shownAd.internet}"><img src="/img/check-mark.png"></c:when>
-					<c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
+					<c:when test="${shownAd.internet}"><img src="/img/check-mark.png" title="WiFi available"></c:when>
+					<c:otherwise><img src="/img/check-mark-negative.png" title="WiFi not available"></c:otherwise>
 				</c:choose>
 			</td>
 		</tr>
@@ -322,8 +324,8 @@
 			<td><h2>Cable TV</h2></td>
 			<td>
 				<c:choose>
-					<c:when test="${shownAd.cable}"><img src="/img/check-mark.png"></c:when>
-					<c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
+					<c:when test="${shownAd.cable}"><img src="/img/check-mark.png" title="Cable TV available"></c:when>
+					<c:otherwise><img src="/img/check-mark-negative.png" title="Cable TV not available"></c:otherwise>
 				</c:choose>
 			</td>
 		</tr>
@@ -332,8 +334,8 @@
 			<td><h2>Garage</h2></td>
 			<td>
 				<c:choose>
-					<c:when test="${shownAd.garage}"><img src="/img/check-mark.png"></c:when>
-					<c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
+					<c:when test="${shownAd.garage}"><img src="/img/check-mark.png" title="Garage available"></c:when>
+					<c:otherwise><img src="/img/check-mark-negative.png" title="Garage not available"></c:otherwise>
 				</c:choose>
 			</td>
 		</tr>
@@ -342,8 +344,8 @@
 			<td><h2>Cellar</h2></td>
 			<td>
 				<c:choose>
-					<c:when test="${shownAd.cellar}"><img src="/img/check-mark.png"></c:when>
-					<c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
+					<c:when test="${shownAd.cellar}"><img src="/img/check-mark.png" title="Cellar available"></c:when>
+					<c:otherwise><img src="/img/check-mark-negative.png" title="Cellar not available"></c:otherwise>
 				</c:choose>
 			</td>
 		</tr>
@@ -352,8 +354,8 @@
 			<td><h2>Balcony</h2></td>
 			<td>
 				<c:choose>
-					<c:when test="${shownAd.balcony}"><img src="/img/check-mark.png"></c:when>
-					<c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
+					<c:when test="${shownAd.balcony}"><img src="/img/check-mark.png" title="Balcony available"></c:when>
+					<c:otherwise><img src="/img/check-mark-negative.png"  title="Balcony not available"></c:otherwise>
 				</c:choose>
 			</td>
 		</tr>
@@ -362,8 +364,8 @@
 			<td><h2>Garden</h2></td>
 			<td>
 				<c:choose>
-					<c:when test="${shownAd.garden}"><img src="/img/check-mark.png"></c:when>
-					<c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
+					<c:when test="${shownAd.garden}"><img src="/img/check-mark.png" title="Garden available"></c:when>
+					<c:otherwise><img src="/img/check-mark-negative.png" title="Garden not available"></c:otherwise>
 				</c:choose>
 			</td>
 		</tr>
@@ -400,7 +402,7 @@
 				<a href="/login"><button class="thinInactiveButton" type="button">Login to visit profile</button></a>
 			</c:otherwise>
 		</c:choose>
-
+		</td>
 		<td>
 			<form>
 				<c:choose>

@@ -3,7 +3,7 @@
 /* Basic resets to equalize inconsistencies across browsers */
 html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, img, b, i, fieldset,
 	form, label, legend, caption, article, header, footer, menu, nav,
-	section, ol, ul, li {
+	ol, ul, li {
 	margin: 0;
 	padding: 0;
 	font-family: 'Ubuntu', sans-serif;
@@ -144,23 +144,12 @@ label {
 	margin-right: 10px;
 }
 
- /* The animation code */
-@keyframes example {
-    0%   {background-color: #999; border-color:#444;}
-    50%  {background-color: yellow; border-color:red;}
-    100% {background-color: #999; border-color:#444;}
-}
-
-/* The element to apply the animation to */
 button {
 	background-color: #999;
 	color: white;
 	padding: 5px 10px;
 	border-color: #444;
 	border-style: solid;
-	animation-name: example;
-    animation-duration: 0.3s;
-    animation-iteration-count: infinite;
 	transition: 0.2s;
 }
 
@@ -303,54 +292,50 @@ header ul {
 	padding: 0;
 	list-style: none;
 	background: #999;
-	box-shadow: 2px 2px 4px #222;
 	margin-right: 2px;
 }
 
 header ul li {
 	font-size: 0.9em;
 	float: right;
-	width: 75px;
+	width: 58px;
 	text-align: center;
 	line-height: 21px;
 	margin-top: 12px;
-	margin-right:2px;
+	margin-right:1px;
 	text-align: center;
 	vertical-align:middle;
 	border: 2px #777 solid;
 }
 
+#messageLi {
+	display:none;
+}
+
 img.logo
 {
-	width:150px;
-	margin-top: -4px;
+	width:140px;
+	margin-top: -3px;
 	margin-left: -8px;
 	transition: 0.5s;
 	-webkit-filter: drop-shadow(1px 1px 2px #000);
   	filter: drop-shadow(1px 1px 2px #000);
 }
 
-img.logo:hover
-{
-	-webkit-filter: drop-shadow(2px 2px 5px #112);
-  	filter: drop-shadow(2px 2px 5px #112);
-
-}
-
 #profile_picture {
-	width: 200px;
-	margin-top: 0px;
+	width: 90px;
+	margin-top: 3px;
 }
 
 #profile_picture_editPage {
 	float: left;
-	width: 300px;
+	width: 90px;
 	margin-top: 0px;
 }
 
 #profile_picture_publicProfile {
 	float: left;
-	width: 300px;
+	width: 90px;
 	margin-top: 0px;
 }
 
@@ -362,14 +347,14 @@ img.logo:hover
 }
 
 #profile_picture a {
-	height: 30px;
+	height: 38px;
 }
 
 #profile_picture .text {
-	float: center;
+	float: none;
 	height: 100%;
-	margin-top: 10px;
-	margin-right: 10px;
+	margin-top: -2px;
+	margin-right: 0px;
 }
 
 #profile_picture ul li {
@@ -454,14 +439,15 @@ footer nav ul li {
 	padding: 0px 15px;
 }
 
-#premiumStatus
+#premiumStatus i
 {
 	display:none;
 }
 
 #premiumStar
 {
-	display:none;
+	margin-top:6px;
+	width:24px;
 }
 
 
@@ -659,13 +645,9 @@ footer nav ul li {
 	width:50%;
 	margin: 10px;
 }
-
+	
 #checkBoxTable {
-	width:320px;
-}
-
-#checkBoxTable h2 {
-	margin: 4px;
+	width:340px;
 }
 
 #checkBoxTable img {
@@ -678,9 +660,9 @@ footer nav ul li {
 }
 
 #advertiserTable{
-	width:320px;
+	width:340px;
 	background: #eee;
-	padding: 15px;
+	padding: 10px;
 	margin-bottom: 25px;
 }
 
@@ -691,6 +673,11 @@ footer nav ul li {
 
 #advertiserTable h2 {
 	margin: 0;
+}
+
+#advertiserEmail
+{
+	display:none;
 }
 
 #mate img {
@@ -708,6 +695,7 @@ footer nav ul li {
 	float: right;
 	width: 340px;
 	margin-bottom: 20px;
+	margin-top:10px;
 }
 
 #images {
@@ -772,7 +760,7 @@ footer nav ul li {
 .adDescDiv {
 	width:320px;
 	background: #eee;
-	padding: 15px;
+	padding: 10px;
 	margin-top:5px;
 	margin-bottom: 20px;
 }
@@ -806,18 +794,19 @@ footer nav ul li {
 }
 
 #bidDiv {
-	font-size: 1.2em;
+	font-size: 1.4em;
 	color:white;	
 	position: relative;
-	left: 0;
-	top: -25px;
+	left: 90px;
+	top: -21px;
 	width: 200px;
-	height: 27px;
+	height: 32px;
 	border-width:2px;
 }
 
 #makeBid {
 	background-color: #999;
+	margin-top:4px;
 	color: white;
 	padding: 2px 6px;
 	border-color: #444;
@@ -936,12 +925,12 @@ footer nav ul li {
 
 .msgForm {
 	border-radius: 2px;
-	padding: 20px 30px;
+	padding: 10px 20px;
 	box-shadow: 0 0 15px;
-	font-size: 14px;
+	font-size: 13px;
 	font-weight: bold;
-	width: 350px;
-	margin: 20px 250px 0 35px;
+	width: 340px;
+	margin: 20px 150px 0 35px;
 	float: left;
 	background-color: white;
 	position: relative;
@@ -949,7 +938,7 @@ footer nav ul li {
 	left: 50%;
 	top: 50%;
 	margin-left: -210px;
-	margin-top: -255px;
+	margin-top: -220px;
 }
 
 .msgInput {
@@ -974,7 +963,7 @@ footer nav ul li {
 #msgDiv {
 	opacity: 1.0;
 	position: fixed;
-	top: 0px;
+	top: 60px;
 	left: 0px;
 	height: 100%;
 	width: 100%;
