@@ -42,7 +42,7 @@
 		});
 
 		$("#city").autocomplete({
-			minLength : 2
+			minLength : 0
 		});
 		$("#city").autocomplete({
 			source : <c:import url="getzipcodes.jsp" />
