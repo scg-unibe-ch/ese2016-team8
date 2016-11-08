@@ -133,7 +133,8 @@ input, select, textarea {
 }
 
 input[type=number] {
-	width: 70px;
+	width: 120px;
+	float:none;
 }
 
 input[type=text] {
@@ -472,7 +473,7 @@ footer nav ul li {
 /* -------------------------------------------------------------------- */
 /* placeAd.jsp */
 #placeAdForm {
-	width: 900px;
+	width: 1000px;
 	margin: auto;
 }
 
@@ -498,7 +499,7 @@ footer nav ul li {
 }
 
 .placeAdTable {
-	width: 80%;
+	width: 95%;
 }
 
 /* -------------------------------------------------------------------- */
