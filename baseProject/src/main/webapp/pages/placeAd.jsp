@@ -49,7 +49,7 @@
         document.getElementById('field-Prize').placeholder="Start Prize";
 		document.getElementById('field-moveOutDate').style.display="none";
 		document.getElementById('field-auctionEndDate').style.display="block";
-        document.getElementById('moveOutDate').innerHTML="Auction end date";
+        document.getElementById('moveOutDate').innerHTML="Auction end date (required)";
     });
 
 		$("#field-city").autocomplete({
@@ -214,7 +214,7 @@
 				<td colspan="6"><form:input type="text" id="field-moveOutDate"
 						path="moveOutDate" />
 					<form:input type="text" id="field-auctionEndDate" style="display:none;"
-						path="auctionEndDate" /></td>
+						path="auctionEndDate" required="required" value="12-12-2016"/></td>
 			</tr>
 
 			<tr>
