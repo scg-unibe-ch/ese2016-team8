@@ -1,0 +1,23 @@
+Team 8 and Claudio, 09.11.2016
+
+Input from customers:
+- Everything's fine.
+
+Input from developers:
+- Overworked design (star goes full shiny when hovering).
+- Changed design to something looking a bit more professional.
+- New allignment so that things are more lined up i.e. when searching.
+- Mobile Version updated.
+- Messages show a little preview to remind the user that new messages are available.
+
+TODO:
+-Find three software bugs of team 2
+--> Document them with issues describing problem itself.
+--> Also write test cases which show the presence of the bug 
+--> make a pull request in order to push the test cases.
+
+-Something that people feel bad when not being premium (i.e. feelsbadman.jpg).
+
+Optional:
+-(shortcut for login on the left side of the front page for a faster login).
+-When searching for an ad, a map should be shown where every ad has an pin on the map where it is.
