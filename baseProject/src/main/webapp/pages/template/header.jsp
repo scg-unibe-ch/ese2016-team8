@@ -8,13 +8,12 @@
 
 <!DOCTYPE html>
 <head>
-<link rel="stylesheet" type="text/css" media="screen"
-	href="/css/main.css">
-<link rel="stylesheet" type="text/css"
-	media="only screen and (max-device-width: 480px)"
-	href="/css/smartphone.css" />
+ 	<link rel="stylesheet" media="screen and (max-width: 999px)" type="text/css" href="/css/mobile.css" />
+	<link rel="stylesheet" media="screen and (min-width: 1000px)" type="text/css" href="/css/main.css" />
 
-<Title>FlatFindr</Title>
+<!--<link rel="stylesheet" media="screen" type="text/css" href="/css/main.css" />-->
+<link rel="icon" href="img/fav.png" type="image/vnd.microsoft.icon" />
+<Title>FlatFindr | It's good real estate</Title>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script
 	src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
@@ -41,10 +40,10 @@
 <!-- check if user has a profile picture -->
 
 <header>
+<div id="content">
 	<div class="left">
 		<a href="/"><img class="logo" src="/img/logo.png"></a>
 	</div>
-</div>
 	<div class="right">
 		<nav>
 			<ul>
@@ -70,7 +69,7 @@
 
 								<li><a href="/profile/enquiries">Enquiries</a></li>
 								<li><a href="/profile/schedule">Schedule</a></li>
-								<li><a href="/profile/alerts" style="display: block">Alerts</a></li>
+								<li><a href="/profile/alerts">Alerts</a></li>
 								<li>
 								<% out.print("<a href=\"/user?id=" + realUser.getId() + "\">Public Profile</a>"); %>
 								</li>
@@ -79,24 +78,24 @@
 							</ul></li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="/login"><img width=20px hight=20px style="margin-top:-2px"src="../img/key.png"/> Login</a></li>
+						<li><a href="/login"><img class="icon" src="../img/key.png"/>Login</a></li>
 					</c:otherwise>
 				</c:choose>
 				<c:choose>
 					<c:when test="${loggedIn}">
-				<li><a id="messageLink" href="/profile/messages"></a></li>
+				<li id="messageLi"><a id="messageLink" href="/profile/messages"></a></li>
 			</c:when>
 		</c:choose>
-				<li><a href="<c:url value='/searchAd' />"><img width=20px hight=20px style="margin-right:5px" src="../img/lupe.png"/ >Search</a></li>
+				<li><a href="<c:url value='/searchAd' />"><img class="icon" src="../img/lupe.png"/ >Search</a></li>
 			</ul>
 		</nav>
 	</div>
 	<div style="float: right">
-			<a id="premiumStatus" style="display:none">
-				<img id="premiumStar" style="width:40px; height:40px; margin-left: 60px" src="/img/Star.png"><br>
-			<p>You are a premium member!</p>
-	</a>
-</div>
+			<div id="premiumStatus" style="display:none">
+				<img id="premiumStar" src="/img/Star.png"><br>
+				<i>You are a premium user!</i>
+			</div>
+	</div>
 	<script>
 	$(window).ready(premStatusDisplay());
 	function premStatusDisplay(){
@@ -117,6 +116,7 @@
 	}
 	}
 	</script>
+</div>
 </header>
 
 <body>

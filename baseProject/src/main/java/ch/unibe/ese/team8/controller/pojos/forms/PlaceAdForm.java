@@ -23,7 +23,8 @@ public class PlaceAdForm {
 	private String moveInDate;
 
 	private String moveOutDate;
-
+	
+	@NotBlank(message = "Required")
 	private String auctionEndDate;
 
 	@Min(value = 1, message = "Has to be equal to 1 or more")

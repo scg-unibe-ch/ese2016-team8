@@ -1,4 +1,4 @@
-<%@ page import="ch.unibe.ese.team8.model.Ad"%>
+﻿<%@ page import="ch.unibe.ese.team8.model.Ad"%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>
 <%@ page language="java" pageEncoding="UTF-8"
@@ -58,18 +58,21 @@
 }
 
 window.onload = function () {
-	var ending = "${shownAd.auctionEndDate}",
-	    display = document.querySelector('#time');
 
-	// Ugly method, since JS Date works with month in [0-11] range WTF :D
-    var endDate = new Date(ending.substring(0,4), ending.substring(5,7)-1, ending.substring(8,10));
+	if(${shownAd.auctionOver} == 0){
+		var ending = "${shownAd.auctionEndDate}",
+		    display = document.querySelector('#time');
 
-  	var now = new Date();
-  	console.log(now);
-    seconds = endDate.getTime()-now.getTime();
-    seconds = seconds / 1000;
+		// Ugly method, since JS Date works with month in [0-11] range WTF :D
+	    var endDate = new Date(ending.substring(0,4), ending.substring(5,7)-1, ending.substring(8,10));
 
-    startTimer(seconds, display);
+	  	var now = new Date();
+
+	    seconds = endDate.getTime()-now.getTime();
+	    seconds = seconds / 1000;
+
+    	startTimer(seconds, display);
+	}
 
     var currentUserId1 = document.getElementById('currentUserId').innerHTML;
 	var currentUserId = parseInt(currentUserId1);
@@ -92,8 +95,74 @@ window.onload = function () {
 	var shownAdvertisementID = "${shownAd.id}";
 	var shownAdvertisement = "${shownAd}";
 
+	function attachBookmarkClickHandler(){
+		$("#bookmarkButton").click(function() {
+
+			$.post("/bookmark", {id: shownAdvertisementID, screening: false, bookmarked: false}, function(data) {
+				$('#bookmarkButton').replaceWith($('<a class="right" id="bookmarkedButton">' + "Bookmarked" + '</a>'));
+				switch(data) {
+				case 0:
+					alert("You must be logged in to bookmark ads.");
+					break;
+				case 1:
+					// Something went wrong with the principal object
+					alert("Return value 1. Please contact the WebAdmin.");
+					break;
+				case 3:
+					$('#bookmarkButton').replaceWith($('<a class="right" id="bookmarkedButton">' + "Bookmarked" + '</a>'));
+					break;
+				default:
+					alert("Default error. Please contact the WebAdmin.");
+				}
+
+				attachBookmarkedClickHandler();
+			});
+		});
+	}
+
+	function attachBookmarkedClickHandler(){
+		$("#bookmarkedButton").click(function() {
+			$.post("/bookmark", {id: shownAdvertisementID, screening: false, bookmarked: true}, function(data) {
+				$('#bookmarkedButton').replaceWith($('<a class="right" id="bookmarkButton">' + "Bookmark Ad" + '</a>'));
+				switch(data) {
+				case 0:
+					alert("You must be logged in to bookmark ads.");
+					break;
+				case 1:
+					// Something went wrong with the principal object
+					alert("Return value 1. Please contact the WebAdmin.");
+					break;
+				case 2:
+					$('#bookmarkedButton').replaceWith($('<a class="right" id="bookmarkButton">' + "Bookmark Ad" + '</a>'));
+					break;
+				default:
+					alert("Default error. Please contact the WebAdmin.");
+
+				}
+				attachBookmarkClickHandler();
+			});
+		});
+	}
+
+
+	var shownAdvertisementID = "${shownAd.id}";
+	var shownAdvertisement = "${shownAd}";
+
 
 	$(document).ready(function() {
+		attachBookmarkClickHandler();
+		attachBookmarkedClickHandler();
+
+		$.post("/bookmark", {id: shownAdvertisementID, screening: true, bookmarked: true}, function(data) {
+			if(data == 3) {
+				$('#bookmarkButton').replaceWith($('<a class="right" id="bookmarkedButton">' + "Bookmarked" + '</a>'));
+				attachBookmarkedClickHandler();
+			}
+			if(data == 4) {
+				$('#shownAdTitle').replaceWith($('<h1>' + "${shownAd.title}" + '</h1>'));
+			}
+		});
+
 		console.log(document.getElementById('bid').value);
 		$("#makeBid").click(function() {
 			var offer = document.getElementById('bid').value;
@@ -112,7 +181,13 @@ window.onload = function () {
 					alert("Everything worked fine!");
 					window.location.reload();
 					break;
+				case 2:
+					alert("Sorry, but the auction is over!");
+					window.location.reload();
+					break;
 				case 3:
+					alert("You are already the max bidder and you don't need to raise more money!");
+					window.location.reload();
 					break;
 				default:
 					alert("Default error. Please contact the WebAdmin.");
@@ -182,8 +257,13 @@ window.onload = function () {
 	</c:otherwise>
 </c:choose>
 
-<h1 id="shownAdTitle">${shownAd.title}</h1>
-
+<h1 id="shownAdTitle">${shownAd.title}
+	<c:choose>
+		<c:when test="${loggedIn}">
+			<a class="right" id="bookmarkButton">Bookmark Ad</a>
+		</c:when>
+	</c:choose>
+</h1>
 <hr />
 
 <section>
@@ -222,7 +302,7 @@ window.onload = function () {
 		<tr>
 			<td><h2>Address</h2></td>
 			<td>
-				<a class="link" href="http://maps.google.com/?q=${shownAd.street}, ${shownAd.zipcode}, ${shownAd.city}">${shownAd.street},
+				<a class="link" href="http://maps.google.com/?q=${shownAd.street}, ${shownAd.zipcode}, ${shownAd.city}" target="_blank">${shownAd.street},
 						${shownAd.zipcode} ${shownAd.city}</a>
 			</td>
 		</tr>
@@ -265,12 +345,36 @@ window.onload = function () {
 		</c:when></c:choose>
 		</tr>
 	</table>
+	
+	<div id="bidDiv">
+		<c:choose>
+			<c:when test="${shownAd.auctionOver}">
+				<table>
+						<tr height="44px">
+						<td width="60%" style="vertical-align:top"><a class="right" id="makeBidDisabled">Auction over</a></td>
+						<td width="40%" style="vertical-align:middle"></td>
+						</tr></table>
+			</c:when>
+			<c:otherwise>
+				<c:choose>
+					<c:when test="${loggedIn}">
+						<table>
+						<tr height="44px">
+						<td width="50%" style="vertical-align:top"><a class="right"  id="makeBid">Place bid</a></td>
+						<td width="50%" style="vertical-align:middle"><input style="float:right; margin-left: 10px;"
+						align="right" type="number" step="50" name="bid" id="bid" min="${ad.prizePerMonth+50}" value="${shownAd.prizePerMonth+50}">
+						</td></tr></table>
+					</c:when>
+				</c:choose>
+			</c:otherwise>
+		</c:choose>
+	</div>
 </section>
 
 
 <div id="image-slider">
 	<div id="left-arrow">
-		<img src="/img/left-arrow.png" />
+		<img src="/img/left-arrow.png" title="Show previous image"/>
 	</div>
 	<div id="images">
 		<c:forEach items="${shownAd.pictures}" var="picture">
@@ -278,27 +382,8 @@ window.onload = function () {
 		</c:forEach>
 	</div>
 	<div id="right-arrow">
-		<img src="/img/right-arrow.png" />
+		<img src="/img/right-arrow.png" title="Show next image"/>
 	</div>
-</div>
-<div id="bidDiv">
-<c:choose>
-	<c:when test="${shownAd.auctionOver}">
-<a class="right" id="makeBidDisabled">Auction over</a>
-	</c:when>
-	<c:otherwise>
-	<c:choose>
-		<c:when test="${loggedIn}">
-			<table>
-			<tr height="44px">
-			<td width="50%" style="vertical-align:top"><a class="right"  id="makeBid">Place bid</a></td>
-			<td width="50%" style="vertical-align:middle"><input style="float:right; margin-left: 10px;"
-			align="right" type="number" step="50" name="bid" id="bid" min="${ad.prizePerMonth+50}" value="${shownAd.prizePerMonth+50}">
-			</td></tr></table>
-		</c:when>
-	</c:choose>
-</c:otherwise>
-</c:choose>
 </div>
 
 <hr class="clearBoth" />
@@ -347,8 +432,8 @@ window.onload = function () {
 			<td><h2>Smoking inside allowed</h2></td>
 			<td>
 				<c:choose>
-					<c:when test="${shownAd.smokers}"><img src="/img/check-mark.png"></c:when>
-					<c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
+					<c:when test="${shownAd.smokers}"><img src="/img/check-mark.png" title="Smoking allowed"></c:when>
+					<c:otherwise><img src="/img/check-mark-negative.png" title="Smoking not allowed"></c:otherwise>
 				</c:choose>
 			</td>
 		</tr>
@@ -357,8 +442,8 @@ window.onload = function () {
 			<td><h2>Animals allowed</h2></td>
 			<td>
 				<c:choose>
-					<c:when test="${shownAd.animals}"><img src="/img/check-mark.png"></c:when>
-					<c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
+					<c:when test="${shownAd.animals}"><img src="/img/check-mark.png" title="Animals allowed"></c:when>
+					<c:otherwise><img src="/img/check-mark-negative.png" title="Animals not allowed"></c:otherwise>
 				</c:choose>
 			</td>
 		</tr>
@@ -367,8 +452,8 @@ window.onload = function () {
 			<td><h2>Furnished Room</h2></td>
 			<td>
 				<c:choose>
-					<c:when test="${shownAd.furnished}"><img src="/img/check-mark.png"></c:when>
-					<c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
+					<c:when test="${shownAd.furnished}"><img src="/img/check-mark.png" title="Room is furnished"></c:when>
+					<c:otherwise><img src="/img/check-mark-negative.png" title="Room not furnished"></c:otherwise>
 				</c:choose>
 			</td>
 		</tr>
@@ -377,8 +462,8 @@ window.onload = function () {
 			<td><h2>WiFi available</h2></td>
 			<td>
 				<c:choose>
-					<c:when test="${shownAd.internet}"><img src="/img/check-mark.png"></c:when>
-					<c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
+					<c:when test="${shownAd.internet}"><img src="/img/check-mark.png" title="WiFi available"></c:when>
+					<c:otherwise><img src="/img/check-mark-negative.png" title="WiFi not available"></c:otherwise>
 				</c:choose>
 			</td>
 		</tr>
@@ -387,8 +472,8 @@ window.onload = function () {
 			<td><h2>Cable TV</h2></td>
 			<td>
 				<c:choose>
-					<c:when test="${shownAd.cable}"><img src="/img/check-mark.png"></c:when>
-					<c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
+					<c:when test="${shownAd.cable}"><img src="/img/check-mark.png" title="Cable TV available"></c:when>
+					<c:otherwise><img src="/img/check-mark-negative.png" title="Cable TV not available"></c:otherwise>
 				</c:choose>
 			</td>
 		</tr>
@@ -397,8 +482,8 @@ window.onload = function () {
 			<td><h2>Garage</h2></td>
 			<td>
 				<c:choose>
-					<c:when test="${shownAd.garage}"><img src="/img/check-mark.png"></c:when>
-					<c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
+					<c:when test="${shownAd.garage}"><img src="/img/check-mark.png" title="Garage available"></c:when>
+					<c:otherwise><img src="/img/check-mark-negative.png" title="Garage not available"></c:otherwise>
 				</c:choose>
 			</td>
 		</tr>
@@ -407,8 +492,8 @@ window.onload = function () {
 			<td><h2>Cellar</h2></td>
 			<td>
 				<c:choose>
-					<c:when test="${shownAd.cellar}"><img src="/img/check-mark.png"></c:when>
-					<c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
+					<c:when test="${shownAd.cellar}"><img src="/img/check-mark.png" title="Cellar available"></c:when>
+					<c:otherwise><img src="/img/check-mark-negative.png" title="Cellar not available"></c:otherwise>
 				</c:choose>
 			</td>
 		</tr>
@@ -417,8 +502,8 @@ window.onload = function () {
 			<td><h2>Balcony</h2></td>
 			<td>
 				<c:choose>
-					<c:when test="${shownAd.balcony}"><img src="/img/check-mark.png"></c:when>
-					<c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
+					<c:when test="${shownAd.balcony}"><img src="/img/check-mark.png" title="Balcony available"></c:when>
+					<c:otherwise><img src="/img/check-mark-negative.png"  title="Balcony not available"></c:otherwise>
 				</c:choose>
 			</td>
 		</tr>
@@ -427,8 +512,8 @@ window.onload = function () {
 			<td><h2>Garden</h2></td>
 			<td>
 				<c:choose>
-					<c:when test="${shownAd.garden}"><img src="/img/check-mark.png"></c:when>
-					<c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
+					<c:when test="${shownAd.garden}"><img src="/img/check-mark.png" title="Garden available"></c:when>
+					<c:otherwise><img src="/img/check-mark-negative.png" title="Garden not available"></c:otherwise>
 				</c:choose>
 			</td>
 		</tr>

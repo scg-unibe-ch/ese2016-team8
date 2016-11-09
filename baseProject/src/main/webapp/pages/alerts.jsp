@@ -90,12 +90,12 @@ function validateType(form)
 		
 		<label for="radius">Within radius of (max.):</label>
 		<form:input id="radiusInput" type="number" path="radius"
-			placeholder="e.g. 5" step="5" />
+			placeholder="e.g. 5" step="5" max="40000"/>
 		km
 		<form:errors path="radius" cssClass="validationErrorText" />
 		<br /> <label for="price">Price (max.):</label>
 		<form:input id="priceInput" type="number" path="price"
-			placeholder="e.g. 5" step="50" />
+			placeholder="e.g. 50" step="50" />
 		CHF
 		<form:errors path="price" cssClass="validationErrorText" />
 		<br />

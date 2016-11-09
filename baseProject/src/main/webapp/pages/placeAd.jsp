@@ -49,7 +49,7 @@
         document.getElementById('field-Prize').placeholder="Start Prize";
 		document.getElementById('field-moveOutDate').style.display="none";
 		document.getElementById('field-auctionEndDate').style.display="block";
-        document.getElementById('moveOutDate').innerHTML="Auction end date";
+        document.getElementById('moveOutDate').innerHTML="Auction end date (required)";
     });
 
 		$("#field-city").autocomplete({
@@ -170,59 +170,62 @@
 		<legend>General info</legend>
 		<table class="placeAdTable">
 			<tr>
-				<td><label for="field-title">Ad Title</label></td>
-				<td><label for="type-room">Type:</label></td>
-				<td><label for="type-rent">Tenure:</label></td>
+				<td width="25%"><label for="field-title">Ad Title</label></td>
+				<td colspan="3" width="38%"><label for="type-room">Type:</label></td>
+				<td colspan="3" width="37%"><label for="type-rent">Tenure:</label></td>
 			</tr>
 
 			<tr>
 				<td><form:input id="field-title" path="title"
 						placeholder="Ad Title" /></td>
 				<td><form:radiobutton id="type-room" path="category" value="room"
-						checked="checked" />Room <form:radiobutton id="type-studio"
-						path="category" value="studio" />Studio <form:radiobutton id="type-house"
+						checked="checked" />Room</td>
+				<td><form:radiobutton id="type-studio"
+						path="category" value="studio" />Studio</td> 
+				<td><form:radiobutton id="type-house"
 						path="category" value="house" />House</td>
 
 				<td><form:radiobutton id="type-rent" path="sale" value="0"
-						checked="checked" />Rent <form:radiobutton id="type-sale"
+						checked="checked" />Rent</td> 
+				<td><form:radiobutton id="type-sale"
 						path="sale" value="1" />Sale</td>
 				<td><form:radiobutton id="type-auction" path="auction" value="1" />Auction</td>
 			</tr>
 
 			<tr>
 				<td><label for="field-street">Street</label></td>
-				<td><label for="field-city">City / Zip code</label></td>
+				<td colspan="6"><label for="field-city">City / Zip code</label></td>
 			</tr>
 
 			<tr>
 				<td><form:input id="field-street" path="street"
 						placeholder="Street" /></td>
-				<td><form:input id="field-city" path="city" placeholder="City" />
+				<td colspan="6"><form:input id="field-city" path="city" placeholder="City" />
 					<form:errors path="city" cssClass="validationErrorText" /></td>
 			</tr>
 
 			<tr>
 				<td><label for="moveInDate">Move-in date (required)</label></td>
-				<td><label id="moveOutDate" for="moveOutDate">Move-out date (optional)</label></td>
+				<td colspan="6"><label id="moveOutDate" for="moveOutDate">Move-out date (optional)</label></td>
 			</tr>
 			<tr>
 				<td><form:input type="text" id="field-moveInDate"
 						path="moveInDate" /></td>
-				<td><form:input type="text" id="field-moveOutDate"
+				<td colspan="6"><form:input type="text" id="field-moveOutDate"
 						path="moveOutDate" />
 					<form:input type="text" id="field-auctionEndDate" style="display:none;"
-						path="auctionEndDate" /></td>
+						path="auctionEndDate" required="required" value="12-12-2016"/></td>
 			</tr>
 
 			<tr>
 				<td><label id="month-Prize" for="field-Prize">Prize per month</label></td>
-				<td><label for="field-SquareFootage">Square Meters</label></td>
+				<td colspan="6"><label for="field-SquareFootage">Square Meters</label></td>
 			</tr>
 			<tr>
 				<td><form:input id="field-Prize" type="number" path="prize"
 						placeholder="Prize per month" step="50" /> <form:errors
 						path="prize" cssClass="validationErrorText" /></td>
-				<td><form:input id="field-SquareFootage" type="number"
+				<td colspan="6"><form:input id="field-SquareFootage" type="number"
 						path="squareFootage" placeholder="Prize per month" step="5" /> <form:errors
 						path="squareFootage" cssClass="validationErrorText" /></td>
 			</tr>
