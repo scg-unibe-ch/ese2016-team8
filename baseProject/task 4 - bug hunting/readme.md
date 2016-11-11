@@ -21,3 +21,15 @@ Bug reports should contain all the necessary information needed to reproduce the
 * Expected and observed behavior (what's wrong)
 * The reason behind the bug (if you know)
 * The location of the bug (if you know)
+
+#### Team assignments:
+
+* Team 1 tests the project of team 4
+* Team 4 tests the project of team 7
+* Team 7 tests the project of team 1
+* Team 2 tests the project of team 5
+* Team 5 tests the project of team 8
+* Team 8 tests the project of team 2
+* Team 3 tests the project of team 6
+* Team 6 tests the project of team 9
+* Team 9 tests the project of team 3
