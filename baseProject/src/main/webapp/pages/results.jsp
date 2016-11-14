@@ -33,9 +33,12 @@ function validateType(form)
 	}else if(sale.checked && !rent.checked){
 		bothType.checked = false;
 		saleType.checked = true;
-	}else{
+	}else if(!sale.checked && rent.checked){
 		bothType.checked = false;
 		saleType.checked = false;
+	}else{
+		alert("Check a type of tenure!")
+		return false;
 	}
 
 	if(room.checked){
@@ -51,8 +54,14 @@ function validateType(form)
 	}
 
 	document.getElementById('category').value = types;
-
 	filtered.checked = true;
+
+	if(types == ""){
+		alert("Check at least one type of ads!");
+		return false;
+	}else{
+		return true;
+	}
 }
 </script>
 
@@ -291,7 +300,7 @@ function sort_div_attribute() {
 		</table>
 
 
-		<button type="submit" onClick="validateType(this.form)">Filter</button>
+		<button type="submit" onClick="return validateType(this.form)">Filter</button>
 		<button type="reset">Cancel</button>
 	</div>
 </form:form>

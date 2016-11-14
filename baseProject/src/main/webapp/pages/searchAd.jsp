@@ -87,9 +87,12 @@ function validateType(form)
 	}else if(sale.checked && !rent.checked){
 		bothType.checked = false;
 		saleType.checked = true;
-	}else{
+	}else if(!sale.checked && rent.checked){
 		bothType.checked = false;
 		saleType.checked = false;
+	}else{
+		alert("Check a tenure type");
+		return false;
 	}
 
 	if(room.checked){
@@ -105,6 +108,13 @@ function validateType(form)
 	}
 
 	document.getElementById('category').value = types;
+
+	if(types == ""){
+		alert("Check at least one type of ads!");
+		return false;
+	}else{
+		return true;
+	}
 }
 
 function decide(){
@@ -228,7 +238,7 @@ function lessOptions(){
 			</table>
 		<br />
 		</div>
-		<button type="submit" tabindex="7" onClick="validateType(this.form)">Search</button>
+		<button type="submit" tabindex="7" onClick="return validateType(this.form)">Search</button>
 		<button type="button" tabindex="8" onClick="decide()" id="moreButton">More Options</button>
 		<button type="reset" tabindex="9">Cancel</button>
 		</div>
