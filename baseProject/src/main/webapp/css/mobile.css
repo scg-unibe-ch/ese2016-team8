@@ -787,7 +787,7 @@ footer nav ul li {
 }
 
 .thinInactiveButton:hover {
-	background-color: #white;
+	background-color: white;
 	color: #bbbbbb;
 	border-color: #bbbbbb;
 	cursor: pointer;

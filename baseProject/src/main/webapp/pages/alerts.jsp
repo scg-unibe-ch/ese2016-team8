@@ -42,9 +42,13 @@ function validateType(form)
 	document.getElementById('category').value = types;
 
 	if(types == ""){
+		alert("Select at least one type!");
 		return false;
+	}else{
+		return true;
 	}
 }
+
 </script>
 	
 <script>
@@ -100,7 +104,7 @@ function validateType(form)
 		<form:errors path="price" cssClass="validationErrorText" />
 		<br />
 
-		<button type="submit" tabindex="7" onClick="validateType(this.form)">Subscribe</button>
+		<button type="submit" tabindex="7" onClick="return validateType(this.form)">Subscribe</button>
 		<button type="reset" tabindex="8">Cancel</button>
 	</fieldset>
 
