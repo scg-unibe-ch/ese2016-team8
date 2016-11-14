@@ -177,16 +177,17 @@
 
 			<tr>
 				<td><form:input id="field-title" path="title"
-						placeholder="Ad Title" /></td>
+						placeholder="Ad Title" /><form:errors
+						path="title" cssClass="validationErrorText" /></td>
 				<td><form:radiobutton id="type-room" path="category" value="room"
 						checked="checked" />Room</td>
 				<td><form:radiobutton id="type-studio"
-						path="category" value="studio" />Studio</td> 
+						path="category" value="studio" />Studio</td>
 				<td><form:radiobutton id="type-house"
 						path="category" value="house" />House</td>
 
 				<td><form:radiobutton id="type-rent" path="sale" value="0"
-						checked="checked" />Rent</td> 
+						checked="checked" />Rent</td>
 				<td><form:radiobutton id="type-sale"
 						path="sale" value="1" />Sale</td>
 				<td><form:radiobutton id="type-auction" path="auction" value="1" />Auction</td>
@@ -199,7 +200,8 @@
 
 			<tr>
 				<td><form:input id="field-street" path="street"
-						placeholder="Street" /></td>
+						placeholder="Street" /><form:errors
+						path="street" cssClass="validationErrorText" /></td>
 				<td colspan="6"><form:input id="field-city" path="city" placeholder="City" />
 					<form:errors path="city" cssClass="validationErrorText" /></td>
 			</tr>
@@ -210,7 +212,8 @@
 			</tr>
 			<tr>
 				<td><form:input type="text" id="field-moveInDate"
-						path="moveInDate" /></td>
+						path="moveInDate" /><form:errors
+						path="moveInDate" cssClass="validationErrorText" /></td>
 				<td colspan="6"><form:input type="text" id="field-moveOutDate"
 						path="moveOutDate" />
 					<form:input type="text" id="field-auctionEndDate" style="display:none;"
@@ -223,7 +226,7 @@
 			</tr>
 			<tr>
 				<td><form:input id="field-Prize" type="number" path="prize"
-						placeholder="Prize per month" step="50" /> <form:errors
+						placeholder="Prize per month" value="50" step="50" /> <form:errors
 						path="prize" cssClass="validationErrorText" /></td>
 				<td colspan="6"><form:input id="field-SquareFootage" type="number"
 						path="squareFootage" placeholder="Prize per month" step="5" /> <form:errors
