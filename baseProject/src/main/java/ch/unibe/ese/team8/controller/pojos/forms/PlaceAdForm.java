@@ -16,14 +16,14 @@ public class PlaceAdForm {
 	@NotBlank(message = "Required")
 	private String street;
 
-	@Pattern(regexp = "^[0-9]{4} - [-\\w\\s\\u00C0-\\u00FF]*", message = "Please pick a city from the list")
+	@Pattern(regexp = "^[0-9]{4} - [-\\w\\s\\u00C0-\\u00FF';]*", message = "Please pick a city from the list")
 	private String city;
 
 	@NotBlank(message = "Required")
 	private String moveInDate;
 
 	private String moveOutDate;
-	
+
 	@NotBlank(message = "Required")
 	private String auctionEndDate;
 
@@ -243,7 +243,7 @@ public class PlaceAdForm {
 	public String getCategory() {
 		return category;
 	}
-	
+
 	public void setCategory(final String category) {
 		this.category = category;
 	}
