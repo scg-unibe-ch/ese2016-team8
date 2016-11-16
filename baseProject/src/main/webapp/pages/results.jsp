@@ -13,8 +13,9 @@
 <script src="http://maps.google.com/maps/api/js" type="text/javascript"></script>
 
 <script>
-console.log(${fn:length(results)});
+//console.log(${fn:length(results)});
 var addresses = new Array(${fn:length(results)});
+var adIds = new Array(${fn:length(results)});
 var i = 0;
 
 function validateType(form)
@@ -158,11 +159,13 @@ function sort_div_attribute() {
 	      mapTypeId: google.maps.MapTypeId.ROADMAP
 	    });
 
-	    var infowindow, address;
+	    var infowindow, address, id;
 	    var geocoder = new google.maps.Geocoder();
 
 	    for(var k = 0; k < addresses.length; k++){
 	    	address = addresses[k];
+	    	id = adIds[k];
+	    	console.log(id);
 
 	    geocoder.geocode({'address': address}, function(results, status, infowindow) {
 	    if (status === google.maps.GeocoderStatus.OK) {
@@ -249,6 +252,7 @@ function sort_div_attribute() {
 					</div>
 				</div>
 				<script>
+					adIds[i] = "${ad.id}";
 					addresses[i] = "${ad.street} ${ad.zipcode} ${ad.city}";
 					//console.log(addresses);
 					i++;
