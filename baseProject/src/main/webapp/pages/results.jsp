@@ -4,12 +4,19 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <c:import url="template/header.jsp" />
+  </body>
 <pre><a href="/">Home</a>   &gt;   <a href="/searchAd/">Search</a>   &gt;   Results</pre>
 
+<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+
 <script>
+console.log(${fn:length(results)});
+var addresses = new Array(${fn:length(results)});
+var i = 0;
+
 function validateType(form)
 {
 	var room = document.getElementById('room');
@@ -120,6 +127,7 @@ function sort_div_attribute() {
 
 <script>
 	$(document).ready(function() {
+
 		$("#city").autocomplete({
 			minLength : 2
 		});
@@ -143,6 +151,37 @@ function sort_div_attribute() {
 		$("#field-latestMoveOutDate").datepicker({
 			dateFormat : 'dd-mm-yy'
 		});
+
+	    var map = new google.maps.Map(document.getElementById('map'), {
+	      zoom: 7,
+	      center: new google.maps.LatLng(46.8633639,8.213877),
+	      mapTypeId: google.maps.MapTypeId.ROADMAP
+	    });
+
+	    var geocoder = new google.maps.Geocoder();
+
+	    var infowindow = new google.maps.InfoWindow();
+
+	    var marker, k;
+
+	    var address = addresses[0];
+	    console.log(address);
+
+	    for(var k = 0; k < addresses.length; k++){
+	    	var address = addresses[k];
+	    geocoder.geocode({'address': address}, function(results, status) {
+	    if (status === google.maps.GeocoderStatus.OK) {
+	      //map.setCenter(results[0].geometry.location);
+	      var marker = new google.maps.Marker({
+	        map: map,
+	        position: results[0].geometry.location
+	      });
+	    } else if(status === google.maps.GeocoderStatus.OVER_QUERY_LIMIT){
+	    	k--;
+	    } else {
+	      alert('Geocode was not successful for the following reason: ' + status);
+	    }});
+	}
 	});
 </script>
 
@@ -208,6 +247,11 @@ function sort_div_attribute() {
 						<p>Move-in date: ${formattedMoveInDate }</p>
 					</div>
 				</div>
+				<script>
+					addresses[i] = "${ad.street} ${ad.zipcode} ${ad.city}";
+					//console.log(addresses);
+					i++;
+				</script>
 			</c:forEach>
 		</div>
 	</c:otherwise>
@@ -216,7 +260,7 @@ function sort_div_attribute() {
 
 <form:form method="post" modelAttribute="searchForm" action="/results"
 	id="filterForm" autocomplete="off">
-
+	
 	<div id="filterDiv">
 		<h2>Filter results:</h2>
 		<form:checkbox name="room" id="room" path="roomHelper" /><label>Room</label>
@@ -302,6 +346,8 @@ function sort_div_attribute() {
 
 		<button type="submit" onClick="return validateType(this.form)">Filter</button>
 		<button type="reset">Cancel</button>
+		</br></br></br>
+		<div id="map" style="width: 300px; height: 400px;"></div>
 	</div>
 </form:form>
 
