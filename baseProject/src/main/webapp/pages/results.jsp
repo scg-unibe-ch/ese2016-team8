@@ -165,7 +165,6 @@ function sort_div_attribute() {
 	    for(var k = 0; k < addresses.length; k++){
 	    	address = addresses[k];
 	    	id = adIds[k];
-	    	console.log(id);
 
 	    geocoder.geocode({'address': address}, function(results, status, infowindow) {
 	    if (status === google.maps.GeocoderStatus.OK) {
@@ -176,6 +175,8 @@ function sort_div_attribute() {
 	      });
 	      infowindow = new google.maps.InfoWindow();
 	      infowindow.setContent(results[0].formatted_address);
+	      // console.log(id);
+	      // Problem with anonymous function (see stackoverflow http://stackoverflow.com/questions/750486/javascript-closure-inside-loops-simple-practical-example)
 	      marker.addListener('click', function() {
     		infowindow.open(map, marker);
   		  });
