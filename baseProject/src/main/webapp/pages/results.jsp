@@ -10,7 +10,7 @@
   </body>
 <pre><a href="/">Home</a>   &gt;   <a href="/searchAd/">Search</a>   &gt;   Results</pre>
 
-<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+<script src="http://maps.google.com/maps/api/js" type="text/javascript"></script>
 
 <script>
 console.log(${fn:length(results)});
@@ -158,17 +158,12 @@ function sort_div_attribute() {
 	      mapTypeId: google.maps.MapTypeId.ROADMAP
 	    });
 
+	    var infowindow, address;
 	    var geocoder = new google.maps.Geocoder();
 
-	    var infowindow = new google.maps.InfoWindow();
-
-	    var marker, k;
-
-	    var address = addresses[0];
-	    console.log(address);
-
 	    for(var k = 0; k < addresses.length; k++){
-	    	var address = addresses[k];
+	    	address = addresses[k];
+
 	    geocoder.geocode({'address': address}, function(results, status) {
 	    if (status === google.maps.GeocoderStatus.OK) {
 	      //map.setCenter(results[0].geometry.location);
@@ -176,6 +171,10 @@ function sort_div_attribute() {
 	        map: map,
 	        position: results[0].geometry.location
 	      });
+	      infowindow = new google.maps.InfoWindow();
+	      infowindow.setContent(results[0].formatted_address);
+	      infowindow.open(map, marker);
+
 	    } else if(status === google.maps.GeocoderStatus.OVER_QUERY_LIMIT){
 	    	k--;
 	    } else {
