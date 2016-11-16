@@ -164,7 +164,7 @@ function sort_div_attribute() {
 	    for(var k = 0; k < addresses.length; k++){
 	    	address = addresses[k];
 
-	    geocoder.geocode({'address': address}, function(results, status) {
+	    geocoder.geocode({'address': address}, function(results, status, infowindow) {
 	    if (status === google.maps.GeocoderStatus.OK) {
 	      //map.setCenter(results[0].geometry.location);
 	      var marker = new google.maps.Marker({
@@ -173,7 +173,9 @@ function sort_div_attribute() {
 	      });
 	      infowindow = new google.maps.InfoWindow();
 	      infowindow.setContent(results[0].formatted_address);
-	      infowindow.open(map, marker);
+	      marker.addListener('click', function() {
+    		infowindow.open(map, marker);
+  		  });
 
 	    } else if(status === google.maps.GeocoderStatus.OVER_QUERY_LIMIT){
 	    	k--;
