@@ -52,6 +52,19 @@
 			autoFocus : true
 		});
 
+		$("#field-earliestMoveInDate").datepicker({
+			dateFormat : 'dd-mm-yy'
+		});
+		$("#field-latestMoveInDate").datepicker({
+			dateFormat : 'dd-mm-yy'
+		});
+		$("#field-earliestMoveOutDate").datepicker({
+			dateFormat : 'dd-mm-yy'
+		});
+		$("#field-latestMoveOutDate").datepicker({
+			dateFormat : 'dd-mm-yy'
+		});
+
 		var price = document.getElementById('prizeInput');
 		var radius = document.getElementById('radiusInput');
 
@@ -187,7 +200,7 @@ function lessOptions(){
 		<form:errors path="prize" cssClass="validationErrorText" />
 		<br /></div>
 		<div id="moreOptions" style="display:none;">
-		<table style="margin-left: 400px;">
+		<table>
 		<tr>
 				<td><label for="earliestMoveInDate">Earliest move-in date</label></td>
 				<td><label id="earliestMoveOutDateLabel"for="earliestMoveOutDate">Earliest move-out date (optional)</label></td>

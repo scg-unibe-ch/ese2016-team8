@@ -517,6 +517,11 @@ footer nav ul li {
 	width: 1000px;
 }
 
+#moreOptions table{
+	margin-top: 0px;
+	margin-left: 400px;
+}
+
 /* -------------------------------------------------------------------- */
 /* editProfile.jsp */
 .editProfileTable input {
