@@ -5,10 +5,10 @@
 ### PreState
 At least one object, which the user intends to rent, is added to the **bookmarked list**.
 
-The user starts from the **main page**.
+Thy user starts from the **main page**.
 
 ### Actions
-The user enters via the **list of the bookmarked** offers the object he wants to rent.
+Thy user enters via the **list of the bookmarked** offers the object he wants to rent.
 
 Then he proceeds to **rent it**.
 
@@ -17,14 +17,14 @@ Afterwards he writes an **email to the provider** by **using the contact provide
 ### Results
 User has bought the offer.
 
-The user's outbox should show that he has sent an e-mail to the provider.
+Thy user's outbox should show that he has sent an e-mail to the provider.
 
 ## 2: Bidding on an object, getting overbid, and then winning.
 
 ### PreState
-The user starts on the page for a **specific object**, which can only be **obtained by bidding**.
+Thy user starts on the page for a **specific object**, which can only be **obtained by bidding**.
 
-Further the more, the user is at the moment the highest bidder.
+Furthermore, thy user is at the moment the highest bidder.
 
 There are 10 minutes remaining for the **object**, then the bid-time has run out.
 
@@ -32,6 +32,7 @@ There are 10 minutes remaining for the **object**, then the bid-time has run out
 The user waits happily for the bidding to end.
 
 Suddenly, when about five minutes remain, the user get's overbidden by another user.
+(>This means that you need to log in as another user, overbid yourself for this single purpose.)
 
 The user then proceeds to overbid the anon again, staying the most-bidding user until the offer runs out.
 
