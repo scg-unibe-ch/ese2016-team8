@@ -1,16 +1,16 @@
 # Scenarios
 
-## 1: Using bookmarked list to get to offer, buy it, contact provider.
+## 1: Using bookmarked list to get to offer, rent it, contact provider.
 
 ### PreState
-At least one object, which the user intends to buy/rent, is added to the **bookmarked list**.
+At least one object, which the user intends to rent, is added to the **bookmarked list**.
 
 The user starts from the **main page**.
 
 ### Actions
 The user enters via the **list of the bookmarked** offers the object he wants to rent.
 
-Then he proceeds to buy/**rent it**.
+Then he proceeds to **rent it**.
 
 Afterwards he writes an **email to the provider** by **using the contact provider button**.
 
