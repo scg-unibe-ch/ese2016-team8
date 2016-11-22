@@ -39,3 +39,5 @@ The user then proceeds to overbid the anon again, staying the most-bidding user 
 The user should have gotten an e-mail for being overbid.
 
 The user should have gotten an e-mail for winning the auction.
+
+## 3: Get Rekt, Ryan!
