@@ -41,4 +41,17 @@ The user should have gotten an e-mail for being overbid.
 
 The user should have gotten an e-mail for winning the auction.
 
-## 3: Get Rekt, Ryan!
+## 3: Placing an ad for a room
+
+### PreState
+The user is **logged** in and starts on the **main page**
+
+### Actions
+The user goes to the place ad form through the _Place an ad_-Button
+
+He then proceeds to place an ad for a room in 8001 - Z&uuml;rich. The requireds field must be filled with creative ideas. Only given fields are **Prize per month** which must be equal to 900, **Smoking inside allowed** and **Garage** which must be ticked and have at least one visiting time, the rest is up to the user.
+
+### Results
+The ad must be placed correctly.
+
+The message "Ad placed successfully. You can take a look at it below." must be displayed.
