@@ -18,3 +18,24 @@ Afterwards he writes an **email to the provider** by **using the contact provide
 User has bought the offer.
 
 The user's outbox should show that he has sent an e-mail to the provider.
+
+## 2: Bidding on an object, getting overbid, and then winning.
+
+### PreState
+The user starts on the page for a **specific object**, which can only be **obtained by bidding**.
+
+Further the more, the user is at the moment the highest bidder.
+
+There are 10 minutes remaining for the **object**, then the bid-time has run out.
+
+### Actions
+The user waits happily for the bidding to end.
+
+Suddenly, when about five minutes remain, the user get's overbidden by another user.
+
+The user then proceeds to overbid the anon again, staying the most-bidding user until the offer runs out.
+
+### Results
+The user should have gotten an e-mail for being overbid.
+
+The user should have gotten an e-mail for winning the auction.
