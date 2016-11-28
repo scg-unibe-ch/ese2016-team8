@@ -11,7 +11,7 @@ Input from developers:
 
 Concerning the usability tests:
 -1 Test:
--- Having a item already bookmarkred, going to rent a object. 
+-- Having an item already bookmarkred, going to rent an object. 
 -- Is going to search for bookmarked lists.
 --- Doesn't find the bookmarked lists. Has found it.
 -- Clicks on a object to rent
