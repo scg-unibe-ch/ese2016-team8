@@ -78,7 +78,7 @@ public class ProfileController {
 			googleService.saveFrom(googleForm);
 		}
 		googleLoginService.loginFrom(googleForm);
-		model.addObject("searchForm", new SearchForm());
+		model.addObject("newest", adService.getNewestAds(4));
 		return model;
 	}
 

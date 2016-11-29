@@ -73,9 +73,11 @@
 
 <c:choose>
 	<c:when test="${empty bookmarkedAdvertisements}">
+	<div id="resultsDiv" class="resultsDiv">
 		<h1>My Bookmarks</h1>
 		<hr />
 		<p>You have not bookmarked anything yet.</p><br /><br />
+	</div>
 	</c:when>
 	<c:otherwise>
 		

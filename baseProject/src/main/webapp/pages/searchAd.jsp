@@ -190,12 +190,12 @@ function lessOptions(){
 		<br/>
 		<label for="radius">Within radius of (max.):</label>
 		<form:input id="radiusInput" type="number" path="radius"
-			placeholder="e.g. 5" step="5" />
+			placeholder="e.g. 5" step="any" />
 		km
 		<form:errors path="radius" cssClass="validationErrorText" />
 		<br /> <label for="prize">Price (max.):</label>
 		<form:input id="prizeInput" type="number" path="prize"
-			placeholder="e.g. 5" step="50" />
+			placeholder="e.g. 5" step="any" />
 		CHF
 		<form:errors path="prize" cssClass="validationErrorText" />
 		<br /></div>

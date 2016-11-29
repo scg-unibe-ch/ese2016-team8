@@ -226,10 +226,10 @@
 			</tr>
 			<tr>
 				<td><form:input id="field-Prize" type="number" path="prize"
-						placeholder="Prize per month" value="50" step="50" /> <form:errors
+						placeholder="Prize per month" value="50" step="any" /> <form:errors
 						path="prize" cssClass="validationErrorText" /></td>
 				<td colspan="6"><form:input id="field-SquareFootage" type="number"
-						path="squareFootage" placeholder="Prize per month" step="5" /> <form:errors
+						path="squareFootage" placeholder="Prize per month" step="any" /> <form:errors
 						path="squareFootage" cssClass="validationErrorText" /></td>
 			</tr>
 		</table>

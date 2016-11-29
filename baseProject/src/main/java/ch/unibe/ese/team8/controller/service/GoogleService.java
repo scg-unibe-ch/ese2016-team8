@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ch.unibe.ese.team8.controller.pojos.forms.GoogleLoginForm;
 import ch.unibe.ese.team8.model.Gender;
 import ch.unibe.ese.team8.model.User;
+import ch.unibe.ese.team8.model.UserPicture;
 import ch.unibe.ese.team8.model.UserRole;
 import ch.unibe.ese.team8.model.dao.UserDao;
 
@@ -45,7 +46,11 @@ public class GoogleService {
 		user.setEnabled(true);
 		user.setGender(Gender.MALE);
 		user.setGoogleUser(true);
-
+		UserPicture userPicture = new UserPicture();
+		userPicture.setUser(user);
+		userPicture.setFilePath(googleForm.getPicture());
+		user.setPicture(userPicture);
+		
 		Set<UserRole> userRoles = new HashSet<>();
 		UserRole role = new UserRole();
 		role.setRole(DEFAULT_ROLE);
