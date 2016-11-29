@@ -49,6 +49,9 @@ public class User {
 
 	@Column(nullable = false)
 	private boolean premium;
+	
+	@Column(nullable = false)
+	private boolean googleUser;
 
 
 	@JsonIgnore
@@ -154,6 +157,14 @@ public class User {
 
 	public void setGender(Gender gender) {
 		this.gender = gender;
+	}
+
+	public boolean getGoogleUser() {
+		return googleUser;
+	}
+
+	public void setGoogleUser(boolean googleUser) {
+		this.googleUser = googleUser;
 	}
 
 	public String getAboutMe() {

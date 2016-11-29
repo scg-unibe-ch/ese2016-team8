@@ -9,6 +9,11 @@
 <!-- check if user is logged in -->
 <security:authorize var="loggedIn" url="/profile" />
 
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+<meta name="google-signin-client_id" content="609599959744-qjl118p0tlktjnljrim47l4lgmba9ebb.apps.googleusercontent.com">
+
+
 <c:import url="template/header.jsp" />
 
 <pre>
@@ -33,6 +38,7 @@
 			<button type="submit">Login</button>
 		</form>
 		<br />
+		<div class="g-signin2" data-onsuccess="onSignIn"></div>
 		<h2>Test users</h2>
 
 		<ul class="test-users">
@@ -54,5 +60,50 @@
 		
 	</c:otherwise>
 </c:choose>
+
+<div>
+	<form:form id="googleForm" type="hidden" class="form-horizontal" method="post"
+		modelAttribute="googleForm" action="./google">
+
+			<spring:bind path="firstName">
+						<form:input type="hidden" path="firstName" cssClass="form-control"
+							id="field-firstName" />
+			</spring:bind>
+
+			<spring:bind path="lastName">
+						<form:input type="hidden" path="lastName" id="field-lastName"
+							cssClass="form-control" />
+			</spring:bind>
+
+			<spring:bind path="email">	
+						<form:input type="hidden" path="email" id="field-mail"
+							cssClass="form-control" />
+			</spring:bind>
+			
+			<spring:bind path="picture">	
+						<form:input type="hidden" path="picture" id="field-picture"
+							cssClass="form-control" />					
+			</spring:bind>
+			
+		<button type="submit" style="visibility:hidden;" class="btn btn-primary" value="signup" id="googleButton"
+				>Sign up</button>
+				
+		</form:form>
+	</div>	
+	
+	
+<script>
+	function onSignIn(googleUser) {
+	 	var profile = googleUser.getBasicProfile();
+		$("#field-firstName").val(profile.getGivenName());
+		$("#field-lastName").val(profile.getFamilyName());
+		$("#field-mail").val(profile.getEmail());
+		$("#field-picture").val(profile.getImageUrl());
+		var auth2 = gapi.auth2.getAuthInstance();
+    	auth2.signOut();
+		$("#googleButton").click();
+		
+	}
+</script>
 
 <c:import url="template/footer.jsp" />

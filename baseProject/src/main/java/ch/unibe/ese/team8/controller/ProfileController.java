@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,9 +17,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import ch.unibe.ese.team8.controller.pojos.forms.EditProfileForm;
+import ch.unibe.ese.team8.controller.pojos.forms.GoogleLoginForm;
 import ch.unibe.ese.team8.controller.pojos.forms.MessageForm;
+import ch.unibe.ese.team8.controller.pojos.forms.SearchForm;
 import ch.unibe.ese.team8.controller.pojos.forms.SignupForm;
 import ch.unibe.ese.team8.controller.service.AdService;
+import ch.unibe.ese.team8.controller.service.GoogleLoginService;
+import ch.unibe.ese.team8.controller.service.GoogleService;
 import ch.unibe.ese.team8.controller.service.SignupService;
 import ch.unibe.ese.team8.controller.service.UserService;
 import ch.unibe.ese.team8.controller.service.UserUpdateService;
@@ -46,11 +52,33 @@ public class ProfileController {
 
 	@Autowired
 	private AdService adService;
+	
+	@Autowired
+	private GoogleService googleService;
+
+	@Autowired
+	private GoogleLoginService googleLoginService;
+	
+	@Autowired
+	@Qualifier("authenticationManager")
+	protected AuthenticationManager authenticationManager;
 
 	/** Returns the login page. */
 	@RequestMapping(value = "/login")
 	public ModelAndView loginPage() {
 		ModelAndView model = new ModelAndView("login");
+		model.addObject("googleForm", new GoogleLoginForm());
+		return model;
+	}
+	
+	@RequestMapping(value = "/google", method = RequestMethod.POST)
+	public ModelAndView goolgeLogin(GoogleLoginForm googleForm){
+		ModelAndView model = new ModelAndView("index");
+		if(!googleService.doesUserWithUsernameExist(googleForm.getEmail())){
+			googleService.saveFrom(googleForm);
+		}
+		googleLoginService.loginFrom(googleForm);
+		model.addObject("searchForm", new SearchForm());
 		return model;
 	}
 
