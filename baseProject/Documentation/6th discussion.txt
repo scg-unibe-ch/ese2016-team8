@@ -1,0 +1,43 @@
+Team 8 and Claudio, 23.11.2016
+
+Input from customers:
+-Whether we've been able to fix the bugs.
+-Whether we've been able to find bugs and write tests.
+
+Input from developers:
+-If pull requests haven't been accepted, does this have to influence us. --> No.
+-TrumpFindr is widely spread and appreciated by the customer.
+-Google Maps integration is being called "gedige".
+
+Concerning the usability tests:
+-1 Test:
+-- Having an item already bookmarkred, going to rent an object. 
+-- Is going to search for bookmarked lists.
+--- Doesn't find the bookmarked lists. Has found it.
+-- Clicks on a object to rent
+-- Has clicked to rent it
+-- Has written an email to the provider
+
+-- Checks whether the email has been sent.
+
+-2 Test:
+-- Being the most-bidding user.
+-- Getting overbid
+--- Problems with the linking to get to the auction
+-- Going to overbid again
+-- Overbids again
+--- Tried to overbid with a negative value, but failed miserably. 
+-- Wins the auction.
+--- Checks for the message and has gotten both messages.
+
+-3. Test:
+-- Logged in at the main page, and place an offer.
+-- Place an ad for Zürich, Smokers and Garage and creative values.
+--- Places it with some creative values.
+-- No pictures.
+-- Für negative Quadratmeter z.b. -1, wird -5 bis 0 angeboten.
+-- Popup war korrekt.
+
+TODO:
+- Quadratmeter nicht nur 5er Schritte (Cross-browser compaibility.)
+- Will sich mit Google Account einloggen können (integration von Google).
