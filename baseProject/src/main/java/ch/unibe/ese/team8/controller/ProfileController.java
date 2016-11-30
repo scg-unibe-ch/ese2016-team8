@@ -71,6 +71,7 @@ public class ProfileController {
 		return model;
 	}
 	
+	/** Handles the login and return from the google login form */
 	@RequestMapping(value = "/google", method = RequestMethod.POST)
 	public ModelAndView goolgeLogin(GoogleLoginForm googleForm){
 		ModelAndView model = new ModelAndView("index");

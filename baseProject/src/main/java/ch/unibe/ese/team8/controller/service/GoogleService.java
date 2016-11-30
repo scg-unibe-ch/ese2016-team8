@@ -18,14 +18,18 @@ import ch.unibe.ese.team8.model.UserPicture;
 import ch.unibe.ese.team8.model.UserRole;
 import ch.unibe.ese.team8.model.dao.UserDao;
 
+/**
+ * The GoogleService class creates a new User with the information provided from
+ * the GoogleLoginForm
+ */
 @Service
 public class GoogleService {
 
 	@Autowired
 	private UserDao userDao;
-	
+
 	private static final String DEFAULT_ROLE = "ROLE_USER";
-	
+
 	@Autowired
 	@Qualifier("org.springframework.security.authenticationManager")
 	private AuthenticationManager authenticationManager;
@@ -38,11 +42,11 @@ public class GoogleService {
 		user.setEmail(googleForm.getEmail());
 		user.setFirstName(googleForm.getFirstName());
 		user.setLastName(googleForm.getLastName());
-		
+
 		final SecureRandom rndm = new SecureRandom();
 		String randomPassword = new BigInteger(50, rndm).toString(32);
-		user.setPassword(randomPassword); //sets a strong random password
-		
+		user.setPassword(randomPassword); // sets a strong random password
+
 		user.setEnabled(true);
 		user.setGender(Gender.MALE);
 		user.setGoogleUser(true);
@@ -50,21 +54,21 @@ public class GoogleService {
 		userPicture.setUser(user);
 		userPicture.setFilePath(googleForm.getPicture());
 		user.setPicture(userPicture);
-		
+
 		Set<UserRole> userRoles = new HashSet<>();
 		UserRole role = new UserRole();
 		role.setRole(DEFAULT_ROLE);
 		role.setUser(user);
 		userRoles.add(role);
-		
+
 		user.setUserRoles(userRoles);
-		
+
 		userDao.save(user);
 	}
-	
+
 	@Transactional
-	public boolean doesUserWithUsernameExist(String username){
+	public boolean doesUserWithUsernameExist(String username) {
 		return userDao.findByUsername(username) != null;
 	}
-	
+
 }

@@ -103,7 +103,7 @@ public class AdService {
 				calendar.set(yearMoveOut, monthMoveOut - 1, dayMoveOut);
 				ad.setMoveOutDate(calendar.getTime());
 			}
-			
+
 			if (placeAdForm.getAuctionEndDate().length() >= 1) {
 				int dayAuctionEnd = Integer.parseInt(placeAdForm.getAuctionEndDate().substring(0, 2));
 				int monthAuctionEnd = Integer.parseInt(placeAdForm.getAuctionEndDate().substring(3, 5));
@@ -111,7 +111,7 @@ public class AdService {
 				calendar.set(yearAuctionEnd, monthAuctionEnd - 1, dayAuctionEnd);
 				ad.setAuctionEndDate(calendar.getTime());
 			}
-			
+
 		} catch (NumberFormatException e) {
 		}
 
@@ -247,15 +247,33 @@ public class AdService {
 	public Iterable<Ad> queryResults(final SearchForm searchForm) {
 		Iterable<Ad> results = null;
 
-		// we use this method if we are looking for rooms AND studios
+		// we use this method if we are looking for rent AND sales depending on
+		// categories
 		if (searchForm.getBothRentAndSale()) {
+			// if we dont want to display the auction, that already ended use
+			// this method
+			/*
+			 * results = adDao.
+			 * findByCategoryInAndAuctionOverAndPrizePerMonthLessThanOrderByPremiumDesc
+			 * (searchForm.getCategories(), false,
+			 * searchForm.getPrize() + 1);
+			 */
 			results = adDao.findByCategoryInAndPrizePerMonthLessThanOrderByPremiumDesc(searchForm.getCategories(),
 					searchForm.getPrize() + 1);
 		}
-		// we use this method if we are looking EITHER for rooms OR for studios
+		// we use this method if we are looking for EITHER sale OR rent and the
+		// depending categories
 		else {
-			results = adDao.findByCategoryInAndSaleAndPrizePerMonthLessThanOrderByPremiumDesc(searchForm.getCategories(), searchForm.getSale(),
-					searchForm.getPrize() + 1);
+			// if we dont want to display the auction, that already ended use
+			// this method
+			/*
+			 * results = adDao.
+			 * findByCategoryInAndSaleAndAuctionOverAndPrizePerMonthLessThanOrderByPremiumDesc
+			 * (searchForm.getCategories(), searchForm.getSale(), false,
+			 * searchForm.getPrize() + 1);
+			 */
+			results = adDao.findByCategoryInAndSaleAndPrizePerMonthLessThanOrderByPremiumDesc(
+					searchForm.getCategories(), searchForm.getSale(), searchForm.getPrize() + 1);
 		}
 
 		// filter out zipcode
@@ -282,19 +300,21 @@ public class AdService {
 		 * The distance is calculated using the law of cosines.
 		 * http://www.movable-type.co.uk/scripts/latlong.html
 		 */
-		if(searchForm.getRadius() > 0){
-		List<Integer> zipcodes = locations.parallelStream().filter(location -> {
-			double radLongitude = Math.toRadians(location.getLongitude());
-			double radLatitude = Math.toRadians(location.getLatitude());
-			double distance = Math.acos(radSinLat * Math.sin(radLatitude)
-					+ radCosLat * Math.cos(radLatitude) * Math.cos(radLong - radLongitude)) * earthRadiusKm;
-			return distance < searchForm.getRadius();
-		}).map(location -> location.getZip()).collect(Collectors.toList());
+		if (searchForm.getRadius() > 0) {
+			List<Integer> zipcodes = locations.parallelStream().filter(location -> {
+				double radLongitude = Math.toRadians(location.getLongitude());
+				double radLatitude = Math.toRadians(location.getLatitude());
+				double distance = Math.acos(radSinLat * Math.sin(radLatitude)
+						+ radCosLat * Math.cos(radLatitude) * Math.cos(radLong - radLongitude)) * earthRadiusKm;
+				return distance < searchForm.getRadius();
+			}).map(location -> location.getZip()).collect(Collectors.toList());
 
-		locatedResults = locatedResults.stream().filter(ad -> zipcodes.contains(ad.getZipcode()))
-				.collect(Collectors.toList());
-		}else{
-			locatedResults = locatedResults.stream().filter(ad -> searchForm.getCity().substring(0,4).equals(String.valueOf(ad.getZipcode())))
+			locatedResults = locatedResults.stream().filter(ad -> zipcodes.contains(ad.getZipcode()))
+					.collect(Collectors.toList());
+		} else {
+			// else we need exact match with the zip code!
+			locatedResults = locatedResults.stream()
+					.filter(ad -> searchForm.getCity().substring(0, 4).equals(String.valueOf(ad.getZipcode())))
 					.collect(Collectors.toList());
 		}
 
@@ -423,7 +443,8 @@ public class AdService {
 		return locatedResults;
 	}
 
-	private List<Ad> validateDate(final List<Ad> ads, final boolean inOrOut, final Date earliestDate, final Date latestDate) {
+	private List<Ad> validateDate(final List<Ad> ads, final boolean inOrOut, final Date earliestDate,
+			final Date latestDate) {
 		if (ads.size() > 0) {
 			// Move-in dates
 			// Both an earliest AND a latest date to compare to

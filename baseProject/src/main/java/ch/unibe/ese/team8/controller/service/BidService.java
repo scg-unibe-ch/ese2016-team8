@@ -14,7 +14,7 @@ import ch.unibe.ese.team8.model.dao.AdDao;
 import ch.unibe.ese.team8.model.dao.MessageDao;
 
 /**
- * Adds or removes bookmarked ads from the user and updates the user accordingly
+ * Controls the bids, that are made by a user and what interactions should be made
  */
 @Service
 public class BidService {
@@ -29,17 +29,20 @@ public class BidService {
 	private SystemService systemService;
 
 	/**
-	 * This method adds or removes ads from the ArrayList.
+	 * This method handles the bid request
 	 * 
-	 * @param id
-	 *            it's the current ads' id
+	 * @param ad
+	 *            the ad we want to bid on
 	 * @param bid
 	 *            the current bid
 	 * @param user
-	 *            current user
+	 *            the user who is bidding
 	 * 
-	 * @return returns an integer 3 bookmark it 2 undo the bookmark
-	 * 
+	 * @return returns an integer depending on the status
+	 *			0: the placed bid is lower than the max bid
+	 *			1: the bid was placed successfully
+	 *			2: the auction is actually over already, notify the corresponding peopl!
+	 *			3: the user is already the max bidder
 	 */
 	public int bid(Ad ad, int bid, User user) {
 		if (ad.getPrizePerMonth() >= bid && ad.getStartPrize() > bid) {
@@ -53,10 +56,11 @@ public class BidService {
 			adDao.save(ad);
 
 			return 2;
-		} else if(ad.getMaxBidder().getId() == user.getId()){
+		} else if (ad.getMaxBidder().getId() == user.getId()) {
 			return 3;
-		}else{
+		} else {
 
+			// this could be improved, by introducing a new method, that does this!
 			Message message = new Message();
 
 			message.setRecipient(ad.getMaxBidder());
@@ -80,6 +84,7 @@ public class BidService {
 		}
 	}
 
+	// checks if auction is expired and notify the seller and maxbidder
 	public void checkExpiredAuctions() {
 		Iterable<Ad> allAuctions = adDao.findByAuction(true);
 		for (Ad auction : allAuctions) {
@@ -96,6 +101,7 @@ public class BidService {
 		}
 	}
 
+	// Sends a message to the seller, that the auction ended successfully
 	private void sendMessageToSeller(Ad auction) {
 		User maxBidder = auction.getMaxBidder();
 		User seller = auction.getUser();
@@ -115,6 +121,7 @@ public class BidService {
 
 	}
 
+	// Sends a message to the buyer, that he won an auction
 	private void sendMessageToMaxBidder(Ad auction) {
 		User maxBidder = auction.getMaxBidder();
 		User seller = auction.getUser();
