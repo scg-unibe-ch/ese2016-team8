@@ -39,6 +39,8 @@ public class AlertService {
 	@Autowired
 	private GeoDataService geoDataService;
 
+	private static final long HOUR = 3600 * 1000;
+
 	/**
 	 * Persists a new alert with the data from the alert form to the database.
 	 *
@@ -106,7 +108,15 @@ public class AlertService {
 
 		// send messages to all users with matching alerts
 		for (User user : users) {
-			Date now = new Date();
+			
+			Date now;
+
+			if (user.getPremium()) {
+				now = new Date();
+			} else {
+				now = new Date();
+				now.setTime(now.getTime() + 2 * HOUR);
+			}
 			Message message = new Message();
 			message.setSubject("It's a match!");
 			message.setText(getAlertText(ad));
@@ -133,8 +143,8 @@ public class AlertService {
 		} else {
 			message.append("href=/ad?id=");
 		}
-		message.append(ad.getId() + ">" + ad.getTitle() + "</a><br><br>" + "Good luck and enjoy,<br>"
-				+ "Your FlatFindr crew");
+		message.append(
+				ad.getId() + ">" + ad.getTitle() + "</a><br><br>" + "Good luck and enjoy,<br>" + "Your FlatFindr crew");
 
 		return message.toString();
 	}

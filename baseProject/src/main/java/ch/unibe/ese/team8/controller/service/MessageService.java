@@ -33,7 +33,7 @@ public class MessageService {
 	/** Gets all messages in the inbox of the given user, sorted newest to oldest */
 	@Transactional
 	public Iterable<Message> getInboxForUser(final User user) {
-		Iterable<Message> usersMessages = messageDao.findByRecipient(user);
+		Iterable<Message> usersMessages = messageDao.findByRecipientAndDateSentLessThan(user, new Date());
 		List<Message> messages = new ArrayList<Message>();
 		for(Message message: usersMessages)
 			messages.add(message);
@@ -136,7 +136,7 @@ public class MessageService {
 		Iterable<Message> usersMessages = messageDao.findByRecipient(user);
 		int i = 0;
 		for(Message message: usersMessages) {
-			if(message.getState().equals(MessageState.UNREAD))
+			if(message.getState().equals(MessageState.UNREAD) && message.getDateSent().before(new Date()))
 				i++;
 		}
 		return i;
