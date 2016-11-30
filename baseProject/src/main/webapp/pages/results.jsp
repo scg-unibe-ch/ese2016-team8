@@ -106,14 +106,26 @@ function sort_div_attribute() {
 	    }
 
 	    //sort the array
-		divsbucket.sort(function(a, b) {
-	    if (a[0] == b[0])
-			return 0;
-	    else if (a[0] > b[0])
-			return 1;
-        else
-			return -1;
+	    if(attname == "data-price"){
+	    	divsbucket.sort(function(a, b) {
+		    if (parseInt(a[0]) == parseInt(b[0]))
+				return 0;
+		    else if (parseInt(a[0]) > parseInt(b[0]))
+				return 1;
+	        else
+				return -1;
 		});
+	    }else{
+	    	divsbucket.sort(function(a, b) {
+		    if (Date.parse(a[0]) == Date.parse(b[0]))
+				return 0;
+		    else if (Date.parse(a[0]) > Date.parse(b[0]))
+				return 1;
+	        else
+				return -1;
+		});
+	    }
+
 
 	    //invert sorted array for certain sort options
 		if(sortmode == "price_desc" || sortmode == "moveIn_asc" || sortmode == "dateAge_asc")
