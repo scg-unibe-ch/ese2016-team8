@@ -276,7 +276,7 @@
 				</td>
 				<td>
 					<form:input id="field-SquareFootage" type="number"
-						path="squareFootage" placeholder="Prize per month" step="5" 
+						path="squareFootage" placeholder="Prize per month" step="1" 
 						value="${ad.squareFootage }"/> <form:errors
 						path="squareFootage" cssClass="validationErrorText" />
 				</td>

@@ -229,7 +229,7 @@
 						placeholder="Prize per month" value="50" step="50" /> <form:errors
 						path="prize" cssClass="validationErrorText" /></td>
 				<td colspan="6"><form:input id="field-SquareFootage" type="number"
-						path="squareFootage" placeholder="Prize per month" step="5" /> <form:errors
+						path="squareFootage" placeholder="Prize per month" step="1" /> <form:errors
 						path="squareFootage" cssClass="validationErrorText" /></td>
 			</tr>
 		</table>
