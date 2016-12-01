@@ -259,6 +259,9 @@ window.onload = function () {
 
 <h1 id="shownAdTitle">${shownAd.title}
 	<c:choose>
+		<c:when test="${shownAd.premium}"><img  id="premiumStar" style="width: 40px; hight: 10px;" src="/img/Star.png"></c:when>
+	</c:choose>
+	<c:choose>
 		<c:when test="${loggedIn}">
 			<a class="right" id="bookmarkButton">Bookmark Ad</a>
 		</c:when>
@@ -345,7 +348,7 @@ window.onload = function () {
 		</c:when></c:choose>
 		</tr>
 	</table>
-	
+
 	<div id="bidDiv">
 		<c:choose>
 			<c:when test="${shownAd.auctionOver}">
