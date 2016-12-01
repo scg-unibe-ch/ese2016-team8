@@ -22,8 +22,8 @@
 		<h2>No ads placed yet</h2>
 	</c:when>
 	<c:otherwise>
-		<div id="resultsDiv" class="resultsDiv">	
-			<h2>Our newest ads:</h2>		
+		<div id="resultsDiv" class="resultsDiv">
+			<h2>Our newest ads:</h2>
 			<c:forEach var="ad" items="${newest}">
 				<div class="resultAd">
 					<div class="resultLeft">
@@ -52,6 +52,9 @@
 						</p>
 					</div>
 					<div class="resultRight">
+						<c:choose>
+							<c:when test="${ad.premium}"><img  style="width: 40px; hight: 10px;" src="/img/Star.png"></c:when>
+						</c:choose>
 						<h2>CHF ${ad.prizePerMonth }</h2>
 						<br /> <br />
 

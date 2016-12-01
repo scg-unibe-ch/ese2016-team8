@@ -255,6 +255,9 @@ function sort_div_attribute() {
 						</p>
 					</div>
 					<div class="resultRight">
+						<c:choose>
+							<c:when test="${ad.premium}"><img  id="premiumStar" src="/img/Star.png"></c:when>
+						</c:choose>
 						<h2>CHF ${ad.prizePerMonth }</h2>
 						<br /> <br />
 
@@ -278,7 +281,7 @@ function sort_div_attribute() {
 
 <form:form method="post" modelAttribute="searchForm" action="/results"
 	id="filterForm" autocomplete="off">
-	
+
 	<div id="filterDiv">
 		<h2>Filter results:</h2>
 		<form:checkbox name="room" id="room" path="roomHelper" /><label>Room</label>
