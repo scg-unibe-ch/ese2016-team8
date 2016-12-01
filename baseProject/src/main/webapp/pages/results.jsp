@@ -229,10 +229,18 @@ function sort_div_attribute() {
 				<div class="resultAd" data-price="${ad.prizePerMonth}"
 								data-moveIn="${ad.moveInDate}" data-age="${ad.moveInDate}">
 					<div class="resultLeft">
+						<c:if test="${ad.premium}">
 						<c:choose>
+							<c:when test="${!ad.auction}"><a href="<c:url value='/ad?id=${ad.id}' />"><img class="premium" src="http://positivefabulouswomen.com/wp-content/uploads/2015/05/achat_premium_nom_de_domaine_point_paris.png"/><img src="${ad.pictures[0].filePath}" /></a></c:when>
+							<c:otherwise><a href="<c:url value='/auction?id=${ad.id}' />"><img class="premium" src="http://positivefabulouswomen.com/wp-content/uploads/2015/05/achat_premium_nom_de_domaine_point_paris.png"/><img src="${ad.pictures[0].filePath}" /></a></c:otherwise>
+						</c:choose>
+						</c:if>
+						<c:if test="${!ad.premium}">
+							<c:choose>
 							<c:when test="${!ad.auction}"><a href="<c:url value='/ad?id=${ad.id}' />"><img src="${ad.pictures[0].filePath}" /></a></c:when>
 							<c:otherwise><a href="<c:url value='/auction?id=${ad.id}' />"><img src="${ad.pictures[0].filePath}" /></a></c:otherwise>
-						</c:choose>
+							</c:choose>
+						</c:if>
 						<h2>
 						<c:choose>
 							<c:when test="${!ad.auction}"><a class="link" href="<c:url value='/ad?id=${ad.id}' />">${ad.title}</a></c:when>
