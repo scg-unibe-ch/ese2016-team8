@@ -31,7 +31,9 @@ public class AlertController {
 	@Autowired
 	private UserService userService;
 
-	/** Serves the page that allows the user to view their alerts. */
+	/**
+	 * Serves the page that allows the user to view their alerts.
+	 */
 	@RequestMapping(value = "/profile/alerts", method = RequestMethod.GET)
 	public ModelAndView alerts(final Principal principal) {
 		return prepareAlertPage(principal, false, new AlertForm());

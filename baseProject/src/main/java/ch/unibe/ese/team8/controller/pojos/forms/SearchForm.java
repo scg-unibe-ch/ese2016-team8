@@ -9,7 +9,9 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-/** This form is used for searching for an ad. */
+/**
+ * This form is used for searching for an ad.
+ */
 public class SearchForm {
 
 	private boolean filtered;

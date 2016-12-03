@@ -7,7 +7,9 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-/** This form is used when a user wants to place a new ad. */
+/**
+ * This form is used when a user wants to place a new ad.
+ */
 public class PlaceAdForm {
 
 	@NotBlank(message = "Required")

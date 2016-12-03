@@ -9,7 +9,9 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import ch.unibe.ese.team8.model.User;
 
-/** This form is used when a user wants to create a new alert. */
+/**
+ * This form is used when a user wants to create a new alert.
+ */
 public class AlertForm {
 
 	private User user;
@@ -82,7 +84,6 @@ public class AlertForm {
 		return category;
 	}
 
-	// TODO: change dependencies where below 'getCategory(...)' is used to 'setCategory(...)'
 	public void setCategory(final String category) {
 		this.category = category;
 	}
@@ -91,7 +92,7 @@ public class AlertForm {
 		return houseHelper;
 	}
 
-	public void setHouseHelper(boolean houseHelper) {
+	public void setHouseHelper(final boolean houseHelper) {
 		this.houseHelper = houseHelper;
 	}
 
@@ -99,7 +100,7 @@ public class AlertForm {
 		return roomHelper;
 	}
 
-	public void setRoomHelper(boolean roomHelper) {
+	public void setRoomHelper(final boolean roomHelper) {
 		this.roomHelper = roomHelper;
 	}
 
@@ -107,7 +108,7 @@ public class AlertForm {
 		return studioHelper;
 	}
 
-	public void setStudioHelper(boolean studioHelper) {
+	public void setStudioHelper(final boolean studioHelper) {
 		this.studioHelper = studioHelper;
 	}
 }

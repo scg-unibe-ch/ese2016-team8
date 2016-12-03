@@ -21,7 +21,6 @@ import ch.unibe.ese.team8.model.PictureMeta;
 /**
  * This class handles uploading any number of pictures of type
  * {@link MultipartFile} to the server.
- *
  */
 public class PictureUploader {
 

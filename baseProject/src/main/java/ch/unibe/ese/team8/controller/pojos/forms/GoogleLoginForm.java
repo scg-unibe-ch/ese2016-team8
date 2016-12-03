@@ -3,7 +3,10 @@ package ch.unibe.ese.team8.controller.pojos.forms;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-/** This GoogleLoginForm is used when a user wants to signup/signin from the google account */
+/** 
+ * This GoogleLoginForm is used when a user wants to signup/signin
+ * from the google account
+ */
 public class GoogleLoginForm {
 
 	@Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message = "Must be valid email address")
@@ -24,7 +27,7 @@ public class GoogleLoginForm {
 		return email;
 	}
 
-	public void setEmail(String email) {
+	public void setEmail(final String email) {
 		this.email = email;
 	}
 
@@ -32,7 +35,7 @@ public class GoogleLoginForm {
 		return firstName;
 	}
 
-	public void setFirstName(String firstName) {
+	public void setFirstName(final String firstName) {
 		this.firstName = firstName;
 	}
 
@@ -40,7 +43,7 @@ public class GoogleLoginForm {
 		return lastName;
 	}
 
-	public void setLastName(String lastName) {
+	public void setLastName(final String lastName) {
 		this.lastName = lastName;
 	}
 
@@ -48,7 +51,7 @@ public class GoogleLoginForm {
 		return picture;
 	}
 
-	public void setPicture(String url) {
+	public void setPicture(final String url) {
 		this.picture = url;
 	}
 
