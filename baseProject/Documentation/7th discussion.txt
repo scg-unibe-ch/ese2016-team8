@@ -1,0 +1,23 @@
+Team 8 and Claudio, 30.11.2016
+
+Input from developers: 
+- Google log in, release next week
+- negative square metrage and stepping of 5 fixed
+
+TODO:
+- Premium immer zuerst, auch bei sortieren nach Preis zuerst alle Premium nach Preis und dann alle anderen nach Preis.
+- Premium Ads kennzeichnen.
+
+
+Nächste Woche nicht wirklich Customer Meeting
+
+Bis in zwei Wochen alle Requirements durchgehen auf Wiki, falls etwas nicht gemacht: Mail an Claudio
+
+Letzter gültiger Commit für Präsentation in zwei Wochen, vor Präsentation.
+
+Tests, Refactoring, Javadoc etc.
+
+Klassenkommentare empfehlenswert.
+
+Präsentation:
+Briefing folgt auf Piazza.
