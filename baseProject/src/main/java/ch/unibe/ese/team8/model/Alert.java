@@ -36,60 +36,73 @@ public class Alert {
 	@Column(nullable = false)
 	private String category;
 
-	public long getId() {
+	public long getId()
+	{
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(long id)
+	{
 		this.id = id;
 	}
 
-	public User getUser() {
+	public User getUser()
+	{
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(User user)
+	{
 		this.user = user;
 	}
 
-	public int getZipcode() {
+	public int getZipcode()
+	{
 		return zipcode;
 	}
 
-	public void setZipcode(int zipcode) {
+	public void setZipcode(int zipcode)
+	{
 		this.zipcode = zipcode;
 	}
 
-	public String getCity() {
+	public String getCity()
+	{
 		return city;
 	}
 
-	public void setCity(String city) {
+	public void setCity(String city)
+	{
 		this.city = city;
 	}
 
-	public int getRadius() {
+	public int getRadius()
+	{
 		return radius;
 	}
 
-	public void setRadius(int radius) {
+	public void setRadius(int radius)
+	{
 		this.radius = radius;
 	}
 
-	public int getPrice() {
+	public int getPrice()
+	{
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(int price)
+	{
 		this.price = price;
 	}
 
-	public String getCategory() {
-		// TODO Auto-generated method stub
+	public String getCategory()
+	{
 		return category;
 	}
 	
-	public void setCategory(String category){
+	public void setCategory(String category)
+	{
 		this.category = category;
 	}
 }

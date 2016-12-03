@@ -19,24 +19,29 @@ public abstract class Picture {
 	@Column(nullable = false)
 	private String filePath;
 
-	public long getId() {
+	public long getId()
+	{
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(long id)
+	{
 		this.id = id;
 	}
 
-	public String getFilePath() {
+	public String getFilePath()
+	{
 		return filePath;
 	}
 
-	public void setFilePath(String filePath) {
+	public void setFilePath(String filePath)
+	{
 		this.filePath = filePath;
 	}
 
 	@Override
-	public int hashCode() {
+	public int hashCode()
+	{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + (int) (id ^ (id >>> 32));
@@ -44,7 +49,8 @@ public abstract class Picture {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj)
+	{
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -56,6 +62,4 @@ public abstract class Picture {
 			return false;
 		return true;
 	}
-
-	
 }

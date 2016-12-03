@@ -34,9 +34,14 @@ public class GoogleService {
 	@Qualifier("org.springframework.security.authenticationManager")
 	private AuthenticationManager authenticationManager;
 
-	/** Handles persisting a new user to the database. */
+	/**
+	 * Handles persisting a new user to the database.
+	 * 
+	 * @param googleForm, a GoogleLoginForm.
+	 */
 	@Transactional
-	public void saveFrom(GoogleLoginForm googleForm) {
+	public void saveFrom(GoogleLoginForm googleForm)
+	{
 		User user = new User();
 		user.setUsername(googleForm.getEmail());
 		user.setEmail(googleForm.getEmail());
@@ -66,8 +71,17 @@ public class GoogleService {
 		userDao.save(user);
 	}
 
+	/**
+	 * Checks whether a user exists for a given username.
+	 * 
+	 * @param username
+	 * 
+	 * @return true, if the user exists.
+	 *         false, else.
+	 */
 	@Transactional
-	public boolean doesUserWithUsernameExist(String username) {
+	public boolean doesUserWithUsernameExist(String username)
+	{
 		return userDao.findByUsername(username) != null;
 	}
 

@@ -26,6 +26,8 @@ public class GeoDataService {
 
 	/**
 	 * Returns a list of all locations in the database.
+	 * 
+	 * @return List<Location>
 	 */
 	public List<Location> getAllLocations() {
 		return executeQuery("SELECT zip.zip , zip.location, zip.lat, zip.lon FROM `zipcodes` zip");
@@ -35,32 +37,40 @@ public class GeoDataService {
 	 * Gets all locations that match the given city. The locations are ordered
 	 * in ascending order in relation to the zip code.
 	 *
-	 * @param city
-	 *            the city to look for
-	 * @return a list of all locations that match the given city
+	 * @param city, the city to look for.
+	 * 
+	 * @return a list of all locations that match the given city.
 	 */
-	public List<Location> getLocationsByCity(String city) {
-		if (city.contains("\'")) {
+	public List<Location> getLocationsByCity(String city)
+	{
+		if (city.contains("\'"))
+		{
 			city = "";
 		}
 		return executeQuery("SELECT zip.zip , zip.location, zip.lat, zip.lon FROM `zipcodes` zip WHERE location = '"
 				+ city + "' ORDER BY zip ASC;");
-
 	}
 
 	/**
 	 * Gets all locations that have the given zipcode.
 	 *
-	 * @param zipcode
-	 *            the zipcode to search for
-	 * @return a list of all locations that match
+	 * @param zipcode, the zipcode to search for.
+	 * 
+	 * @return a list of all locations that match.
 	 */
-	public List<Location> getLocationsByZipcode(final int zipcode) {
+	public List<Location> getLocationsByZipcode(final int zipcode)
+	{
 		return executeQuery("SELECT zip.zip, zip.location, zip.lat, zip.lon FROM `zipcodes` zip WHERE zip = "
 				+ zipcode + ";");
 	}
 
-	private List<Location> executeQuery(final String query) {
+	/**
+	 * @param query, a String.
+	 * 
+	 * @return List<Location>
+	 */
+	private List<Location> executeQuery(final String query)
+	{
 		Connection connection = null;
 		Statement statement = null;
 		ResultSet resultSet = null;
@@ -77,25 +87,34 @@ public class GeoDataService {
 			ex.printStackTrace();
 		} finally {
 			try {
-				if (statement != null) {
+				if (statement != null)
+				{
 					statement.close();
 				}
-				if (statement != null) {
+				if (statement != null)
+				{
 					connection.close();
 				}
-			} catch (SQLException ex) {
-				// ignore
-			}
+			} catch (SQLException ex) { // ignore }
 		}
-
 		return locationList;
 	}
 
 	/**
 	 * Fills the given list with the results from resultSet.
+	 * 
+	 * @param resultSet, a ResultSet instance.
+	 * @param locationList, a List<Location>
+	 * 
+	 * @return List<Location>
+	 * 
+	 * @throws SQLException
 	 */
-	private List<Location> writeResultSet(final ResultSet resultSet,
-			final List<Location> locationList) throws SQLException {
+	private List<Location> writeResultSet(
+			final ResultSet resultSet,
+			final List<Location> locationList)
+					throws SQLException
+	{
 		while (resultSet.next()) {
 			int zip = resultSet.getInt("zip");
 			String city = resultSet.getString("location");
@@ -110,7 +129,6 @@ public class GeoDataService {
 
 			locationList.add(location);
 		}
-
 		return locationList;
 	}
 }

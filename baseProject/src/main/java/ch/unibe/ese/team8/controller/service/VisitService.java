@@ -15,7 +15,9 @@ import ch.unibe.ese.team8.model.VisitEnquiryState;
 import ch.unibe.ese.team8.model.dao.VisitDao;
 import ch.unibe.ese.team8.model.dao.VisitEnquiryDao;
 
-/** Provides operations for getting and saving visits */
+/**
+ * Provides operations for getting and saving visits
+ */
 @Service
 public class VisitService {
 
@@ -28,6 +30,8 @@ public class VisitService {
 	/**
 	 * Returns all possible visits of an advertisement.
 	 *
+	 * @param ad
+	 * 
 	 * @return an Iterable of all matching visits
 	 */
 	@Transactional
@@ -35,15 +39,29 @@ public class VisitService {
 		return visitDao.findByAd(ad);
 	}
 
-	/** Returns the visit with the given id. */
+	/**
+	 * Returns the visit with the given id.
+	 * 
+	 * @param id
+	 * 
+	 * @return visit
+	 */
 	@Transactional
-	public Visit getVisitById(final long id) {
+	public Visit getVisitById(final long id)
+	{
 		return visitDao.findOne(id);
 	}
 
-	/** Returns all visits that a user has applied for and was also accepted to. */
+	/**
+	 * Returns all visits that a user has applied for and was also accepted to.
+	 * 
+	 * @param user
+	 * 
+	 * @return Iterable<Visit>
+	 */
 	@Transactional
-	public Iterable<Visit> getVisitsForUser(final User user) {
+	public Iterable<Visit> getVisitsForUser(final User user)
+	{
 		// all enquiries sent by user
 		Iterable<VisitEnquiry> usersEnquiries = visitEnquiryDao
 				.findBySender(user);
@@ -57,7 +75,13 @@ public class VisitService {
 		return usersVisits;
 	}
 
-	/** Returns all visitors for the visit with the given id. */
+	/**
+	 * Returns all visitors for the visit with the given id.
+	 * 
+	 * @param id, long.
+	 * 
+	 * @return Iterable<User>.
+	 */
 	public Iterable<User> getVisitorsForVisit(final long id) {
 		Visit visit = visitDao.findOne(id);
 		return visit.getSearchers();

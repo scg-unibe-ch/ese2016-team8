@@ -39,24 +39,23 @@ import ch.unibe.ese.team8.model.User;
 
 /**
  * This controller handles all requests concerning placing ads.
- *
  */
 @Controller
 public class PlaceAdController {
 
 	public static final String IMAGE_DIRECTORY = "/img/ads";
 
-	/** Used for generating a JSON representation of a given object. */
+	// Used for generating a JSON representation of a given object.
 	private ObjectMapper objectMapper;
 
-	/**
+	/*
 	 * Used for uploading ad pictures. As long as the user did not place the ad
 	 * completely, the same picture uploader is used. Once the ad was placed,
 	 * this uploader is renewed.
 	 */
 	private PictureUploader pictureUploader;
 
-	/**
+	/*
 	 * The place ad form that is shared between several requests, so that the
 	 * user only has to enter the data once. If an ad is placed, this form is
 	 * reset.
@@ -84,13 +83,21 @@ public class PlaceAdController {
 	@Autowired
 	private AdService adService;
 
-	/** Shows the place ad form. */
+	/**
+	 * Shows the place ad form.
+	 * 
+	 * @return model, if no pictureUploade has been specified yet, a new instance of
+	 *                	<code>ModelAndView('placeAd')</code> is returned.
+	 *                else we override the current pictureUploader and return the model.
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/profile/placeAd", method = RequestMethod.GET)
 	public ModelAndView placeAd() throws IOException {
 		ModelAndView model = new ModelAndView("placeAd");
 
 		String realPath = servletContext.getRealPath(IMAGE_DIRECTORY);
-		if (pictureUploader == null) {
+		if (pictureUploader == null)
+		{
 			pictureUploader = new PictureUploader(realPath, IMAGE_DIRECTORY);
 		}
 		return model;
@@ -100,20 +107,24 @@ public class PlaceAdController {
 	 * Uploads the pictures that are attached as multipart files to the request.
 	 * The JSON representation, that is returned, is generated manually because
 	 * the jQuery Fileupload plugin requires this special format.
+	 * 
+	 * @param request, a MultipartHttpServletRequest.
 	 *
 	 * @return A JSON representation of the uploaded files
 	 */
 	@RequestMapping(value = "/profile/placeAd/uploadPictures", method = RequestMethod.POST)
-	public @ResponseBody String uploadPictures(
-			final MultipartHttpServletRequest request) {
+	public @ResponseBody String uploadPictures(final MultipartHttpServletRequest request)
+	{
 		List<MultipartFile> pictures = new LinkedList<>();
 		Iterator<String> iter = request.getFileNames();
 
-		while (iter.hasNext()) {
+		while (iter.hasNext())
+		{
 			pictures.add(request.getFile(iter.next()));
 		}
 
-		if (pictureUploader == null) {
+		if (pictureUploader == null)
+		{
 			String realPath = servletContext.getRealPath(IMAGE_DIRECTORY);
 			pictureUploader = new PictureUploader(realPath, IMAGE_DIRECTORY);
 		}
@@ -135,13 +146,27 @@ public class PlaceAdController {
 	 * success, a redirect to the ad description page of the just created ad is
 	 * issued. If there were validation errors, the place ad form is displayed
 	 * again.
+	 * 
+	 * @param placeAdForm
+	 * @param result, the BindingResult.
+	 * @param redirectAttributes
+	 * @param principal
+	 * 
+	 * @return model, the ModelAndView instance.
+	 *              If the binding result has errors, we return a simple new instance of
+	 *              <code>ModelAndView('placeAd')</code>,
+	 *              else we modify the model before returning it.
 	 */
 	@RequestMapping(value = "/profile/placeAd", method = RequestMethod.POST)
-	public ModelAndView create(@Valid final PlaceAdForm placeAdForm,
-			final BindingResult result, final RedirectAttributes redirectAttributes,
-			final Principal principal) {
+	public ModelAndView create(
+			@Valid final PlaceAdForm placeAdForm,
+			final BindingResult result,
+			final RedirectAttributes redirectAttributes,
+			final Principal principal)
+	{
 		ModelAndView model = new ModelAndView("placeAd");
-		if (!result.hasErrors()) {
+		if (!result.hasErrors())
+		{
 			String username = principal.getName();
 			User user = userService.findUserByUsername(username);
 
@@ -156,7 +181,8 @@ public class PlaceAdController {
 			// reset the picture uploader
 			this.pictureUploader = null;
 
-			if (placeAdForm.getAuction()) {
+			if (placeAdForm.getAuction())
+			{
 				model = new ModelAndView("redirect:/auction?id=" + ad.getId());
 				redirectAttributes.addFlashAttribute("confirmationMessage",
 						"Ad placed successfully. You can take a look at it below.");
@@ -174,13 +200,15 @@ public class PlaceAdController {
 	/**
 	 * Gets the descriptions for the pictures that were uploaded with the
 	 * current picture uploader.
-	 *
+	 * 
 	 * @return a list of picture descriptions or null if no pictures were
 	 *         uploaded
 	 */
 	@RequestMapping(value = "/profile/placeAd/getUploadedPictures", method = RequestMethod.POST)
-	public @ResponseBody List<PictureMeta> getUploadedPictures() {
-		if (pictureUploader == null) {
+	public @ResponseBody List<PictureMeta> getUploadedPictures()
+	{
+		if (pictureUploader == null)$
+		{
 			return null;
 		}
 		return pictureUploader.getUploadedPictureMetas();
@@ -189,10 +217,14 @@ public class PlaceAdController {
 	/**
 	 * Deletes the uploaded picture at the given relative url (relative to the
 	 * webapp folder).
+	 * 
+	 * @param url, the url String to the picture which is to be deleted.
 	 */
 	@RequestMapping(value = "/profile/placeAd/deletePicture", method = RequestMethod.POST)
-	public @ResponseBody void deleteUploadedPicture(@RequestParam final String url) {
-		if (pictureUploader != null) {
+	public @ResponseBody void deleteUploadedPicture(@RequestParam final String url)
+	{
+		if (pictureUploader != null)
+		{
 			String realPath = servletContext.getRealPath(url);
 			pictureUploader.deletePicture(url, realPath);
 		}
@@ -202,28 +234,48 @@ public class PlaceAdController {
 	 * Checks if the email passed as post parameter is a valid email. In case it
 	 * is valid, the email address is returned. If it is not, a error message is
 	 * returned.
+	 * 
+	 * @param email, a String.
+	 * @param alreadyIn, a String.
+	 * 
+	 * @return String, in a valid case, we return <code>user.getEmail</code>, else
+	 *                we return different error messages such as 'You already added
+	 *                this person' or 'This user does not exist, did your roommate
+	 *                register?'.
 	 */
 	@RequestMapping(value = "/profile/placeAd/validateEmail", method = RequestMethod.POST)
 	@ResponseBody
-	public String validateEmail(@RequestParam final String email,
-			@RequestParam final String alreadyIn) {
+	public String validateEmail(
+			@RequestParam final String email,
+			@RequestParam final String alreadyIn)
+	{
 		User user = userService.findUserByUsername(email);
 
 		Boolean isAdded = adService.checkIfAlreadyAdded(email, alreadyIn);
 
-		if (user == null) {
+		if (user == null)
+		{
 			return "This user does not exist, did your roommate register?";
 		}
-		if (isAdded) {
+		if (isAdded)
+		{
 			return "You already added this person.";
 		} else {
 			return user.getEmail();
 		}
 	}
 
+	/**
+	 * If current PlaceAdForm equals null, we return a new instance,
+	 * else we return the current instance.
+	 * 
+	 * @return placeAdForm.
+	 */
 	@ModelAttribute("placeAdForm")
-	public PlaceAdForm placeAdForm() {
-		if (placeAdForm == null) {
+	public PlaceAdForm placeAdForm()
+	{
+		if (placeAdForm == null)
+		{
 			placeAdForm = new PlaceAdForm();
 		}
 		return placeAdForm;

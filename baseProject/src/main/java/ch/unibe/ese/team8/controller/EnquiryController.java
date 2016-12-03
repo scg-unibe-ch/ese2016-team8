@@ -35,13 +35,19 @@ public class EnquiryController {
 	@Autowired
 	private VisitService visitService;
 
-	/** Serves the page that displays the enquiries for the logged in user. */
+	/**
+	 * Serves the page that displays the enquiries for the logged in user.
+	 * 
+	 * @param principal
+	 * 
+	 * @return model, the ModelAndView
+	 */
 	@RequestMapping(value = "/profile/enquiries")
-	public ModelAndView enquiriesPage(final Principal principal) {
+	public ModelAndView enquiriesPage(final Principal principal)
+	{
 		ModelAndView model = new ModelAndView("enquiries");
 		User user = userService.findUserByUsername(principal.getName());
-		Iterable<VisitEnquiry> usersEnquiries = enquiryService
-				.getEnquiriesByRecipient(user);
+		Iterable<VisitEnquiry> usersEnquiries = enquiryService.getEnquiriesByRecipient(user);
 		model.addObject("enquiries", usersEnquiries);
 		return model;
 	}
@@ -49,10 +55,15 @@ public class EnquiryController {
 	/**
 	 * Sends an enquiry for the visit with the given id. The sender of the
 	 * enquiry will be the currently logged in user.
+	 * 
+	 * @param id, the id of the visit
+	 * @param principal
 	 */
 	@RequestMapping(value = "/profile/enquiries/sendEnquiryForVisit")
-	public @ResponseBody void sendEnquiryForVisit(@RequestParam("id") final long id,
-			final Principal principal) {
+	public @ResponseBody void sendEnquiryForVisit(
+			@RequestParam("id") final long id,
+			final Principal principal)
+	{
 		Visit visit = visitService.getVisitById(id);
 		User user = userService.findUserByUsername(principal.getName());
 
@@ -65,34 +76,52 @@ public class EnquiryController {
 		enquiryService.saveVisitEnquiry(visitEnquiry);
 	}
 
-	/** Sets the state of the enquiry with the given id to accepted. */
+	/**
+	 * Sets the state of the enquiry with the given id to accepted
+	 */
 	@RequestMapping(value = "/profile/enquiries/acceptEnquiry", method = RequestMethod.GET)
-	public @ResponseBody void acceptEnquiry(@RequestParam("id") final long id) {
+	public @ResponseBody void acceptEnquiry(@RequestParam("id") final long id)
+	{
 		enquiryService.acceptEnquiry(id);
 	}
 
-	/** Sets the state of the enquiry with the given id to declined. */
+	/**
+	 * Sets the state of the enquiry with the given id to declined.
+	 * 
+	 * @param id, the id of the enquiry
+	 */
 	@RequestMapping(value = "/profile/enquiries/declineEnquiry", method = RequestMethod.GET)
-	public @ResponseBody void declineEnquiry(@RequestParam("id") final long id) {
+	public @ResponseBody void declineEnquiry(@RequestParam("id") final long id)
+	{
 		enquiryService.declineEnquiry(id);
 	}
 
 	/**
 	 * Reopens the enquiry with the given id, meaning that its state is set to
 	 * open again.
+	 * 
+	 * @param id, the id of the enquiry
 	 */
 	@RequestMapping(value = "/profile/enquiries/reopenEnquiry", method = RequestMethod.GET)
-	public @ResponseBody void reopenEnquiry(@RequestParam("id") final long id) {
+	public @ResponseBody void reopenEnquiry(@RequestParam("id") final long id)
+	{
 		enquiryService.reopenEnquiry(id);
 	}
 
 	/**
 	 * Rates the user with the given id with the given rating. This rating is
 	 * associated to the user and persisted.
+	 * 
+	 * @param principal,
+	 * @param id, id of the user
+	 * @param rating, an Interger respresenting the rating
 	 */
 	@RequestMapping(value = "/profile/rateUser", method = RequestMethod.GET)
-	public @ResponseBody void rateUser(final Principal principal,
-			@RequestParam("rate") final long id, @RequestParam("stars") final int rating) {
+	public @ResponseBody void rateUser(
+			final Principal principal,
+			@RequestParam("rate") final long id,
+			@RequestParam("stars") final int rating)
+	{
 		User user = userService.findUserByUsername(principal.getName());
 		enquiryService.rate(user, userService.findUserById(id), rating);
 	}
@@ -100,10 +129,15 @@ public class EnquiryController {
 	/**
 	 * Returns the rating for the given user that the currently logged in user
 	 * has given them.
+	 * 
+	 * @param principal
+	 * @param id, the id of the user
 	 */
 	@RequestMapping(value = "/profile/ratingFor", method = RequestMethod.GET)
-	public @ResponseBody int ratingFor(final Principal principal,
-			@RequestParam("user") final long id) {
+	public @ResponseBody int ratingFor(
+			final Principal principal,
+			@RequestParam("user") final long id)
+	{
 		User principe = userService.findUserByUsername(principal.getName());
 		User ratee = userService.findUserById(id);
 		return enquiryService.getRatingByRaterAndRatee(principe, ratee)

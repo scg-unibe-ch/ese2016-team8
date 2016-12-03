@@ -23,13 +23,16 @@ public class GoogleLoginService {
 	@Qualifier("org.springframework.security.authenticationManager")
 	private AuthenticationManager authenticationManager;
 
-	/** Handles login of google user. */
+	/**
+	 * Handles login of google user.
+	 * @param googleForm, a GoogleLoginForm instance.
+	 */
 	@Transactional
-	public void loginFrom(GoogleLoginForm googleForm) {
+	public void loginFrom(GoogleLoginForm googleForm)
+	{
 		User user = userDao.findByUsername(googleForm.getEmail());
 		Authentication request = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
 		Authentication result = authenticationManager.authenticate(request);
 		SecurityContextHolder.getContext().setAuthentication(result);
 	}
-
 }

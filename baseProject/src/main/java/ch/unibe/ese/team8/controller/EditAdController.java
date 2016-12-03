@@ -62,9 +62,15 @@ public class EditAdController {
 
 	/**
 	 * Serves the page that allows the user to edit the ad with the given id.
+	 * 
+	 * @param id, the id of the ad
+	 * @param principal
+	 * 
+	 * @return  model, a ModelAndView where the new placeAdForm has been added.
 	 */
 	@RequestMapping(value = "/profile/editAd", method = RequestMethod.GET)
-	public ModelAndView editAdPage(@RequestParam final long id, final Principal principal) {
+	public ModelAndView editAdPage(@RequestParam final long id, final Principal principal)
+	{
 		ModelAndView model = new ModelAndView("editAd");
 		Ad ad = adService.getAdById(id);
 		model.addObject("ad", ad);
@@ -83,18 +89,32 @@ public class EditAdController {
 
 	/**
 	 * Processes the edit ad form and displays the result page to the user.
+	 * 
+	 * @param placeAdForm
+	 * @param result, the BiddingResult instance.
+	 * @param principal
+	 * @param redirectAttributes
+	 * @param adId
+	 * 
+	 * @return model, the new ModelAndView instance.
 	 */
 	@RequestMapping(value = "/profile/editAd", method = RequestMethod.POST)
-	public ModelAndView editAdPageWithForm(@Valid final PlaceAdForm placeAdForm,
-			final BindingResult result, final Principal principal,
-			final RedirectAttributes redirectAttributes, @RequestParam final long adId) {
+	public ModelAndView editAdPageWithForm(
+			@Valid final PlaceAdForm placeAdForm,
+			final BindingResult result,
+			final Principal principal,
+			final RedirectAttributes redirectAttributes,
+			@RequestParam final long adId)
+	{
 		ModelAndView model = new ModelAndView("placeAd");
-		if (!result.hasErrors()) {
+		if (!result.hasErrors())
+		{
 			String username = principal.getName();
 			User user = userService.findUserByUsername(username);
 
 			String realPath = servletContext.getRealPath(IMAGE_DIRECTORY);
-			if (pictureUploader == null) {
+			if (pictureUploader == null)
+			{
 				pictureUploader = new PictureUploader(realPath, IMAGE_DIRECTORY);
 			}
 			List<String> fileNames = pictureUploader.getFileNames();
@@ -110,17 +130,21 @@ public class EditAdController {
 			redirectAttributes.addFlashAttribute("confirmationMessage",
 					"Ad edited successfully. You can take a look at it below.");
 		}
-
 		return model;
 	}
 
 	/**
 	 * Deletes the ad picture with the given id from the list of pictures from
 	 * the ad, but not from the server.
+	 * 
+	 * @param adId
+	 * @param pictureId
 	 */
 	@RequestMapping(value = "/profile/editAd/deletePictureFromAd", method = RequestMethod.POST)
-	public @ResponseBody void deletePictureFromAd(@RequestParam final long adId,
-			@RequestParam final long pictureId) {
+	public @ResponseBody void deletePictureFromAd(
+			@RequestParam final long adId,
+			@RequestParam final long pictureId)
+	{
 		editAdService.deletePictureFromAd(adId, pictureId);
 	}
 
@@ -132,7 +156,8 @@ public class EditAdController {
 	 *         uploaded
 	 */
 	@RequestMapping(value = "/profile/editAd/getUploadedPictures", method = RequestMethod.POST)
-	public @ResponseBody List<PictureMeta> getUploadedPictures() {
+	public @ResponseBody List<PictureMeta> getUploadedPictures()
+	{
 		if (pictureUploader == null) {
 			return null;
 		}
@@ -147,8 +172,8 @@ public class EditAdController {
 	 * @return A JSON representation of the uploaded files
 	 */
 	@RequestMapping(value = "/profile/editAd/uploadPictures", method = RequestMethod.POST)
-	public @ResponseBody String uploadPictures(
-			final MultipartHttpServletRequest request) {
+	public @ResponseBody String uploadPictures(final MultipartHttpServletRequest request)
+	{
 		List<MultipartFile> pictures = new LinkedList<>();
 		Iterator<String> iter = request.getFileNames();
 
@@ -174,9 +199,13 @@ public class EditAdController {
 	/**
 	 * Deletes the uploaded picture at the given relative url (relative to the
 	 * webapp folder).
+	 * 
+	 * @param url, the String respresentation of the url of the picture, which is to
+	 *        be deleted.
 	 */
 	@RequestMapping(value = "/profile/editAd/deletePicture", method = RequestMethod.POST)
-	public @ResponseBody void deleteUploadedPicture(@RequestParam final String url) {
+	public @ResponseBody void deleteUploadedPicture(@RequestParam final String url)
+	{
 		if (pictureUploader != null) {
 			String realPath = servletContext.getRealPath(url);
 			pictureUploader.deletePicture(url, realPath);
@@ -186,14 +215,14 @@ public class EditAdController {
 	/**
 	 * Deletes the roommate with the given id.
 	 *
-	 * @param userId
-	 *            the id of the user to delete
-	 * @param adId
-	 *            the id of the ad to delete the user from
+	 * @param userId, the id of the user to delete
+	 * @param adId, the id of the ad to delete the user from
 	 */
 	@RequestMapping(value = "/profile/editAd/deleteRoommate", method = RequestMethod.POST)
-	public @ResponseBody void deleteRoommate(@RequestParam final long userId,
-			@RequestParam final long adId) {
+	public @ResponseBody void deleteRoommate(
+			@RequestParam final long userId,
+			@RequestParam final long adId)
+	{
 		editAdService.deleteRoommate(userId, adId);
 	}
 }

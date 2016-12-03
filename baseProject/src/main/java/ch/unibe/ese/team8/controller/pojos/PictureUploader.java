@@ -34,11 +34,9 @@ public class PictureUploader {
 	 * Creates a new PictureUploader that will upload to the directory specified
 	 * by directory.
 	 *
-	 * @param absolutePath
-	 *            the file path of the directory that should be uploaded to
-	 * @param relativePath
-	 *            the file path the uploaded pictures will have in the servlet
-	 *            context
+	 * @param absolutePath, the file path of the directory that should be uploaded to.
+	 * @param relativePath, the file path the uploaded 
+	 *                      pictures will have in the servlet context.
 	 */
 	public PictureUploader(final String absolutePath, final String relativePath) {
 		this.absoluteFilePath = absolutePath;
@@ -53,8 +51,8 @@ public class PictureUploader {
 	 * are named in ascending order with the filenames specified by the list of
 	 * Strings returned.
 	 *
-	 * @param pictures
-	 *            the pictures to upload
+	 * @param pictures, the pictures to upload
+	 * 
 	 * @return the filenames the pictures were uploaded as
 	 */
 	public List<PictureMeta> upload(final List<MultipartFile> pictures) {
@@ -68,7 +66,8 @@ public class PictureUploader {
 		PictureMeta pictureMeta;
 
 		for (MultipartFile file : pictures) {
-			if (!file.isEmpty()) {
+			if (!file.isEmpty())
+			{
 				// create file meta data that will be passed to the client side
 				// jQuery
 				pictureMeta = new PictureMeta();
@@ -84,9 +83,9 @@ public class PictureUploader {
 							.toLowerCase(Locale.ROOT);
 					// check filetypes
 					if (!(extension.equals(".jpg") || extension.equals(".png")
-							|| extension.equals(".jpeg") || extension
-								.equals(".bmp"))) {
-						// invalid file format, skip file
+							|| extension.equals(".jpeg") || extension.equals(".bmp")))
+					{
+						// invalid file format, skip file.
 						continue;
 					}
 					UUID randomUUID = UUID.randomUUID();
@@ -136,7 +135,9 @@ public class PictureUploader {
 		}
 	}
 
-	/** Returns the relative file paths of the pictures that were uploaded. */
+	/**
+	 * Returns the relative file paths of the pictures that were uploaded.
+	 */
 	public List<String> getFileNames() {
 		return uploadedPictureMetas.stream()
 				.map(pictureMeta -> pictureMeta.getUrl())
@@ -150,5 +151,4 @@ public class PictureUploader {
 	public List<PictureMeta> getUploadedPictureMetas() {
 		return uploadedPictureMetas;
 	}
-
 }

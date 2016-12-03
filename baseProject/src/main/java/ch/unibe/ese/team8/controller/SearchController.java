@@ -24,13 +24,17 @@ public class SearchController {
 	@Autowired
 	private UserService userService;
 
-	/**
+	/*
 	 * The search form that is used for searching. It is saved between request
 	 * so that users don't have to enter their search parameters multiple times.
 	 */
 	private SearchForm searchForm;
 
-	/** Shows the search ad page. */
+	/**
+	 * Shows the search ad page.
+	 * 
+	 * @return mode, the ModelAndView instance.
+	 */
 	@RequestMapping(value = "/searchAd", method = RequestMethod.GET)
 	public ModelAndView searchAd() {
 		ModelAndView model = new ModelAndView("searchAd");
@@ -40,11 +44,18 @@ public class SearchController {
 	/**
 	 * Gets the results when filtering the ads in the database by the parameters
 	 * in the search form.
+	 * 
+	 * @param searchForm
+	 * 
+	 * @return model, the ModelAndView instance.
 	 */
 	@RequestMapping(value = "/results", method = RequestMethod.POST)
-	public ModelAndView results(@Valid final SearchForm searchForm,
-			final BindingResult result) {
-		if (!result.hasErrors()) {
+	public ModelAndView results(
+			@Valid final SearchForm searchForm,
+			final BindingResult result)
+	{
+		if (!result.hasErrors())
+		{
 			ModelAndView model = new ModelAndView("results");
 			model.addObject("results", adService.queryResults(searchForm));
 			return model;
@@ -53,10 +64,12 @@ public class SearchController {
 			return searchAd();
 		}
 	}
-
+	
 	@ModelAttribute
-	public SearchForm getSearchForm() {
-		if (searchForm == null) {
+	public SearchForm getSearchForm()
+	{
+		if (searchForm == null)
+		{
 			searchForm = new SearchForm();
 		}
 		return searchForm;

@@ -50,9 +50,19 @@ public class AdController {
 	@Autowired
 	private VisitService visitService;
 
-	/** Gets the ad description page for the ad with the given id. */
+	/**
+	 * Gets the ad description page for the ad with the given id.
+	 * 
+	 * @param id, the id of the ad, retrieved by <code>AdService#getAdById(id)</code>
+	 * @param principal
+	 * 
+	 * @return model, the modified ModelAndView instance.
+	 */
 	@RequestMapping(value = "/ad", method = RequestMethod.GET)
-	public ModelAndView ad(@RequestParam("id") final long id, final Principal principal) {
+	public ModelAndView ad(
+			@RequestParam("id") final long id,
+			final Principal principal)
+	{
 		ModelAndView model = new ModelAndView("adDescription");
 		Ad ad = adService.getAdById(id);
 		model.addObject("shownAd", ad);
@@ -67,9 +77,19 @@ public class AdController {
 		return model;
 	}
 	
-	/** Gets the auction description for the ad with the given id */
+	/**
+	 *  Gets the auction description for the ad with the given id
+	 *  
+	 *  @param id, the id of the auctionable ad.
+	 *  @param principal.
+	 *  
+	 *  @return model, the modified ModelAndView instance.
+	 */
 	@RequestMapping(value = "/auction", method = RequestMethod.GET)
-	public ModelAndView auction(@RequestParam("id") long id, Principal principal) {
+	public ModelAndView auction(
+			@RequestParam("id") long id,
+			Principal principal)
+	{
 		ModelAndView model = new ModelAndView("auction");
 		Ad ad = adService.getAdById(id);
 		model.addObject("shownAd", ad);
@@ -88,11 +108,19 @@ public class AdController {
 	/**
 	 * Gets the ad description page for the ad with the given id and also
 	 * validates and persists the message passed as post data.
+	 * 
+	 * @param id, the id of the Ad where the message has been 'produced'.
+	 * @param messageForm
+	 * @param bindingResult.
+	 * 
+	 * @return model, the modified ModelAndView instance.
 	 */
 	@RequestMapping(value = "/ad", method = RequestMethod.POST)
-	public ModelAndView messageSent(@RequestParam("id") final long id,
-			@Valid final MessageForm messageForm, final BindingResult bindingResult) {
-
+	public ModelAndView messageSent(
+			@RequestParam("id") final long id,
+			@Valid final MessageForm messageForm,
+			final BindingResult bindingResult)
+	{
 		ModelAndView model = new ModelAndView("adDescription");
 		Ad ad = adService.getAdById(id);
 		model.addObject("shownAd", ad);
@@ -109,17 +137,26 @@ public class AdController {
 	 * List bookmarkedAds. In case it is present, true is returned changing
 	 * the "Bookmark Ad" button to "Bookmarked". If it is not present it is
 	 * added to the List bookmarkedAds.
+	 * 
+	 * @param id, the id of the ad where the bookmarked has been placed on.
+	 * @param screening
+	 * @param bookmarked
+	 * @param principal
 	 *
-	 * @return 0 and 1 for errors; 3 to update the button to bookmarked 3 and 2
-	 *         for bookmarking or undo bookmarking respectively 4 for removing
-	 *         button completly (because its the users ad)
+	 * @return 0 and 1 for errors;
+	 *         3 to update the button to bookmarked
+	 *         3 and 2 for bookmarking or undo bookmarking respectively
+	 *         4 for removing button completly (because its the users ad)
 	 */
 	@RequestMapping(value = "/bookmark", method = RequestMethod.POST)
 	@Transactional
 	@ResponseBody
-	public int isBookmarked(@RequestParam("id") final long id,
+	public int isBookmarked(
+			@RequestParam("id") final long id,
 			@RequestParam("screening") final boolean screening,
-			@RequestParam("bookmarked") final boolean bookmarked, final Principal principal) {
+			@RequestParam("bookmarked") final boolean bookmarked,
+			final Principal principal)
+	{
 		// should never happen since no bookmark button when not logged in
 		if (principal == null) {
 			return 0;
@@ -150,11 +187,28 @@ public class AdController {
 		return bookmarkService.getBookmarkStatus(ad, bookmarked, user);
 	}
 	
+	/**
+	 * Passes a bid for an auction on to the bidService with
+	 * <code>BidService#bid(Adservice ad,int bid, User user)</code> 
+	 * 
+	 * @param id, the id of the ad
+	 * @param screening
+	 * @param currentBid
+	 * @param principal
+	 * 
+	 * @return 0 for errors,
+	 *         <code>BidService#bid(ad, bid, user)</code> else.
+	 */
 	@RequestMapping(value = "/auctionBid", method = RequestMethod.POST)
 	@Transactional
 	@ResponseBody
-	public int bidOnAuction(@RequestParam("id") long id,
-			@RequestParam("screening") boolean screening, @RequestParam("bid") int currentBid, Principal principal) {
+	public int bidOnAuction(
+			@RequestParam("id") long id,
+			@RequestParam("screening") boolean screening,
+			@RequestParam("bid") int currentBid,
+			Principal principal)
+	{
+		
 		// should never happen since no bookmark button when not logged in
 		if (principal == null) {
 			return 0;
@@ -166,10 +220,6 @@ public class AdController {
 			return 0;
 		}
 
-		if (screening) {
-			
-		}
-
 		int bid = currentBid;
 		Ad ad = adService.getAdById(id);
 
@@ -179,9 +229,15 @@ public class AdController {
 	/**
 	 * Fetches information about bookmarked rooms and own ads and attaches this
 	 * information to the myRooms page in order to be displayed.
+	 * 
+	 * @param principal
+	 * 
+	 * @return a new ModelAndView('home') instance if the principal was null, else the
+	 *         modified ModelAndView instance 'model'.
 	 */
 	@RequestMapping(value = "/profile/myRooms", method = RequestMethod.GET)
-	public ModelAndView myRooms(final Principal principal) {
+	public ModelAndView myRooms(final Principal principal)
+	{
 		ModelAndView model;
 		User user;
 		if (principal != null) {
@@ -197,8 +253,6 @@ public class AdController {
 		} else {
 			model = new ModelAndView("home");
 		}
-
 		return model;
 	}
-
 }

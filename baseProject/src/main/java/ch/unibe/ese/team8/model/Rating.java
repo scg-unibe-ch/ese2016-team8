@@ -6,7 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-/** Describes a rating that was given to a ratee by a rater. */
+/**
+ * Describes a rating that was given to a ratee by a rater.
+ */
 @Entity
 public class Rating {
 
@@ -23,35 +25,43 @@ public class Rating {
 	@Column(nullable = false)
 	private int rating;
 
-	public long getId() {
+	public long getId()
+	{
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(long id)
+	{
 		this.id = id;
 	}
 
-	public User getRater() {
+	public User getRater()
+	{
 		return rater;
 	}
 
-	public void setRater(User rater) {
+	public void setRater(User rater)
+	{
 		this.rater = rater;
 	}
 
-	public User getRatee() {
+	public User getRatee()
+	{
 		return ratee;
 	}
 
-	public void setRatee(User ratee) {
+	public void setRatee(User ratee)
+	{
 		this.ratee = ratee;
 	}
 
-	public int getRating() {
+	public int getRating()
+	{
 		return rating;
 	}
 
-	public void setRating(int rating) {
+	public void setRating(int rating)
+	{
 		this.rating = rating;
 	}
 }

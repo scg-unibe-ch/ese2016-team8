@@ -31,12 +31,9 @@ public class BidService {
 	/**
 	 * This method handles the bid request
 	 * 
-	 * @param ad
-	 *            the ad we want to bid on
-	 * @param bid
-	 *            the current bid
-	 * @param user
-	 *            the user who is bidding
+	 * @param ad, the ad we want to bid on
+	 * @param bid, the current bid
+	 * @param user, the user who is bidding
 	 * 
 	 * @return returns an integer depending on the status
 	 *			0: the placed bid is lower than the max bid
@@ -44,8 +41,10 @@ public class BidService {
 	 *			2: the auction is actually over already, notify the corresponding peopl!
 	 *			3: the user is already the max bidder
 	 */
-	public int bid(Ad ad, int bid, User user) {
-		if (ad.getPrizePerMonth() >= bid && ad.getStartPrize() > bid) {
+	public int bid(Ad ad, int bid, User user)
+	{
+		if (ad.getPrizePerMonth() >= bid && ad.getStartPrize() > bid)
+		{
 			return 0;
 		} else if (ad.getAuctionEndDate().before(new Date()) || ad.getAuctionOver()) {
 			ad.setAuctionOver(true);
@@ -80,16 +79,19 @@ public class BidService {
 			adDao.save(ad);
 
 			return 1;
-
 		}
 	}
 
-	// checks if auction is expired and notify the seller and maxbidder
+	/**
+	 * Checks if auction is expired and notify the seller and maxbidder.
+	 */
 	public void checkExpiredAuctions() {
 		Iterable<Ad> allAuctions = adDao.findByAuction(true);
 		for (Ad auction : allAuctions) {
-			if (auction.getAuctionEndDate().before(new Date())) {
-				if (!auction.getAuctionOver()) {
+			if (auction.getAuctionEndDate().before(new Date()))
+			{
+				if (!auction.getAuctionOver())
+				{
 					auction.setAuctionOver(true);
 
 					sendMessageToMaxBidder(auction);
@@ -101,7 +103,11 @@ public class BidService {
 		}
 	}
 
-	// Sends a message to the seller, that the auction ended successfully
+	/**
+	 * Sends a message to the seller, that the auction ended successfully.
+	 * 
+	 * @param auction, an Ad.
+	 */
 	private void sendMessageToSeller(Ad auction) {
 		User maxBidder = auction.getMaxBidder();
 		User seller = auction.getUser();
@@ -118,10 +124,13 @@ public class BidService {
 		message.setDateSent(now);
 
 		messageDao.save(message);
-
 	}
 
-	// Sends a message to the buyer, that he won an auction
+	/**
+	 * Sends a message to the buyer, that he won an auction.
+	 * 
+	 * @param auction, an Ad.
+	 */
 	private void sendMessageToMaxBidder(Ad auction) {
 		User maxBidder = auction.getMaxBidder();
 		User seller = auction.getUser();
@@ -138,7 +147,5 @@ public class BidService {
 		message.setDateSent(now);
 
 		messageDao.save(message);
-
 	}
-
 }

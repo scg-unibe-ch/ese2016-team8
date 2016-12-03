@@ -21,9 +21,14 @@ public class IndexController {
 	@Autowired
 	private BidService bidService;
 
-	/** Displays the home page. */
+	/**
+	 * Displays the home page.
+	 * 
+	 * @return model, the modified ModelAndView instance.
+	 */
 	@RequestMapping(value = "/")
-	public ModelAndView index() {
+	public ModelAndView index()
+	{
 		ModelAndView model = new ModelAndView("index");
 		bidService.checkExpiredAuctions();
 		model.addObject("newest", adService.getNewestAds(4));
@@ -31,15 +36,26 @@ public class IndexController {
 		return model;
 	}
 
-	/** Displays the about us page. */
+	/**
+	 * Displays the about us page by returning a new ModelAndView('about') instance.
+	 * 
+	 * @return ModelAndView('about'), returns by default a new ModelAndView instance.
+	 */
 	@RequestMapping(value = "/about")
-	public ModelAndView about() {
+	public ModelAndView about()
+	{
 		return new ModelAndView("about");
 	}
 
-	/** Displays the disclaimer page. */
+	/**
+	 * Displays the disclaimer page by creating/ returning a new ModelAndView('disclaimer')
+	 * instance.
+	 * 
+	 * @return ModelAndView('disclaimer'), by default.
+	 */
 	@RequestMapping(value = "/disclaimer")
-	public ModelAndView disclaimer() {
+	public ModelAndView disclaimer()
+	{
 		return new ModelAndView("disclaimer");
 	}
 }

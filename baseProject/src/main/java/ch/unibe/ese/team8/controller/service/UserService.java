@@ -16,16 +16,27 @@ public class UserService {
 	@Autowired
 	private UserDao userDao;
 
-	/** Gets the user with the given username. */
+	/**
+	 * Gets the user with the given username.
+	 * 
+	 * @param username
+	 * 
+	 * @return user
+	 */
 	@Transactional
 	public User findUserByUsername(final String username) {
 		return userDao.findByUsername(username);
 	}
 
-	/** Gets the user with the given id. */
+	/**
+	 * Gets the user with the given id.
+	 * 
+	 * @param id, long.
+	 * 
+	 * @return user
+	 */
 	@Transactional
 	public User findUserById(final long id) {
 		return userDao.findUserById(id);
 	}
-
 }

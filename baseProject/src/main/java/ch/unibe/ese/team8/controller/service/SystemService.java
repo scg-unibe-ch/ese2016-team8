@@ -11,7 +11,6 @@ import ch.unibe.ese.team8.model.User;
  * The SystemService holds a lot of prepared statements and texts, that are used
  * for the notification of auctions. We introduced this class, so that all the
  * logic is in one place.
- *
  */
 @Service
 public class SystemService {
@@ -22,15 +21,30 @@ public class SystemService {
 	@Autowired
 	private AdService adService;
 
-	public User getAdmin() {
+	public User getAdmin()
+	{
 		return userService.findUserById(1);
 	}
 
-	public String getBidNotification() {
+	public String getBidNotification()
+	{
 		return "Somebody just bid more than you";
 	}
 
-	public String getBidText(User maxBidder, long id, Date auctionEndDate, int prize) {
+	/**
+	 * @param maxBidder, a user.
+	 * @param id, a long value.
+	 * @param auctionEndDate
+	 * @param prize
+	 * 
+	 * @return the bid text.
+	 */
+	public String getBidText(
+			User maxBidder,
+			long id,
+			Date auctionEndDate,
+			int prize)
+	{
 		StringBuffer message = new StringBuffer();
 
 		message.append("Dear " + maxBidder.getFirstName() + " " + maxBidder.getLastName() + "</br>");
@@ -43,15 +57,18 @@ public class SystemService {
 		return message.toString();
 	}
 
-	public String getSaleNotification(User user, long id, User buyer) {
+	public String getSaleNotification(User user, long id, User buyer)
+	{
 		return "Your auction \"" + adService.getAdById(id).getTitle() + "\" ended";
 	}
 
-	public String getBuyNotification() {
+	public String getBuyNotification()
+	{
 		return "You won an auction!";
 	}
 
-	public String getBuyText(User user, long id, User seller) {
+	public String getBuyText(User user, long id, User seller)
+	{
 		StringBuffer message = new StringBuffer();
 
 		message.append("Dear " + user.getFirstName() + " " + user.getLastName() + "</br>");
@@ -65,7 +82,8 @@ public class SystemService {
 		return message.toString();
 	}
 
-	public String getSaleText(User user, long id, User seller) {
+	public String getSaleText(User user, long id, User seller)
+	{
 		StringBuffer message = new StringBuffer();
 
 		message.append("Dear " + seller.getFirstName() + " " + seller.getLastName() + "</br>");
@@ -78,5 +96,4 @@ public class SystemService {
 
 		return message.toString();
 	}
-
 }

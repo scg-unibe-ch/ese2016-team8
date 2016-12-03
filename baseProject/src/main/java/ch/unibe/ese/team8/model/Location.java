@@ -11,36 +11,43 @@ public class Location {
 	private double latitude;
 	private double longitude;
 
-	public int getZip() {
+	public int getZip()
+	{
 		return zip;
 	}
 
-	public void setZip(int zip) {
+	public void setZip(int zip)
+	{
 		this.zip = zip;
 	}
 
-	public String getCity() {
+	public String getCity()
+	{
 		return city;
 	}
 
-	public void setCity(String city) {
+	public void setCity(String city)
+	{
 		this.city = city;
 	}
 
-	public double getLatitude() {
+	public double getLatitude()
+	{
 		return latitude;
 	}
 
-	public void setLatitude(double latitude) {
+	public void setLatitude(double latitude)
+	{
 		this.latitude = latitude;
 	}
 
-	public double getLongitude() {
+	public double getLongitude()
+	{
 		return longitude;
 	}
 
-	public void setLongitude(double longitude) {
+	public void setLongitude(double longitude)
+	{
 		this.longitude = longitude;
 	}
-
 }

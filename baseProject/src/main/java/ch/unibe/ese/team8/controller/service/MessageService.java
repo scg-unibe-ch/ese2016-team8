@@ -20,7 +20,9 @@ import ch.unibe.ese.team8.model.User;
 import ch.unibe.ese.team8.model.dao.MessageDao;
 import ch.unibe.ese.team8.model.dao.UserDao;
 
-/** Handles all persistence operations concerning messaging. */
+/**
+ * Handles all persistence operations concerning messaging.
+ */
 @Service
 public class MessageService {
 
@@ -30,48 +32,74 @@ public class MessageService {
 	@Autowired
 	private MessageDao messageDao;
 
-	/** Gets all messages in the inbox of the given user, sorted newest to oldest */
+	/**
+	 * Gets all messages in the inbox of the given user, sorted newest to oldest.
+	 * 
+	 * @param user
+	 * 
+	 * @return Iterable<Message>
+	 */
 	@Transactional
-	public Iterable<Message> getInboxForUser(final User user) {
+	public Iterable<Message> getInboxForUser(final User user)
+	{
 		Iterable<Message> usersMessages = messageDao.findByRecipientAndDateSentLessThan(user, new Date());
 		List<Message> messages = new ArrayList<Message>();
 		for(Message message: usersMessages)
 			messages.add(message);
-		Collections.sort(messages, new Comparator<Message>(){
+		Collections.sort(messages, new Comparator<Message>()
+		{
 			@Override
-			public int compare(final Message message1, final Message message2) {
+			public int compare(final Message message1, final Message message2)
+			{
 				return message2.getDateSent().compareTo(message1.getDateSent());
 			}
 		});
 		
-		if(!messages.isEmpty()){
-		messages.get(0).setState(MessageState.READ);
-		messageDao.save(messages.get(0));
+		if(!messages.isEmpty())
+		{
+			messages.get(0).setState(MessageState.READ);
+			messageDao.save(messages.get(0));
 		}
 		
 		return messages;
 	}
 
-	/** Gets all messages in the sent folder for the given user. */
+	/**
+	 * Gets all messages in the sent folder for the given user.
+	 * 
+	 * @param user
+	 * 
+	 * @return Iterable<Message>
+	 */
 	@Transactional
-	public Iterable<Message> getSentForUser(final User user) {
+	public Iterable<Message> getSentForUser(final User user)
+	{
 		return messageDao.findBySender(user);
 	}
 
-	/** Gets the message with the given id. */
+	/**
+	 * Gets the message with the given id.
+	 * 
+	 * @param id, the id fo the message.
+	 * 
+	 * @return message
+	 */
 	@Transactional
-	public Message getMessage(final long id) {
+	public Message getMessage(final long id)
+	{
 		return messageDao.findOne(id);
 	}
 
 	/**
 	 * Handles persisting a new message to the database.
 	 *
-	 * @param messageForm
-	 *            the form to take the data from
+	 * @param messageForm, the form to take the data from.
+	 * 
+	 * @return Message
 	 */
 	@Transactional
-	public Message saveFrom(final MessageForm messageForm) {
+	public Message saveFrom(final MessageForm messageForm)
+	{
 		Message message = new Message();
 
 		message.setRecipient(userDao.findByUsername(messageForm.getRecipient()));
@@ -100,13 +128,17 @@ public class MessageService {
 
 	/** Saves a new message with the given parameters in the DB.
 	 *
-	 * @param sender the user who sends the message
-	 * @param recipient the user who should receive the message
-	 * @param subject the subject of the message
-	 * @param text the text of the message
+	 * @param sender the user who sends the message.
+	 * @param recipient the user who should receive the message.
+	 * @param subject the subject of the message.
+	 * @param text the text of the message.
 	 */
-	public void sendMessage(final User sender, final User recipient, final String subject,
-			final String text) {
+	public void sendMessage(
+			final User sender,
+			final User recipient,
+			final String subject,
+			final String text)
+	{
 		Message message = new Message();
 		message.setDateSent(new Date());
 		message.setSender(sender);
@@ -120,6 +152,7 @@ public class MessageService {
 
 	/**
 	 * Sets the MessageState of a given Message to "READ".
+	 * 
 	 * @param id
 	 */
 	@Transactional
@@ -129,7 +162,11 @@ public class MessageService {
 		messageDao.save(message);
 	}
 
-	/** Returns the number of unread messages a user has. */
+	/**
+	 * Returns the number of unread messages a user has.
+	 * 
+	 * @param id, a long.
+	 */
 	@Transactional
 	public int unread(final long id) {
 		User user = userDao.findOne(id);
@@ -141,5 +178,4 @@ public class MessageService {
 		}
 		return i;
 	}
-
 }

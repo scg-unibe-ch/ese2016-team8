@@ -19,7 +19,9 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-/** Describes an advertisement that users can place and search for. */
+/**
+ * Describes an advertisement that users can place and search for.
+ */
 @Entity
 public class Ad {
 
@@ -138,295 +140,366 @@ public class Ad {
 	@Column(nullable = false)
 	private boolean auctionOver;
 
-	public void setAuctionOver(boolean end){
+	public void setAuctionOver(boolean end)
+	{
 		this.auctionOver = end;
 	}
 
-	public boolean getAuctionOver(){
+	public boolean getAuctionOver()
+	{
 		return auctionOver;
 	}
-	public Date getAuctionEndDate(){
+	public Date getAuctionEndDate()
+	{
 		return auctionEndDate;
 	}
 
-	public void setAuctionEndDate(final Date auctionEndDate){
+	public void setAuctionEndDate(final Date auctionEndDate)
+	{
 		this.auctionEndDate= auctionEndDate;
-
 	}
 
-	public Date getCreationDate() {
+	public Date getCreationDate()
+	{
 		return creationDate;
 	}
 
-	public void setCreationDate(final Date creationDate) {
+	public void setCreationDate(final Date creationDate)
+	{
 		this.creationDate = creationDate;
 	}
 
-	public boolean getSale() {
+	public boolean getSale()
+	{
 		return sale;
 	}
 
-	public void setSale(final boolean sale) {
+	public void setSale(final boolean sale)
+	{
 		this.sale = sale;
 	}
 
-	public boolean getAuction() {
+	public boolean getAuction()
+	{
 		return auction;
 	}
 
-	public void setAuction(boolean auction) {
+	public void setAuction(boolean auction)
+	{
 		this.auction = auction;
 	}
 
-	public int getStartPrize() {
+	public int getStartPrize()
+	{
 		return startPrize;
 	}
 
-	public void setStartPrize(int startPrize) {
+	public void setStartPrize(int startPrize)
+	{
 		this.startPrize = startPrize;
 	}
 
-	public Date getAuctionDuration() {
+	public Date getAuctionDuration()
+	{
 		return auctionDuration;
 	}
 
-	public void setAuctionDuration(Date auctionDuration) {
+	public void setAuctionDuration(Date auctionDuration)
+	{
 		this.auctionDuration = auctionDuration;
 	}
 
-	public User getMaxBidder() {
+	public User getMaxBidder()
+	{
 		return maxBidder;
 	}
 
-	public void setMaxBidder(User maxBidder) {
+	public void setMaxBidder(User maxBidder)
+	{
 		this.maxBidder = maxBidder;
 	}
 
-	public void setPremium(boolean premium) {
+	public void setPremium(boolean premium)
+	{
 		this.premium = premium;
 	}
 
-	public boolean getPremium() {
+	public boolean getPremium()
+	{
 		return premium;
 	}
 
-	public boolean getSmokers() {
+	public boolean getSmokers()
+	{
 		return allowsSmokers;
 	}
 
-	public void setSmokers(final boolean allowsSmokers) {
+	public void setSmokers(final boolean allowsSmokers)
+	{
 		this.allowsSmokers = allowsSmokers;
 	}
 
-	public boolean getAnimals() {
+	public boolean getAnimals()
+	{
 		return allowsAnimals;
 	}
 
-	public void setAnimals(final boolean allowsAnimals) {
+	public void setAnimals(final boolean allowsAnimals)
+	{
 		this.allowsAnimals = allowsAnimals;
 	}
 
-	public boolean getGarden() {
+	public boolean getGarden()
+	{
 		return hasGarden;
 	}
 
-	public void setGarden(final boolean hasGarden) {
+	public void setGarden(final boolean hasGarden)
+	{
 		this.hasGarden = hasGarden;
 	}
 
-	public boolean getBalcony() {
+	public boolean getBalcony()
+	{
 		return hasBalcony;
 	}
 
-	public void setBalcony(final boolean hasBalcony) {
+	public void setBalcony(final boolean hasBalcony)
+	{
 		this.hasBalcony = hasBalcony;
 	}
 
-	public boolean getCellar() {
+	public boolean getCellar()
+	{
 		return hasCellar;
 	}
 
-	public void setCellar(final boolean hasCellar) {
+	public void setCellar(final boolean hasCellar)
+	{
 		this.hasCellar = hasCellar;
 	}
 
-	public boolean getFurnished() {
+	public boolean getFurnished()
+	{
 		return isFurnished;
 	}
 
-	public void setFurnished(final boolean furnished) {
+	public void setFurnished(final boolean furnished)
+	{
 		this.isFurnished = furnished;
 	}
 
-	public boolean getCable() {
+	public boolean getCable()
+	{
 		return hasCable;
 	}
 
-	public void setCable(final boolean hasCable) {
+	public void setCable(final boolean hasCable)
+	{
 		this.hasCable = hasCable;
 	}
 
-	public boolean getGarage() {
+	public boolean getGarage()
+	{
 		return hasGarage;
 	}
 
-	public void setGarage(final boolean hasGarage) {
+	public void setGarage(final boolean hasGarage)
+	{
 		this.hasGarage = hasGarage;
 	}
 
-	public boolean getInternet() {
+	public boolean getInternet()
+	{
 		return hasInternet;
 	}
 
-	public void setInternet(final boolean hasInternet) {
+	public void setInternet(final boolean hasInternet)
+	{
 		this.hasInternet = hasInternet;
 	}
 
-	public long getId() {
+	public long getId()
+	{
 		return id;
 	}
 
-	public void setId(final long id) {
+	public void setId(final long id)
+	{
 		this.id = id;
 	}
 
-	public int getZipcode() {
+	public int getZipcode()
+	{
 		return zipcode;
 	}
 
-	public void setZipcode(final int zipcode) {
+	public void setZipcode(final int zipcode)
+	{
 		this.zipcode = zipcode;
 	}
 
-	public Date getMoveInDate() {
+	public Date getMoveInDate()
+	{
 		return moveInDate;
 	}
 
-	public void setMoveInDate(final Date moveInDate) {
+	public void setMoveInDate(final Date moveInDate)
+	{
 		this.moveInDate = moveInDate;
 	}
 
-	public Date getMoveOutDate() {
+	public Date getMoveOutDate()
+	{
 		return moveOutDate;
 	}
 
-	public void setMoveOutDate(final Date moveOutDate) {
+	public void setMoveOutDate(final Date moveOutDate)
+	{
 		this.moveOutDate = moveOutDate;
 	}
 
-	public int getPrizePerMonth() {
+	public int getPrizePerMonth()
+	{
 		return prizePerMonth;
 	}
 
-	public void setPrizePerMonth(final int prizePerMonth) {
+	public void setPrizePerMonth(final int prizePerMonth)
+	{
 		this.prizePerMonth = prizePerMonth;
 	}
 
-	public int getSquareFootage() {
+	public int getSquareFootage()
+	{
 		return squareFootage;
 	}
 
-	public void setSquareFootage(final int squareFootage) {
+	public void setSquareFootage(final int squareFootage)
+	{
 		this.squareFootage = squareFootage;
 	}
 
-	public String getRoomDescription() {
+	public String getRoomDescription()
+	{
 		return roomDescription;
 	}
 
-	public void setRoomDescription(final String roomDescription) {
+	public void setRoomDescription(final String roomDescription)
+	{
 		this.roomDescription = roomDescription;
 	}
 
-	public String getPreferences() {
+	public String getPreferences()
+	{
 		return preferences;
 	}
 
-	public void setPreferences(final String preferences) {
+	public void setPreferences(final String preferences)
+	{
 		this.preferences = preferences;
 	}
 
-	public String getRoommates() {
+	public String getRoommates()
+	{
 		return roommates;
 	}
 
-	public void setRoommates(final String roommates) {
+	public void setRoommates(final String roommates)
+	{
 		this.roommates = roommates;
 	}
 
-	public List<AdPicture> getPictures() {
+	public List<AdPicture> getPictures()
+	{
 		return pictures;
 	}
 
-	public void setPictures(final List<AdPicture> pictures) {
+	public void setPictures(final List<AdPicture> pictures)
+	{
 		this.pictures = pictures;
 	}
 
-	public String getCategory() {
+	public String getCategory()
+	{
 		return category;
 	}
 
-	public void setCategory(final String category) {
+	public void setCategory(final String category)
+	{
 		this.category = category;
 	}
 
-	public User getUser() {
+	public User getUser()
+	{
 		return user;
 	}
 
-	public void setUser(final User user) {
+	public void setUser(final User user)
+	{
 		this.user = user;
 	}
 
-	public String getTitle() {
+	public String getTitle()
+	{
 		return title;
 	}
 
-	public void setTitle(final String title) {
+	public void setTitle(final String title)
+	{
 		this.title = title;
 	}
 
-	public String getStreet() {
+	public String getStreet()
+	{
 		return street;
 	}
 
-	public void setStreet(final String street) {
+	public void setStreet(final String street)
+	{
 		this.street = street;
 	}
 
-	public String getCity() {
+	public String getCity()
+	{
 		return city;
 	}
 
-	public void setCity(final String city) {
+	public void setCity(final String city)
+	{
 		this.city = city;
 	}
 
-	public Date getDate(final boolean hasDate) {
+	public Date getDate(final boolean hasDate)
+	{
 		if (hasDate)
 			return getMoveInDate();
 		else
 			return getMoveOutDate();
 	}
 
-	public List<User> getRegisteredRoommates() {
+	public List<User> getRegisteredRoommates()
+	{
 		return registeredRoommates;
 	}
 
-	public void setRegisteredRoommates(final List<User> registeredRoommates) {
+	public void setRegisteredRoommates(final List<User> registeredRoommates)
+	{
 		this.registeredRoommates = registeredRoommates;
 	}
 
-	public List<Visit> getVisits() {
+	public List<Visit> getVisits()
+	{
 		return visits;
 	}
 
-	public void setVisits(final List<Visit> visits) {
+	public void setVisits(final List<Visit> visits)
+	{
 		this.visits = visits;
 	}
 
 	@Override
-	public int hashCode() {
+	public int hashCode()
+	{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + (int) (id ^ (id >>> 32));

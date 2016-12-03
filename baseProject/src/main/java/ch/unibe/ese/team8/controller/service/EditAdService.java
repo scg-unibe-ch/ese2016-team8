@@ -21,7 +21,9 @@ import ch.unibe.ese.team8.model.Visit;
 import ch.unibe.ese.team8.model.dao.AdDao;
 import ch.unibe.ese.team8.model.dao.AdPictureDao;
 
-/** Provides services for editing ads in the database. */
+/**
+ * Provides services for editing ads in the database.
+ */
 @Service
 public class EditAdService {
 
@@ -40,17 +42,19 @@ public class EditAdService {
 	/**
 	 * Handles persisting an edited ad to the database.
 	 *
-	 * @param placeAdForm
-	 *            the form to take the data from
-	 * @param a
-	 *            list of the file paths the pictures are saved under
-	 * @param the
-	 *            currently logged in user
+	 * @param placeAdForm, the form to take the data from.
+	 * @param filePaths, list of the file paths the pictures are saved under
+	 *                   the currently logged in user
+	 * @param user
+	 * @param adId
 	 */
 	@Transactional
-	public Ad saveFrom(final PlaceAdForm placeAdForm, final List<String> filePaths,
-			final User user, final long adId) {
-
+	public Ad saveFrom(
+			final PlaceAdForm placeAdForm,
+			final List<String> filePaths,
+			final User user,
+			final long adId)
+	{
 		Ad ad = adService.getAdById(adId);
 
 		Date now = new Date();
@@ -71,7 +75,8 @@ public class EditAdService {
 		// java.util.Calendar uses a month range of 0-11 instead of the
 		// XMLGregorianCalendar which uses 1-12
 		try {
-			if (placeAdForm.getMoveInDate().length() >= 1) {
+			if (placeAdForm.getMoveInDate().length() >= 1)
+			{
 				int dayMoveIn = Integer.parseInt(placeAdForm.getMoveInDate()
 						.substring(0, 2));
 				int monthMoveIn = Integer.parseInt(placeAdForm.getMoveInDate()
@@ -82,7 +87,8 @@ public class EditAdService {
 				ad.setMoveInDate(calendar.getTime());
 			}
 
-			if (placeAdForm.getMoveOutDate().length() >= 1) {
+			if (placeAdForm.getMoveOutDate().length() >= 1)
+			{
 				int dayMoveOut = Integer.parseInt(placeAdForm.getMoveOutDate()
 						.substring(0, 2));
 				int monthMoveOut = Integer.parseInt(placeAdForm
@@ -182,9 +188,7 @@ public class EditAdService {
 			}
 			ad.setVisits(visits);
 		}
-
 		ad.setUser(user);
-
 		adDao.save(ad);
 
 		return ad;
@@ -193,9 +197,13 @@ public class EditAdService {
 	/**
 	 * Removes the picture with the given id from the list of pictures in the ad
 	 * with the given id.
+	 * 
+	 * @param adId
+	 * @param pictureId
 	 */
 	@Transactional
-	public void deletePictureFromAd(final long adId, final long pictureId) {
+	public void deletePictureFromAd(final long adId, final long pictureId)
+	{
 		Ad ad = adService.getAdById(adId);
 		List<AdPicture> pictures = ad.getPictures();
 		AdPicture picture = adPictureDao.findOne(pictureId);
@@ -206,8 +214,13 @@ public class EditAdService {
 
 	/**
 	 * Fills a Form with the data of an ad.
+	 * 
+	 * @param ad
+	 * 
+	 * @return adForm, a PlaceAdForm.
 	 */
-	public PlaceAdForm fillForm(final Ad ad) {
+	public PlaceAdForm fillForm(final Ad ad)$
+	{
 		PlaceAdForm adForm = new PlaceAdForm();
 
 		adForm.setRoomDescription(ad.getRoomDescription());
@@ -220,17 +233,14 @@ public class EditAdService {
 	/**
 	 * Deletes the roommate with the given id from the ad with the given id.
 	 *
-	 * @param roommateId
-	 *            the user to delete as roommate
-	 * @param adId
-	 *            the ad to delete the roommate from
+	 * @param roommateId, the user to delete as roommate.
+	 * @param adId, the ad to delete the roommate from.
 	 */
-	public void deleteRoommate(final long roommateId, final long adId) {
+	public void deleteRoommate(final long roommateId, final long adId)
+	{
 		Ad ad = adService.getAdById(adId);
 		User roommate = userService.findUserById(roommateId);
 		ad.getRegisteredRoommates().remove(roommate);
 		adDao.save(ad);
-
 	}
-
 }

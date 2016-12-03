@@ -13,7 +13,9 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-/** Represents a message that is sent between two users. */
+/**
+ * Represents a message that is sent between two users.
+ */
 @Entity
 public class Message {
 
@@ -45,55 +47,68 @@ public class Message {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(long id)
+	{
 		this.id = id;
 	}
 
-	public MessageState getState() {
+	public MessageState getState()
+	{
 		return state;
 	}
 
-	public void setState(MessageState state) {
+	public void setState(MessageState state)
+	{
 		this.state = state;
 	}
 
-	public String getSubject() {
+	public String getSubject()
+	{
 		return subject;
 	}
 
-	public void setSubject(String subject) {
+	public void setSubject(String subject)
+	{
 		this.subject = subject;
 	}
 
-	public String getText() {
+	public String getText()
+	{
 		return text;
 	}
 
-	public void setText(String text) {
+	public void setText(String text)
+	{
 		this.text = text;
 	}
 
-	public Date getDateSent() {
+	public Date getDateSent()
+	{
 		return dateSent;
 	}
 
-	public void setDateSent(Date dateSent) {
+	public void setDateSent(Date dateSent)
+	{
 		this.dateSent = dateSent;
 	}
 
-	public User getSender() {
+	public User getSender()
+	{
 		return sender;
 	}
 
-	public void setSender(User sender) {
+	public void setSender(User sender)
+	{
 		this.sender = sender;
 	}
 
-	public User getRecipient() {
+	public User getRecipient()
+	{
 		return recipient;
 	}
 
-	public void setRecipient(User recipient) {
+	public void setRecipient(User recipient)
+	{
 		this.recipient = recipient;
 	}
 }

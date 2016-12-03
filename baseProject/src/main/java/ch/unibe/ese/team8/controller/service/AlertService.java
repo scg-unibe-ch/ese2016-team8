@@ -44,13 +44,12 @@ public class AlertService {
 	/**
 	 * Persists a new alert with the data from the alert form to the database.
 	 *
-	 * @param alertForm
-	 *            the form to take the data from
-	 * @param user
-	 *            the user to associate the new alert to
+	 * @param alertForm, the form to take the data from.
+	 * @param user, the user to associate the new alert to.
 	 */
 	@Transactional
-	public void saveFrom(final AlertForm alertForm, final User user) {
+	public void saveFrom(final AlertForm alertForm, final User user)
+	{
 		Alert alert = new Alert();
 
 		String zip = alertForm.getCity().substring(0, 4);
@@ -81,6 +80,8 @@ public class AlertService {
 	/**
 	 * Triggers all alerts that match the given ad. For every user, only one
 	 * message is sent.
+	 * 
+	 * @param ad
 	 */
 	@Transactional
 	public void triggerAlerts(final Ad ad) {
@@ -131,6 +132,10 @@ public class AlertService {
 	/**
 	 * Returns the text for an alert message with the properties of the given
 	 * ad.
+	 * 
+	 * @param ad
+	 * 
+	 * @return alertText
 	 */
 	private String getAlertText(final Ad ad) {
 		StringBuffer message = new StringBuffer();
@@ -149,7 +154,14 @@ public class AlertService {
 		return message.toString();
 	}
 
-	/** Checks if an ad is conforming to the criteria in an alert. */
+	/**
+	 * Checks if an ad is conforming to the criteria in an alert.
+	 * 
+	 * @param ad
+	 * @param alert
+	 * 
+	 * @return a boolean
+	 */
 	private boolean typeMismatchWith(final Ad ad, final Alert alert) {
 		boolean mismatch = false;
 
@@ -161,15 +173,14 @@ public class AlertService {
 	/**
 	 * Checks whether an ad is for a place too far away from the alert.
 	 *
-	 * @param ad
-	 *            the ad to compare to the alert
-	 * @param alert
-	 *            the alert to compare to the ad
+	 * @param ad, the ad to compare to the alert
+	 * @param alert, the alert to compare to the ad
 	 *
 	 * @return true in case the alert does not match the ad (the ad is too far
 	 *         away), false otherwise
 	 */
-	private boolean radiusMismatchWith(final Ad ad, final Alert alert) {
+	private boolean radiusMismatchWith(final Ad ad, final Alert alert)
+	{
 		final int earthRadiusKm = 6380;
 		Location adLocation = geoDataService.getLocationsByCity(ad.getCity()).get(0);
 		Location alertLocation = geoDataService.getLocationsByCity(alert.getCity()).get(0);
@@ -184,13 +195,19 @@ public class AlertService {
 		return (distance > alert.getRadius());
 	}
 
-	// for testing
-	public boolean radiusMismatch(final Ad ad, final Alert alert) {
+	/**
+	 * for testing
+	 */
+	public boolean radiusMismatch(final Ad ad, final Alert alert)
+	{
 		return radiusMismatchWith(ad, alert);
 	}
 
-	// for testing
-	public boolean typeMismatch(final Ad ad, final Alert alert) {
+	/**
+	 * for testing
+	 */
+	public boolean typeMismatch(final Ad ad, final Alert alert)
+	{
 		return typeMismatchWith(ad, alert);
 	}
 }

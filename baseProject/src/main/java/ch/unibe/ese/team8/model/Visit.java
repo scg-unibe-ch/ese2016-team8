@@ -17,7 +17,9 @@ import org.hibernate.annotations.FetchMode;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-/** A visit for a flat, has a time window. */
+/**
+ * A visit for a flat, has a time window.
+ */
 @Entity
 public class Visit {
 
@@ -40,53 +42,68 @@ public class Visit {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date endTimestamp;
 
-	public long getId() {
+	public long getId()
+	{
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(long id)
+	{
 		this.id = id;
 	}
 	
-	public Ad getAd() {
+	public Ad getAd()
+	{
 		return ad;
 	}
 
-	public void setAd(Ad ad) {
+	public void setAd(Ad ad)
+	{
 		this.ad = ad;
 	}
 
-	public List<User> getSearchers() {
+	public List<User> getSearchers()
+	{
 		return searchers;
 	}
 
-	public void setSearchers(List<User> searchers) {
+	public void setSearchers(List<User> searchers)
+	{
 		this.searchers = searchers;
 	}
 	
-	//used when an enquiry gets accepted
-	public void addToSearchers(User user) {
+	/**
+	 * Used when an enquiry gets accepted.
+	 * 
+	 * @param user
+	 */
+	public void addToSearchers(User user)
+	{
 		searchers.add(user);
 	}
 	
-	public void removeFromSearchers(User user){
+	public void removeFromSearchers(User user)
+	{
 		searchers.remove(user);
 	}
 
-	public Date getStartTimestamp() {
+	public Date getStartTimestamp()
+	{
 		return startTimestamp;
 	}
 
-	public void setStartTimestamp(Date startTimestamp) {
+	public void setStartTimestamp(Date startTimestamp)
+	{
 		this.startTimestamp = startTimestamp;
 	}
 
-	public Date getEndTimestamp() {
+	public Date getEndTimestamp()
+	{
 		return endTimestamp;
 	}
 
-	public void setEndTimestamp(Date endTimestamp) {
+	public void setEndTimestamp(Date endTimestamp)
+	{
 		this.endTimestamp = endTimestamp;
 	}
-	
 }

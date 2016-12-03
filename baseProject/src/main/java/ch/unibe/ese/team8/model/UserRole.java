@@ -25,28 +25,33 @@ public class UserRole {
 	@Column(nullable = false)
 	private String role;
 
-	public long getId() {
+	public long getId()
+	{
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(long id)
+	{
 		this.id = id;
 	}
 
-	public User getUser() {
+	public User getUser()
+	{
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(User user)
+	{
 		this.user = user;
 	}
 
-	public String getRole() {
+	public String getRole()
+	{
 		return role;
 	}
 
-	public void setRole(String role) {
+	public void setRole(String role)
+	{
 		this.role = role;
 	}
-
 }

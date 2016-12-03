@@ -12,7 +12,9 @@ import ch.unibe.ese.team8.model.User;
 import ch.unibe.ese.team8.model.UserRole;
 import ch.unibe.ese.team8.model.dao.UserDao;
 
-/** Handles the persisting of new users */
+/**
+ * Handles the persisting of new users
+ */
 @Service
 public class SignupService {
 
@@ -21,7 +23,10 @@ public class SignupService {
 	@Autowired
 	private UserDao userDao;
 
-	/** Handles persisting a new user to the database. */
+	/**
+	 * Handles persisting a new user to the database.
+	 * @param signupForm
+	 */
 	@Transactional
 	public void saveFrom(final SignupForm signupForm) {
 		User user = new User();
@@ -46,11 +51,14 @@ public class SignupService {
 
 	/**
 	 * Returns whether a user with the given username already exists.
-	 * @param username the username to check for
-	 * @return true if the user already exists, false otherwise
+	 * 
+	 * @param username the username to check for.
+	 * 
+	 * @return true if the user already exists, false otherwise.
 	 */
 	@Transactional
-	public boolean doesUserWithUsernameExist(final String username){
+	public boolean doesUserWithUsernameExist(final String username)
+	{
 		return userDao.findByUsername(username) != null;
 	}
 }

@@ -11,7 +11,9 @@ import ch.unibe.ese.team8.controller.pojos.forms.EditProfileForm;
 import ch.unibe.ese.team8.model.User;
 import ch.unibe.ese.team8.model.dao.UserDao;
 
-/** Handles updating a user's profile. */
+/**
+ * Handles updating a user's profile.
+ */
 @Service
 public class UserUpdateService {
 
@@ -24,10 +26,14 @@ public class UserUpdateService {
 	@Autowired
 	private UserService userService;
 
-	/** Handles updating an existing user in the database. */
+	/**
+	 * Handles updating an existing user in the database.
+	 * 
+	 * @param editProfileForm
+	 */
 	@Transactional
-	public void updateFrom(final EditProfileForm editProfileForm) {
-
+	public void updateFrom(final EditProfileForm editProfileForm)
+	{
 		User currentUser = userService.findUserByUsername(editProfileForm.getUsername());
 
 		currentUser.setFirstName(editProfileForm.getFirstName());

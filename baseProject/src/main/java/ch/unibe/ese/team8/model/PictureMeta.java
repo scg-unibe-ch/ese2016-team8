@@ -12,35 +12,43 @@ public class PictureMeta {
 	private String type;
 	private String url;
 
-	public String getName() {
+	public String getName()
+	{
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(String name)
+	{
 		this.name = name;
 	}
 
-	public String getSize() {
+	public String getSize()
+	{
 		return size;
 	}
 
-	public void setSize(String size) {
+	public void setSize(String size)
+	{
 		this.size = size;
 	}
 
-	public String getType() {
+	public String getType()
+	{
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(String type)
+	{
 		this.type = type;
 	}
 
-	public String getUrl() {
+	public String getUrl()
+	{
 		return url;
 	}
 
-	public void setUrl(String url) {
+	public void setUrl(String url)
+	{
 		this.url = url;
 	}
 }

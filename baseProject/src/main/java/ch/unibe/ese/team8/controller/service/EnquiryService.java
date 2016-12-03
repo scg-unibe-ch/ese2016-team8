@@ -20,7 +20,9 @@ import ch.unibe.ese.team8.model.dao.RatingDao;
 import ch.unibe.ese.team8.model.dao.VisitDao;
 import ch.unibe.ese.team8.model.dao.VisitEnquiryDao;
 
-/** Provides access to enquiries saved in the database. */
+/**
+ * Provides access to enquiries saved in the database.
+ */
 @Service
 public class EnquiryService {
 
@@ -37,12 +39,12 @@ public class EnquiryService {
 	 * Returns all enquiries that were sent to the given user sorted by date
 	 * sent
 	 *
-	 * @param recipient
-	 *            the user to search for
-	 * @return an Iterable of all matching enquiries
+	 * @param recipient, the user to search for.
+	 * @return an Iterable of all matching enquiries.
 	 */
 	@Transactional
-	public Iterable<VisitEnquiry> getEnquiriesByRecipient(final User recipient) {
+	public Iterable<VisitEnquiry> getEnquiriesByRecipient(final User recipient)
+	{
 		List<VisitEnquiry> enquiries = new LinkedList<VisitEnquiry>();
 		for (VisitEnquiry enquiry : enquiryDao.findAll()) {
 			if (enquiry.getVisit().getAd().getUser().getId() == recipient
@@ -50,24 +52,35 @@ public class EnquiryService {
 				enquiries.add(enquiry);
 			}
 		}
-		Collections.sort(enquiries, new Comparator<VisitEnquiry>() {
+		Collections.sort(enquiries, new Comparator<VisitEnquiry>()
+		{
 			@Override
-			public int compare(final VisitEnquiry enquiry1, final VisitEnquiry enquiry2) {
+			public int compare(final VisitEnquiry enquiry1, final VisitEnquiry enquiry2)
+			{
 				return enquiry2.getDateSent().compareTo(enquiry1.getDateSent());
 			}
 		});
 		return enquiries;
 	}
 
-	/** Saves the given visit enquiry. */
+	/**
+	 * Saves the given visit enquiry.
+	 * 
+	 * @param visitEnquiry
+	 */
 	@Transactional
-	public void saveVisitEnquiry(final VisitEnquiry visitEnquiry) {
+	public void saveVisitEnquiry(final VisitEnquiry visitEnquiry)
+	{
 		enquiryDao.save(visitEnquiry);
 	}
 
-	/** Accepts the enquiry with the given id. */
+	/**
+	 * Accepts the enquiry with the given id.
+	 * @param enquiryId
+	 */
 	@Transactional
-	public void acceptEnquiry(final long enquiryId) {
+	public void acceptEnquiry(final long enquiryId)
+	{
 		// accept visit
 		VisitEnquiry enquiry = enquiryDao.findOne(enquiryId);
 		enquiry.setState(VisitEnquiryState.ACCEPTED);
@@ -88,9 +101,14 @@ public class EnquiryService {
 		ratingDao.save(rating);
 	}
 
-	/** Declines the enquiry with the given id. */
+	/**
+	 * Declines the enquiry with the given id.
+	 * 
+	 * @param enquiryId
+	 */
 	@Transactional
-	public void declineEnquiry(final long enquiryId) {
+	public void declineEnquiry(final long enquiryId)
+	{
 		VisitEnquiry enquiry = enquiryDao.findOne(enquiryId);
 		enquiry.setState(VisitEnquiryState.DECLINED);
 		enquiryDao.save(enquiry);
@@ -99,6 +117,8 @@ public class EnquiryService {
 	/**
 	 * Resets the enquiry with the given id, meaning that its state will be set
 	 * to open again.
+	 * 
+	 * @param enquiryId
 	 */
 	@Transactional
 	public void reopenEnquiry(final long enquiryId) {
@@ -114,23 +134,28 @@ public class EnquiryService {
 	/**
 	 * Gives the ratee the given rating by the rater.
 	 *
-	 * @param rater
-	 *            the user that issued the rating
-	 * @param ratee
-	 *            the user that was rated
-	 * @param rating
-	 *            the rating that was associated with the ratee
+	 * @param rater, the user that issued the rating.
+	 * @param ratee, the user that was rated.
+	 * @param rating, the rating that was associated with the ratee.
 	 */
 	@Transactional
-	public void rate(final User rater, final User ratee, final int rating) {
+	public void rate(final User rater, final User ratee, final int rating)
+	{
 		Rating newRating = getRatingByRaterAndRatee(rater, ratee);
 		newRating.setRating(rating);
 		ratingDao.save(newRating);
 	}
 
-	/** Returns all ratings that were made by the given user. */
+	/**
+	 * Returns all ratings that were made by the given user.
+	 * 
+	 * @param rater, a user.
+	 * 
+	 * @return Iterable<Rating>
+	 */
 	@Transactional
-	public Iterable<Rating> getRatingsByRater(final User rater) {
+	public Iterable<Rating> getRatingsByRater(final User rater)
+	{
 		return ratingDao.findByRater(rater);
 	}
 
@@ -138,9 +163,15 @@ public class EnquiryService {
 	 * Returns all ratings that were made by the given user for the given ratee.
 	 * This method always returns one rating, because one rater can only give
 	 * one rating to another user.
+	 * 
+	 * @param rater, an user.
+	 * @param ratee, an user.
+	 * 
+	 * @return next, a Rating.
 	 */
 	@Transactional
-	public Rating getRatingByRaterAndRatee(final User rater, final User ratee) {
+	public Rating getRatingByRaterAndRatee(final User rater, final User ratee)
+	{
 		Iterable<Rating> ratings = ratingDao.findByRaterAndRatee(rater, ratee);
 
 		// ugly hack, but works
