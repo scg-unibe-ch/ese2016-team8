@@ -207,7 +207,7 @@ public class PlaceAdController {
 	@RequestMapping(value = "/profile/placeAd/getUploadedPictures", method = RequestMethod.POST)
 	public @ResponseBody List<PictureMeta> getUploadedPictures()
 	{
-		if (pictureUploader == null)$
+		if (pictureUploader == null)
 		{
 			return null;
 		}

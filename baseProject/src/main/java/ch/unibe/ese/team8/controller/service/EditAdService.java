@@ -219,7 +219,7 @@ public class EditAdService {
 	 * 
 	 * @return adForm, a PlaceAdForm.
 	 */
-	public PlaceAdForm fillForm(final Ad ad)$
+	public PlaceAdForm fillForm(final Ad ad)
 	{
 		PlaceAdForm adForm = new PlaceAdForm();
 

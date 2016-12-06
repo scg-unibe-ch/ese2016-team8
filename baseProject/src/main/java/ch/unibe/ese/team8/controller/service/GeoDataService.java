@@ -95,9 +95,9 @@ public class GeoDataService {
 				{
 					connection.close();
 				}
-			} catch (SQLException ex) { // ignore }
+			} catch (SQLException ex) { /* ignore */ }
 		}
-		return locationList;
+		return locationList;	
 	}
 
 	/**

@@ -103,7 +103,7 @@ public class ProfileController {
 	 * @return mode, the ModelAndView instance.
 	 */
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
-	public ModelAndView signupPage()$
+	public ModelAndView signupPage()
 	{
 		ModelAndView model = new ModelAndView("signup");
 		model.addObject("signupForm", new SignupForm());

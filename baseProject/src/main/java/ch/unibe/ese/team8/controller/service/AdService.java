@@ -426,7 +426,7 @@ public class AdService {
 
 			// furnished
 			if (searchForm.getFurnished())
-			${
+			{
 				Iterator<Ad> iterator = locatedResults.iterator();
 				while (iterator.hasNext()) {
 					Ad ad = iterator.next();
