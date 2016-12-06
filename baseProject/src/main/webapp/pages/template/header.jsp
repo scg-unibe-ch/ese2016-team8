@@ -42,7 +42,7 @@
 <header>
 <div id="content">
 	<div class="left">
-		<a href="/"><img class="logo" src="/img/logo.png"></a>
+		<a href="/"><img class="logo" src="/img/logo_new.png"></a>
 	</div>
 	<div class="right">
 		<nav>
