@@ -9,12 +9,14 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>The FlatFoundrs</title>
+<title>Creators of this Website</title>
 </head>
 <body>
 
 <pre>About us</pre>
 
-<img id="about" src="/img/about.jpg">
+<h2>We are students of <a href="http://scg.unibe.ch/teaching/ese">Introduction to Software Engineering</a> @UniBE</h2>
+<br><br>
+<div align="center"><img src="http://bier-freunde.ch/photos/3.jpg"></div>
 
 <c:import url="template/footer.jsp" /><br />
