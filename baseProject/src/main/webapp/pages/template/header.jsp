@@ -13,7 +13,7 @@
 
 <!--<link rel="stylesheet" media="screen" type="text/css" href="/css/main.css" />-->
 <link rel="icon" href="img/fav.png" type="image/vnd.microsoft.icon" />
-<Title>FlatFindr | It's good real estate</Title>
+<Title>flatbook | The realest real estate</Title>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script
 	src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>

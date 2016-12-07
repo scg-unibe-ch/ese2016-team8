@@ -39,6 +39,7 @@
 		</form>
 		<br />
 		<div class="g-signin2" data-onsuccess="onSignIn"></div>
+		<br><br>
 		<h2>Test users</h2>
 
 		<ul class="test-users">
@@ -63,7 +64,7 @@
 
 <div>
 	<form:form id="googleForm" type="hidden" class="form-horizontal" method="post"
-		modelAttribute="googleForm" action="./google">
+		modelAttribute="googleForm" action="google">
 
 			<spring:bind path="firstName">
 						<form:input type="hidden" path="firstName" cssClass="form-control"
