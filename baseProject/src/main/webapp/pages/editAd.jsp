@@ -149,6 +149,13 @@
 	type="date" pattern="dd-MM-yyyy" />
 <fmt:formatDate value="${ad.moveOutDate}" var="formattedMoveOutDate"
 	type="date" pattern="dd-MM-yyyy" />
+<c:set var="formattedAuctionEndDate" value="0"/>
+<c:choose>
+<c:when test="${ad.auction}">
+	<fmt:formatDate value="${ad.moveOutDate}" var="formattedAuctionEndDate"
+	type="date" pattern="dd-MM-yyyy" />
+</c:when>
+</c:choose>
 	
 <pre><a href="/">Home</a>   &gt;   <a href="/profile/myRooms">My Rooms</a>   &gt;   <a href="/ad?id=${ad.id}">Ad Description</a>   &gt;   Edit Ad</pre>
 
@@ -236,25 +243,50 @@
 
 			<tr>
 				<td><label for="moveInDate">Move-in date</label></td>
+				<c:choose>
+				<c:when test="${!ad.sale}">
 				<td><label id="moveOutDate" for="moveOutDate">Move-out date (optional)</label></td>
+				</c:when>
+				<c:otherwise>
+				<td><label id="moveOutDate" for="moveOutDate"></label></td>
+				</c:otherwise>
+				</c:choose>
 			</tr>
 			<tr>
 				<td>
 					<form:input type="text" id="field-moveInDate"
 						path="moveInDate" value="${formattedMoveInDate }"/>
 				</td>
+				<c:choose>
+				<c:when test="${ad.auction}">
 				<td>
-					<form:input type="text" id="field-moveOutDate"
+					<form:input type="text" id="field-moveOutDate" style="display:none;"
 						path="moveOutDate" value="${formattedMoveOutDate }"/>
+					<form:input type="text" id="field-auctionEndDate"  path="auctionEndDate" required="required" value="${formattedAuctionEndDate}"/>
 				</td>
+				</c:when>
+				<c:when test="${ad.sale}">
+				<td>
+					<form:input type="text" id="field-moveOutDate" style="display:none;"
+						path="moveOutDate" value="${formattedMoveOutDate }"/>
+					<form:input type="text" id="field-auctionEndDate" style="display:none;" path="auctionEndDate" required="required" value="${formattedAuctionEndDate}"/>
+				</td>
+				</c:when>
+				<c:otherwise>
+				<td>
+					<form:input type="text" id="field-moveOutDate" path="moveOutDate" value="${formattedMoveOutDate}"/>
+					<form:input type="text" id="field-auctionEndDate" style="display:none;" path="auctionEndDate" required="required" value="${formattedAuctionEndDate}"/>
+				</td>
+				</c:otherwise>
+				</c:choose>
 			</tr>
 
 			<tr>
 				<td>
 				<c:choose>
-				<c:when test="${ad.auction}"><label for="field-Prize">Price not changeable</label></c:when>
-				<c:when test="${ad.sale}"><label for="field-Prize">Buy price</label></c:when>
-				<c:otherwise><label for="field-Prize">Price per month</label></c:otherwise>
+				<c:when test="${ad.auction}"><label id="month-Prize" for="field-Prize">Price not changeable</label></c:when>
+				<c:when test="${ad.sale}"><label id="month-Prize" for="field-Prize">Buy price</label></c:when>
+				<c:otherwise><label id="month-Prize" for="field-Prize">Price per month</label></c:otherwise>
 				</c:choose>
 				</td>
 				<td><label for="field-SquareFootage">Square Meters</label></td>
