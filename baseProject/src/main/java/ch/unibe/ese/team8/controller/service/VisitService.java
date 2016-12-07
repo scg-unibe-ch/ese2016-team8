@@ -36,7 +36,7 @@ public class VisitService {
 	 */
 	@Transactional
 	public Iterable<Visit> getVisitsByAd(final Ad ad) {
-		return visitDao.findByAd(ad);
+		return visitDao.findByAdOrderByStartTimestamp(ad);
 	}
 
 	/**

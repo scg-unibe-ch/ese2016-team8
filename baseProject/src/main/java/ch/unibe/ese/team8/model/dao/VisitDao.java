@@ -6,5 +6,5 @@ import ch.unibe.ese.team8.model.Ad;
 import ch.unibe.ese.team8.model.Visit;
 
 public interface VisitDao extends CrudRepository<Visit, Long> {
-	public Iterable<Visit> findByAd(Ad ad);
+	public Iterable<Visit> findByAdOrderByStartTimestamp(Ad ad);
 }
