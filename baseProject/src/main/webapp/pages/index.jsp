@@ -53,7 +53,7 @@
 					</div>
 					<div class="resultRight">
 						<c:choose>
-							<c:when test="${ad.premium}"><img  style="width: 40px; hight: 10px;" src="/img/Star.png"></c:when>
+							<c:when test="${ad.user.premium}"><img  style="width: 40px; hight: 10px;" src="/img/Star.png"></c:when>
 						</c:choose>
 						<h2>CHF ${ad.prizePerMonth }</h2>
 						<br /> <br />
