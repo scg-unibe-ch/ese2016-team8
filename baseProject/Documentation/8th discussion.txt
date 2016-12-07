@@ -1,0 +1,21 @@
+Team 8 and Claudio, 07.12.2016
+
+Input from developers: 
+- Referencing issue #31, opened by claudio, concerning 'UI could use some work'
+-- Why haven't we been told this before? 2 months everything is fine and suddenly UI is not good?
+-- What is not good? We are developers, not designers. We are here to implement what the customer wants, not to			make proposions.
+- Referencing issue #34, opened by claudio, concerning 'Visiting times not working properly'
+-- Could claudio please elaborate the consistency of the errorenous behaviour. 'Sometimes' doesn't seem to be 			consistens and therefore rather difficult to fix. The overall quality of the issue #34 is under 			borderline. There's no elaboration on the consistency of the error, what has been entered and especially		how to reproduce the error. Every error is consistent, just in it's own way.
+
+- Following the requirement for the evaluation from https://piazza.com/class/is0aix36ick332?cid=20 concering the		project 'code quality'. Is the shitty code we've been given already counted. Because we're not alchemists, 	we don't turn shit into gold.
+
+Input from customer:
+
+Input from teaching assistant:
+
+
+TODO:
+- Tests, Refactoring, Javadoc etc.
+- Klassenkommentare empfehlenswert.
+- Presentation following requirements https://piazza.com/class/is0aix36ick332?cid=20. We (team8) are on 14.12.
+! Last commit that will be valued before the presentation is before 14.00 on 14.12.2016 !
