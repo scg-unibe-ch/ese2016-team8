@@ -147,19 +147,12 @@
 			
 			var moveInDateString = $("#field-moveInDate").val();
 			var moveOutDateString = $("#field-moveOutDate").val();
-			
-			alert("moveIn: "+moveInDateString);
-			alert("moveOut: "+moveOutDateString);
-			
 			var moveInDate = new Date();
 			var moveOutDate = new Date();
 			
 			moveInDate.setFullYear(moveInDateString.substring(6), moveInDateString.substring(3,5), moveInDateString.substring(0,2));
 			moveOutDate.setFullYear(moveOutDateString.substring(6), moveOutDateString.substring(3,5), moveOutDateString.substring(0,2));
 			
-			alert("moveIn: "+moveInDate);
-			alert("moveOut: "+moveOutDate);
-
 			if(!moveOutDateString || moveOutDateString.length == 0){
 				return true;
 			}else if(moveOutDate.getTime() < moveInDate.getTime()){
