@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="UTF-8"
+﻿<%@ page language="java" pageEncoding="UTF-8"
 	contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -141,10 +141,16 @@
 	});
 
 	function checkDates(){
-			var moveInDate = new Date($("#field-moveInDate").val());
-			var moveOutDate = new Date($("#field-moveOutDate").val());
+			
+			var moveInDateString = $("#field-moveInDate").val();
+			var moveOutDateString = $("#field-moveOutDate").val();
+			var moveInDate = new Date();
+			var moveOutDate = new Date();
+			
+			moveInDate.setFullYear(moveInDateString.substring(6), moveInDateString.substring(3,5), moveInDateString.substring(0,2));
+			moveOutDate.setFullYear(moveOutDateString.substring(6), moveOutDateString.substring(3,5), moveOutDateString.substring(0,2));
 
-			if(!moveOutDate || moveOutDate.length == 0){
+			if(!moveOutDateString || moveOutDateString.length == 0){
 				return true;
 			}else if(moveOutDate.getTime() < moveInDate.getTime()){
 				alert("Invalid dates. The move out date can't be before the move in.");
