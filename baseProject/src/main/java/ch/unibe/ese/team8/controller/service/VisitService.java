@@ -1,6 +1,7 @@
 package ch.unibe.ese.team8.controller.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.transaction.Transactional;
 
@@ -36,7 +37,14 @@ public class VisitService {
 	 */
 	@Transactional
 	public Iterable<Visit> getVisitsByAd(final Ad ad) {
-		return visitDao.findByAdOrderByStartTimestamp(ad);
+		Iterable<Visit> visits = visitDao.findByAd(ad);
+		ArrayList<Visit> myVisitList = new ArrayList<Visit>();
+		for(Visit v : visits){
+			myVisitList.add(v);
+		}
+		myVisitList.sort(new VisitComparator());
+		
+		return myVisitList;
 	}
 
 	/**
