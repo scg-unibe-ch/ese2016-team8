@@ -20,6 +20,7 @@ public interface AdDao extends CrudRepository<Ad, Long> {
 	 */
 	public Iterable<Ad> findByCategoryInAndSaleAndPrizePerMonthLessThanOrderByPremiumDesc(ArrayList<String> categories, boolean sale,
 			int i);
+	public Iterable<Ad> findByAuctionOverOrderByCreationDateDesc(boolean isOver);
 	public Iterable<Ad> findByCategoryInAndSaleAndAuctionOverAndPrizePerMonthLessThanOrderByPremiumDesc(ArrayList<String> categories, boolean sale,
 			boolean auctionOver,int i);
 	public Iterable<Ad> findByAuctionOver(boolean auctioOver);
