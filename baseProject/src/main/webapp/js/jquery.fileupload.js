@@ -45,9 +45,10 @@
     * but not non-multipart XHR file uploads.
     * window.XMLHttpRequestUpload is not available on IE10, so we check for
     * window.ProgressEvent instead to detect XHR2 file upload capability:
-    * $.support.xhrFileUpload = !!(window.ProgressEvent && window.FileReader);
-    * $.support.xhrFormDataFileUpload = !!window.FormData;
     */
+    $.support.xhrFileUpload = !!(window.ProgressEvent && window.FileReader);
+    $.support.xhrFormDataFileUpload = !!window.FormData;
+    
 
     // Detect support for Blob slicing (required for chunked uploads):
     $.support.blobSlice = window.Blob && (Blob.prototype.slice ||
