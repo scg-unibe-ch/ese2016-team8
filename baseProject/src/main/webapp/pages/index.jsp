@@ -8,8 +8,8 @@
 <c:import url="template/header.jsp" />
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Welcome to flatbook</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Welcome to flatbook</title>
 </head>
 <body>
 
@@ -32,10 +32,10 @@
 							<c:otherwise><a href="<c:url value='/auction?id=${ad.id}' />"><img src="${ad.pictures[0].filePath}" /></a></c:otherwise>
 						</c:choose>
 						<h2>
-						<c:choose>
-							<c:when test="${!ad.auction}"><a class="link" href="<c:url value='/ad?id=${ad.id}' />">${ad.title}</a></c:when>
-							<c:otherwise><a class="link" href="<c:url value='/auction?id=${ad.id}' />">${ad.title}</a></c:otherwise>
-						</c:choose>
+							<c:choose>
+								<c:when test="${!ad.auction}"><a class="link" href="<c:url value='/ad?id=${ad.id}' />">${ad.title}</a></c:when>
+								<c:otherwise><a class="link" href="<c:url value='/auction?id=${ad.id}' />">${ad.title}</a></c:otherwise>
+							</c:choose>
 						</h2>
 						<p>${ad.street}, ${ad.zipcode} ${ad.city}</p>
 						<br />
@@ -48,7 +48,8 @@
 								<c:choose>
 									<c:when test="${ad.sale}">Buy</c:when>
 									<c:otherwise>Rent</c:otherwise>
-								</c:choose></i>
+								</c:choose>
+							</i>
 						</p>
 					</div>
 					<div class="resultRight">

@@ -13,29 +13,26 @@
 		});
 </script>
 <script>
-function revokePremium(){
-	var m = confirm("Are you sure you dont want premium status no more?");
-	if(m==true){
-		document.getElementById("premium").value= false;
-		alert("We are sorry to lose you as a premium member.\n Click on Update to confirm");
-		document.forms['editProfile'].submit();
-	}else{
-		alert("happy to keep you ");
+	function revokePremium(){
+		var m = confirm("Are you sure you don't want premium status no more?");
+		if(m==true){
+			document.getElementById("premium").value= false;
+			alert("We are sorry to lose you as a premium member.\n Click on Update to confirm");
+			document.forms['editProfile'].submit();
+		}else{
+			alert("Happy to keep you! ");
+		}
 	}
 
-}
-
-function confirmPremium(){
-
-    var r = confirm("Do you want to pay us 5$ for premium access?");
-    if (r == true) {
-			document.getElementById("premium").value= true;
-			document.forms['editProfile'].submit();
-    } else {
-        alert("maybe next time");
-    }
-
-};
+	function confirmPremium(){
+		var r = confirm("Do you want to pay us 5$ for premium access?");
+		if (r == true) {
+				document.getElementById("premium").value= true;
+				document.forms['editProfile'].submit();
+		} else {
+			alert("Maybe next time.");
+		}
+	};
 </script>
 
 <pre><a href="/">Home</a>   &gt;   <a href="/user?id=${currentUser.id}">Public Profile</a>   &gt;   Edit profile</pre>
@@ -43,7 +40,7 @@ function confirmPremium(){
 <h1>Edit your Profile</h1>
 <hr />
 
-<!-- check if user is logged in -->
+<!-- Check if user is logged in. -->
 <security:authorize var="loggedIn" url="/profile" />
 
 
@@ -109,6 +106,5 @@ function confirmPremium(){
 </div>
 
 </form:form>
-
 
 <c:import url="template/footer.jsp" />

@@ -12,7 +12,7 @@
 	</welcome-file-list>
 
 
-	<!-- import config files -->
+	<!-- Import config files. -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value> 
@@ -69,7 +69,7 @@
 
 	<servlet-mapping>
 		<servlet-name>dispatcherServlet</servlet-name>
-		<url-pattern>/</url-pattern>			<!-- use servlet for any page matching url pattern -->
+		<url-pattern>/</url-pattern>			<!-- Use servlet for any page matching url pattern. -->
 	</servlet-mapping>
 
 	<listener>

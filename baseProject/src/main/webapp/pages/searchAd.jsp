@@ -10,8 +10,7 @@
 
 <script>
 	$(document).ready(function() {
-
-		//changes between Sale prize/ Prize per month
+		// Changes between Sale prize/ Prize per month.
 		$("#sale").change(function(){
 				if($("#sale").is(':checked')&& ! $("#rent").is(':checked')){
 					document.getElementById('field-earliestMoveOutDate').style.display="none";
@@ -75,87 +74,85 @@
 	});
 </script>
 
-
 <script>
-function validateType(form)
-{
-	var room = document.getElementById('room');
-	var studio = document.getElementById('studio');
-	var house = document.getElementById('house');
-	var neither = document.getElementById('neither');
-	var both = document.getElementById('both');
-	var type = document.getElementById('type');
-	var filtered = document.getElementById('filtered');
-	var types = "";
+	function validateType(form)
+	{
+		var room = document.getElementById('room');
+		var studio = document.getElementById('studio');
+		var house = document.getElementById('house');
+		var neither = document.getElementById('neither');
+		var both = document.getElementById('both');
+		var type = document.getElementById('type');
+		var filtered = document.getElementById('filtered');
+		var types = "";
 
-	var sale = document.getElementById('sale');
-	var rent = document.getElementById('rent');
-	var bothType = document.getElementById('bothType');
-	var saleType = document.getElementById('saleType');
+		var sale = document.getElementById('sale');
+		var rent = document.getElementById('rent');
+		var bothType = document.getElementById('bothType');
+		var saleType = document.getElementById('saleType');
 
 
-	if(sale.checked && rent.checked){
-		bothType.checked = true;
+		if(sale.checked && rent.checked){
+			bothType.checked = true;
 
-	}else if(sale.checked && !rent.checked){
-		bothType.checked = false;
-		saleType.checked = true;
-	}else if(!sale.checked && rent.checked){
-		bothType.checked = false;
-		saleType.checked = false;
-	}else{
-		alert("Check a tenure type");
-		return false;
+		}else if(sale.checked && !rent.checked){
+			bothType.checked = false;
+			saleType.checked = true;
+		}else if(!sale.checked && rent.checked){
+			bothType.checked = false;
+			saleType.checked = false;
+		}else{
+			alert("Check a tenure type");
+			return false;
+		}
+
+		if(room.checked){
+			types += ",room";
+		}
+
+		if(studio.checked){
+			types += ",studio";
+		}
+
+		if(house.checked) {
+			types += ",house";
+		}
+
+		document.getElementById('category').value = types;
+
+		if(types == ""){
+			alert("Check at least one type of ads!");
+			return false;
+		}else{
+			return true;
+		}
 	}
 
-	if(room.checked){
-		types += ",room";
+	function decide(){
+		var currentButton = document.getElementById('moreButton').innerHTML;
+
+		if(currentButton == "More Options"){
+			moreOptions();
+		}else{
+			lessOptions();
+		}
 	}
 
-	if(studio.checked){
-		types += ",studio";
+	function moreOptions(){
+		document.getElementById('basic').style.float="left";
+		document.getElementById('moreOptions').style.display="block";
+		document.getElementById('moreButton').innerHTML="Less Options";
+		var filtered = document.getElementById('filtered');
+		filtered.checked = true;
 	}
 
-	if(house.checked) {
-		types += ",house";
+	function lessOptions(){
+		document.getElementById('basic').style.float="none";
+		document.getElementById('moreOptions').style.display="none";
+		document.getElementById('moreButton').innerHTML="More Options";
+		var filtered = document.getElementById('filtered');
+		filtered.checked = false;
 	}
-
-	document.getElementById('category').value = types;
-
-	if(types == ""){
-		alert("Check at least one type of ads!");
-		return false;
-	}else{
-		return true;
-	}
-}
-
-function decide(){
-	var currentButton = document.getElementById('moreButton').innerHTML;
-
-	if(currentButton == "More Options"){
-		moreOptions();
-	}else{
-		lessOptions();
-	}
-}
-
-function moreOptions(){
-	document.getElementById('basic').style.float="left";
-	document.getElementById('moreOptions').style.display="block";
-	document.getElementById('moreButton').innerHTML="Less Options";
-	var filtered = document.getElementById('filtered');
-	filtered.checked = true;
-}
-
-function lessOptions(){
-	document.getElementById('basic').style.float="none";
-	document.getElementById('moreOptions').style.display="none";
-	document.getElementById('moreButton').innerHTML="More Options";
-	var filtered = document.getElementById('filtered');
-	filtered.checked = false;
-}
-
 </script>
 
 <h1>Search for an ad</h1>
@@ -167,19 +164,19 @@ function lessOptions(){
 	<fieldset>
 		<div id="basic">
 		<table>
-		<tr>
-			<td><form:checkbox name="room" id="room" path="roomHelper" /><label>Room</label></td>
-			<td><form:checkbox name="studio" id="studio" path="studioHelper" /><label>Studio</label></td>
-			<td><form:checkbox name="house" id="house" path="houseHelper" /><label>House</label></td>
-			<form:input style="display:none" type="text" name="category" id="category" path="category"/>
-			<form:checkbox style="display:none" name="filtered" id="filtered" path="filtered" />
-		</tr>
-		<tr>
-			<td><form:checkbox name="rent" id="rent" path="rentHelper" /><label>Rent</label></td>
-			<td><form:checkbox name="sale" id="sale" path="saleHelper" /><label>Sale</label></td>
-		<form:checkbox style="display:none" name="saleType" id="saleType" path="sale" />
-		<form:checkbox style="display:none" name="bothType" id="bothType" path="bothRentAndSale" />
-		</tr>
+			<tr>
+				<td><form:checkbox name="room" id="room" path="roomHelper" /><label>Room</label></td>
+				<td><form:checkbox name="studio" id="studio" path="studioHelper" /><label>Studio</label></td>
+				<td><form:checkbox name="house" id="house" path="houseHelper" /><label>House</label></td>
+				<form:input style="display:none" type="text" name="category" id="category" path="category"/>
+				<form:checkbox style="display:none" name="filtered" id="filtered" path="filtered" />
+			</tr>
+			<tr>
+				<td><form:checkbox name="rent" id="rent" path="rentHelper" /><label>Rent</label></td>
+				<td><form:checkbox name="sale" id="sale" path="saleHelper" /><label>Sale</label></td>
+				<form:checkbox style="display:none" name="saleType" id="saleType" path="sale" />
+				<form:checkbox style="display:none" name="bothType" id="bothType" path="bothRentAndSale" />
+			</tr>
 		</table>
 		<br/>
 		<label for="city">City / zip code:</label>
@@ -200,54 +197,54 @@ function lessOptions(){
 		<form:errors path="prize" cssClass="validationErrorText" />
 		<br /></div>
 		<div id="moreOptions" style="display:none;">
-		<table>
-		<tr>
-				<td><label for="earliestMoveInDate">Earliest move-in date</label></td>
-				<td><label id="earliestMoveOutDateLabel"for="earliestMoveOutDate">Earliest move-out date (optional)</label></td>
-			</tr>
-			<tr>
-				<td><form:input type="text" id="field-earliestMoveInDate"
-						path="earliestMoveInDate" /></td>
-				<td><form:input type="text" id="field-earliestMoveOutDate"
-						path="earliestMoveOutDate" /></td>
-			</tr>
-			<tr>
-				<td><label for="latestMoveInDate">Latest move-in date</label></td>
-				<td><label id="latestMoveOutDateLabel"for="latestMoveOutDate">Latest move-out date (optional)</label></td>
-			</tr>
-			<tr>
-				<td><form:input type="text" id="field-latestMoveInDate"
-						path="latestMoveInDate" /></td>
-				<td><form:input type="text" id="field-latestMoveOutDate"
-						path="latestMoveOutDate" /></td>
-			</tr>
-			<tr>
-				<td><form:checkbox id="field-smoker" path="smokers" value="1" /><label>Smoking inside
-						allowed</label></td>
-				<td><form:checkbox id="field-animals" path="animals" value="1" /><label>Animals
-						inside allowed</label></td>
-			</tr>
-			<tr>
-				<td><form:checkbox id="field-garden" path="garden" value="1" /><label>Garden
-						(co-use)</label></td>
-				<td><form:checkbox id="field-balcony" path="balcony" value="1" /><label>Balcony
-						or Patio</label></td>
-			</tr>
-			<tr>
-				<td><form:checkbox id="field-cellar" path="cellar" value="1" /><label>Cellar
-						or Attic</label></td>
-				<td><form:checkbox id="field-furnished" path="furnished"
-						value="1" /><label>Furnished</label></td>
-			</tr>
-			<tr>
-				<td><form:checkbox id="field-cable" path="cable" value="1" /><label>Cable
-						TV</label></td>
-				<td><form:checkbox id="field-garage" path="garage" value="1" /><label>Garage</label>
-				</td>
-			</tr>
-			<tr>
-				<td><form:checkbox id="field-internet" path="internet" value="1" /><label>WiFi</label></td>
-			</tr>
+			<table>
+				<tr>
+					<td><label for="earliestMoveInDate">Earliest move-in date</label></td>
+					<td><label id="earliestMoveOutDateLabel"for="earliestMoveOutDate">Earliest move-out date (optional)</label></td>
+				</tr>
+				<tr>
+					<td><form:input type="text" id="field-earliestMoveInDate"
+							path="earliestMoveInDate" /></td>
+					<td><form:input type="text" id="field-earliestMoveOutDate"
+							path="earliestMoveOutDate" /></td>
+				</tr>
+				<tr>
+					<td><label for="latestMoveInDate">Latest move-in date</label></td>
+					<td><label id="latestMoveOutDateLabel"for="latestMoveOutDate">Latest move-out date (optional)</label></td>
+				</tr>
+				<tr>
+					<td><form:input type="text" id="field-latestMoveInDate"
+							path="latestMoveInDate" /></td>
+					<td><form:input type="text" id="field-latestMoveOutDate"
+							path="latestMoveOutDate" /></td>
+				</tr>
+				<tr>
+					<td><form:checkbox id="field-smoker" path="smokers" value="1" /><label>Smoking inside
+							allowed</label></td>
+					<td><form:checkbox id="field-animals" path="animals" value="1" /><label>Animals
+							inside allowed</label></td>
+				</tr>
+				<tr>
+					<td><form:checkbox id="field-garden" path="garden" value="1" /><label>Garden
+							(co-use)</label></td>
+					<td><form:checkbox id="field-balcony" path="balcony" value="1" /><label>Balcony
+							or Patio</label></td>
+				</tr>
+				<tr>
+					<td><form:checkbox id="field-cellar" path="cellar" value="1" /><label>Cellar
+							or Attic</label></td>
+					<td><form:checkbox id="field-furnished" path="furnished"
+							value="1" /><label>Furnished</label></td>
+				</tr>
+				<tr>
+					<td><form:checkbox id="field-cable" path="cable" value="1" /><label>Cable
+							TV</label></td>
+					<td><form:checkbox id="field-garage" path="garage" value="1" /><label>Garage</label>
+					</td>
+				</tr>
+				<tr>
+					<td><form:checkbox id="field-internet" path="internet" value="1" /><label>WiFi</label></td>
+				</tr>
 			</table>
 		<br />
 		</div>

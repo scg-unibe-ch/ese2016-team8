@@ -10,7 +10,7 @@
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
-<!-- check if user is logged in -->
+<!-- Check if user is logged in. -->
 <security:authorize var="loggedIn" url="/profile" />
 
 <c:import url="template/header.jsp" />
@@ -31,11 +31,10 @@
         minutes,
         seconds;
     function timer() {
-        // get the number of seconds that have elapsed since
-        // startTimer() was called
+        // Get the number of seconds that have elapsed since startTimer() was called.
         diff = ((Date.now() - start) / 1000);
 
-        // does the same job as parseInt truncates the float
+        // Does the same job as parseInt truncates the float.
         days = (duration - diff)/60/60/24 | 0;
         hours = (duration - diff - days*60*60*24)/60/60 | 0;
         minutes = (duration - diff - days*60*60*24 - hours*60*60)/60 | 0;
@@ -47,23 +46,21 @@
         display.textContent = days +" Days " + hours + " Hours "+minutes + " Minutes " + seconds + " Seconds";
 
         if (diff <= 0) {
-            // add one second so that the count down starts at the full duration
-            // example 05:00 not 04:59
+            // Add one second so that the count down starts at the full duration, example 05:00 not 04:59.
             start = Date.now() + 1000;
         }
     };
-    // we don't want to wait a full second before the timer starts
+    // We don't want to wait a full second before the timer starts.
     timer();
     setInterval(timer, 1000);
 }
 
 window.onload = function () {
-
 	if(${shownAd.auctionOver} == 0){
 		var ending = "${shownAd.auctionEndDate}",
 		    display = document.querySelector('#time');
 
-		// Ugly method, since JS Date works with month in [0-11] range WTF :D
+		// Ugly method, since JS Date works with month in [0-11] range WTF :D.
 	    var endDate = new Date(ending.substring(0,4), ending.substring(5,7)-1, ending.substring(8,10));
 
 	  	var now = new Date();
@@ -87,9 +84,7 @@ window.onload = function () {
 	}
 };
 
-
 </script>
-
 
 <script>
 	var shownAdvertisementID = "${shownAd.id}";
@@ -97,7 +92,6 @@ window.onload = function () {
 
 	function attachBookmarkClickHandler(){
 		$("#bookmarkButton").click(function() {
-
 			$.post("/bookmark", {id: shownAdvertisementID, screening: false, bookmarked: false}, function(data) {
 				$('#bookmarkButton').replaceWith($('<a class="right" id="bookmarkedButton">' + "Bookmarked" + '</a>'));
 				switch(data) {
@@ -114,7 +108,6 @@ window.onload = function () {
 				default:
 					alert("Default error. Please contact the WebAdmin.");
 				}
-
 				attachBookmarkedClickHandler();
 			});
 		});
@@ -129,7 +122,7 @@ window.onload = function () {
 					alert("You must be logged in to bookmark ads.");
 					break;
 				case 1:
-					// Something went wrong with the principal object
+					// Something went wrong with the principal object.
 					alert("Return value 1. Please contact the WebAdmin.");
 					break;
 				case 2:
@@ -137,17 +130,14 @@ window.onload = function () {
 					break;
 				default:
 					alert("Default error. Please contact the WebAdmin.");
-
 				}
 				attachBookmarkClickHandler();
 			});
 		});
 	}
 
-
 	var shownAdvertisementID = "${shownAd.id}";
 	var shownAdvertisement = "${shownAd}";
-
 
 	$(document).ready(function() {
 		attachBookmarkClickHandler();
@@ -237,23 +227,17 @@ window.onload = function () {
 
     <jsp:useBean id="today" class="java.util.Date" />
 
-
-
-<!-- format the dates -->
-<fmt:formatDate value="${shownAd.moveInDate}" var="formattedMoveInDate"
-	type="date" pattern="dd.MM.yyyy" />
-<fmt:formatDate value="${shownAd.creationDate}" var="formattedCreationDate"
-	type="date" pattern="dd.MM.yyyy" />
-	<fmt:formatDate value="${today}" var="formattedToday"
-		type="date" pattern="dd.MM.yyyy" />
+<!-- Format the dates. -->
+<fmt:formatDate value="${shownAd.moveInDate}" var="formattedMoveInDate" type="date" pattern="dd.MM.yyyy" />
+<fmt:formatDate value="${shownAd.creationDate}" var="formattedCreationDate" type="date" pattern="dd.MM.yyyy" />
+<fmt:formatDate value="${today}" var="formattedToday" type="date" pattern="dd.MM.yyyy" />
 
 <c:choose>
 	<c:when test="${empty shownAd.moveOutDate }">
 		<c:set var="formattedMoveOutDate" value="unlimited" />
 	</c:when>
 	<c:otherwise>
-		<fmt:formatDate value="${shownAd.moveOutDate}"
-			var="formattedMoveOutDate" type="date" pattern="dd.MM.yyyy" />
+		<fmt:formatDate value="${shownAd.moveOutDate}" var="formattedMoveOutDate" type="date" pattern="dd.MM.yyyy" />
 	</c:otherwise>
 </c:choose>
 
@@ -293,6 +277,7 @@ window.onload = function () {
 				</c:choose>
 			</td>
 		</tr>
+
 		<tr>
 			<td><h2>Tenure</h2></td>
 			<td>
@@ -302,6 +287,7 @@ window.onload = function () {
 				</c:choose>
 			</td>
 		</tr>
+
 		<tr>
 			<td><h2>Address</h2></td>
 			<td>
@@ -336,10 +322,12 @@ window.onload = function () {
 			<td><h2>Square Meters</h2></td>
 			<td>${shownAd.squareFootage}&#32;m²</td>
 		</tr>
+
 		<tr>
 			<td><h2>Ad created on</h2></td>
 			<td>${formattedCreationDate}</td>
 		</tr>
+
 		<tr>
 			<c:choose>
 				<c:when test="${loggedIn}">
@@ -353,27 +341,29 @@ window.onload = function () {
 		<c:choose>
 			<c:when test="${shownAd.auctionOver}">
 				<table>
-						<tr height="44px">
+					<tr height="44px">
 						<td width="60%" style="vertical-align:top"><a class="right" id="makeBidDisabled">Auction over</a></td>
 						<td width="40%" style="vertical-align:middle"></td>
-						</tr></table>
+					</tr>
+				</table>
 			</c:when>
 			<c:otherwise>
 				<c:choose>
 					<c:when test="${loggedIn}">
 						<table>
-						<tr height="44px">
-						<td width="50%" style="vertical-align:top"><a class="right"  id="makeBid">Place bid</a></td>
-						<td width="50%" style="vertical-align:middle"><input style="float:right; margin-left: 10px;"
-						align="right" type="number" step="50" name="bid" id="bid" min="${ad.prizePerMonth+50}" value="${shownAd.prizePerMonth+50}">
-						</td></tr></table>
+							<tr height="44px">
+								<td width="50%" style="vertical-align:top"><a class="right"  id="makeBid">Place bid</a></td>
+								<td width="50%" style="vertical-align:middle"><input style="float:right; margin-left: 10px;"
+									align="right" type="number" step="50" name="bid" id="bid" min="${ad.prizePerMonth+50}" value="${shownAd.prizePerMonth+50}">
+								</td>
+							</tr>
+						</table>
 					</c:when>
 				</c:choose>
 			</c:otherwise>
 		</c:choose>
 	</div>
 </section>
-
 
 <div id="image-slider">
 	<div id="left-arrow">
@@ -411,7 +401,8 @@ window.onload = function () {
 							until
 							<fmt:formatDate value="${visit.endTimestamp}" pattern=" HH:mm" />
 						</td>
-						<td><c:choose>
+						<td>
+							<c:choose>
 								<c:when test="${loggedIn}">
 									<c:if test="${loggedInUserEmail != shownAd.user.username}">
 										<button class="thinButton" type="button" data-id="${visit.id}">Send
@@ -422,12 +413,12 @@ window.onload = function () {
 									<a href="/login"><button class="thinInactiveButton" type="button"
 										data-id="${visit.id}">Login to send enquiries</button></a>
 								</c:otherwise>
-							</c:choose></td>
+							</c:choose>
+						</td>
 					</tr>
 				</c:forEach>
 			</table>
 		</div>
-
 	</div>
 
 	<table id="checkBoxTable" class="adDescDiv">
@@ -520,7 +511,6 @@ window.onload = function () {
 				</c:choose>
 			</td>
 		</tr>
-
 	</table>
 </section>
 
@@ -529,7 +519,7 @@ window.onload = function () {
 
 <table id="advertiserTable" class="adDescDiv">
 	<tr>
-	<td><h2>Advertiser</h2><br /></td>
+		<td><h2>Advertiser</h2><br /></td>
 	</tr>
 
 	<tr>

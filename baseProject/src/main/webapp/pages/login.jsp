@@ -13,7 +13,6 @@
 
 <meta name="google-signin-client_id" content="609599959744-qjl118p0tlktjnljrim47l4lgmba9ebb.apps.googleusercontent.com">
 
-
 <c:import url="template/header.jsp" />
 
 <pre>
@@ -86,13 +85,11 @@
 							cssClass="form-control" />					
 			</spring:bind>
 			
-		<button type="submit" style="visibility:hidden;" class="btn btn-primary" value="signup" id="googleButton"
-				>Sign up</button>
-				
-		</form:form>
-	</div>	
-	
-	
+			<button type="submit" style="visibility:hidden;" class="btn btn-primary" value="signup" id="googleButton"
+					>Sign up</button>	
+	</form:form>
+</div>	
+
 <script>
 	function onSignIn(googleUser) {
 	 	var profile = googleUser.getBasicProfile();
@@ -103,7 +100,6 @@
 		var auth2 = gapi.auth2.getAuthInstance();
     	auth2.signOut();
 		$("#googleButton").click();
-		
 	}
 </script>
 

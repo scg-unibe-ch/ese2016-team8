@@ -8,7 +8,6 @@
 <%@ taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 
-
 <c:import url="template/header.jsp" />
 
 <script>
@@ -103,4 +102,5 @@
 		<button type="button" id="messageCancel">Cancel</button>
 	</form>
 </div>
+
 <c:import url="template/footer.jsp" />
