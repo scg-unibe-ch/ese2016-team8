@@ -191,7 +191,6 @@ button:hover, .button:hover {
 	cursor: pointer;
 }
 
-
 fieldset {
 	padding: 20px;
 	margin-bottom: 10px;
@@ -378,12 +377,12 @@ header ul li a:hover > .icon {
 	-webkit-filter: invert(100%); filter: invert(100%);
 }
 
-/* it does hide the drop down menu */
+/* It does hide the drop down menu. */
 header ul li ul {
 	display: none;
 }
 
-/*only when you hover over the unordered list item -> dropdown visible */
+/* Only when you hover over the unordered list item -> dropdown visible. */
 header ul li:hover ul {
 	display: block;
 }
@@ -639,7 +638,6 @@ img.premium{
 	box-shadow: none;
 	opacity: 1;
 }
-
 
 #resultsDiv .resultRight {
 	float: right;
@@ -1117,7 +1115,6 @@ img.premium{
 
 /* -------------------------------------------------------------------- */
 /* editAd.jsp */
-
 .pictureThumbnail{
 	width: 200px;
 	border-style: dashed;
