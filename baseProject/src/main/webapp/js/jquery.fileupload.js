@@ -39,17 +39,20 @@
         // Feature detection for all other devices:
         $('<input type="file">').prop('disabled'));
 
-    // The FileReader API is not actually used, but works as feature detection,
-    // as some Safari versions (5?) support XHR file uploads via the FormData API,
-    // but not non-multipart XHR file uploads.
-    // window.XMLHttpRequestUpload is not available on IE10, so we check for
-    // window.ProgressEvent instead to detect XHR2 file upload capability:
-    $.support.xhrFileUpload = !!(window.ProgressEvent && window.FileReader);
-    $.support.xhrFormDataFileUpload = !!window.FormData;
+    /*
+    * The FileReader API is not actually used, but works as feature detection,
+    * as some Safari versions (5?) support XHR file uploads via the FormData API,
+    * but not non-multipart XHR file uploads.
+    * window.XMLHttpRequestUpload is not available on IE10, so we check for
+    * window.ProgressEvent instead to detect XHR2 file upload capability:
+    * $.support.xhrFileUpload = !!(window.ProgressEvent && window.FileReader);
+    * $.support.xhrFormDataFileUpload = !!window.FormData;
+    */
 
     // Detect support for Blob slicing (required for chunked uploads):
     $.support.blobSlice = window.Blob && (Blob.prototype.slice ||
-        Blob.prototype.webkitSlice || Blob.prototype.mozSlice);
+                            Blob.prototype.webkitSlice ||
+                            Blob.prototype.mozSlice);
 
     // Helper function to create drag handlers for dragover/dragenter/dragleave:
     function getDragHandler(type) {
@@ -57,11 +60,10 @@
         return function (e) {
             e.dataTransfer = e.originalEvent && e.originalEvent.dataTransfer;
             var dataTransfer = e.dataTransfer;
-            if (dataTransfer && $.inArray('Files', dataTransfer.types) !== -1 &&
-                    this._trigger(
-                        type,
-                        $.Event(type, {delegatedEvent: e})
-                    ) !== false) {
+            if (dataTransfer && 
+                    $.inArray('Files', dataTransfer.types) !== -1 &&
+                    this._trigger(type, $.Event(type, {delegatedEvent: e})) !== false)
+            {
                 e.preventDefault();
                 if (isDragOver) {
                     dataTransfer.dropEffect = 'copy';
@@ -70,14 +72,16 @@
         };
     }
 
-    // The fileupload widget listens for change events on file input fields defined
-    // via fileInput setting and paste or drop events of the given dropZone.
-    // In addition to the default jQuery Widget methods, the fileupload widget
-    // exposes the "add" and "send" methods, to add or directly send files using
-    // the fileupload API.
-    // By default, files added via file input selection, paste, drag & drop or
-    // "add" method are uploaded immediately, but it is possible to override
-    // the "add" callback option to queue file uploads.
+    /* 
+    * The fileupload widget listens for change events on file input fields defined
+    * via fileInput setting and paste or drop events of the given dropZone.
+    * In addition to the default jQuery Widget methods, the fileupload widget
+    * exposes the "add" and "send" methods, to add or directly send files using
+    * the fileupload API.
+    * By default, files added via file input selection, paste, drag & drop or
+    * "add" method are uploaded immediately, but it is possible to override
+    * the "add" callback option to queue file uploads.
+    */
     $.widget('blueimp.fileupload', {
 
         options: {
@@ -306,8 +310,8 @@
 
         _isXHRUpload: function (options) {
             return !options.forceIframeTransport &&
-                ((!options.multipart && $.support.xhrFileUpload) ||
-                $.support.xhrFormDataFileUpload);
+                    ((!options.multipart && $.support.xhrFileUpload) ||
+                    $.support.xhrFormDataFileUpload);
         },
 
         _getFormData: function (options) {
@@ -364,17 +368,16 @@
 
         _onProgress: function (e, data) {
             if (e.lengthComputable) {
-                var now = ((Date.now) ? Date.now() : (new Date()).getTime()),
-                    loaded;
+                var now = ((Date.now) ? Date.now() : (new Date()).getTime()), loaded;
                 if (data._time && data.progressInterval &&
                         (now - data._time < data.progressInterval) &&
                         e.loaded !== e.total) {
                     return;
                 }
                 data._time = now;
-                loaded = Math.floor(
-                    e.loaded / e.total * (data.chunkSize || data._progress.total)
-                ) + (data.uploadedBytes || 0);
+                loaded = Math.floor(e.loaded / e.total
+                            * (data.chunkSize || data._progress.total))
+                            + (data.uploadedBytes || 0);
                 // Add the difference from the previously loaded state
                 // to the global loaded counter:
                 this._progress.loaded += (loaded - data._progress.loaded);
@@ -428,7 +431,7 @@
         },
 
         _isInstanceOf: function (type, obj) {
-            // Cross-frame instanceof check
+            // Cross-frame instanceof check.
             return Object.prototype.toString.call(obj) === '[object ' + type + ']';
         },
 
@@ -485,8 +488,7 @@
                         formData.append(paramName, options.blob, file.name);
                     } else {
                         $.each(options.files, function (index, file) {
-                            // This check allows the tests to run with
-                            // dummy objects:
+                            // This check allows the tests to run with dummy objects:
                             if (that._isInstanceOf('File', file) ||
                                     that._isInstanceOf('Blob', file)) {
                                 formData.append(
@@ -813,7 +815,7 @@
 
         _beforeSend: function (e, data) {
             if (this._active === 0) {
-                // the start callback is triggered when an upload starts
+                // The start callback is triggered when an upload starts
                 // and no other uploads are currently running,
                 // equivalent to the global ajaxStart event:
                 this._trigger('start');
@@ -1451,7 +1453,5 @@
             }
             return this._getXHRPromise(false, data && data.context);
         }
-
     });
-
 }));

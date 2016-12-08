@@ -28,7 +28,7 @@ $(function() {
 
 	showPictures();
 
-	// attach the picture delete handler to the table cells
+	// Attach the picture delete handler to the table cells.
 	$("table").on("click", "td[data-delete-url]", function(event) {
 		var deleteUrl = $(this).attr('data-delete-url');
 		$.post('/profile/placeAd/deletePicture', {url : deleteUrl}, function() {
