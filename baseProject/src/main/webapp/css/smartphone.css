@@ -1,4 +1,4 @@
-/* This file is used for smartphones */
+/* This file is used for smartphones. */
 h1{
 	font-size: 1.6em;
 }
@@ -14,7 +14,6 @@ body{
 
 /* -------------------------------------------------------------------- */
 /* Header & Footer */
-
 header{
 	min-width: 0px;
 	height: 50px;

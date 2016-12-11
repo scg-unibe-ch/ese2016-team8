@@ -2,7 +2,7 @@ $(document).ready(function() {
 	
 	var buttons = $("#visitList table tr button");
 	
-	//Makes the enquiry-button inactive after the user applied to a visit
+	// Makes the enquiry-button inactive after the user applied to a visit.
 	$(buttons).click(function() {
 		var buttonText = $(this).attr("class");
 		
@@ -33,17 +33,14 @@ $(document).ready(function() {
 		
 		$.get("/profile/enquiries/sendEnquiryForVisit?id=" + id);
 		
-		
 		var enquiryButton = $("#visitList table tr button[data-id='" + id + "']");
 		$(enquiryButton).addClass('thinInactiveButton').removeClass('thinButton');
 		$(enquiryButton).html('Enquiry sent');
 		
 		reset();
 	});
-	
-	
+
 	$("#confirmationDialogCancel").click(function (){
 		reset();
 	}); 
-	
 });

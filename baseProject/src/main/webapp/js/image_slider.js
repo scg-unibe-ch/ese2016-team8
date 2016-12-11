@@ -6,15 +6,14 @@ function getVisiblePicture() {
 }
 
 $(document).ready(function() {
-
-	// denote visible picture
+	// Denote visible picture.
 	$("#images img").first().addClass('visible');
 
 	$("#left-arrow img").click(function() {
 		var current = $(getVisiblePicture());
 		var previous = $(current).prev();
 		if ($(previous).size() == 0) {
-			// was the first picture
+			// Was the first picture.
 			previous = $("#images img").last();
 		}
 		$(current).removeClass('visible');
@@ -28,7 +27,7 @@ $(document).ready(function() {
 		var current = $(getVisiblePicture());
 		var next = $(current).next();
 		if ($(next).size() == 0) {
-			// was the last picture
+			// Was the last picture.
 			next = $("#images img").first();
 		}
 

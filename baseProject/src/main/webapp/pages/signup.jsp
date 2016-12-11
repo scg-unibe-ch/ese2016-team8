@@ -7,7 +7,7 @@
 <c:import url="template/header.jsp" />
 
 <script>
-	// Validate the email field
+	// Validate the email field.
 	$(document).ready(function() {
 		$("#field-email").focusout(function() {
 			var text = $(this).val();
@@ -31,7 +31,6 @@
 		<legend>Enter Your Information</legend>
 
 		<table>
-
 			<tr>
 				<td class="signupDescription"><label for="field-firstName">First Name:</label></td>
 				<td><form:input path="firstName" id="field-firstName" /> <form:errors

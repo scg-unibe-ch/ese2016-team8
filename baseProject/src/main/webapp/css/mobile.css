@@ -79,8 +79,8 @@ pre a {
 	font-weight: 900;
 }
 
-/*Header is fixed to 60px from top, so with padding of 60px,
-we fix the body in the exactly right position*/
+/* Header is fixed to 60px from top, so with padding of 60px,
+we fix the body in the exactly right position. */
 body {
 	color: #000;
 	padding-top: 70px;
@@ -88,7 +88,7 @@ body {
 	min-width: 340px;
 }
 
-/* the main content on every page */
+/* The main content on every page. */
 #content {
 	width: 340px;
 	margin-left:auto;
@@ -97,7 +97,7 @@ body {
 }
 
 /* These two guarantee that we can write stuff on the same line,
-but not in one String (i.e. in the header) */
+but not in one String (i.e. in the header). */
 .left {
 	display: inline-block;
 	float: left;
@@ -382,12 +382,12 @@ header ul li a:hover {
 	background: #ddd;
 }
 
-/* it does hide the drop down menu */
+/* It does hide the drop down menu. */
 header ul li ul {
 	display: none;
 }
 
-/*only when you hover over the unordered list item -> dropdown visible */
+/* Only when you hover over the unordered list item -> dropdown visible. */
 header ul li:hover ul {
 	display: block;
 }
@@ -404,7 +404,6 @@ header nav {
 header nav img{
 	display: none;
 }
-
 
 footer {
 	color: white;
@@ -512,6 +511,7 @@ footer nav ul li {
 .signupDescription{
 	vertical-align: top;
 }
+
 /* -------------------------------------------------------------------- */
 /* search.jsp */
 #searchForm {
@@ -623,7 +623,6 @@ footer nav ul li {
 	box-shadow: 1px 1px 2px #000;
 }
 
-
 #resultsDiv .resultRight {
 	float: right;
 	width: 20%;
@@ -633,7 +632,6 @@ footer nav ul li {
 
 /* -------------------------------------------------------------------- */
 /* adDescription.jsp */
-
 #adDescTable {
 	width: 340px;
 	height: 400px;
@@ -856,7 +854,6 @@ footer nav ul li {
 
 /* -------------------------------------------------------------------- */
 /* messages.jsp */
-
 #messageList {
 	float: right;
 	width: 70%;

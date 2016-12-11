@@ -10,7 +10,6 @@
 <script>
 	$(document).ready(function() {
 	});
-
 </script>
 
 
@@ -24,10 +23,9 @@
 		<br /><br />
 	</c:when>
 	<c:otherwise>
-	
 		<div id="resultsDiv" class="resultsDiv">
-		<h1>My Advertisements</h1>
-		<hr />			
+			<h1>My Advertisements</h1>
+			<hr />			
 			<c:forEach var="ad" items="${ownAdvertisements}">
 				<div class="resultAd" data-price="${ad.prizePerMonth}" 
 								data-moveIn="${ad.moveInDate}" data-age="${ad.moveInDate}">
@@ -80,7 +78,6 @@
 	</div>
 	</c:when>
 	<c:otherwise>
-		
 		<div id="resultsDiv" class="resultsDiv">
 		<h1>My Bookmarks</h1>
 		<hr />			
@@ -113,6 +110,5 @@
 		</div>		
 	</c:otherwise>
 </c:choose>
-
 
 <c:import url="template/footer.jsp" />

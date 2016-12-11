@@ -3,19 +3,28 @@ Team 8 and Claudio, 07.12.2016
 Input from developers: 
 - Referencing issue #31, opened by claudio, concerning 'UI could use some work'
 -- Why haven't we been told this before? 2 months everything is fine and suddenly UI is not good?
--- What is not good? We are developers, not designers. We are here to implement what the customer wants, not to			make proposions.
+-- What is not good? We are developers, not designers. We are here to implement what the customer wants, not to	make proposions.
 - Referencing issue #34, opened by claudio, concerning 'Visiting times not working properly'
--- Could claudio please elaborate the consistency of the errorenous behaviour. 'Sometimes' doesn't seem to be 			consistens and therefore rather difficult to fix. The overall quality of the issue #34 is under 			borderline. There's no elaboration on the consistency of the error, what has been entered and especially		how to reproduce the error. Every error is consistent, just in it's own way.
-
-- Following the requirement for the evaluation from https://piazza.com/class/is0aix36ick332?cid=20 concering the		project 'code quality'. Is the shitty code we've been given already counted. Because we're not alchemists, 	we don't turn shit into gold.
+-- Could claudio please elaborate the consistency of the errorenous behaviour. 'Sometimes' doesn't seem to be consistent and therefore rather difficult to fix. The overall quality of the issue #34 is under borderline. There's no elaboration on the consistency of the error, what has been entered and especially		how to reproduce the error. Every error is consistent, just in it's own way.
+- Following the requirement for the evaluation from https://piazza.com/class/is0aix36ick332?cid=20 concering the project 'code quality'. Is the shitty code we've been given already counted. Because we're not alchemists, we don't turn shit into gold.
+- Should we add more usability tests, just for the sake of completeness.
 
 Input from customer:
+- Concerning #31, not forced.
+- Concerning #34, not necessary.
 
 Input from teaching assistant:
-
+- Concerning #31, make a nice visual mockup for the presentation itself. 
+- Concerning #34, the ve3rsion is the same as the last commit that has been made just before the wrote the issue. He pulled 5 minutes before. The actual try was to sort the visiting times. This was when he remarked that the visiting times were not saved correctly.
+- Overall about the presentation. Consider a nice way to present your project i.e. make a live bidding, show a video of a special part of a feature.
+- Fix overall small errors.
+- 'Usability test': Just concerning the task 5, nothing can be added anymore neither the mark we are going to receive. But if we insist on doing so.
+- Concerning the 'code quality', only things we've added will be valued. Also the project as a whole, say before it was ok, now it's bad; THerefore we've been working bad etc.
 
 TODO:
 - Tests, Refactoring, Javadoc etc.
 - Klassenkommentare empfehlenswert.
 - Presentation following requirements https://piazza.com/class/is0aix36ick332?cid=20. We (team8) are on 14.12.
 ! Last commit that will be valued before the presentation is before 14.00 on 14.12.2016 !
+- Presentation must be innovative. So it's like a presentation for the customer. So making dem guise laugh is good, including those guys.
+- There are no requirements for the presentation so the TA do not have to follow any requirements and can grade as they believe me. Neither the less a discussion afterwards might be possible in order to discuss why something has been graded the way it was.

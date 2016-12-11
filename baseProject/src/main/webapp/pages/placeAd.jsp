@@ -12,16 +12,14 @@
 
 <script src="/js/pictureUpload.js"></script>
 
-
 <script>
 	$(document).ready(function() {
 
-		// Go to controller take what you need from user
-		// save it to a hidden field
-		// iterate through it
-		// if there is id == x then make "Bookmark Me" to "bookmarked"
+		// Go to controller, take what you need from user,
+		// save it to a hidden field, iterate through it;
+		// If there is id == x, make "Bookmark Me" to "bookmarked".
 
-		//changes between Sale prize/ Prize per month
+		// Changes between Sale prize/ Prize per month.
     $("#type-sale").on("click", function(){
 		document.getElementById('type-rent').checked="";
 		document.getElementById('type-auction').checked="";
@@ -77,7 +75,6 @@
 			dateFormat : 'dd-mm-yy'
 		});
 
-
 		$("#addbutton").click(function() {
 			var text = $("#roomFriends").val();
 			var alreadyAdded = $("#addedRoommates").html();
@@ -95,7 +92,7 @@
 				alert("Please enter an e-mail adress");
 			}
 
-			// Validates the input for Email Syntax
+			// Validates the input for Email Syntax.
 			function validateForm(text) {
 			    var positionAt = text.indexOf("@");
 			    var positionDot = text.lastIndexOf(".");
@@ -141,7 +138,6 @@
 	});
 
 	function checkDates(){
-			
 			var moveInDateString = $("#field-moveInDate").val();
 			var moveOutDateString = $("#field-moveOutDate").val();
 			var moveInDate = new Date();
@@ -182,7 +178,8 @@
 			</tr>
 
 			<tr>
-				<td><form:input id="field-title" path="title"
+				<td>
+					<form:input id="field-title" path="title"
 						placeholder="Ad Title" /><form:errors
 						path="title" cssClass="validationErrorText" /></td>
 				<td><form:radiobutton id="type-room" path="category" value="room"
@@ -240,7 +237,6 @@
 			</tr>
 		</table>
 	</fieldset>
-
 
 	<br />
 	<fieldset>
@@ -310,8 +306,8 @@
 
 		<table>
 			<tr>
-				<td><input type="text" id="field-visitDay" /> <select
-					id="startHour">
+				<td><input type="text" id="field-visitDay" />
+				<select id="startHour">
 						<%
 							for (int i = 0; i < 24; i++) {
 									String hour = String.format("%02d", i);
@@ -319,7 +315,8 @@
 											+ "</option>");
 								}
 						%>
-				</select> <select id="startMinutes">
+				</select>
+				<select id="startMinutes">
 						<%
 							for (int i = 0; i < 60; i++) {
 									String minute = String.format("%02d", i);
@@ -327,7 +324,8 @@
 											+ "</option>");
 								}
 						%>
-				</select> <span>to&thinsp; </span> <select id="endHour">
+				</select> <span>to&thinsp; </span>
+				<select id="endHour">
 						<%
 							for (int i = 0; i < 24; i++) {
 									String hour = String.format("%02d", i);
@@ -335,7 +333,8 @@
 											+ "</option>");
 								}
 						%>
-				</select> <select id="endMinutes">
+				</select>
+				<select id="endMinutes">
 						<%
 							for (int i = 0; i < 60; i++) {
 									String minute = String.format("%02d", i);
@@ -344,21 +343,13 @@
 								}
 						%>
 				</select>
-
-
-
 					<div id="addVisitButton" class="smallPlusButton">+</div>
 
 					<div id="addedVisits"></div></td>
-
 			</tr>
-
 		</table>
 		<br>
 	</fieldset>
-
-
-
 	<br />
 	<div>
 		<button id="submit" type="submit" onclick="return checkDates();">Submit</button>

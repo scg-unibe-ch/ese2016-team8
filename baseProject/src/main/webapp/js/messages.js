@@ -1,4 +1,3 @@
-
 function loadMessages(data) {
 	$("#messageList table tr:gt(0)").remove();
 	$.each(data, function(index, message) {
@@ -89,5 +88,4 @@ $(document).ready(function() {
 			event.preventDefault();
 		}
 	});
-	
 });

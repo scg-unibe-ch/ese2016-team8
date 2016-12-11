@@ -9,7 +9,7 @@
 <pre>
 <a href="/">Home</a>   &gt;   Enquiries</pre>
 
-<!-- format the dates -->
+<!-- Format the dates. -->
 <fmt:formatDate value="${enquiries[0].dateSent}" var="formattedDateSent"
 	type="date" pattern="HH:mm, dd.MM.yyyy" />
 
@@ -75,9 +75,7 @@
 												attachHandlers();
 											});
 						}
-
 						attachHandlers();
-
 					});
 </script>
 

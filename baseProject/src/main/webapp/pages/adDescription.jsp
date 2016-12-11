@@ -7,7 +7,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
-<!-- check if user is logged in -->
+<!-- Check if user is logged in. -->
 <security:authorize var="loggedIn" url="/profile" />
 
 <c:import url="template/header.jsp" />
@@ -31,7 +31,7 @@
 					alert("You must be logged in to bookmark ads.");
 					break;
 				case 1:
-					// Something went wrong with the principal object
+					// Something went wrong with the principal object.
 					alert("Return value 1. Please contact the WebAdmin.");
 					break;
 				case 3:
@@ -40,7 +40,6 @@
 				default:
 					alert("Default error. Please contact the WebAdmin.");
 				}
-
 				attachBookmarkedClickHandler();
 			});
 		});
@@ -55,7 +54,7 @@
 					alert("You must be logged in to bookmark ads.");
 					break;
 				case 1:
-					// Something went wrong with the principal object
+					// Something went wrong with the principal object.
 					alert("Return value 1. Please contact the WebAdmin.");
 					break;
 				case 2:
@@ -63,7 +62,6 @@
 					break;
 				default:
 					alert("Default error. Please contact the WebAdmin.");
-
 				}
 				attachBookmarkClickHandler();
 			});
@@ -115,14 +113,10 @@
 
 </script>
 
-
-<!-- format the dates -->
-<fmt:formatDate value="${shownAd.moveInDate}" var="formattedMoveInDate"
-	type="date" pattern="dd.MM.yyyy" />
-<fmt:formatDate value="${shownAd.creationDate}" var="formattedCreationDate"
-	type="date" pattern="dd.MM.yyyy" />
-	<fmt:formatDate value="${shownAd.auctionEndDate}" var="formattedAuctionEnd"
-		type="date" pattern="dd.MM.yyyy" />
+<!-- Format the dates. -->
+<fmt:formatDate value="${shownAd.moveInDate}" var="formattedMoveInDate" type="date" pattern="dd.MM.yyyy" />
+<fmt:formatDate value="${shownAd.creationDate}" var="formattedCreationDate" type="date" pattern="dd.MM.yyyy" />
+<fmt:formatDate value="${shownAd.auctionEndDate}" var="formattedAuctionEnd" type="date" pattern="dd.MM.yyyy" />
 <c:choose>
 	<c:when test="${empty shownAd.moveOutDate }">
 		<c:set var="formattedMoveOutDate" value="unlimited" />
@@ -132,7 +126,6 @@
 			var="formattedMoveOutDate" type="date" pattern="dd.MM.yyyy" />
 	</c:otherwise>
 </c:choose>
-
 
 <h1 id="shownAdTitle">${shownAd.title}
 	<c:choose>
@@ -169,6 +162,7 @@
 				</c:choose>
 			</td>
 		</tr>
+
 		<tr>
 			<td><h2>Tenure</h2></td>
 			<td>
@@ -178,6 +172,7 @@
 				</c:choose>
 			</td>
 		</tr>
+
 		<tr>
 			<td><h2>Address</h2></td>
 			<td>
@@ -190,12 +185,14 @@
 			<td><h2>Available from</h2></td>
 			<td>${formattedMoveInDate}</td>
 		</tr>
+
 		<c:choose>
 		<c:when test="${!shownAd.sale}">
 		<tr>
 			<td><h2>Move-out Date</h2></td>
 			<td>${formattedMoveOutDate}</td>
 		</tr>
+
 		</c:when>
 		</c:choose>
 		<tr>
@@ -211,6 +208,7 @@
 			<td><h2>Square Meters</h2></td>
 			<td>${shownAd.squareFootage}&#32;m²</td>
 		</tr>
+
 		<tr>
 			<td><h2>Ad created on</h2></td>
 			<td>${formattedCreationDate}</td>
@@ -276,7 +274,6 @@
 				</c:forEach>
 			</table>
 		</div>
-
 	</div>
 
 	<table id="checkBoxTable" class="adDescDiv">
@@ -443,6 +440,5 @@
 	<button type="button" id="confirmationDialogCancel">Cancel</button>
 	</form>
 </div>
-
 
 <c:import url="template/footer.jsp" />

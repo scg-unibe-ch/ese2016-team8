@@ -13,134 +13,133 @@
 <script src="http://maps.google.com/maps/api/js" type="text/javascript"></script>
 
 <script>
-//console.log(${fn:length(results)});
-var addresses = new Array(${fn:length(results)});
-var adIds = new Array(${fn:length(results)});
-var i = 0;
+	// console.log(${fn:length(results)});
+	var addresses = new Array(${fn:length(results)});
+	var adIds = new Array(${fn:length(results)});
+	var i = 0;
 
-function validateType(form)
-{
-	var room = document.getElementById('room');
-	var studio = document.getElementById('studio');
-	var house = document.getElementById('house');
-	var neither = document.getElementById('neither');
-	var both = document.getElementById('both');
-	var type = document.getElementById('type');
-	var filtered = document.getElementById('filtered');
-	var types = "";
+	function validateType(form)
+	{
+		var room = document.getElementById('room');
+		var studio = document.getElementById('studio');
+		var house = document.getElementById('house');
+		var neither = document.getElementById('neither');
+		var both = document.getElementById('both');
+		var type = document.getElementById('type');
+		var filtered = document.getElementById('filtered');
+		var types = "";
 
-	var sale = document.getElementById('sale');
-	var rent = document.getElementById('rent');
-	var bothType = document.getElementById('bothType');
-	var saleType = document.getElementById('saleType');
+		var sale = document.getElementById('sale');
+		var rent = document.getElementById('rent');
+		var bothType = document.getElementById('bothType');
+		var saleType = document.getElementById('saleType');
 
 
-	if(sale.checked && rent.checked){
-		bothType.checked = true;
+		if(sale.checked && rent.checked){
+			bothType.checked = true;
 
-	}else if(sale.checked && !rent.checked){
-		bothType.checked = false;
-		saleType.checked = true;
-	}else if(!sale.checked && rent.checked){
-		bothType.checked = false;
-		saleType.checked = false;
-	}else{
-		alert("Check a type of tenure!")
-		return false;
+		}else if(sale.checked && !rent.checked){
+			bothType.checked = false;
+			saleType.checked = true;
+		}else if(!sale.checked && rent.checked){
+			bothType.checked = false;
+			saleType.checked = false;
+		}else{
+			alert("Check a type of tenure!")
+			return false;
+		}
+
+		if(room.checked){
+			types += ",room";
+		}
+
+		if(studio.checked){
+			types += ",studio";
+		}
+
+		if(house.checked) {
+			types += ",house";
+		}
+
+		document.getElementById('category').value = types;
+		filtered.checked = true;
+
+		if(types == ""){
+			alert("Check at least one type of ads!");
+			return false;
+		}else{
+			return true;
+		}
 	}
-
-	if(room.checked){
-		types += ",room";
-	}
-
-	if(studio.checked){
-		types += ",studio";
-	}
-
-	if(house.checked) {
-		types += ",house";
-	}
-
-	document.getElementById('category').value = types;
-	filtered.checked = true;
-
-	if(types == ""){
-		alert("Check at least one type of ads!");
-		return false;
-	}else{
-		return true;
-	}
-}
 </script>
 
 <script>
-/*
- * This script takes all the resultAd divs and sorts them by a parameter specified by the user.
- * No arguments need to be passed, since the function simply looks up the dropdown selection.
- */
-function sort_div_attribute() {
-    //determine sort modus (by which attribute, asc/desc)
-    var sortmode = $('#modus').find(":selected").val();
+	/*
+	* This script takes all the resultAd divs and sorts them by a parameter specified by the user.
+	* No arguments need to be passed, since the function simply looks up the dropdown selection.
+	*/
+	function sort_div_attribute() {
+		//determine sort modus (by which attribute, asc/desc)
+		var sortmode = $('#modus').find(":selected").val();
 
-    //only start the process if a modus has been selected
-    if(sortmode.length > 0) {
-    	var attname;
+		//only start the process if a modus has been selected
+		if(sortmode.length > 0) {
+			var attname;
 
-    	//determine which variable we pass to the sort function
-		if(sortmode == "price_asc" || sortmode == "price_desc")
-			attname = 'data-price';
-	    else if(sortmode == "moveIn_asc" || sortmode == "moveIn_desc")
-			attname = 'data-moveIn';
-	    else
-			attname = 'data-age';
+			//determine which variable we pass to the sort function
+			if(sortmode == "price_asc" || sortmode == "price_desc")
+				attname = 'data-price';
+			else if(sortmode == "moveIn_asc" || sortmode == "moveIn_desc")
+				attname = 'data-moveIn';
+			else
+				attname = 'data-age';
 
-		//copying divs into an array which we're going to sort
-	    var divsbucket = new Array();
-	    var divslist = $('div.resultAd');
-	    var divlength = divslist.length;
-	    for (a = 0; a < divlength; a++) {
-			divsbucket[a] = new Array();
-			divsbucket[a][0] = divslist[a].getAttribute(attname);
-			divsbucket[a][1] = divslist[a];
-			divslist[a].remove();
-	    }
+			//copying divs into an array which we're going to sort
+			var divsbucket = new Array();
+			var divslist = $('div.resultAd');
+			var divlength = divslist.length;
+			for (a = 0; a < divlength; a++) {
+				divsbucket[a] = new Array();
+				divsbucket[a][0] = divslist[a].getAttribute(attname);
+				divsbucket[a][1] = divslist[a];
+				divslist[a].remove();
+			}
 
-	    //sort the array
-	    if(attname == "data-price"){
-	    	divsbucket.sort(function(a, b) {
-		    if (parseInt(a[0]) == parseInt(b[0]))
-				return 0;
-		    else if (parseInt(a[0]) > parseInt(b[0]))
-				return 1;
-	        else
-				return -1;
-		});
-	    }else{
-	    	divsbucket.sort(function(a, b) {
-		    if (Date.parse(a[0]) == Date.parse(b[0]))
-				return 0;
-		    else if (Date.parse(a[0]) > Date.parse(b[0]))
-				return 1;
-	        else
-				return -1;
-		});
-	    }
+			//sort the array
+			if(attname == "data-price"){
+				divsbucket.sort(function(a, b) {
+				if (parseInt(a[0]) == parseInt(b[0]))
+					return 0;
+				else if (parseInt(a[0]) > parseInt(b[0]))
+					return 1;
+				else
+					return -1;
+			});
+			}else{
+				divsbucket.sort(function(a, b) {
+				if (Date.parse(a[0]) == Date.parse(b[0]))
+					return 0;
+				else if (Date.parse(a[0]) > Date.parse(b[0]))
+					return 1;
+				else
+					return -1;
+			});
+			}
 
 
-	    //invert sorted array for certain sort options
-		if(sortmode == "price_desc" || sortmode == "moveIn_asc" || sortmode == "dateAge_asc")
-			divsbucket.reverse();
+			//invert sorted array for certain sort options
+			if(sortmode == "price_desc" || sortmode == "moveIn_asc" || sortmode == "dateAge_asc")
+				divsbucket.reverse();
 
-	    //insert sorted divs into document again
-		for(a = 0; a < divlength; a++)
-        	$("#resultsDiv").append($(divsbucket[a][1]));
+			//insert sorted divs into document again
+			for(a = 0; a < divlength; a++)
+				$("#resultsDiv").append($(divsbucket[a][1]));
+		}
 	}
-}
 </script>
 
 <script>
 	$(document).ready(function() {
-
 		$("#city").autocomplete({
 			minLength : 2
 		});
@@ -180,7 +179,7 @@ function sort_div_attribute() {
 
 	    geocoder.geocode({'address': address}, function(results, status, infowindow) {
 	    if (status === google.maps.GeocoderStatus.OK) {
-	      //map.setCenter(results[0].geometry.location);
+	      // map.setCenter(results[0].geometry.location);
 	      var marker = new google.maps.Marker({
 	        map: map,
 	        position: results[0].geometry.location
@@ -230,10 +229,10 @@ function sort_div_attribute() {
 								data-moveIn="${ad.moveInDate}" data-age="${ad.moveInDate}">
 					<div class="resultLeft">
 						<c:if test="${ad.premium}">
-						<c:choose>
-							<c:when test="${!ad.auction}"><a href="<c:url value='/ad?id=${ad.id}' />"><img class="premium" src="http://positivefabulouswomen.com/wp-content/uploads/2015/05/achat_premium_nom_de_domaine_point_paris.png"/><img src="${ad.pictures[0].filePath}" /></a></c:when>
-							<c:otherwise><a href="<c:url value='/auction?id=${ad.id}' />"><img class="premium" src="http://positivefabulouswomen.com/wp-content/uploads/2015/05/achat_premium_nom_de_domaine_point_paris.png"/><img src="${ad.pictures[0].filePath}" /></a></c:otherwise>
-						</c:choose>
+							<c:choose>
+								<c:when test="${!ad.auction}"><a href="<c:url value='/ad?id=${ad.id}' />"><img class="premium" src="http://positivefabulouswomen.com/wp-content/uploads/2015/05/achat_premium_nom_de_domaine_point_paris.png"/><img src="${ad.pictures[0].filePath}" /></a></c:when>
+								<c:otherwise><a href="<c:url value='/auction?id=${ad.id}' />"><img class="premium" src="http://positivefabulouswomen.com/wp-content/uploads/2015/05/achat_premium_nom_de_domaine_point_paris.png"/><img src="${ad.pictures[0].filePath}" /></a></c:otherwise>
+							</c:choose>
 						</c:if>
 						<c:if test="${!ad.premium}">
 							<c:choose>
@@ -242,10 +241,10 @@ function sort_div_attribute() {
 							</c:choose>
 						</c:if>
 						<h2>
-						<c:choose>
-							<c:when test="${!ad.auction}"><a class="link" href="<c:url value='/ad?id=${ad.id}' />">${ad.title}</a></c:when>
-							<c:otherwise><a class="link" href="<c:url value='/auction?id=${ad.id}' />">${ad.title}</a></c:otherwise>
-						</c:choose>
+							<c:choose>
+								<c:when test="${!ad.auction}"><a class="link" href="<c:url value='/ad?id=${ad.id}' />">${ad.title}</a></c:when>
+								<c:otherwise><a class="link" href="<c:url value='/auction?id=${ad.id}' />">${ad.title}</a></c:otherwise>
+							</c:choose>
 						</h2>
 						<p>${ad.street}, ${ad.zipcode} ${ad.city}</p>
 						<br />
@@ -259,7 +258,7 @@ function sort_div_attribute() {
 									<c:when test="${ad.sale}">Sell</c:when>
 									<c:otherwise>Rent</c:otherwise>
 								</c:choose>
-								</i>
+							</i>
 						</p>
 					</div>
 					<div class="resultRight">
@@ -278,14 +277,13 @@ function sort_div_attribute() {
 				<script>
 					adIds[i] = "${ad.id}";
 					addresses[i] = "${ad.street} ${ad.zipcode} ${ad.city}";
-					//console.log(addresses);
+					// console.log(addresses);
 					i++;
 				</script>
 			</c:forEach>
 		</div>
 	</c:otherwise>
 </c:choose>
-
 
 <form:form method="post" modelAttribute="searchForm" action="/results"
 	id="filterForm" autocomplete="off">
@@ -371,7 +369,6 @@ function sort_div_attribute() {
 				<td><form:checkbox id="field-internet" path="internet" value="1" /><label>WiFi</label></td>
 			</tr>
 		</table>
-
 
 		<button type="submit" onClick="return validateType(this.form)">Filter</button>
 		<button type="reset">Cancel</button>

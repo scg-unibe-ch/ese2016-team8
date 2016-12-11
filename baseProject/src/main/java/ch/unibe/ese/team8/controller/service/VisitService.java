@@ -32,7 +32,7 @@ public class VisitService {
 	 * Returns all possible visits of an advertisement.
 	 *
 	 * @param ad
-	 * 
+	 *
 	 * @return an Iterable of all matching visits
 	 */
 	@Transactional
@@ -49,9 +49,9 @@ public class VisitService {
 
 	/**
 	 * Returns the visit with the given id.
-	 * 
+	 *
 	 * @param id
-	 * 
+	 *
 	 * @return visit
 	 */
 	@Transactional
@@ -62,9 +62,9 @@ public class VisitService {
 
 	/**
 	 * Returns all visits that a user has applied for and was also accepted to.
-	 * 
+	 *
 	 * @param user
-	 * 
+	 *
 	 * @return Iterable<Visit>
 	 */
 	@Transactional
@@ -85,9 +85,9 @@ public class VisitService {
 
 	/**
 	 * Returns all visitors for the visit with the given id.
-	 * 
+	 *
 	 * @param id, long.
-	 * 
+	 *
 	 * @return Iterable<User>.
 	 */
 	public Iterable<User> getVisitorsForVisit(final long id) {

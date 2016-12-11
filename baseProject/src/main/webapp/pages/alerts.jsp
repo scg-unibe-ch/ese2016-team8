@@ -11,44 +11,43 @@
 <pre><a href="/">Home</a>   &gt;   Alerts</pre>
 
 <script>
-function deleteAlert(button) {
-	var id = $(button).attr("data-id");
-	$.get("/profile/alerts/deleteAlert?id=" + id, function(){
-		$("#alertsDiv").load(document.URL + " #alertsDiv");
-	});
-}
+	function deleteAlert(button) {
+		var id = $(button).attr("data-id");
+		$.get("/profile/alerts/deleteAlert?id=" + id, function(){
+			$("#alertsDiv").load(document.URL + " #alertsDiv");
+		});
+	}
 </script>
 
 <script>
-function validateType(form)
-{
-	var room = document.getElementById('room');
-	var studio = document.getElementById('studio');
-	var house = document.getElementById('house');
-	var types = "";
+	function validateType(form)
+	{
+		var room = document.getElementById('room');
+		var studio = document.getElementById('studio');
+		var house = document.getElementById('house');
+		var types = "";
 
-	if(room.checked){
-		types += ",room";
+		if(room.checked){
+			types += ",room";
+		}
+
+		if(studio.checked){
+			types += ",studio";
+		}
+
+		if(house.checked) {
+			types += ",house";
+		}
+
+		document.getElementById('category').value = types;
+
+		if(types == ""){
+			alert("Select at least one type!");
+			return false;
+		}else{
+			return true;
+		}
 	}
-
-	if(studio.checked){
-		types += ",studio";
-	}
-
-	if(house.checked) {
-		types += ",house";
-	}
-
-	document.getElementById('category').value = types;
-
-	if(types == ""){
-		alert("Select at least one type!");
-		return false;
-	}else{
-		return true;
-	}
-}
-
 </script>
 	
 <script>
@@ -119,26 +118,26 @@ function validateType(form)
 	<c:otherwise>
 		<table class="styledTable" id="alerts">
 			<thead>
-			<tr>
-				<th>Type</th>
-				<th>City</th>
-				<th>Radius</th>
-				<th>max. Price</th>
-				<th>Action</th>
-			</tr>
+				<tr>
+					<th>Type</th>
+					<th>City</th>
+					<th>Radius</th>
+					<th>max. Price</th>
+					<th>Action</th>
+				</tr>
 			</thead>
 		<c:forEach var="alert" items="${alerts}">
 			<tr>
 				<td>
-				<c:if test="${fn:containsIgnoreCase(alert.category, 'house')}">
-					House 
-				</c:if>
-				<c:if test="${fn:containsIgnoreCase(alert.category, 'room')}">
-					Room 
-				</c:if>
-				<c:if test="${fn:containsIgnoreCase(alert.category, 'studio')}">
-					Studio
-				</c:if>
+					<c:if test="${fn:containsIgnoreCase(alert.category, 'house')}">
+						House 
+					</c:if>
+					<c:if test="${fn:containsIgnoreCase(alert.category, 'room')}">
+						Room 
+					</c:if>
+					<c:if test="${fn:containsIgnoreCase(alert.category, 'studio')}">
+						Studio
+					</c:if>
 				</td>
 				<td>${alert.city}</td>
 				<td>${alert.radius} km</td>

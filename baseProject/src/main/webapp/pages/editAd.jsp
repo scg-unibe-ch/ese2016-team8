@@ -19,7 +19,7 @@
 <script>
 	$(document).ready(function() {
 	
-		//changes between Sale prize/ Prize per month
+		// Changes between Sale prize/ Prize per month.
     $("#type-sale").on("click", function(){
 		document.getElementById('type-rent').checked="";
 		document.getElementById('type-auction').checked="";
@@ -68,15 +68,14 @@
 			dateFormat : 'dd-mm-yy'
 		});
 		
-
-		
 		$("#addbutton").click(function() {
 			var text = $("#roomFriends").val();
 			var alreadyAdded = $("#addedRoommates").html();
 			if(validateForm(text)) {
 				$.post("/profile/placeAd/validateEmail",{email: text, alreadyIn: alreadyAdded}, function(data) {
 					if(validateForm(data)) {
-						// length gibt die Anzahl der Elemente im input.roommateInput an. Dieser wird in index geschrieben und iteriert.
+						// lenght returns the amount of elements in 'input.roommateInput'.
+						// This value will written in 'index' and be iterated over.
 						var index = $("#roommateCell input.roommateInput").length;
 						$("#roommateCell").append("<input class='roommateInput' type='hidden' name='registeredRoommateEmails[" + index + "]' value='" + data + "' />");
 						$("#addedRoommates").append(data + "; ");
@@ -88,11 +87,11 @@
 				alert("Please enter an e-mail adress");
 			}
 			 
-			// Validates the input for Email Syntax
+			// Validates the input for Email Syntax.
 			function validateForm(text) {
 			    var positionAt = text.indexOf("@");
 			    var positionDot = text.lastIndexOf(".");
-			    if (positionAt< 1 || positionDot<positionAt+2 || positionDot+2>=text.length) {
+			    if (positionAt < 1 || positionDot < positionAt + 2 || positionDot + 2 >= text.length) {
 			        return false;
 			    } else {
 			    	return true;
@@ -144,7 +143,6 @@
 	});
 	
 	function checkDates(){
-			
 			var moveInDateString = $("#field-moveInDate").val();
 			var moveOutDateString = $("#field-moveOutDate").val();
 			var moveInDate = new Date();
@@ -162,22 +160,16 @@
 				return true;
 			}
 		};
-	
-	
-	
 </script>
 
-<!-- format the dates -->
-<fmt:formatDate value="${ad.moveInDate}" var="formattedMoveInDate"
-	type="date" pattern="dd-MM-yyyy" />
-<fmt:formatDate value="${ad.moveOutDate}" var="formattedMoveOutDate"
-	type="date" pattern="dd-MM-yyyy" />
+<!-- Format the dates. -->
+<fmt:formatDate value="${ad.moveInDate}" var="formattedMoveInDate" type="date" pattern="dd-MM-yyyy" />
+<fmt:formatDate value="${ad.moveOutDate}" var="formattedMoveOutDate" type="date" pattern="dd-MM-yyyy" />
 <c:set var="formattedAuctionEndDate" value="0"/>
 <c:choose>
-<c:when test="${ad.auction}">
-	<fmt:formatDate value="${ad.moveOutDate}" var="formattedAuctionEndDate"
-	type="date" pattern="dd-MM-yyyy" />
-</c:when>
+	<c:when test="${ad.auction}">
+		<fmt:formatDate value="${ad.moveOutDate}" var="formattedAuctionEndDate" type="date" pattern="dd-MM-yyyy" />
+	</c:when>
 </c:choose>
 	
 <pre><a href="/">Home</a>   &gt;   <a href="/profile/myRooms">My Rooms</a>   &gt;   <a href="/ad?id=${ad.id}">Ad Description</a>   &gt;   Edit Ad</pre>
@@ -191,7 +183,6 @@
 	enctype="multipart/form-data">
 
 <input type="hidden" name="adId" value="${ad.id }" />
-
 	<fieldset>
 		<legend>Change General info</legend>
 		<table class="placeAdTable">
@@ -203,50 +194,50 @@
 				<td><form:input id="field-title" path="title"
 						value="${ad.title}"/></td>
 				<td>
-				<c:choose>
-				<c:when test="${ad.category == 'room' }">
-					<form:radiobutton id="type-room" path="category" value="room" checked="checked"/>Room 
-					<form:radiobutton id="type-studio" path="category" value="studio" />Studio 
-					<form:radiobutton id="type-house" path="category" value="house" />House
-				</c:when>
-				<c:when test="${ad.category == 'studio'}">
-					<form:radiobutton id="type-room" path="category" value="room" />Room 
-					<form:radiobutton id="type-studio" path="category" value="studio" checked="checked"/>Studio 
-					<form:radiobutton id="type-house" path="category" value="house" />House
-				</c:when>
-				<c:when test="${ad.category == 'house'}">
-					<form:radiobutton id="type-room" path="category" value="room" />Room 
-					<form:radiobutton id="type-studio" path="category" value="studio" />Studio 
-					<form:radiobutton id="type-house" path="category" value="house" checked="checked"/>House
-				</c:when>
-				</c:choose>
+					<c:choose>
+						<c:when test="${ad.category == 'room' }">
+							<form:radiobutton id="type-room" path="category" value="room" checked="checked"/>Room 
+							<form:radiobutton id="type-studio" path="category" value="studio" />Studio 
+							<form:radiobutton id="type-house" path="category" value="house" />House
+						</c:when>
+						<c:when test="${ad.category == 'studio'}">
+							<form:radiobutton id="type-room" path="category" value="room" />Room 
+							<form:radiobutton id="type-studio" path="category" value="studio" checked="checked"/>Studio 
+							<form:radiobutton id="type-house" path="category" value="house" />House
+						</c:when>
+						<c:when test="${ad.category == 'house'}">
+							<form:radiobutton id="type-room" path="category" value="room" />Room 
+							<form:radiobutton id="type-studio" path="category" value="studio" />Studio 
+							<form:radiobutton id="type-house" path="category" value="house" checked="checked"/>House
+						</c:when>
+					</c:choose>
 				</td>
 				<td>
-				<c:choose>
-				<c:when test="${!ad.auction}">
 					<c:choose>
-					<c:when test="${ad.sale}">
-						<form:radiobutton id="type-rent" path="sale" value="0" />Rent 
-						<form:radiobutton id="type-sale" path="sale" value="1" checked="checked" />Sale
-					</c:when>
-					<c:otherwise>
-						<form:radiobutton id="type-rent" path="sale" value="0" checked="checked"/>Rent 
-						<form:radiobutton id="type-sale" path="sale" value="1" />Sale
-					</c:otherwise>
-					</c:choose>
-					</td>
-					<td>
-					<form:radiobutton id="type-auction" path="auction" value="1"/>Auction
-					</td>
-				</c:when>
-				<c:otherwise>
-				With auctions, type can't be changed
-				<div style="display:none;">
-				<form:radiobutton id="type-sale" path="sale" value="1" checked="checked" />
-				<form:radiobutton id="type-auction" path="auction" value="1" checked="checked"/>Auction
-				</div>
-				</td>
-				</c:otherwise>
+						<c:when test="${!ad.auction}">
+							<c:choose>
+								<c:when test="${ad.sale}">
+									<form:radiobutton id="type-rent" path="sale" value="0" />Rent 
+									<form:radiobutton id="type-sale" path="sale" value="1" checked="checked" />Sale
+								</c:when>
+									<c:otherwise>
+										<form:radiobutton id="type-rent" path="sale" value="0" checked="checked"/>Rent 
+										<form:radiobutton id="type-sale" path="sale" value="1" />Sale
+									</c:otherwise>
+								</c:choose>
+							</td>
+							<td>
+								<form:radiobutton id="type-auction" path="auction" value="1"/>Auction
+							</td>
+						</c:when>
+						<c:otherwise>
+						With auctions, type can't be changed
+							<div style="display:none;">
+								<form:radiobutton id="type-sale" path="sale" value="1" checked="checked" />
+								<form:radiobutton id="type-auction" path="auction" value="1" checked="checked"/>Auction
+							</div>
+							</td> <!-- TODO: What is this /td doing here -->
+						</c:otherwise>
 				</c:choose>
 			</tr>
 
@@ -267,67 +258,66 @@
 			<tr>
 				<td><label for="moveInDate">Move-in date</label></td>
 				<c:choose>
-				<c:when test="${!ad.sale}">
-				<td><label id="moveOutDate" for="moveOutDate">Move-out date (optional)</label></td>
-				</c:when>
-				<c:otherwise>
-				<td><label id="moveOutDate" for="moveOutDate"></label></td>
-				</c:otherwise>
+					<c:when test="${!ad.sale}">
+						<td><label id="moveOutDate" for="moveOutDate">Move-out date (optional)</label></td>
+					</c:when>
+					<c:otherwise>
+						<td><label id="moveOutDate" for="moveOutDate"></label></td>
+					</c:otherwise>
 				</c:choose>
 			</tr>
 			<tr>
 				<td>
-					<form:input type="text" id="field-moveInDate"
-						path="moveInDate" value="${formattedMoveInDate }"/>
+					<form:input type="text" id="field-moveInDate" path="moveInDate" value="${formattedMoveInDate }"/>
 				</td>
 				<c:choose>
-				<c:when test="${ad.auction}">
-				<td>
-					<form:input type="text" id="field-moveOutDate" style="display:none;"
-						path="moveOutDate" value="${formattedMoveOutDate }"/>
-					<form:input type="text" id="field-auctionEndDate"  path="auctionEndDate" required="required" value="${formattedAuctionEndDate}"/>
-				</td>
-				</c:when>
-				<c:when test="${ad.sale}">
-				<td>
-					<form:input type="text" id="field-moveOutDate" style="display:none;"
-						path="moveOutDate" value="${formattedMoveOutDate }"/>
-					<form:input type="text" id="field-auctionEndDate" style="display:none;" path="auctionEndDate" required="required" value="${formattedAuctionEndDate}"/>
-				</td>
-				</c:when>
-				<c:otherwise>
-				<td>
-					<form:input type="text" id="field-moveOutDate" path="moveOutDate" value="${formattedMoveOutDate}"/>
-					<form:input type="text" id="field-auctionEndDate" style="display:none;" path="auctionEndDate" required="required" value="${formattedAuctionEndDate}"/>
-				</td>
-				</c:otherwise>
+					<c:when test="${ad.auction}">
+						<td>
+							<form:input type="text" id="field-moveOutDate" style="display:none;"
+								path="moveOutDate" value="${formattedMoveOutDate }"/>
+							<form:input type="text" id="field-auctionEndDate"  path="auctionEndDate" required="required" value="${formattedAuctionEndDate}"/>
+						</td>
+					</c:when>
+					<c:when test="${ad.sale}">
+						<td>
+							<form:input type="text" id="field-moveOutDate" style="display:none;"
+								path="moveOutDate" value="${formattedMoveOutDate }"/>
+							<form:input type="text" id="field-auctionEndDate" style="display:none;" path="auctionEndDate" required="required" value="${formattedAuctionEndDate}"/>
+						</td>
+					</c:when>
+					<c:otherwise>
+						<td>
+							<form:input type="text" id="field-moveOutDate" path="moveOutDate" value="${formattedMoveOutDate}"/>
+							<form:input type="text" id="field-auctionEndDate" style="display:none;" path="auctionEndDate" required="required" value="${formattedAuctionEndDate}"/>
+						</td>
+					</c:otherwise>
 				</c:choose>
 			</tr>
 
 			<tr>
 				<td>
-				<c:choose>
-				<c:when test="${ad.auction}"><label id="month-Prize" for="field-Prize">Price not changeable</label></c:when>
-				<c:when test="${ad.sale}"><label id="month-Prize" for="field-Prize">Buy price</label></c:when>
-				<c:otherwise><label id="month-Prize" for="field-Prize">Price per month</label></c:otherwise>
-				</c:choose>
+					<c:choose>
+						<c:when test="${ad.auction}"><label id="month-Prize" for="field-Prize">Price not changeable</label></c:when>
+						<c:when test="${ad.sale}"><label id="month-Prize" for="field-Prize">Buy price</label></c:when>
+						<c:otherwise><label id="month-Prize" for="field-Prize">Price per month</label></c:otherwise>
+					</c:choose>
 				</td>
 				<td><label for="field-SquareFootage">Square Meters</label></td>
 			</tr>
 			<tr>
 				<td>
-				<c:choose>
-				<c:when test="${ad.auction}">
-				<div style="display:none;">
-				<form:input id="field-Prize" path="prize" value="${ad.prizePerMonth }" readonly="readonly" />
-				</div>
-				Actual: ${ad.prizePerMonth} CHF
-				</c:when>
-				<c:otherwise><form:input id="field-Prize" type="number" path="prize"
-						placeholder="Prize per month" step="50" value="${ad.prizePerMonth }" /> <form:errors
-						path="prize" cssClass="validationErrorText" />
-				</c:otherwise>
-				</c:choose>
+					<c:choose>
+						<c:when test="${ad.auction}">
+							<div style="display:none;">
+								<form:input id="field-Prize" path="prize" value="${ad.prizePerMonth }" readonly="readonly" />
+							</div>
+							Actual: ${ad.prizePerMonth} CHF
+						</c:when>
+						<c:otherwise><form:input id="field-Prize" type="number" path="prize"
+								placeholder="Prize per month" step="50" value="${ad.prizePerMonth }" /> <form:errors
+								path="prize" cssClass="validationErrorText" />
+						</c:otherwise>
+					</c:choose>
 				</td>
 				<td>
 					<form:input id="field-SquareFootage" type="number"
@@ -472,11 +462,9 @@
 	<br />
 	<fieldset>
 		<legend>Change preferences</legend>
-		<form:textarea path="preferences" rows="5" cols="100"
-			value="${ad.preferences}" ></form:textarea>
+		<form:textarea path="preferences" rows="5" cols="100" value="${ad.preferences}" ></form:textarea>
 	</fieldset>
 
-	
 	<fieldset>
 		<legend>Add visiting times</legend>
 		
@@ -528,9 +516,7 @@
 					
 					<div id="addedVisits"></div>
 				</td>
-				
 			</tr>
-			
 		</table>
 		<br>
 	</fieldset>
@@ -581,6 +567,5 @@
 	</div>
 
 </form:form>
-
 
 <c:import url="template/footer.jsp" />
