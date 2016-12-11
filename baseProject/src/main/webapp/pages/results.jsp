@@ -310,7 +310,7 @@
 
 		<label for="radius">Within radius of (max.):</label>
 		<form:input id="radiusInput" type="number" path="radius"
-			placeholder="e.g. 5" step="5" />
+			placeholder="e.g. 5" step="1" />
 		km
 		<form:errors path="radius" cssClass="validationErrorText" />
 		<br /> <label for="prize">Price (max.):</label>
