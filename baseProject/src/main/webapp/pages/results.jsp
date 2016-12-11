@@ -196,7 +196,7 @@ function sort_div_attribute() {
 	    } else if(status === google.maps.GeocoderStatus.OVER_QUERY_LIMIT){
 	    	k--;
 	    } else {
-	      alert('Geocode was not successful for the following reason: ' + status);
+	      //alert('Geocode was not successful for the following reason: ' + status);
 	    }});
 	}
 	});
