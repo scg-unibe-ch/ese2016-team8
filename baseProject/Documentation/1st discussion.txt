@@ -3,14 +3,13 @@ Team 8 and Claudio, 12.10.2016
 1st discussion:
 
 Search for an ad:
-3. und 4. Kategorie für Room resp. Haus. Dann auch die Möglichkeiten jedes zu mieten oder auch zu kaufen. Dazu auch einen Barleiste, mit einem Knopf, welchen man ziehen und dann auch die Schmerzgrenzen eingeben kann.
+3rd and 4th categories for rooms resp. houses. Also there should be the additional possibility of either buying or renting these objects.
 
-Auktion: Startpreis und Enddatum eingeben und so einfach wie möglich halten. Ganz naiv: Wenn die Zeit abläuft gewinnt der Höchtstbietende.
+Auctions: The initial price and the end date are needed to in order to create an action, keep the rest as easy as possible. Also concering the concurrent part, the one bidding the most once the time runs out will be the winner .
 
+Second tier importance: Premium
+Somewhere on the page should be a button where a user can ask to get premium. Afterwards a facture will be sent and be shown as pending in the user profile.
+1. Premium offers, so offers created by premium users, should be shown first, and secondly 'normal' offers. Later on there might also come further criterias.
+2. Delay: Periodicly the saved search criterias should be applied and a summary should be sent to the (premium only) user.
 
-Sekundäre Wichtigkeit: Premium
-Irgendwo einen Knopf mit dem Premium werden kann, welcher dann eine "Rechnung verschickt" und diese im Userprofil als z.B. ausstehend usw. anzeigt:
-1. Dann bei einem erstellten Inserat sollte das Inserat ganz zuoberst kommen, also der Vorrang, und dann später auch. (evtl. später auch mehr Kriterium für Suche von Usersn)
-2. Delay: Periodisch werden die gespeicherten Suchkriterium abgegrast und dann sollen wir ihnen eine Zusammenfassung schicken (für die Premiumuser).
-
-Spring ist auch weiter zu benutzen, sonst bei grösseren Änderungen, bei denen wir (grössere) Librarys benutzen wollen, sollen wir zuerst fragen und können dann entsprechend diese auch benutzen.
+We need to keep on using Spring, but if we need some bigger libraries, we should first confront the customer and ask him.
