@@ -1,5 +1,10 @@
 package ch.unibe.ese.team8.controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ch.unibe.ese.team8.controller.service.AdService;
 import ch.unibe.ese.team8.controller.service.BidService;
+import ch.unibe.ese.team8.model.Ad;
 
 /**
  * This controller handles request concerning the home page and several other
@@ -31,7 +37,25 @@ public class IndexController {
 	{
 		ModelAndView model = new ModelAndView("index");
 		bidService.checkExpiredAuctions();
-		model.addObject("newest", adService.getNewestAds(4));
+		
+		Iterable<Ad> adList = adService.getNewestAds(4);
+		List<Ad> ads = new ArrayList<Ad>();
+		for (Ad ad : adList)
+			ads.add(ad);
+		Collections.sort(ads, new Comparator<Ad>() {
+			@Override
+			public int compare(final Ad ad1, final Ad ad2) {
+				if(ad1.getUser().getPremium() && !ad2.getUser().getPremium()){
+					return -1;
+				}else if(!ad1.getUser().getPremium() && ad2.getUser().getPremium()){
+					return 1;
+				}else{
+					return ad2.getCreationDate().compareTo(ad1.getCreationDate());
+				}	
+			}
+		});
+			
+		model.addObject("newest", ads);
 		
 		return model;
 	}
