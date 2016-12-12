@@ -113,6 +113,62 @@ public class AdServiceTest {
 		
 		assertEquals(0, result.compareTo(ad.getMoveInDate()));
 	}
+	// this is to test the parser handling the "/"
+	@Test
+	public void saveFromInBiel() throws ParseException {
+		//Preparation
+		PlaceAdForm placeAdForm = new PlaceAdForm();
+		placeAdForm.setCity("2504 - Biel/Bienne");
+		placeAdForm.setPreferences("Test preferences");
+		placeAdForm.setRoomDescription("Test Room description");
+		placeAdForm.setRoommates("Test Roommate description");
+		placeAdForm.setPrize(600);
+		placeAdForm.setSquareFootage(50);
+		placeAdForm.setTitle("title");
+		placeAdForm.setStreet("Hauptstrasse 13");
+		placeAdForm.setCategory("studio");
+		placeAdForm.setMoveInDate("27-02-2017");
+		placeAdForm.setMoveOutDate("27-04-2017");
+		placeAdForm.setAuctionEndDate("");
+		
+		placeAdForm.setSmokers(false);
+		placeAdForm.setAnimals(false);
+		placeAdForm.setGarden(true);
+		placeAdForm.setBalcony(false);
+		placeAdForm.setCellar(true);
+		placeAdForm.setFurnished(false);
+		placeAdForm.setCable(false);
+		placeAdForm.setGarage(true);
+		placeAdForm.setInternet(false);
+		
+		ArrayList<String> filePaths = new ArrayList<>();
+		filePaths.add("/img/test/ad1_1.jpg");
+		
+		User hansi = createUser("hansi@kanns.ch", "password", "Hansi", "Kannsi",
+				Gender.MALE);
+		hansi.setAboutMe("Hans Hinterseer");
+		userDao.save(hansi);
+		
+		adService.saveFrom(placeAdForm, filePaths, hansi);
+		
+		Ad ad = new Ad();
+		Iterable<Ad> ads = adService.getAllAds();
+		Iterator<Ad> iterator = ads.iterator();
+		
+		while (iterator.hasNext()) {
+			ad = iterator.next();
+		}
+		
+		//Testing
+		assertFalse(ad.getSmokers());
+		assertFalse(ad.getAnimals());
+		assertEquals("Biel/Bienne", ad.getCity());
+		assertEquals(2504, ad.getZipcode());
+		assertEquals("Test preferences", ad.getPreferences());
+		assertEquals("Test Room description", ad.getRoomDescription());
+		assertEquals("Test Roommate description", ad.getRoommates());
+	
+	}
 	
 	private User createUser(String email, String password, String firstName,
 			String lastName, Gender gender) {
