@@ -228,19 +228,12 @@
 				<div class="resultAd" data-price="${ad.prizePerMonth}"
 								data-moveIn="${ad.moveInDate}" data-age="${ad.moveInDate}">
 					<div class="resultLeft">
-						<c:if test="${ad.premium}">
-							<c:choose>
-								<c:when test="${!ad.auction}"><a href="<c:url value='/ad?id=${ad.id}' />"><img class="premium" src="http://positivefabulouswomen.com/wp-content/uploads/2015/05/achat_premium_nom_de_domaine_point_paris.png"/><img src="${ad.pictures[0].filePath}" /></a></c:when>
-								<c:otherwise><a href="<c:url value='/auction?id=${ad.id}' />"><img class="premium" src="http://positivefabulouswomen.com/wp-content/uploads/2015/05/achat_premium_nom_de_domaine_point_paris.png"/><img src="${ad.pictures[0].filePath}" /></a></c:otherwise>
-							</c:choose>
-						</c:if>
-						<c:if test="${!ad.premium}">
+						
 							<c:choose>
 							<c:when test="${!ad.auction}"><a href="<c:url value='/ad?id=${ad.id}' />"><img src="${ad.pictures[0].filePath}" /></a></c:when>
 							<c:otherwise><a href="<c:url value='/auction?id=${ad.id}' />"><img src="${ad.pictures[0].filePath}" /></a></c:otherwise>
 							</c:choose>
-						</c:if>
-						<h2>
+							<h2>
 							<c:choose>
 								<c:when test="${!ad.auction}"><a class="link" href="<c:url value='/ad?id=${ad.id}' />">${ad.title}</a></c:when>
 								<c:otherwise><a class="link" href="<c:url value='/auction?id=${ad.id}' />">${ad.title}</a></c:otherwise>
@@ -262,10 +255,10 @@
 						</p>
 					</div>
 					<div class="resultRight">
-						<c:choose>
-							<c:when test="${ad.user.premium}"><img style="width: 40px; height: 40px;" src="/img/Star.png"></c:when>
-						</c:choose>
 						<h2>CHF ${ad.prizePerMonth }</h2>
+						<c:choose>
+							<c:when test="${ad.user.premium}"><img class="adPremStar" src="/img/Star.png"></c:when>
+						</c:choose>
 						<br /> <br />
 
 						<fmt:formatDate value="${ad.moveInDate}" var="formattedMoveInDate"

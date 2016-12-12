@@ -53,10 +53,10 @@
 						</p>
 					</div>
 					<div class="resultRight">
+						<h2>CHF ${ad.prizePerMonth }.-</h2>
 						<c:choose>
-							<c:when test="${ad.user.premium}"><img style="width: 40px; height: 40px;" src="/img/Star.png"></c:when>
+							<c:when test="${ad.user.premium}"><img class="adPremStar" src="/img/Star.png"></c:when>
 						</c:choose>
-						<h2>CHF ${ad.prizePerMonth }</h2>
 						<br /> <br />
 
 						<fmt:formatDate value="${ad.moveInDate}" var="formattedMoveInDate"
