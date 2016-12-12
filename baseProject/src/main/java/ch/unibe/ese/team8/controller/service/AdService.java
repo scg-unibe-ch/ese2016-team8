@@ -236,7 +236,13 @@ public class AdService {
 		Collections.sort(ads, new Comparator<Ad>() {
 			@Override
 			public int compare(final Ad ad1, final Ad ad2) {
-				return ad2.getCreationDate().compareTo(ad1.getCreationDate());
+				if(ad1.getUser().getPremium() && !ad2.getUser().getPremium()){
+					return -1;
+				}else if(!ad1.getUser().getPremium() && ad2.getUser().getPremium()){
+					return 1;
+				}else{
+					return ad2.getCreationDate().compareTo(ad1.getCreationDate());
+				}	
 			}
 		});
 		List<Ad> fourNewest = new ArrayList<Ad>();
@@ -437,6 +443,20 @@ public class AdService {
 				}
 			}
 		}
+		
+		Collections.sort(locatedResults, new Comparator<Ad>() {
+			@Override
+			public int compare(final Ad ad1, final Ad ad2) {
+				if(ad1.getUser().getPremium() && !ad2.getUser().getPremium()){
+					return -1;
+				}else if(!ad1.getUser().getPremium() && ad2.getUser().getPremium()){
+					return 1;
+				}else{
+					return ad2.getCreationDate().compareTo(ad1.getCreationDate());
+				}	
+			}
+		});
+		
 		return locatedResults;
 	}
 

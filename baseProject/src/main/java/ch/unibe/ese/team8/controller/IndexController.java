@@ -38,23 +38,7 @@ public class IndexController {
 		ModelAndView model = new ModelAndView("index");
 		bidService.checkExpiredAuctions();
 		
-		Iterable<Ad> adList = adService.getNewestAds(4);
-		List<Ad> ads = new ArrayList<Ad>();
-		for (Ad ad : adList)
-			ads.add(ad);
-		Collections.sort(ads, new Comparator<Ad>() {
-			@Override
-			public int compare(final Ad ad1, final Ad ad2) {
-				if(ad1.getUser().getPremium() && !ad2.getUser().getPremium()){
-					return -1;
-				}else if(!ad1.getUser().getPremium() && ad2.getUser().getPremium()){
-					return 1;
-				}else{
-					return ad2.getCreationDate().compareTo(ad1.getCreationDate());
-				}	
-			}
-		});
-			
+		Iterable<Ad> ads = adService.getNewestAds(4);
 		model.addObject("newest", ads);
 		
 		return model;
