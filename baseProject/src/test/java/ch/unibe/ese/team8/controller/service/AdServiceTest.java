@@ -21,13 +21,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import ch.unibe.ese.team8.controller.pojos.forms.PlaceAdForm;
-import ch.unibe.ese.team8.controller.service.AdService;
 import ch.unibe.ese.team8.model.Ad;
 import ch.unibe.ese.team8.model.Gender;
 import ch.unibe.ese.team8.model.User;
 import ch.unibe.ese.team8.model.UserRole;
 import ch.unibe.ese.team8.model.dao.UserDao;
-
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -39,16 +37,17 @@ public class AdServiceTest {
 
 	@Autowired
 	private AdService adService;
-	
+
 	@Autowired
 	private UserDao userDao;
 
 	/**
 	 * In order to test the saved ad, I need to get it back from the DB again, so these
 	 * two methods need to be tested together, normally we want to test things isolated of
-	 * course. Testing just the returned ad from saveFrom() wouldn't answer the question 
+	 * course. Testing just the returned ad from saveFrom() wouldn't answer the question
 	 * whether the ad has been saved correctly to the db.
-	 * @throws ParseException 
+	 *
+	 * @throws ParseException
 	 */
 	@Test
 	public void saveFromAndGetById() throws ParseException {
@@ -66,7 +65,7 @@ public class AdServiceTest {
 		placeAdForm.setMoveInDate("27-02-2015");
 		placeAdForm.setMoveOutDate("27-04-2015");
 		placeAdForm.setAuctionEndDate("");
-		
+
 		placeAdForm.setSmokers(true);
 		placeAdForm.setAnimals(false);
 		placeAdForm.setGarden(true);
@@ -76,25 +75,25 @@ public class AdServiceTest {
 		placeAdForm.setCable(false);
 		placeAdForm.setGarage(true);
 		placeAdForm.setInternet(false);
-		
+
 		ArrayList<String> filePaths = new ArrayList<>();
 		filePaths.add("/img/test/ad1_1.jpg");
-		
+
 		User hans = createUser("hans@kanns.ch", "password", "Hans", "Kanns",
 				Gender.MALE);
 		hans.setAboutMe("Hansi Hinterseer");
 		userDao.save(hans);
-		
+
 		adService.saveFrom(placeAdForm, filePaths, hans);
-		
+
 		Ad ad = new Ad();
 		Iterable<Ad> ads = adService.getAllAds();
 		Iterator<Ad> iterator = ads.iterator();
-		
+
 		while (iterator.hasNext()) {
 			ad = iterator.next();
 		}
-		
+
 		//Testing
 		assertTrue(ad.getSmokers());
 		assertFalse(ad.getAnimals());
@@ -107,15 +106,15 @@ public class AdServiceTest {
 		assertEquals(50, ad.getSquareFootage());
 		assertEquals("title", ad.getTitle());
 		assertEquals("Hauptstrasse 13", ad.getStreet());
-		
+
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-	    Date result =  df.parse("2015-02-27");
-		
+		Date result =  df.parse("2015-02-27");
+
 		assertEquals(0, result.compareTo(ad.getMoveInDate()));
 	}
-	
-	private User createUser(String email, String password, String firstName,
-			String lastName, Gender gender) {
+
+	private User createUser(final String email, final String password, final String firstName,
+			final String lastName, final Gender gender) {
 		User user = new User();
 		user.setUsername(email);
 		user.setPassword(password);
@@ -132,5 +131,4 @@ public class AdServiceTest {
 		user.setUserRoles(userRoles);
 		return user;
 	}
-	
 }

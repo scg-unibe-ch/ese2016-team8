@@ -16,7 +16,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import ch.unibe.ese.team8.controller.service.AlertService;
 import ch.unibe.ese.team8.model.Ad;
 import ch.unibe.ese.team8.model.Alert;
 import ch.unibe.ese.team8.model.Gender;
@@ -33,30 +32,30 @@ import ch.unibe.ese.team8.model.dao.UserDao;
 		"file:src/main/webapp/WEB-INF/config/springSecurity.xml"})
 @WebAppConfiguration
 public class AlertServiceTest {
-	
+
 	@Autowired
 	AdDao adDao;
-	
+
 	@Autowired
 	UserDao userDao;
-	
+
 	@Autowired
 	AlertDao alertDao;
-	
+
 	@Autowired
 	AlertService alertService;
-	
+
 	@Test
 	public void createAlerts() {
 		ArrayList<Alert> alertList = new ArrayList<Alert>();
-		
-		// Create user Adolf Ogi
+
+		// Create user Adolf Ogi.
 		User adolfOgi2 = createUser("adolf@ogi2.ch", "password", "Adolf", "Ogi",
 				Gender.MALE);
 		adolfOgi2.setAboutMe("Wallis rocks");
 		userDao.save(adolfOgi2);
-		
-		// Create 2 alerts for Adolf Ogi
+
+		// Create 2 alerts for Adolf Ogi.
 		Alert alert = new Alert();
 		alert.setUser(adolfOgi2);
 		alert.setCategory("studio");
@@ -65,7 +64,7 @@ public class AlertServiceTest {
 		alert.setPrice(1500);
 		alert.setRadius(100);
 		alertDao.save(alert);
-		
+
 		alert = new Alert();
 		alert.setUser(adolfOgi2);
 		alert.setCategory("studio");
@@ -74,29 +73,29 @@ public class AlertServiceTest {
 		alert.setPrice(1000);
 		alert.setRadius(5);
 		alertDao.save(alert);
-		
-		//copy alerts to a list
+
+		// Copy alerts to a list.
 		Iterable<Alert> alerts = alertService.getAlertsByUser(adolfOgi2);
 		for(Alert returnedAlert: alerts)
 			alertList.add(returnedAlert);
-		
-		//begin the actual testing
+
+		// Begin the actual testing.
 		assertEquals(2, alertList.size());
 		assertEquals(adolfOgi2, alertList.get(0).getUser());
 		assertEquals("Bern", alertList.get(1).getCity());
 		assertTrue(alertList.get(0).getRadius() > alertList.get(1).getRadius());
 	}
-	
+
 	@Test
 	public void mismatchChecks() {
 		ArrayList<Alert> alertList = new ArrayList<Alert>();
-		
+
 		User thomyF2 = createUser("thomy@f2.ch", "password", "Thomy", "F",
 				Gender.MALE);
 		thomyF2.setAboutMe("Supreme hustler");
 		userDao.save(thomyF2);
-		
-		// Create 2 alerts for Thomy F
+
+		// Create 2 alerts for Thomy F.
 		Alert alert = new Alert();
 		alert.setUser(thomyF2);
 		alert.setCategory("studio");
@@ -105,7 +104,7 @@ public class AlertServiceTest {
 		alert.setPrice(1500);
 		alert.setRadius(100);
 		alertDao.save(alert);
-		
+
 		alert = new Alert();
 		alert.setUser(thomyF2);
 		alert.setCategory("room");
@@ -114,12 +113,12 @@ public class AlertServiceTest {
 		alert.setPrice(1000);
 		alert.setRadius(5);
 		alertDao.save(alert);
-		
+
 		Iterable<Alert> alerts = alertService.getAlertsByUser(userDao.findByUsername("thomy@f2.ch"));
 		for(Alert returnedAlert: alerts)
 			alertList.add(returnedAlert);
-		
-		//save an ad
+
+		// Save an ad.
 		Date date = new Date();
 		Ad oltenResidence2= new Ad();
 		oltenResidence2.setZipcode(4600);
@@ -145,16 +144,16 @@ public class AlertServiceTest {
 		oltenResidence2.setGarage(false);
 		oltenResidence2.setInternet(false);
 		adDao.save(oltenResidence2);
-		
+
 		assertFalse(alertService.radiusMismatch(oltenResidence2, alertList.get(0)));
 		assertTrue(alertService.radiusMismatch(oltenResidence2, alertList.get(1)));
 		assertTrue(alertService.typeMismatch(oltenResidence2, alertList.get(0)));
 		assertFalse(alertService.typeMismatch(oltenResidence2, alertList.get(1)));
 	}
-	
-	//Lean user creating method
-	User createUser(String email, String password, String firstName,
-			String lastName, Gender gender) {
+
+	// Lean user creating method.
+	User createUser(final String email, final String password, final String firstName,
+			final String lastName, final Gender gender) {
 		User user = new User();
 		user.setUsername(email);
 		user.setPassword(password);

@@ -27,7 +27,7 @@ public class AlertTestDataSaver {
 		User ese = userDao.findByUsername("ese@unibe.ch");
 		User jane = userDao.findByUsername("jane@doe.com");
 
-		// 2 Alerts for the ese test-user
+		// 2 Alerts for the ese test-user.
 		Alert alert = new Alert();
 		TestDataUtils.polyfillAlert(alert,
 				ese,
@@ -50,8 +50,7 @@ public class AlertTestDataSaver {
 
 		alertDao.save(alert);
 
-
-		// One alert for Jane Doe
+		// One alert for Jane Doe.
 		alert = new Alert();
 		TestDataUtils.polyfillAlert(alert,
 				jane,

@@ -16,12 +16,15 @@ import ch.unibe.ese.team8.model.User;
 import ch.unibe.ese.team8.model.dao.AdDao;
 import ch.unibe.ese.team8.model.dao.UserDao;
 
-/** This inserts several ad elements into the database. */
+/**
+ * This inserts several ad elements into the database.
+ */
 @Service
 public class AdTestDataSaver {
 
 	@Autowired
 	private AdDao adDao;
+
 	@Autowired
 	private UserDao userDao;
 
@@ -148,7 +151,7 @@ public class AdTestDataSaver {
 				roomPreferences2,
 				"None",
 				ese,
-				null, // Roommates list
+				null, // Roommates list.
 				"Cheap studio in Bern!",
 				"Längassstr. 40",
 				"Bern",
@@ -244,7 +247,7 @@ public class AdTestDataSaver {
 				roomPreferences4,
 				"One roommate",
 				ese,
-				null, // Roommates list
+				null, // Roommates list.
 				"Roommate wanted in Olten City",
 				"Zehnderweg 5",
 				"Olten",
@@ -673,7 +676,7 @@ public class AdTestDataSaver {
 				pictures);
 
 		adDao.save(adLocarno);
-		
+
 		String studioDescriptionAuction = "Schönes Studio im Herzen von Schwamendingen! Einkaufsgelegenheiten am Schwamendingerplatz"
 				+ ", welcher sich in Laufweite befindet. Tram bis zum HB in nur 15 Minuten.";
 		String roomPreferencesAuction = "Raucher, bevorzugt männlich";
@@ -713,7 +716,7 @@ public class AdTestDataSaver {
 				true,
 				true,
 				pictures);
-		
+
 		adAuction.setAuctionEndDate(moveInDate2);
 		adAuction.setMaxBidder(ese);
 
@@ -722,7 +725,6 @@ public class AdTestDataSaver {
 	}
 
 	/**
-	 *
 	 * @param ad
 	 * @param filePath
 	 * @return
@@ -732,7 +734,4 @@ public class AdTestDataSaver {
 		picture.setFilePath(filePath);
 		return picture;
 	}
-
-
-
 }

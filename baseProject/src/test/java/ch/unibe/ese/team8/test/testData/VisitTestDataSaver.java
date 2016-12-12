@@ -51,13 +51,13 @@ public class VisitTestDataSaver{
 
 	@Transactional
 	public void saveTestData() throws Exception {
-		// load users
+		// Load users.
 		bernerBaer = userDao.findByUsername("user@bern.com");
 		testerMuster = userDao.findByUsername("ese@unibe.ch");
 		janeDoe = userDao.findByUsername("jane@doe.com");
 		oprah = userDao.findByUsername("oprah@winfrey.com");
 
-		// load ads
+		// Load ads.
 		ad1 = adDao.findOne(1L);
 		ad2 = adDao.findOne(2L);
 		ad3 = adDao.findOne(3L);
@@ -75,7 +75,7 @@ public class VisitTestDataSaver{
 		List<User> searchers;
 		DateFormat dateFormat = new SimpleDateFormat("HH:mm dd.MM.yyyy");
 
-		// Visits for Ad 1
+		// Visits for Ad 1.
 		visit = new Visit();
 		visit.setAd(ad1);
 		searchers = new LinkedList<>();
@@ -103,7 +103,7 @@ public class VisitTestDataSaver{
 		visit.setEndTimestamp(dateFormat.parse("17:00 23.12.2014"));
 		visitDao.save(visit);
 
-		// Visits for Ad 2
+		// Visits for Ad 2.
 		visit = new Visit();
 		visit.setAd(ad2);
 		searchers = new LinkedList<>();
@@ -120,7 +120,7 @@ public class VisitTestDataSaver{
 		visit.setEndTimestamp(dateFormat.parse("14:00 20.12.2014"));
 		visitDao.save(visit);
 
-		// Visits for Ad 3
+		// Visits for Ad 3.
 		visit = new Visit();
 		visit.setAd(ad3);
 		searchers = new LinkedList<>();
@@ -148,7 +148,7 @@ public class VisitTestDataSaver{
 		visit.setEndTimestamp(dateFormat.parse("16:00 23.12.2014"));
 		visitDao.save(visit);
 
-		// Visits for Ad 4
+		// Visits for Ad 4.
 		visit = new Visit();
 		visit.setAd(ad4);
 		searchers = new LinkedList<>();
@@ -183,7 +183,7 @@ public class VisitTestDataSaver{
 		visit.setEndTimestamp(dateFormat.parse("20:00 27.12.2014"));
 		visitDao.save(visit);
 
-		// Visits for Ad 5
+		// Visits for Ad 5.
 		visit = new Visit();
 		visit.setAd(ad5);
 		searchers = new LinkedList<>();
@@ -227,7 +227,7 @@ public class VisitTestDataSaver{
 		visit.setEndTimestamp(dateFormat.parse("15:30 19.12.2014"));
 		visitDao.save(visit);
 
-		// Visits for Ad 6
+		// Visits for Ad 6.
 		visit = new Visit();
 		visit.setAd(ad6);
 		searchers = new LinkedList<>();
@@ -263,7 +263,7 @@ public class VisitTestDataSaver{
 		visit.setEndTimestamp(dateFormat.parse("20:00 27.12.2014"));
 		visitDao.save(visit);
 
-		// Visits for Ad 7
+		// Visits for Ad 7.
 		visit = new Visit();
 		visit.setAd(ad7);
 		searchers = new LinkedList<>();
@@ -308,7 +308,7 @@ public class VisitTestDataSaver{
 		visit.setEndTimestamp(dateFormat.parse("15:30 19.12.2014"));
 		visitDao.save(visit);
 
-		// Visits for Ad 8
+		// Visits for Ad 8.
 		visit = new Visit();
 		visit.setAd(ad8);
 		searchers = new LinkedList<>();
@@ -344,7 +344,7 @@ public class VisitTestDataSaver{
 		visit.setEndTimestamp(dateFormat.parse("20:00 27.12.2014"));
 		visitDao.save(visit);
 
-		// Visits for Ad 9
+		// Visits for Ad 9.
 		visit = new Visit();
 		visit.setAd(ad9);
 		searchers = new LinkedList<>();
@@ -388,7 +388,7 @@ public class VisitTestDataSaver{
 		visit.setEndTimestamp(dateFormat.parse("15:30 19.12.2014"));
 		visitDao.save(visit);
 
-		// Visits for Ad 10
+		// Visits for Ad 10.
 		visit = new Visit();
 		visit.setAd(ad10);
 		searchers = new LinkedList<>();
@@ -423,7 +423,7 @@ public class VisitTestDataSaver{
 		visit.setEndTimestamp(dateFormat.parse("20:00 27.12.2014"));
 		visitDao.save(visit);
 
-		// Visits for Ad 11
+		// Visits for Ad 11.
 		visit = new Visit();
 		visit.setAd(ad11);
 		searchers = new LinkedList<>();
@@ -467,7 +467,7 @@ public class VisitTestDataSaver{
 		visit.setEndTimestamp(dateFormat.parse("15:30 19.12.2014"));
 		visitDao.save(visit);
 
-		// Visits for Ad 12
+		// Visits for Ad 12.
 		visit = new Visit();
 		visit.setAd(ad12);
 		searchers = new LinkedList<>();
@@ -492,7 +492,7 @@ public class VisitTestDataSaver{
 		visit.setStartTimestamp(dateFormat.parse("14:00 26.12.2014"));
 		visit.setEndTimestamp(dateFormat.parse("16:00 26.12.2014"));
 		visitDao.save(visit);
-		
+
 		visit = new Visit();
 		visit.setAd(ad12);
 		visit.setSearchers(new LinkedList<>());
@@ -500,5 +500,4 @@ public class VisitTestDataSaver{
 		visit.setEndTimestamp(dateFormat.parse("20:00 27.12.2014"));
 		visitDao.save(visit);
 	}
-
 }

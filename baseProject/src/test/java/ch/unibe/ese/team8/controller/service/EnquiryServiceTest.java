@@ -15,8 +15,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import ch.unibe.ese.team8.controller.service.EnquiryService;
-import ch.unibe.ese.team8.controller.service.VisitService;
 import ch.unibe.ese.team8.model.Ad;
 import ch.unibe.ese.team8.model.Gender;
 import ch.unibe.ese.team8.model.User;
@@ -30,10 +28,8 @@ import ch.unibe.ese.team8.model.dao.VisitDao;
 import ch.unibe.ese.team8.model.dao.VisitEnquiryDao;
 
 /**
- * 
  * Tests both Visit and VisitEnquiry functionality. Since one makes no sense
  * without the other, these tests were grouped into one suite.
- *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -42,34 +38,34 @@ import ch.unibe.ese.team8.model.dao.VisitEnquiryDao;
 		"file:src/main/webapp/WEB-INF/config/springSecurity.xml"})
 @WebAppConfiguration
 public class EnquiryServiceTest {
-	
+
 	@Autowired
 	VisitService visitService;
-	
+
 	@Autowired
 	EnquiryService enquiryService;
-	
+
 	@Autowired
 	AdDao adDao;
-	
+
 	@Autowired
 	UserDao userDao;
-	
+
 	@Autowired
 	VisitDao visitDao;
-	
+
 	@Autowired
 	VisitEnquiryDao visitEnquiryDao;
-	
+
 	@Test
-	public void createVisits() throws Exception {		
-		//create user
+	public void createVisits() throws Exception {
+		// Create user.
 		User thomyF = createUser("thomy@f.ch", "password", "Thomy", "F",
 				Gender.MALE);
 		thomyF.setAboutMe("Supreme hustler");
 		userDao.save(thomyF);
-		
-		//save an ad
+
+		// Save an ad.
 		Date date = new Date();
 		Ad oltenResidence= new Ad();
 		oltenResidence.setZipcode(4600);
@@ -95,10 +91,10 @@ public class EnquiryServiceTest {
 		oltenResidence.setGarage(false);
 		oltenResidence.setInternet(false);
 		adDao.save(oltenResidence);
-		
+
 		SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy hh:mm");
-		
-		//ad two possible visiting times ("visits") to the ad
+
+		// Ad two possible visiting times ("visits") to the ad.
 		Visit visit = new Visit();
 		visit.setAd(oltenResidence);
 		visit.setStartTimestamp(formatter.parse("16.12.2014 10:00"));
@@ -110,28 +106,28 @@ public class EnquiryServiceTest {
 		visit2.setStartTimestamp(formatter.parse("18.12.2014 10:00"));
 		visit2.setEndTimestamp(formatter.parse("18.12.2014 12:00"));
 		visitDao.save(visit2);
-		
+
 		Iterable<Visit> oltenVisits = visitService.getVisitsByAd(oltenResidence);
 		ArrayList<Visit> oltenList = new ArrayList<Visit>();
 		for(Visit oltenvis: oltenVisits)
 			oltenList.add(oltenvis);
-		
+
 		assertEquals(2, oltenList.size());
 	}
-	
+
 	@Test
-	public void enquireAndAccept() throws Exception {		
-		//create two users
+	public void enquireAndAccept() throws Exception {
+		// Create two users.
 		User adolfOgi = createUser("adolf@ogi.ch", "password", "Adolf", "Ogi",
 				Gender.MALE);
 		adolfOgi.setAboutMe("Wallis rocks");
 		userDao.save(adolfOgi);
-		
+
 		User blocher = createUser("christoph@blocher.eu", "svp", "Christoph", "Blocher", Gender.MALE);
 		blocher.setAboutMe("I own you");
 		userDao.save(blocher);
-		
-		//save an ad
+
+		// Save an ad.
 		Date date = new Date();
 		Ad oltenResidence= new Ad();
 		oltenResidence.setZipcode(4600);
@@ -157,10 +153,10 @@ public class EnquiryServiceTest {
 		oltenResidence.setGarage(false);
 		oltenResidence.setInternet(false);
 		adDao.save(oltenResidence);
-		
+
 		SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy hh:mm");
-		
-		//ad two possible visiting times ("visits") to the ad
+
+		// Ad two possible visiting times ("visits") to the ad.
 		Visit visit = new Visit();
 		visit.setAd(oltenResidence);
 		visit.setStartTimestamp(formatter.parse("16.12.2014 10:00"));
@@ -172,29 +168,29 @@ public class EnquiryServiceTest {
 		visit2.setStartTimestamp(formatter.parse("18.12.2014 10:00"));
 		visit2.setEndTimestamp(formatter.parse("18.12.2014 12:00"));
 		visitDao.save(visit2);
-		
-		//Ogi is enquiring about Blocher's apartment
+
+		// Ogi is enquiring about Blocher's apartment.
 		VisitEnquiry enquiry = new VisitEnquiry();
 		enquiry.setVisit(visit);
 		enquiry.setSender(adolfOgi);
 		enquiry.setState(VisitEnquiryState.OPEN);
 		visitEnquiryDao.save(enquiry);
-		
+
 		Iterable<VisitEnquiry> ogiEnquiries = visitEnquiryDao.findBySender(adolfOgi);
 		ArrayList<VisitEnquiry> ogiEnquiryList = new ArrayList<VisitEnquiry>();
 		for(VisitEnquiry venq: ogiEnquiries)
 			ogiEnquiryList.add(venq);
-		
+
 		long venqID = ogiEnquiryList.get(0).getId();
-		
+
 		enquiryService.acceptEnquiry(venqID);
-		
+
 		assertEquals(VisitEnquiryState.ACCEPTED, visitEnquiryDao.findOne(venqID).getState());
 	}
-	
-	//Lean user creating method
-	User createUser(String email, String password, String firstName,
-			String lastName, Gender gender) {
+
+	// Lean user creating method.
+	User createUser(final String email, final String password, final String firstName,
+			final String lastName, final Gender gender) {
 		User user = new User();
 		user.setUsername(email);
 		user.setPassword(password);

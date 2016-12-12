@@ -21,6 +21,7 @@ public class BookmarkTestDataSaver{
 
 	@Autowired
 	private UserDao userDao;
+
 	@Autowired
 	private AdService adService;
 
@@ -31,7 +32,7 @@ public class BookmarkTestDataSaver{
 		User bernerBaer = userDao.findByUsername("user@bern.com");
 		User oprah = userDao.findByUsername("oprah@winfrey.com");
 
-		// 5 bookmarks for Ese test-user
+		// 5 bookmarks for Ese test-user.
 		LinkedList<Ad> bookmarkedAds = new LinkedList<>();
 		long[] longArray1 = {1,3,5,7,8};
 
@@ -40,7 +41,7 @@ public class BookmarkTestDataSaver{
 		ese.setBookmarkedAds(bookmarkedAds);
 		userDao.save(ese);
 
-		// 4 bookmarks for Jane Doe
+		// 4 bookmarks for Jane Doe.
 		bookmarkedAds = new LinkedList<>();
 
 		long[] longArray2 = {6,9,10,11};
@@ -50,7 +51,7 @@ public class BookmarkTestDataSaver{
 		jane.setBookmarkedAds(bookmarkedAds);
 		userDao.save(jane);
 
-		// 5 bookmarks for user berner bear
+		// 5 bookmarks for user berner bear.
 		bookmarkedAds = new LinkedList<>();
 
 		long[] longArray3 = {2,4,6,8,12};
@@ -60,7 +61,7 @@ public class BookmarkTestDataSaver{
 		bernerBaer.setBookmarkedAds(bookmarkedAds);
 		userDao.save(bernerBaer);
 
-		// 4 bookmarks for Oprah
+		// 4 bookmarks for Oprah.
 		bookmarkedAds = new LinkedList<>();
 
 		long[] longArray4 = {2,3,6,12};

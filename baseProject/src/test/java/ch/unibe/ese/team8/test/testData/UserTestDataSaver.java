@@ -24,25 +24,25 @@ public class UserTestDataSaver {
 
 	@Transactional
 	public void saveTestData() throws Exception {
-		// system account
+		// System account.
 		User system = createUser("System", "1234", "FlatFindr", "Admin",
 				"/img/test/system.jpg", Gender.ADMIN);
 		system.setAboutMe("We keep you off the streets.");
 		userDao.save(system);
 
-		// Main test-user for the assistants (advertiser)
+		// Main test-user for the assistants (advertiser).
 		User ese = createUser("ese@unibe.ch", "ese", "John", "Wayne",
 				"/img/test/portrait.jpg", Gender.MALE);
 		ese.setAboutMe(getDummyText());
 		userDao.save(ese);
-		
-		// Searcher
+
+		// Searcher.
 		User janeDoe = createUser("jane@doe.com", "password", "Jane", "Doe",
 				Gender.FEMALE);
 		janeDoe.setAboutMe(getDummyText());
 		userDao.save(janeDoe);
 
-		// Another advertiser & searcher
+		// Another advertiser & searcher.
 		User bernerBaer = createUser("user@bern.com", "password",
 				"Berner", "Baer", Gender.MALE);
 		UserPicture picture = new UserPicture();
@@ -56,27 +56,27 @@ public class UserTestDataSaver {
 				+ "London and Zurich, always in flatshares and i have never had"
 				+ "problems with my flatmates.");
 		userDao.save(bernerBaer);
-		
-		// Another advertiser & searcher
+
+		// Another advertiser & searcher.
 		User oprah = createUser("oprah@winfrey.com", "password", "Oprah", "Winfrey",
 				"/img/test/oprah.jpg", Gender.FEMALE);
 		oprah.setAboutMe(getDummyText());
 		userDao.save(oprah);
-		
-		// Dummy users to be added for Roommates
+
+		// Dummy users to be added for Roommates.
 		User hans = createUser("hans@unibe.ch", "password", "Hans", "DummyOne",
 				Gender.MALE);
 		hans.setAboutMe("Hello, I am the dummy user Hans for the AdBern. I am living" +
 				"at Kramgasse 22 and I am very very happy there.");
 		userDao.save(hans);
-		
+
 		User mathilda = createUser("mathilda@unibe.ch", "password", "Mathilda",
 				"DummyTwo", Gender.FEMALE);
 		mathilda.setAboutMe("Hello, I am the dummy user Mathilda for the AdBern. I am living" +
 				"at Kramgasse 22 and I am very very happy there.");
 		userDao.save(mathilda);
-		
-		//the premium User
+
+		// The premium User.
 		User premiumUser= createPremiumUser("prem@coolguy.com", "pw", "Johny", "Bravo", Gender.MALE, true);
 				premiumUser.setAboutMe("I am the coolest guy here");
 				UserPicture picture2 = new UserPicture();
@@ -86,8 +86,8 @@ public class UserTestDataSaver {
 		userDao.save(premiumUser);
 	}
 
-	public User createPremiumUser(String email, String password, String firstName,
-			String lastName, Gender gender, boolean prem) {
+	public User createPremiumUser(final String email, final String password, final String firstName,
+			final String lastName, final Gender gender, final boolean prem) {
 		User user = new User();
 		user.setUsername(email);
 		user.setPassword(password);
@@ -103,11 +103,12 @@ public class UserTestDataSaver {
 		userRoles.add(role);
 		user.setUserRoles(userRoles);
 		user.setPremium(prem);
+
 		return user;
 	}
-	
-	public User createUser(String email, String password, String firstName,
-			String lastName, Gender gender) {
+
+	public User createUser(final String email, final String password, final String firstName,
+			final String lastName, final Gender gender) {
 		User user = new User();
 		user.setUsername(email);
 		user.setPassword(password);
@@ -122,11 +123,12 @@ public class UserTestDataSaver {
 		role.setUser(user);
 		userRoles.add(role);
 		user.setUserRoles(userRoles);
+
 		return user;
 	}
 
-	public User createUser(String email, String password, String firstName,
-			String lastName, String picPath, Gender gender) {
+	public User createUser(final String email, final String password, final String firstName,
+			final String lastName, final String picPath, final Gender gender) {
 		User user = new User();
 		user.setUsername(email);
 		user.setPassword(password);
@@ -145,6 +147,7 @@ public class UserTestDataSaver {
 		role.setUser(user);
 		userRoles.add(role);
 		user.setUserRoles(userRoles);
+
 		return user;
 	}
 
@@ -156,5 +159,4 @@ public class UserTestDataSaver {
 				+ "London and Zurich, always in flatshares and i have never had "
 				+ "problems with my flatmates because I am a nice person.";
 	}
-
 }
