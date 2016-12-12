@@ -5,7 +5,10 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ch.unibe.ese.team8.model.Message;
+import ch.unibe.ese.team8.model.MessageState;
 import ch.unibe.ese.team8.model.User;
+import ch.unibe.ese.team8.model.dao.MessageDao;
 
 /**
  * The SystemService holds a lot of prepared statements and texts, that are used
@@ -20,6 +23,9 @@ public class SystemService {
 
 	@Autowired
 	private AdService adService;
+	
+	@Autowired
+	private MessageDao messageDao;
 
 	public User getAdmin()
 	{
@@ -95,5 +101,29 @@ public class SystemService {
 		message.append("</br> " + user.getFirstName() + " " + user.getLastName() + " " + user.getEmail());
 
 		return message.toString();
+	}
+	
+	public String getInvoiceText(User user)
+	{
+		StringBuffer message = new StringBuffer();
+
+		message.append("Dear " + user.getFirstName() + " " + user.getLastName() + "</br>");
+		message.append("Thank you for purchasing our premium packet, you now owe use some money!");
+		return message.toString();
+	}
+
+	public void sendPremiumInvoice(User user) 
+	{
+		Message message = new Message();
+		Date now = new Date();
+
+		message.setRecipient(user);
+		message.setSender(this.getAdmin());
+		message.setSubject("Welcome in the premium flatbook club");
+		message.setText(this.getInvoiceText(user));
+		message.setState(MessageState.UNREAD);
+		message.setDateSent(now);
+
+		messageDao.save(message);
 	}
 }

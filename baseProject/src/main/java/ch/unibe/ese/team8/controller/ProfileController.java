@@ -19,12 +19,12 @@ import org.springframework.web.servlet.ModelAndView;
 import ch.unibe.ese.team8.controller.pojos.forms.EditProfileForm;
 import ch.unibe.ese.team8.controller.pojos.forms.GoogleLoginForm;
 import ch.unibe.ese.team8.controller.pojos.forms.MessageForm;
-import ch.unibe.ese.team8.controller.pojos.forms.SearchForm;
 import ch.unibe.ese.team8.controller.pojos.forms.SignupForm;
 import ch.unibe.ese.team8.controller.service.AdService;
 import ch.unibe.ese.team8.controller.service.GoogleLoginService;
 import ch.unibe.ese.team8.controller.service.GoogleService;
 import ch.unibe.ese.team8.controller.service.SignupService;
+import ch.unibe.ese.team8.controller.service.SystemService;
 import ch.unibe.ese.team8.controller.service.UserService;
 import ch.unibe.ese.team8.controller.service.UserUpdateService;
 import ch.unibe.ese.team8.controller.service.VisitService;
@@ -43,6 +43,9 @@ public class ProfileController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private SystemService systemService;
 
 	@Autowired
 	private UserUpdateService userUpdateService;
@@ -188,6 +191,10 @@ public class ProfileController {
 		User user = userService.findUserByUsername(username);
 		if (!bindingResult.hasErrors())
 		{
+			if(editProfileForm.getPremium()){
+				systemService.sendPremiumInvoice(user);
+			}
+			
 			userUpdateService.updateFrom(editProfileForm);
 			model = new ModelAndView("updatedProfile");
 			model.addObject("message", "Your Profile has been updated!");
