@@ -42,23 +42,24 @@ public class VisitEnquiryTestDataSaver {
 	 * Creating accepted Enquiries here has no effect, because once an Enquiry
 	 * gets accepted, the Sender will be added to the searcher-List of visit the
 	 * enquiry belongs to.
+	 *
+	 * @throws Exception
 	 */
 	@Transactional
 	public void saveTestData() throws Exception {
 		DateFormat dateFormat = new SimpleDateFormat("HH:mm dd.MM.yyyy");
 
-		// load users
+		// Load users.
 		bernerBaer = userDao.findByUsername("user@bern.com");
 		testerMuster = userDao.findByUsername("ese@unibe.ch");
 		jane = userDao.findByUsername("jane@doe.com");
 		oprah = userDao.findByUsername("oprah@winfrey.com");
 
-
-		// Add some open and declined Enquiries to play with
+		// Add some open and declined Enquiries to play with.
 		VisitEnquiry enquiry;
 
-		// Enquiries for advertiser user@bern.com (Berner Bär)
-		// Add 2 Enquiries to Visit 1
+		// Enquiries for advertiser user@bern.com (Berner Bär).
+		// Add 2 Enquiries to Visit 1.
 		enquiry = new VisitEnquiry();
 		visit = visitDao.findOne(1L);
 		TestDataUtils.polyfillEnquiry(enquiry,
@@ -78,7 +79,7 @@ public class VisitEnquiryTestDataSaver {
 
 		visitEnquiryDao.save(enquiry);
 
-		// Add 1 Enquiry to Visit 6
+		// Add 1 Enquiry to Visit 6.
 		enquiry = new VisitEnquiry();
 		visit = visitDao.findOne(6L);
 		TestDataUtils.polyfillEnquiry(enquiry,
@@ -89,8 +90,8 @@ public class VisitEnquiryTestDataSaver {
 
 		visitEnquiryDao.save(enquiry);
 
-		// Enquiries for advertiser ese (ese@unibe.ch)
-		// Add 2 Enquiries to Visit 5
+		// Enquiries for advertiser ese (ese@unibe.ch).
+		// Add 2 Enquiries to Visit 5.
 		enquiry = new VisitEnquiry();
 		visit = visitDao.findOne(5L);
 		TestDataUtils.polyfillEnquiry(enquiry,
@@ -110,7 +111,7 @@ public class VisitEnquiryTestDataSaver {
 
 		visitEnquiryDao.save(enquiry);
 
-		// Add 1 Enquiriy to Visit 9
+		// Add 1 Enquiriy to Visit 9.
 		enquiry = new VisitEnquiry();
 		visit = visitDao.findOne(9L);
 		TestDataUtils.polyfillEnquiry(enquiry,
@@ -121,7 +122,7 @@ public class VisitEnquiryTestDataSaver {
 
 		visitEnquiryDao.save(enquiry);
 
-		// Add 1 Enquiriy to Visit 10
+		// Add 1 Enquiriy to Visit 10.
 		enquiry = new VisitEnquiry();
 		visit = visitDao.findOne(10L);
 		TestDataUtils.polyfillEnquiry(enquiry,
@@ -132,8 +133,8 @@ public class VisitEnquiryTestDataSaver {
 
 		visitEnquiryDao.save(enquiry);
 
-		// Enquiries for advertiser oprah
-		// Add 2 Enquiries to Visit 22
+		// Enquiries for advertiser oprah.
+		// Add 2 Enquiries to Visit 22.
 		enquiry = new VisitEnquiry();
 		visit = visitDao.findOne(22L);
 		TestDataUtils.polyfillEnquiry(enquiry,
@@ -154,7 +155,7 @@ public class VisitEnquiryTestDataSaver {
 		visitEnquiryDao.save(enquiry);
 
 		// Accept all enquiries which are already added to the searcher-lists
-		// in the Visits (user accepted those enquiries already)
+		// in the Visits (user accepted those enquiries already).
 		acceptEnquiries();
 	}
 
@@ -171,7 +172,7 @@ public class VisitEnquiryTestDataSaver {
 
 		for (Visit visit : acceptedVisits) {
 
-			// Get all accepted enquiries for the visit
+			// Get all accepted enquiries for the visit.
 			Iterable<User> searchers = visit.getSearchers();
 			for (User searcher : searchers) {
 				enquiry = new VisitEnquiry();
@@ -185,7 +186,14 @@ public class VisitEnquiryTestDataSaver {
 	}
 
 	/**
-	 * Gets a pseudo random time from October to November 2014
+	 * Gets a pseudo random time from October to November 2014 formatted as
+	 * hh:nn dd.mm.2014 where as <p>
+	 * h: hour <p>
+	 * n: minutes <p>
+	 * d: days <p>
+	 * m: months <p>
+	 *
+	 * @return String, a random time formatted as string.
 	 */
 	private String getRandomDummyTime() {
 		int day = (int) (Math.random() * 30) + 1;

@@ -34,7 +34,7 @@ public class MessageTestDataSaver {
 
 	@Transactional
 	public void saveTestData() throws Exception {
-		// load users
+		// Load users.
 		bernerBaer = userDao.findByUsername("user@bern.com");
 		testerMuster = userDao.findByUsername("ese@unibe.ch");
 		jane = userDao.findByUsername("jane@doe.com");
@@ -43,7 +43,7 @@ public class MessageTestDataSaver {
 		Message message;
 		DateFormat dateFormat = new SimpleDateFormat("HH:mm dd.MM.yyyy");
 
-		// Messages for testerMuster
+		// Messages for testerMuster.
 		message = new Message();
 		polyfillMessage(message,
 				"Cool ad",
@@ -77,7 +77,7 @@ public class MessageTestDataSaver {
 
 		messageDao.save(message);
 
-		// Messages for JaneDoe
+		// Messages for JaneDoe.
 		message = new Message();
 		polyfillMessage(message,
 				"I agree",
@@ -100,7 +100,7 @@ public class MessageTestDataSaver {
 
 		messageDao.save(message);
 
-		// Messages for Berner Bär
+		// Messages for Berner Bär.
 		message = new Message();
 		polyfillMessage(message,
 				"Awesome Ad",
@@ -123,7 +123,7 @@ public class MessageTestDataSaver {
 
 		messageDao.save(message);
 
-		// Messages for Oprah
+		// Messages for Oprah.
 		message = new Message();
 		polyfillMessage(message,
 				"Best Ad ever",
@@ -174,5 +174,4 @@ public class MessageTestDataSaver {
 				+ "really like to visit your flat, I sent you an enquiry for a visit.\n"
 				+ "\nCheerio,\n" + "Oprah";
 	}
-
 }

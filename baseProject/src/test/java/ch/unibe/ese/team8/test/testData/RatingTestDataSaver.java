@@ -29,7 +29,7 @@ public class RatingTestDataSaver {
 		User oprah = userDao.findByUsername("oprah@winfrey.com");
 		User berner = userDao.findByUsername("user@bern.com");
 
-		//Ese's ratings
+		// Ese's ratings.
 		Rating rating = new Rating();
 		TestDataUtils.polyfillRating(rating,
 				ese,
@@ -54,7 +54,7 @@ public class RatingTestDataSaver {
 
 		ratingDao.save(rating);
 
-		//Berner Bär doesn't rate anyone
+		// Berner Bär doesn't rate anyone.
 		rating = new Rating();
 		TestDataUtils.polyfillRating(rating,
 				berner,
@@ -79,7 +79,7 @@ public class RatingTestDataSaver {
 
 		ratingDao.save(rating);
 
-		//Oprah loves everyone
+		// Oprah loves everyone.
 		rating = new Rating();
 		TestDataUtils.polyfillRating(rating,
 				oprah,
@@ -104,7 +104,7 @@ public class RatingTestDataSaver {
 
 		ratingDao.save(rating);
 
-		//Jane hasn't invited many people
+		// Jane hasn't invited many people.
 		rating = new Rating();
 		TestDataUtils.polyfillRating(rating,
 				jane,

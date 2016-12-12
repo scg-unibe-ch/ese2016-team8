@@ -23,12 +23,11 @@ import ch.unibe.ese.team8.model.VisitEnquiry;
 import ch.unibe.ese.team8.model.VisitEnquiryState;
 
 /**
- * class which offers static polyfill methods in order to simplify
+ * Class which offers static polyfill methods in order to simplify
  * adding properties to objects
  */
 public class TestDataUtils
 {
-
 	/**
 	 *
 	 * @param ad
@@ -128,7 +127,8 @@ public class TestDataUtils
 	 * @param zipcode
 	 * @param price
 	 * @param radius
-	 * @return
+	 *
+	 * @return alert, the polyfilled alert.
 	 */
 	public static Alert polyfillAlert(
 			final Alert alert,
@@ -149,11 +149,13 @@ public class TestDataUtils
 	}
 
 	/**
-	 * streams the long array and adds correspondending adServices to the bookmakredAds linkedlist
+	 * Streams the long array and adds correspondending adServices to the bookmakredAds linkedlist
+	 *
 	 * @param bookmarkedAds
 	 * @param adService
 	 * @param longArray
-	 * @return
+	 *
+	 * @return LinkedList<Ad>, the filled BookmarkedAds-List.
 	 */
 	public static LinkedList<Ad> polyfillBookmarkedAdsById(final LinkedList<Ad> bookmarkedAds,
 			final AdService adService, final long[] longArray)
@@ -171,7 +173,8 @@ public class TestDataUtils
 	 * @param recipient
 	 * @param state
 	 * @param dateSent
-	 * @return
+	 *
+	 * @return message, the filled Message.
 	 */
 	public static Message polyfillMessage(final Message message, final String subject, final String text,
 			final User sender, final User recipient, final MessageState state, final Date dateSent)
@@ -186,12 +189,12 @@ public class TestDataUtils
 	}
 
 	/**
-	 *
 	 * @param rating
 	 * @param rater
 	 * @param ratee
 	 * @param ratingValue
-	 * @return
+	 *
+	 * @return Rating, the filled rating.
 	 */
 	public static Rating polyfillRating(final Rating rating, final User rater, final User ratee, final int ratingValue)
 	{
@@ -202,14 +205,14 @@ public class TestDataUtils
 	}
 
 	/**
-	 *
 	 * @param email
 	 * @param password
 	 * @param firstName
 	 * @param lastName
 	 * @param picPath
 	 * @param gender
-	 * @return
+	 *
+	 * @return user, the filled user.
 	 */
 	public static User polyfillUser(final User user, final String email, final String password, final String firstName,
 			final String lastName, final String picPath, final Gender gender, final String aboutMe) {
@@ -235,13 +238,13 @@ public class TestDataUtils
 	}
 
 	/**
-	 *
 	 * @param enquiry
 	 * @param dateSent
 	 * @param sender
 	 * @param state
 	 * @param visit
-	 * @return
+	 *
+	 * @return VisitEnquiry
 	 */
 	public static VisitEnquiry polyfillEnquiry(
 			final VisitEnquiry enquiry,
