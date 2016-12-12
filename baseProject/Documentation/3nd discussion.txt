@@ -1,20 +1,20 @@
 Team 8 and Claudio, 26.10.2016
 
-Input von Claudio: Allg:
---> Issuetracker: Das ganze SCRUM-Issuetracker verwenden, indem wir die einzelnen Task aufspliten in mehrere kleinerere Aufgaben; Gut für uns auf Stufe Organisation und auch 	für Bewertung, da erleichterte Übersicht
---> Issuetracker positiver formulieren und auch grösser aufspliten, da so wie sie jetzt sind zu grosse Themen bilden.
---> Features noch weiter aufteilen für bessere Übersicht.
+Input of Claudio aka Customer: 
+General things:
+--> Issuetracker: Use the whoole SCRUM-Issuetracker, by splitting up the single task into several smaller tasks. Good for us on the level of organization but also for the later evaluation.
+--> Descripe the Issuetracker more positive and split it further up, because at the moment the subjects are too big.
+--> Also split up the features furtherly.
 
-Stand der verlangten Features von 2nd Discussion:
-i) Premium: Updaten für Premium, Nachfrage fürs Bezahlen, autom. Update für Premium; 
---> Roter Stern neben Usernamen für aktuellen Premiumstatus zu zeigen.
-ii) Auktion: Default kein Name, Unterbieten nicht möglich, Verlinkung zum Userprofile
---> Verlinkung zum höchstbietenden User rausnehmen, dafür nur seinen Usernamen anzeigen.
+Progress of the asked features defined in 2nd Discussion:
+i) Premium: Make a update for premium, a request to pay for the users, and also automatic updates after for premium.
+--> A red star on the side of the username for the momentual premium status.
+ii) Auction: Default no name, under-bidding not possible, link to the user profile.
+--> Remove the link to the highest bidder, only show his name but no further information.
 
 TODO:
---> Was passiert wenn das Angebot gemacht wird? (E-Mail an Überbotenen). see Issue #7 at https://github.com/scg-unibe-ch/ese2016-team8/issues/7 
---> Roommates rausnehmen wenn ein Angebot erstellt wird. see Issue #8 https://github.com/scg-unibe-ch/ese2016-team8/issues/8
---> Keine Werbungen mit bestehenden Wohngemeinschaften erlauben.  see Issue #9 https://github.com/scg-unibe-ch/ese2016-team8/issues/9
---> Sterndli für Premiumuser. see Issue #10 https://github.com/scg-unibe-ch/ese2016-team8/issues/10
---> Design modernisieren:
-	Mock-ups malen für Präsentation für Kunden (Papier), können aber auch schon implementieren.
+--> What happens once a new offer has been placed? (Send an E-Mail to the user being overbid). see Issue #7 at https://github.com/scg-unibe-ch/ese2016-team8/issues/7 
+--> Remove roommates once a new offer has been placed. see Issue #8 https://github.com/scg-unibe-ch/ese2016-team8/issues/8
+--> Don't allow existing communities (wohngemeinschaften) for new ads.  see Issue #9 https://github.com/scg-unibe-ch/ese2016-team8/issues/9
+--> Star for Premiumuser. see Issue #10 https://github.com/scg-unibe-ch/ese2016-team8/issues/10
+--> Modernize design: Either start implementing or create nice Mock-ups on paper for the customer.

@@ -5,19 +5,19 @@ Input from developers:
 - negative square metrage and stepping of 5 fixed
 
 TODO:
-- Premium immer zuerst, auch bei sortieren nach Preis zuerst alle Premium nach Preis und dann alle anderen nach Preis.
-- Premium Ads kennzeichnen.
+- Premium first, always. Also when searching for ads, sort them in such a way that premium ads are shown first and afterwards the non-premium ads.
+- Mark somehow ads that are created by a premium user.
+
+Next week's meeting isn't an actual meeting.
+
+In the next two weeks every requirements from that have been defined by either the customer or in the wiki. If something is unclear, or if we have any questions we can mail them to claudio.
 
 
-Nächste Woche nicht wirklich Customer Meeting
-
-Bis in zwei Wochen alle Requirements durchgehen auf Wiki, falls etwas nicht gemacht: Mail an Claudio
-
-Letzter gültiger Commit für Präsentation in zwei Wochen, vor Präsentation.
+The last counting commit for the presentation, also the project itself, will be in two weeks. // Update. As of 12.12.2016 the last official commit must happen before 14.00 GMT+1 on the 14.12.2016
 
 Tests, Refactoring, Javadoc etc.
 
-Klassenkommentare empfehlenswert.
+Class comments are recommended.
 
-Präsentation:
-Briefing folgt auf Piazza.
+Presentation:
+Briefing will have been written on Piazza.
