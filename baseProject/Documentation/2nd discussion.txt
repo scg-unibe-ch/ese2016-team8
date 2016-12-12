@@ -1,22 +1,23 @@
 Team 8 and Claudio, 19.10.2016
 
-SRS ist in Ordnung, keine Sicherheit notwendig, aber nur in die Datenbank schreiben, keine Local File, evtl. Log Files, nicht in andere Ordner schreiben. 
---> Unsere Intentionen für die Sicherheit aufschreiben und dann auf die Spezifikation schreiben.
+Customer Input:
+SRS is okay, no further security mechanisms are necessary. Nevertheless access to the database should still only happen through controllers, as defined by the TA. Further no local files, but maybe log files. Also don't write in other folders).
 
+--> We need to write down our intentions concering the safety on the SRS.
 
---> Distanz 0 ausschliesslich Postleitzahl, und sonst einfach den Radius sehen, 0 km auch als default wert setzten.
+--> If the user sets the radius to 0km, only ads with the same zip code should be shown. Else the radius should be shown, maybe default value of radius to 0km.
 
---> Admin aus Enum entfernen
+--> Remove 'admin' from the 'enum' gender.
 
---> Enum für 'room', 'studio', 'house'.
+--> Restructure 'room', 'studio', 'house' into an enum rather than using string parsing.
 
---> Start/ Backlog aufhalten und/ oder discussion aufrechterhalten.
+--> Keep on doing Start/ Backlog and/or discussions. So just keep a way of documentation.
 
-Nächste Woche:
-Auktion: beschreibung 'sattelfest' in dem SRS.doc verankern. So, dass immer klar ist, was und wie's passiert.
---> Auktion anfangen zu implementieren, falls nicht lauffähig ein INterface auf papier zu gestaleten, damit der Kunde nachher noch seine Wünsche ausformulieren kann. 
+Next week:
+Auction: description 'sattelfest' written into the SRS. Try that everything is always as clear as possible, and try to show what and how something is happening.
+--> Begin to inplement auction. If you fail to implement a working version, make a interface on paper, in order to give the customer the possibility to comment about what and how things should be.
 
----> Piazza post erstellen über die Bewertungskriterien (Refactoring oder neue Funktionalität?)
+---> Create a piazza post about the criterais (is refactoring or new functionality more important)
 
 
 
