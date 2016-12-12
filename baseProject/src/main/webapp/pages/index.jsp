@@ -54,6 +54,7 @@
 					</div>
 					<div class="resultRight">
 						<h2>CHF ${ad.prizePerMonth }.-</h2>
+						<!--displays premiumStar if the owner of the ad is a premiumUser -->
 						<c:choose>
 							<c:when test="${ad.user.premium}"><img class="adPremStar" src="/img/Star.png"></c:when>
 						</c:choose>

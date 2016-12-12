@@ -228,7 +228,7 @@
 				<div class="resultAd" data-price="${ad.prizePerMonth}"
 								data-moveIn="${ad.moveInDate}" data-age="${ad.moveInDate}">
 					<div class="resultLeft">
-						
+
 							<c:choose>
 							<c:when test="${!ad.auction}"><a href="<c:url value='/ad?id=${ad.id}' />"><img src="${ad.pictures[0].filePath}" /></a></c:when>
 							<c:otherwise><a href="<c:url value='/auction?id=${ad.id}' />"><img src="${ad.pictures[0].filePath}" /></a></c:otherwise>
@@ -256,6 +256,7 @@
 					</div>
 					<div class="resultRight">
 						<h2>CHF ${ad.prizePerMonth }</h2>
+						<!--displays premiumStar if the owner of the ad is a premiumUser -->
 						<c:choose>
 							<c:when test="${ad.user.premium}"><img class="adPremStar" src="/img/Star.png"></c:when>
 						</c:choose>

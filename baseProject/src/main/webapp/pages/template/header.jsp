@@ -19,7 +19,7 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
-	
+
 	<script src="/js/unreadMessages.js"></script>
 
 	<style>
@@ -95,6 +95,7 @@
 					<i>You are a premium user!</i>
 				</div>
 		</div>
+		<!--Takes premiumStatus of the user as string, tranforms the sting into a boolean and displays the premiumStar if it's a premiumUser-->
 		<script>
 		$(window).ready(premStatusDisplay());
 		function premStatusDisplay(){
