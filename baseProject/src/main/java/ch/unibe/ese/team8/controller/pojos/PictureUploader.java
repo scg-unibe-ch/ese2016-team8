@@ -19,8 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import ch.unibe.ese.team8.model.PictureMeta;
 
 /**
- * This class handles uploading any number of pictures of type
- * {@link MultipartFile} to the server.
+ * This class handles uploading any number of pictures of type {@link MultipartFile} to the server.
  */
 public class PictureUploader {
 
@@ -35,8 +34,7 @@ public class PictureUploader {
 	 * by directory.
 	 *
 	 * @param absolutePath, the file path of the directory that should be uploaded to.
-	 * @param relativePath, the file path the uploaded 
-	 *                      pictures will have in the servlet context.
+	 * @param relativePath, the file path the uploaded pictures will have in the servlet context.
 	 */
 	public PictureUploader(final String absolutePath, final String relativePath) {
 		this.absoluteFilePath = absolutePath;
@@ -52,13 +50,13 @@ public class PictureUploader {
 	 * Strings returned.
 	 *
 	 * @param pictures, the pictures to upload
-	 * 
+	 *
 	 * @return the filenames the pictures were uploaded as
 	 */
 	public List<PictureMeta> upload(final List<MultipartFile> pictures) {
 		File directory = new File(absoluteFilePath);
 
-		// create the directory if it does not exist yet
+		// Create the directory if it does not exist yet.
 		if (!directory.exists()) {
 			directory.mkdirs();
 		}
@@ -68,7 +66,7 @@ public class PictureUploader {
 		for (MultipartFile file : pictures) {
 			if (!file.isEmpty())
 			{
-				// create file meta data that will be passed to the client side
+				// Create file meta data that will be passed to the client side.
 				// jQuery
 				pictureMeta = new PictureMeta();
 				pictureMeta.setName(file.getOriginalFilename());
@@ -81,11 +79,11 @@ public class PictureUploader {
 					String extension = originalFileName.substring(
 							originalFileName.length() - EXTENSION_LENGTH)
 							.toLowerCase(Locale.ROOT);
-					// check filetypes
+					// Check filetypes.
 					if (!(extension.equals(".jpg") || extension.equals(".png")
 							|| extension.equals(".jpeg") || extension.equals(".bmp")))
 					{
-						// invalid file format, skip file.
+						// Invalid file format, skip file..
 						continue;
 					}
 					UUID randomUUID = UUID.randomUUID();
@@ -114,21 +112,18 @@ public class PictureUploader {
 	/**
 	 * Deletes the picture with the given url.
 	 *
-	 * @param url
-	 *            the relative filepath of the picture (relative to the
-	 *            webserver root)
-	 * @param absoluteFilePath
-	 *            the absolute filepath of the picture that should be deleted
+	 * @param url, the relative filepath of the picture (relative to the webserver root)
+	 * @param absoluteFilePath, the absolute filepath of the picture that should be deleted
 	 */
 	public void deletePicture(final String url, final String absoluteFilePath) {
 		Path filePath = Paths.get(absoluteFilePath);
 		try {
 			Files.delete(filePath);
 		} catch (IOException e) {
-			// not that tragic, since we want to delete the file anyway
+			// Not that tragic, since we want to delete the file anyway.
 			e.printStackTrace();
 		}
-		// remove file from uploaded file list
+		// Remove file from uploaded file list.
 		synchronized (uploadedPictureMetas) {
 			uploadedPictureMetas.removeIf(picture -> picture.getUrl().equals(
 					url));

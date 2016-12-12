@@ -33,11 +33,11 @@ public class AlertController {
 
 	/**
 	 * Serves the page that allows the user to view their alerts.
-	 * 
+	 *
 	 * @param principal
-	 * 
+	 *
 	 * @return a new ModelAndView instance, which has been given a new AlertForm,
-	 *         sent by <code>ModelAndView#prepareAlertPage(...)</code>
+	 * sent by <code>ModelAndView#prepareAlertPage(...)</code>
 	 */
 	@RequestMapping(value = "/profile/alerts", method = RequestMethod.GET)
 	public ModelAndView alerts(final Principal principal)
@@ -48,13 +48,14 @@ public class AlertController {
 	/**
 	 * Serves the page that allow the user to view their alerts afert validating
 	 * and persisting the new alert through the alert form.
-	 * 
+	 *
 	 * @param principal
 	 * @param alertForm
-	 * @param result, the BindingResult instance
+	 * @param result, the BindingResult instance.
+	 *
 	 * @return ModelAndView. If the param 'BindingResult' has errors, a new instance of
-	 *         the ModelAndView class will be returned, else a modificiation with the
-	 *         '#prepareAlertPage(...)' method will be made.
+	 * the ModelAndView class will be returned, else a modificiation with the
+	 * '#prepareAlertPage(...)' method will be made.
 	 */
 	@RequestMapping(value = "/profile/alerts", method = RequestMethod.POST)
 	public ModelAndView savedAlert(
@@ -70,7 +71,7 @@ public class AlertController {
 
 	/**
 	 * Deletes the alert with the given id.
-	 * 
+	 *
 	 * @param id, the id of the alert to delete.
 	 */
 	@RequestMapping(value = "/profile/alerts/deleteAlert", method = RequestMethod.GET)
@@ -81,11 +82,11 @@ public class AlertController {
 	/**
 	 * Prepares the model for an alert page, filling in the user, an alert form
 	 * and the alerts of the user.
-	 * 
+	 *
 	 * @param principal
 	 * @param alreadySet, a boolean for a further check.
 	 * @param alertForm.
-	 * 
+	 *
 	 * @return model, the modified ModelAndView instance.
 	 */
 	private ModelAndView prepareAlertPage(

@@ -37,9 +37,9 @@ public class EnquiryController {
 
 	/**
 	 * Serves the page that displays the enquiries for the logged in user.
-	 * 
+	 *
 	 * @param principal
-	 * 
+	 *
 	 * @return model, the ModelAndView
 	 */
 	@RequestMapping(value = "/profile/enquiries")
@@ -55,7 +55,7 @@ public class EnquiryController {
 	/**
 	 * Sends an enquiry for the visit with the given id. The sender of the
 	 * enquiry will be the currently logged in user.
-	 * 
+	 *
 	 * @param id, the id of the visit
 	 * @param principal
 	 */
@@ -77,7 +77,9 @@ public class EnquiryController {
 	}
 
 	/**
-	 * Sets the state of the enquiry with the given id to accepted
+	 * Sets the state of the enquiry with the given id to accepted.
+	 *
+	 * @param id, the id of the enquiry.
 	 */
 	@RequestMapping(value = "/profile/enquiries/acceptEnquiry", method = RequestMethod.GET)
 	public @ResponseBody void acceptEnquiry(@RequestParam("id") final long id)
@@ -87,8 +89,8 @@ public class EnquiryController {
 
 	/**
 	 * Sets the state of the enquiry with the given id to declined.
-	 * 
-	 * @param id, the id of the enquiry
+	 *
+	 * @param id, the id of the enquiry.
 	 */
 	@RequestMapping(value = "/profile/enquiries/declineEnquiry", method = RequestMethod.GET)
 	public @ResponseBody void declineEnquiry(@RequestParam("id") final long id)
@@ -97,10 +99,9 @@ public class EnquiryController {
 	}
 
 	/**
-	 * Reopens the enquiry with the given id, meaning that its state is set to
-	 * open again.
-	 * 
-	 * @param id, the id of the enquiry
+	 * Reopens the enquiry with the given id, meaning that its state is set to open again.
+	 *
+	 * @param id, the id of the enquiry.
 	 */
 	@RequestMapping(value = "/profile/enquiries/reopenEnquiry", method = RequestMethod.GET)
 	public @ResponseBody void reopenEnquiry(@RequestParam("id") final long id)
@@ -111,7 +112,7 @@ public class EnquiryController {
 	/**
 	 * Rates the user with the given id with the given rating. This rating is
 	 * associated to the user and persisted.
-	 * 
+	 *
 	 * @param principal,
 	 * @param id, id of the user
 	 * @param rating, an Interger respresenting the rating
@@ -129,7 +130,7 @@ public class EnquiryController {
 	/**
 	 * Returns the rating for the given user that the currently logged in user
 	 * has given them.
-	 * 
+	 *
 	 * @param principal
 	 * @param id, the id of the user
 	 */

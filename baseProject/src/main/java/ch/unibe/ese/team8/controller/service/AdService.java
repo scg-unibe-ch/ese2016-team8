@@ -59,15 +59,18 @@ public class AdService {
 	/**
 	 * Handles persisting a new ad to the database.
 	 *
-	 * @param placeAdForm,
-	 *            the form to take the data from
-	 * @param filePaths,
-	 *            list of the file paths the pictures are saved under
-	 * @param user,
-	 *            the currently logged in user
+	 * @param placeAdForm, the form to take the data from.
+	 * @param filePaths, list of the file paths the pictures are saved under.
+	 * @param user, the currently logged in user.
+	 *
+	 * @return ad, a newly created ad from the given arguments.
 	 */
 	@Transactional
-	public Ad saveFrom(final PlaceAdForm placeAdForm, final List<String> filePaths, final User user) {
+	public Ad saveFrom(
+			final PlaceAdForm placeAdForm,
+			final List<String> filePaths,
+			final User user)
+	{
 
 		Ad ad = new Ad();
 
@@ -81,14 +84,14 @@ public class AdService {
 		ad.setCategory(placeAdForm.getCategory());
 		ad.setSale(placeAdForm.getSale());
 
-		// take the zipcode - first four digits
+		// Take first four digits of the zipcode.
 		String zip = placeAdForm.getCity().substring(0, 4);
 		ad.setZipcode(Integer.parseInt(zip));
 		ad.setCity(placeAdForm.getCity().substring(7));
 
 		Calendar calendar = Calendar.getInstance();
 		// java.util.Calendar uses a month range of 0-11 instead of the
-		// XMLGregorianCalendar which uses 1-12
+		// XMLGregorianCalendar, which uses 1-12.
 		try {
 			if (placeAdForm.getMoveInDate().length() >= 1) {
 				int dayMoveIn = Integer.parseInt(placeAdForm.getMoveInDate().substring(0, 2));
@@ -114,8 +117,7 @@ public class AdService {
 				ad.setAuctionEndDate(calendar.getTime());
 			}
 
-		} catch (NumberFormatException e) {
-		}
+		} catch (NumberFormatException e) { /* Do nothing. */ }
 
 		ad.setPrizePerMonth(placeAdForm.getPrize());
 		ad.setSquareFootage(placeAdForm.getSquareFootage());
@@ -124,7 +126,7 @@ public class AdService {
 		ad.setPreferences(placeAdForm.getPreferences());
 		ad.setRoommates(placeAdForm.getRoommates());
 
-		// ad description values
+		// Ad description values.
 		ad.setSmokers(placeAdForm.isSmokers());
 		ad.setAnimals(placeAdForm.isAnimals());
 		ad.setGarden(placeAdForm.getGarden());
@@ -161,13 +163,13 @@ public class AdService {
 		}
 		ad.setRegisteredRoommates(registeredUserRommates);
 
-		// visits
+		// Visits.
 		List<Visit> visits = new LinkedList<>();
 		List<String> visitStrings = placeAdForm.getVisits();
 		if (visitStrings != null) {
 			for (String visitString : visitStrings) {
 				Visit visit = new Visit();
-				// format is 28-02-2014;10:02;13:14
+				// Format is 28-02-2014;10:02;13:14.
 				DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 				String[] parts = visitString.split(";");
 				String startTime = parts[0] + " " + parts[1];
@@ -201,9 +203,8 @@ public class AdService {
 	/**
 	 * Gets the ad that has the given id.
 	 *
-	 * @param id,
-	 *            the id that should be searched for.
-	 * 
+	 * @param id, the id that should be searched for.
+	 *
 	 * @return the found ad or null, if no ad with this id exists.
 	 */
 	@Transactional
@@ -213,6 +214,8 @@ public class AdService {
 
 	/**
 	 * Returns all ads in the database.
+	 *
+	 * @return Iterable<Ad>
 	 */
 	@Transactional
 	public Iterable<Ad> getAllAds() {
@@ -221,10 +224,9 @@ public class AdService {
 
 	/**
 	 * Returns the newest ads in the database. Parameter 'newest' says how many.
-	 * 
-	 * @param newest,
-	 *            an int.
-	 * 
+	 *
+	 * @param newest, an int.
+	 *
 	 * @return Iterable<Ad>
 	 */
 	@Transactional
@@ -242,7 +244,7 @@ public class AdService {
 					return 1;
 				}else{
 					return ad2.getCreationDate().compareTo(ad1.getCreationDate());
-				}	
+				}
 			}
 		});
 		List<Ad> fourNewest = new ArrayList<Ad>();
@@ -255,36 +257,32 @@ public class AdService {
 	 * Returns all ads that match the parameters given by the form. This list
 	 * can possibly be empty.
 	 *
-	 * @param searchForm,
-	 *            the form to take the search parameters from.
-	 * 
+	 * @param searchForm, the form to take the search parameters from.
+	 *
 	 * @return an Iterable of all search results.
 	 */
 	@Transactional
 	public Iterable<Ad> queryResults(final SearchForm searchForm) {
 		Iterable<Ad> results = null;
 
-		// we use this method if we are looking for rent AND sales depending on
-		// categories
+		// We use this method if we are looking for rent AND sales depending on categories.
 		if (searchForm.getBothRentAndSale()) {
 			results = adDao.findByCategoryInAndAuctionOverAndPrizePerMonthLessThanOrderByPremiumDesc(
 					searchForm.getCategories(), false, searchForm.getPrize() + 1);
 		}
-		// we use this method if we are looking for EITHER sale OR rent and the
-		// depending categories
+		// We use this method if we are looking for EITHER sale OR rent and the depending categories.
 		else {
 			results = adDao.findByCategoryInAndSaleAndAuctionOverAndPrizePerMonthLessThanOrderByPremiumDesc(
 					searchForm.getCategories(), searchForm.getSale(), false, searchForm.getPrize() + 1);
 		}
 
-		// filter out zipcode
+		// Filter out zipcodes.
 		String city = searchForm.getCity().substring(7);
 
-		// get the location that the user searched for and take the one with the
-		// lowest zip code
+		// Get the location that the user searched for and take the one with the lowest zip code.
 		Location searchedLocation = geoDataService.getLocationsByCity(city).get(0);
 
-		// create a list of the results and of their locations
+		// Create a list of the results and of their locations.
 		List<Ad> locatedResults = new ArrayList<>();
 		for (Ad ad : results) {
 			locatedResults.add(ad);
@@ -297,7 +295,7 @@ public class AdService {
 		double radLong = Math.toRadians(searchedLocation.getLongitude());
 
 		/*
-		 * calculate the distances (Java 8) and collect all matching zipcodes.
+		 * Calculate the distances (Java 8) and collect all matching zipcodes.
 		 * The distance is calculated using the law of cosines.
 		 * http://www.movable-type.co.uk/scripts/latlong.html
 		 */
@@ -313,21 +311,21 @@ public class AdService {
 			locatedResults = locatedResults.stream().filter(ad -> zipcodes.contains(ad.getZipcode()))
 					.collect(Collectors.toList());
 		} else {
-			// else we need exact match with the zip code!
+			// Else we need exact match with the zip code!
 			locatedResults = locatedResults.stream()
 					.filter(ad -> searchForm.getCity().substring(0, 4).equals(String.valueOf(ad.getZipcode())))
 					.collect(Collectors.toList());
 		}
 
-		// filter for additional criteria
+		// Filter for additional criteria.
 		if (searchForm.getFiltered()) {
-			// prepare date filtering - by far the most difficult filter
+			// Prepare date filtering, by far the most difficult filter.
 			Date earliestInDate = null;
 			Date latestInDate = null;
 			Date earliestOutDate = null;
 			Date latestOutDate = null;
 
-			// parse move-in and move-out dates
+			// Parse moveIn and moveOut dates.
 			SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 			try {
 				earliestInDate = formatter.parse(searchForm.getEarliestMoveInDate());
@@ -346,13 +344,11 @@ public class AdService {
 			} catch (Exception e) {
 			}
 
-			// filtering by dates
+			// Filtering by dates.
 			locatedResults = validateDate(locatedResults, true, earliestInDate, latestInDate);
 			locatedResults = validateDate(locatedResults, false, earliestOutDate, latestOutDate);
 
-			// Don't go further, it is frightening!
-
-			// filtering for the rest
+			// Filtering for the rest.
 			// smokers
 			if (searchForm.getSmokers()) {
 				Iterator<Ad> iterator = locatedResults.iterator();
@@ -443,7 +439,7 @@ public class AdService {
 				}
 			}
 		}
-		
+
 		Collections.sort(locatedResults, new Comparator<Ad>() {
 			@Override
 			public int compare(final Ad ad1, final Ad ad2) {
@@ -453,28 +449,30 @@ public class AdService {
 					return 1;
 				}else{
 					return ad2.getCreationDate().compareTo(ad1.getCreationDate());
-				}	
+				}
 			}
 		});
-		
+
 		return locatedResults;
 	}
 
 	/**
-	 * @param ads,
-	 *            a <code>List<Ad></code>.
-	 * @param inOrOut,
-	 *            a boolean.
+	 * @param ads, a <code>List<Ad></code>.
+	 * @param inOrOut, a boolean.
 	 * @param earliestDate
 	 * @param latestDate
-	 * 
+	 *
 	 * @return List<Ad>
 	 */
-	private List<Ad> validateDate(final List<Ad> ads, final boolean inOrOut, final Date earliestDate,
-			final Date latestDate) {
+	private List<Ad> validateDate(
+			final List<Ad> ads,
+			final boolean inOrOut,
+			final Date earliestDate,
+			final Date latestDate)
+	{
 		if (ads.size() > 0) {
-			// Move-in dates
-			// Both an earliest AND a latest date to compare to
+			// Move-in dates.
+			// Both an earliest AND a latest date to compare to.
 			if (earliestDate != null) {
 				if (latestDate != null) {
 					Iterator<Ad> iterator = ads.iterator();
@@ -486,7 +484,7 @@ public class AdService {
 						}
 					}
 				}
-				// only an earliest date
+				// Only an earliest date.
 				else {
 					Iterator<Ad> iterator = ads.iterator();
 					while (iterator.hasNext()) {
@@ -496,7 +494,7 @@ public class AdService {
 					}
 				}
 			}
-			// only a latest date
+			// Only a latest date.
 			else if (latestDate != null && earliestDate == null) {
 				Iterator<Ad> iterator = ads.iterator();
 				while (iterator.hasNext()) {
@@ -504,7 +502,6 @@ public class AdService {
 					if (ad.getDate(inOrOut).compareTo(latestDate) > 0)
 						iterator.remove();
 				}
-			} else {
 			}
 		}
 		return ads;
@@ -512,9 +509,9 @@ public class AdService {
 
 	/**
 	 * Returns all ads that were placed by the given user.
-	 * 
+	 *
 	 * @param user
-	 * 
+	 *
 	 * @return Iterable<Id>
 	 */
 	public Iterable<Ad> getAdsByUser(final User user) {
@@ -524,11 +521,8 @@ public class AdService {
 	/**
 	 * Checks if the email of a user is already contained in the given string.
 	 *
-	 * @param email,
-	 *            the email string to search for.
-	 * @param alreadyAdded,
-	 *            the string of already added emails, which should be searched
-	 *            in.
+	 * @param email, the email string to search for.
+	 * @param alreadyAdded, the string of already added emails, which should be searched in.
 	 *
 	 * @return true, if the email has been added already, false otherwise.
 	 */
@@ -544,5 +538,4 @@ public class AdService {
 		}
 		return false;
 	}
-
 }

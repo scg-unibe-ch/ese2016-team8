@@ -140,7 +140,7 @@ public class Ad {
 	@Column(nullable = false)
 	private boolean auctionOver;
 
-	public void setAuctionOver(boolean end)
+	public void setAuctionOver(final boolean end)
 	{
 		this.auctionOver = end;
 	}
@@ -184,7 +184,7 @@ public class Ad {
 		return auction;
 	}
 
-	public void setAuction(boolean auction)
+	public void setAuction(final boolean auction)
 	{
 		this.auction = auction;
 	}
@@ -194,7 +194,7 @@ public class Ad {
 		return startPrize;
 	}
 
-	public void setStartPrize(int startPrize)
+	public void setStartPrize(final int startPrize)
 	{
 		this.startPrize = startPrize;
 	}
@@ -204,7 +204,7 @@ public class Ad {
 		return auctionDuration;
 	}
 
-	public void setAuctionDuration(Date auctionDuration)
+	public void setAuctionDuration(final Date auctionDuration)
 	{
 		this.auctionDuration = auctionDuration;
 	}
@@ -214,12 +214,12 @@ public class Ad {
 		return maxBidder;
 	}
 
-	public void setMaxBidder(User maxBidder)
+	public void setMaxBidder(final User maxBidder)
 	{
 		this.maxBidder = maxBidder;
 	}
 
-	public void setPremium(boolean premium)
+	public void setPremium(final boolean premium)
 	{
 		this.premium = premium;
 	}
@@ -506,7 +506,14 @@ public class Ad {
 		return result;
 	}
 
-	// equals method is defined to check for id only
+	/**
+	 * Equals method is defined to check for id only. <p>
+	 * Compares the object given as argument to the current object.
+	 *
+	 * @param object
+	 *
+	 * @return boolean
+	 */
 	@Override
 	public boolean equals(final Object obj) {
 		if (this == obj)

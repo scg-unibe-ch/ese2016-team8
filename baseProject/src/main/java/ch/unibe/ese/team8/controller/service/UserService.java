@@ -18,9 +18,9 @@ public class UserService {
 
 	/**
 	 * Gets the user with the given username.
-	 * 
+	 *
 	 * @param username
-	 * 
+	 *
 	 * @return user
 	 */
 	@Transactional
@@ -30,9 +30,9 @@ public class UserService {
 
 	/**
 	 * Gets the user with the given id.
-	 * 
+	 *
 	 * @param id, long.
-	 * 
+	 *
 	 * @return user
 	 */
 	@Transactional

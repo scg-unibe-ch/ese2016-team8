@@ -40,7 +40,7 @@ public class AdController {
 
 	@Autowired
 	private BookmarkService bookmarkService;
-	
+
 	@Autowired
 	private BidService bidService;
 
@@ -52,10 +52,10 @@ public class AdController {
 
 	/**
 	 * Gets the ad description page for the ad with the given id.
-	 * 
+	 *
 	 * @param id, the id of the ad, retrieved by <code>AdService#getAdById(id)</code>
 	 * @param principal
-	 * 
+	 *
 	 * @return model, the modified ModelAndView instance.
 	 */
 	@RequestMapping(value = "/ad", method = RequestMethod.GET)
@@ -76,19 +76,19 @@ public class AdController {
 
 		return model;
 	}
-	
+
 	/**
-	 *  Gets the auction description for the ad with the given id
-	 *  
+	 *  Gets the auction description for the ad with the given id.
+	 *
 	 *  @param id, the id of the auctionable ad.
 	 *  @param principal.
-	 *  
+	 *
 	 *  @return model, the modified ModelAndView instance.
 	 */
 	@RequestMapping(value = "/auction", method = RequestMethod.GET)
 	public ModelAndView auction(
-			@RequestParam("id") long id,
-			Principal principal)
+			@RequestParam("id") final long id,
+			final Principal principal)
 	{
 		ModelAndView model = new ModelAndView("auction");
 		Ad ad = adService.getAdById(id);
@@ -103,16 +103,15 @@ public class AdController {
 
 		return model;
 	}
-	
 
 	/**
 	 * Gets the ad description page for the ad with the given id and also
 	 * validates and persists the message passed as post data.
-	 * 
+	 *
 	 * @param id, the id of the Ad where the message has been 'produced'.
 	 * @param messageForm
 	 * @param bindingResult.
-	 * 
+	 *
 	 * @return model, the modified ModelAndView instance.
 	 */
 	@RequestMapping(value = "/ad", method = RequestMethod.POST)
@@ -137,15 +136,15 @@ public class AdController {
 	 * List bookmarkedAds. In case it is present, true is returned changing
 	 * the "Bookmark Ad" button to "Bookmarked". If it is not present it is
 	 * added to the List bookmarkedAds.
-	 * 
+	 *
 	 * @param id, the id of the ad where the bookmarked has been placed on.
 	 * @param screening
 	 * @param bookmarked
 	 * @param principal
 	 *
-	 * @return 0 and 1 for errors;
-	 *         3 to update the button to bookmarked
-	 *         3 and 2 for bookmarking or undo bookmarking respectively
+	 * @return 0 and 1 for errors; <p>
+	 *         3 to update the button to bookmarked <p>
+	 *         3 and 2 for bookmarking or undo bookmarking respectively <p>
 	 *         4 for removing button completly (because its the users ad)
 	 */
 	@RequestMapping(value = "/bookmark", method = RequestMethod.POST)
@@ -157,14 +156,14 @@ public class AdController {
 			@RequestParam("bookmarked") final boolean bookmarked,
 			final Principal principal)
 	{
-		// should never happen since no bookmark button when not logged in
+		// Should never happen since no bookmark button when not logged in.
 		if (principal == null) {
 			return 0;
 		}
 		String username = principal.getName();
 		User user = userService.findUserByUsername(username);
 		if (user == null) {
-			// that should not happen...
+			// That should not happen...
 			return 1;
 		}
 		List<Ad> bookmarkedAdsIterable = user.getBookmarkedAds();
@@ -186,37 +185,36 @@ public class AdController {
 
 		return bookmarkService.getBookmarkStatus(ad, bookmarked, user);
 	}
-	
+
 	/**
 	 * Passes a bid for an auction on to the bidService with
-	 * <code>BidService#bid(Adservice ad,int bid, User user)</code> 
-	 * 
+	 * <code>BidService#bid(Adservice ad,int bid, User user)</code>
+	 *
 	 * @param id, the id of the ad
 	 * @param screening
 	 * @param currentBid
 	 * @param principal
-	 * 
-	 * @return 0 for errors,
-	 *         <code>BidService#bid(ad, bid, user)</code> else.
+	 *
+	 * @return 0 for errors, <code>BidService#bid(ad, bid, user)</code> else.
 	 */
 	@RequestMapping(value = "/auctionBid", method = RequestMethod.POST)
 	@Transactional
 	@ResponseBody
 	public int bidOnAuction(
-			@RequestParam("id") long id,
-			@RequestParam("screening") boolean screening,
-			@RequestParam("bid") int currentBid,
-			Principal principal)
+			@RequestParam("id") final long id,
+			@RequestParam("screening") final boolean screening,
+			@RequestParam("bid") final int currentBid,
+			final Principal principal)
 	{
-		
-		// should never happen since no bookmark button when not logged in
+
+		// Should never happen since no bookmark button when not logged in.
 		if (principal == null) {
 			return 0;
 		}
 		String username = principal.getName();
 		User user = userService.findUserByUsername(username);
 		if (user == null) {
-			// that should not happen...
+			// That should not happen.
 			return 0;
 		}
 
@@ -229,11 +227,11 @@ public class AdController {
 	/**
 	 * Fetches information about bookmarked rooms and own ads and attaches this
 	 * information to the myRooms page in order to be displayed.
-	 * 
+	 *
 	 * @param principal
-	 * 
+	 *
 	 * @return a new ModelAndView('home') instance if the principal was null, else the
-	 *         modified ModelAndView instance 'model'.
+	 * modified ModelAndView instance 'model'.
 	 */
 	@RequestMapping(value = "/profile/myRooms", method = RequestMethod.GET)
 	public ModelAndView myRooms(final Principal principal)

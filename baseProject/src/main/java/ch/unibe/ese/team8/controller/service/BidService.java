@@ -14,7 +14,7 @@ import ch.unibe.ese.team8.model.dao.AdDao;
 import ch.unibe.ese.team8.model.dao.MessageDao;
 
 /**
- * Controls the bids, that are made by a user and what interactions should be made
+ * Controls the bids, that are made by a user and what interactions should be made.
  */
 @Service
 public class BidService {
@@ -29,19 +29,19 @@ public class BidService {
 	private SystemService systemService;
 
 	/**
-	 * This method handles the bid request
-	 * 
-	 * @param ad, the ad we want to bid on
-	 * @param bid, the current bid
-	 * @param user, the user who is bidding
-	 * 
-	 * @return returns an integer depending on the status
-	 *			0: the placed bid is lower than the max bid
-	 *			1: the bid was placed successfully
-	 *			2: the auction is actually over already, notify the corresponding peopl!
+	 * This method handles the bid request.
+	 *
+	 * @param ad, the ad we want to bid on.
+	 * @param bid, the current bid.
+	 * @param user, the user who is bidding.
+	 *
+	 * @return returns an integer depending on the status<p>
+	 *			0: the placed bid is lower than the max bid<p>
+	 *			1: the bid was placed successfully<p>
+	 *			2: the auction is actually over already, notify the corresponding peopl!<p>
 	 *			3: the user is already the max bidder
 	 */
-	public int bid(Ad ad, int bid, User user)
+	public int bid(final Ad ad, final int bid, final User user)
 	{
 		if (ad.getPrizePerMonth() >= bid && ad.getStartPrize() > bid)
 		{
@@ -55,11 +55,11 @@ public class BidService {
 			adDao.save(ad);
 
 			return 2;
-		} else if (ad.getMaxBidder().getId() == user.getId()) {
-			return 3;
-		} else {
+		} else if (ad.getMaxBidder().getId() == user.getId()) { return 3; }
+		else {
 
-			// this could be improved, by introducing a new method, that does this!
+			// This could be improved, by introducing a new method, that does this!
+			// NOTICE: Maybe we needed a utils class which would provide such things.
 			Message message = new Message();
 
 			message.setRecipient(ad.getMaxBidder());
@@ -105,10 +105,10 @@ public class BidService {
 
 	/**
 	 * Sends a message to the seller, that the auction ended successfully.
-	 * 
+	 *
 	 * @param auction, an Ad.
 	 */
-	private void sendMessageToSeller(Ad auction) {
+	private void sendMessageToSeller(final Ad auction) {
 		User maxBidder = auction.getMaxBidder();
 		User seller = auction.getUser();
 		long auctionId = auction.getId();
@@ -128,10 +128,10 @@ public class BidService {
 
 	/**
 	 * Sends a message to the buyer, that he won an auction.
-	 * 
+	 *
 	 * @param auction, an Ad.
 	 */
-	private void sendMessageToMaxBidder(Ad auction) {
+	private void sendMessageToMaxBidder(final Ad auction) {
 		User maxBidder = auction.getMaxBidder();
 		User seller = auction.getUser();
 		long auctionId = auction.getId();

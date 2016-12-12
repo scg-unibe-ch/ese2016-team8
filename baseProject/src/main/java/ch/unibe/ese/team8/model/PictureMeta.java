@@ -2,7 +2,7 @@ package ch.unibe.ese.team8.model;
 
 /**
  * Describes a picture with properties such as filename, file size etc. Objects
- * of this type should be convertable to JSON. That is also the reason why
+ * of this type should be <b>convertable to JSON</b>. That is also the reason why
  * fileSize is a String attribute.
  */
 public class PictureMeta {
@@ -17,7 +17,7 @@ public class PictureMeta {
 		return name;
 	}
 
-	public void setName(String name)
+	public void setName(final String name)
 	{
 		this.name = name;
 	}
@@ -27,7 +27,7 @@ public class PictureMeta {
 		return size;
 	}
 
-	public void setSize(String size)
+	public void setSize(final String size)
 	{
 		this.size = size;
 	}
@@ -37,7 +37,7 @@ public class PictureMeta {
 		return type;
 	}
 
-	public void setType(String type)
+	public void setType(final String type)
 	{
 		this.type = type;
 	}
@@ -47,7 +47,7 @@ public class PictureMeta {
 		return url;
 	}
 
-	public void setUrl(String url)
+	public void setUrl(final String url)
 	{
 		this.url = url;
 	}

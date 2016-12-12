@@ -10,7 +10,7 @@ import ch.unibe.ese.team8.model.User;
 import ch.unibe.ese.team8.model.dao.UserDao;
 
 /**
- * Adds or removes bookmarked ads from the user and updates the user accordingly
+ * Adds or removes bookmarked ads from the user and updates the user accordingly.
  */
 @Service
 public class BookmarkService {
@@ -26,9 +26,10 @@ public class BookmarkService {
 	 * @param bookmarkedAds, users current list of bookmarked ads.
 	 * @param user, current user.
 	 *
-	 * @return returns an integer 3 bookmark it
-	 *                            2 undo the bookmark
-	 *
+	 * @return returns an integer, <p>
+	 * 								1 by default <p>
+	 * 								2 undo the bookmark <p>
+	 * 								3 bookmark it
 	 */
 	public int getBookmarkStatus(
 			final Ad ad,
@@ -55,7 +56,7 @@ public class BookmarkService {
 
 	/**
 	 * Updates effectively the new List into DB.
-	 * 
+	 *
 	 * @param bookmakredAds, a List<Ad>.
 	 * @param user
 	 */
@@ -63,6 +64,5 @@ public class BookmarkService {
 	{
 		user.setBookmarkedAds(bookmarkedAds);
 		userDao.save(user);
-
 	}
 }

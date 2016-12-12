@@ -24,7 +24,7 @@ public abstract class Picture {
 		return id;
 	}
 
-	public void setId(long id)
+	public void setId(final long id)
 	{
 		this.id = id;
 	}
@@ -34,7 +34,7 @@ public abstract class Picture {
 		return filePath;
 	}
 
-	public void setFilePath(String filePath)
+	public void setFilePath(final String filePath)
 	{
 		this.filePath = filePath;
 	}
@@ -48,8 +48,16 @@ public abstract class Picture {
 		return result;
 	}
 
+	/**
+	 * Equals method is defined to check for id only. <p>
+	 * Compares the object given as argument to the current object.
+	 *
+	 * @param object
+	 *
+	 * @return boolean
+	 */
 	@Override
-	public boolean equals(Object obj)
+	public boolean equals(final Object obj)
 	{
 		if (this == obj)
 			return true;

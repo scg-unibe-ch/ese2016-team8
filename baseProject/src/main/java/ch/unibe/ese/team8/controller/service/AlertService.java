@@ -71,7 +71,9 @@ public class AlertService {
 		return alertDao.findByUser(user);
 	}
 
-	/** Deletes the alert with the given id. */
+	/**
+	 * Deletes the alert with the given id.
+	 */
 	@Transactional
 	public void deleteAlert(final Long id) {
 		alertDao.delete(id);
@@ -80,7 +82,7 @@ public class AlertService {
 	/**
 	 * Triggers all alerts that match the given ad. For every user, only one
 	 * message is sent.
-	 * 
+	 *
 	 * @param ad
 	 */
 	@Transactional
@@ -109,7 +111,7 @@ public class AlertService {
 
 		// send messages to all users with matching alerts
 		for (User user : users) {
-			
+
 			Date now;
 
 			if (user.getPremium()) {
@@ -132,9 +134,9 @@ public class AlertService {
 	/**
 	 * Returns the text for an alert message with the properties of the given
 	 * ad.
-	 * 
+	 *
 	 * @param ad
-	 * 
+	 *
 	 * @return alertText
 	 */
 	private String getAlertText(final Ad ad) {
@@ -156,10 +158,10 @@ public class AlertService {
 
 	/**
 	 * Checks if an ad is conforming to the criteria in an alert.
-	 * 
+	 *
 	 * @param ad
 	 * @param alert
-	 * 
+	 *
 	 * @return a boolean
 	 */
 	private boolean typeMismatchWith(final Ad ad, final Alert alert) {

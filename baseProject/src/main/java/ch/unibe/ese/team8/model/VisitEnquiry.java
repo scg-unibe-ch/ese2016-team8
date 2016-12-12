@@ -41,7 +41,7 @@ public class VisitEnquiry {
 		return id;
 	}
 
-	public void setId(long id)
+	public void setId(final long id)
 	{
 		this.id = id;
 	}
@@ -51,7 +51,7 @@ public class VisitEnquiry {
 		return sender;
 	}
 
-	public void setSender(User sender)
+	public void setSender(final User sender)
 	{
 		this.sender = sender;
 	}
@@ -61,7 +61,7 @@ public class VisitEnquiry {
 		return dateSent;
 	}
 
-	public void setDateSent(Date dateSent)
+	public void setDateSent(final Date dateSent)
 	{
 		this.dateSent = dateSent;
 	}
@@ -71,7 +71,7 @@ public class VisitEnquiry {
 		return state;
 	}
 
-	public void setState(VisitEnquiryState state)
+	public void setState(final VisitEnquiryState state)
 	{
 		this.state = state;
 	}
@@ -81,7 +81,7 @@ public class VisitEnquiry {
 		return visit;
 	}
 
-	public void setVisit(Visit visit)
+	public void setVisit(final Visit visit)
 	{
 		this.visit = visit;
 	}

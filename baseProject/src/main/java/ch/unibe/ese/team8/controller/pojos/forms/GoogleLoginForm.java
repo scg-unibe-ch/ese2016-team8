@@ -3,9 +3,8 @@ package ch.unibe.ese.team8.controller.pojos.forms;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-/** 
- * This GoogleLoginForm is used when a user wants to signup/signin
- * from the google account
+/**
+ * This GoogleLoginForm is used when a user wants to signup/signin from the google account.
  */
 public class GoogleLoginForm {
 
@@ -54,5 +53,4 @@ public class GoogleLoginForm {
 	public void setPicture(final String url) {
 		this.picture = url;
 	}
-
 }

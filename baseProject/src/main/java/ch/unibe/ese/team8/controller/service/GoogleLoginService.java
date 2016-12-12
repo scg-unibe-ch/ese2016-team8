@@ -25,10 +25,11 @@ public class GoogleLoginService {
 
 	/**
 	 * Handles login of google user.
+	 *
 	 * @param googleForm, a GoogleLoginForm instance.
 	 */
 	@Transactional
-	public void loginFrom(GoogleLoginForm googleForm)
+	public void loginFrom(final GoogleLoginForm googleForm)
 	{
 		User user = userDao.findByUsername(googleForm.getEmail());
 		Authentication request = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());

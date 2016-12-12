@@ -66,14 +66,14 @@ public class EditAdService {
 
 		ad.setCategory(placeAdForm.getCategory());
 
-		// take the zipcode - first four digits
+		// Take the first four digits of the zipcode.
 		String zip = placeAdForm.getCity().substring(0, 4);
 		ad.setZipcode(Integer.parseInt(zip));
 		ad.setCity(placeAdForm.getCity().substring(7));
 
 		Calendar calendar = Calendar.getInstance();
 		// java.util.Calendar uses a month range of 0-11 instead of the
-		// XMLGregorianCalendar which uses 1-12
+		// XMLGregorianCalendar, which uses 1-12.
 		try {
 			if (placeAdForm.getMoveInDate().length() >= 1)
 			{
@@ -108,7 +108,7 @@ public class EditAdService {
 		ad.setPreferences(placeAdForm.getPreferences());
 		ad.setRoommates(placeAdForm.getRoommates());
 
-		// ad description values
+		// Ad description values.
 		ad.setSmokers(placeAdForm.isSmokers());
 		ad.setAnimals(placeAdForm.isAnimals());
 		ad.setGarden(placeAdForm.getGarden());
@@ -118,7 +118,7 @@ public class EditAdService {
 		ad.setCable(placeAdForm.getCable());
 		ad.setGarage(placeAdForm.getGarage());
 		ad.setInternet(placeAdForm.getInternet());
-		
+
 		ad.setSale(placeAdForm.getSale());
 		ad.setAuction(placeAdForm.getAuction());
 
@@ -132,7 +132,7 @@ public class EditAdService {
 			picture.setFilePath(filePath);
 			pictures.add(picture);
 		}
-		// add existing pictures
+		// Add existing pictures.
 		for (AdPicture picture : ad.getPictures()) {
 			pictures.add(picture);
 		}
@@ -150,19 +150,19 @@ public class EditAdService {
 				registeredUserRommates.add(roommateUser);
 			}
 		}
-		// add existing roommates
+		// Add existing roommates.
 		for (User roommates : ad.getRegisteredRoommates()) {
 			registeredUserRommates.add(roommates);
 		}
 		ad.setRegisteredRoommates(registeredUserRommates);
 
-		// visits
+		// Visits.
 		List<Visit> visits = new LinkedList<>();
 		List<String> visitStrings = placeAdForm.getVisits();
 		if (visitStrings != null) {
 			for (String visitString : visitStrings) {
 				Visit visit = new Visit();
-				// format is 28-02-2014;10:02;13:14
+				// Format is 28-02-2014;10:02;13:14.
 				DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 				String[] parts = visitString.split(";");
 				String startTime = parts[0] + " " + parts[1];
@@ -182,7 +182,7 @@ public class EditAdService {
 				visits.add(visit);
 			}
 
-			// add existing visit
+			// Add existing visit.
 			for (Visit visit : ad.getVisits()) {
 				visits.add(visit);
 			}
@@ -197,9 +197,9 @@ public class EditAdService {
 	/**
 	 * Removes the picture with the given id from the list of pictures in the ad
 	 * with the given id.
-	 * 
-	 * @param adId
-	 * @param pictureId
+	 *
+	 * @param adId, a long value.
+	 * @param pictureId, a long value.
 	 */
 	@Transactional
 	public void deletePictureFromAd(final long adId, final long pictureId)
@@ -214,9 +214,9 @@ public class EditAdService {
 
 	/**
 	 * Fills a Form with the data of an ad.
-	 * 
+	 *
 	 * @param ad
-	 * 
+	 *
 	 * @return adForm, a PlaceAdForm.
 	 */
 	public PlaceAdForm fillForm(final Ad ad)

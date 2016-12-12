@@ -28,7 +28,7 @@ public class UserUpdateService {
 
 	/**
 	 * Handles updating an existing user in the database.
-	 * 
+	 *
 	 * @param editProfileForm
 	 */
 	@Transactional
@@ -44,7 +44,4 @@ public class UserUpdateService {
 
 		userDao.save(currentUser);
 	}
-
-
-
 }

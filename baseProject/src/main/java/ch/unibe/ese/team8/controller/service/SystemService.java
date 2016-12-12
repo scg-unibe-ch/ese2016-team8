@@ -23,7 +23,7 @@ public class SystemService {
 
 	@Autowired
 	private AdService adService;
-	
+
 	@Autowired
 	private MessageDao messageDao;
 
@@ -38,18 +38,22 @@ public class SystemService {
 	}
 
 	/**
+	 * Forms the BidText by using predefined text strings and afterwards adds the
+	 * missing pieces, which have been given as arguments to the string.
+	 *
+	 *
 	 * @param maxBidder, a user.
 	 * @param id, a long value.
 	 * @param auctionEndDate
 	 * @param prize
-	 * 
+	 *
 	 * @return the bid text.
 	 */
 	public String getBidText(
-			User maxBidder,
-			long id,
-			Date auctionEndDate,
-			int prize)
+			final User maxBidder,
+			final long id,
+			final Date auctionEndDate,
+			final int prize)
 	{
 		StringBuffer message = new StringBuffer();
 
@@ -63,7 +67,7 @@ public class SystemService {
 		return message.toString();
 	}
 
-	public String getSaleNotification(User user, long id, User buyer)
+	public String getSaleNotification(final User user, final long id, final User buyer)
 	{
 		return "Your auction \"" + adService.getAdById(id).getTitle() + "\" ended";
 	}
@@ -73,7 +77,7 @@ public class SystemService {
 		return "You won an auction!";
 	}
 
-	public String getBuyText(User user, long id, User seller)
+	public String getBuyText(final User user, final long id, final User seller)
 	{
 		StringBuffer message = new StringBuffer();
 
@@ -88,7 +92,7 @@ public class SystemService {
 		return message.toString();
 	}
 
-	public String getSaleText(User user, long id, User seller)
+	public String getSaleText(final User user, final long id, final User seller)
 	{
 		StringBuffer message = new StringBuffer();
 
@@ -102,8 +106,8 @@ public class SystemService {
 
 		return message.toString();
 	}
-	
-	public String getInvoiceText(User user)
+
+	public String getInvoiceText(final User user)
 	{
 		StringBuffer message = new StringBuffer();
 
@@ -112,7 +116,7 @@ public class SystemService {
 		return message.toString();
 	}
 
-	public void sendPremiumInvoice(User user) 
+	public void sendPremiumInvoice(final User user)
 	{
 		Message message = new Message();
 		Date now = new Date();

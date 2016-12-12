@@ -1,10 +1,5 @@
 package ch.unibe.ese.team8.controller;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,13 +18,13 @@ public class IndexController {
 
 	@Autowired
 	private AdService adService;
-	
+
 	@Autowired
 	private BidService bidService;
 
 	/**
 	 * Displays the home page.
-	 * 
+	 *
 	 * @return model, the modified ModelAndView instance.
 	 */
 	@RequestMapping(value = "/")
@@ -37,17 +32,17 @@ public class IndexController {
 	{
 		ModelAndView model = new ModelAndView("index");
 		bidService.checkExpiredAuctions();
-		
+
 		Iterable<Ad> ads = adService.getNewestAds(4);
 		model.addObject("newest", ads);
-		
+
 		return model;
 	}
 
 	/**
 	 * Displays the about us page by returning a new ModelAndView('about') instance.
-	 * 
-	 * @return ModelAndView('about'), returns by default a new ModelAndView instance.
+	 *
+	 * @return ModelAndView('about'), by default.
 	 */
 	@RequestMapping(value = "/about")
 	public ModelAndView about()
@@ -58,7 +53,7 @@ public class IndexController {
 	/**
 	 * Displays the disclaimer page by creating/ returning a new ModelAndView('disclaimer')
 	 * instance.
-	 * 
+	 *
 	 * @return ModelAndView('disclaimer'), by default.
 	 */
 	@RequestMapping(value = "/disclaimer")

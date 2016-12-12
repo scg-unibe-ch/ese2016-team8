@@ -3,7 +3,7 @@ package ch.unibe.ese.team8.controller.pojos.forms;
 import org.hibernate.validator.constraints.NotBlank;
 
 /**
- * This form is used when a user wants to send a new message
+ * This form is used when a user wants to send a new message.
  */
 public class MessageForm {
 

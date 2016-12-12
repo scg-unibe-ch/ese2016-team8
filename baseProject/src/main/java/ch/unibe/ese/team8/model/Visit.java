@@ -26,18 +26,18 @@ public class Visit {
 	@Id
 	@GeneratedValue
 	private long id;
-	
+
 	@ManyToOne
 	private Ad ad;
 
 	@Fetch(FetchMode.SELECT)
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<User> searchers;
-	
+
 	@JsonFormat(pattern = "HH:mm, dd.MM.yyyy")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date startTimestamp;
-	
+
 	@JsonFormat(pattern = "HH:mm, dd.MM.yyyy")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date endTimestamp;
@@ -47,17 +47,17 @@ public class Visit {
 		return id;
 	}
 
-	public void setId(long id)
+	public void setId(final long id)
 	{
 		this.id = id;
 	}
-	
+
 	public Ad getAd()
 	{
 		return ad;
 	}
 
-	public void setAd(Ad ad)
+	public void setAd(final Ad ad)
 	{
 		this.ad = ad;
 	}
@@ -67,22 +67,22 @@ public class Visit {
 		return searchers;
 	}
 
-	public void setSearchers(List<User> searchers)
+	public void setSearchers(final List<User> searchers)
 	{
 		this.searchers = searchers;
 	}
-	
+
 	/**
 	 * Used when an enquiry gets accepted.
-	 * 
+	 *
 	 * @param user
 	 */
-	public void addToSearchers(User user)
+	public void addToSearchers(final User user)
 	{
 		searchers.add(user);
 	}
-	
-	public void removeFromSearchers(User user)
+
+	public void removeFromSearchers(final User user)
 	{
 		searchers.remove(user);
 	}
@@ -92,7 +92,7 @@ public class Visit {
 		return startTimestamp;
 	}
 
-	public void setStartTimestamp(Date startTimestamp)
+	public void setStartTimestamp(final Date startTimestamp)
 	{
 		this.startTimestamp = startTimestamp;
 	}
@@ -102,7 +102,7 @@ public class Visit {
 		return endTimestamp;
 	}
 
-	public void setEndTimestamp(Date endTimestamp)
+	public void setEndTimestamp(final Date endTimestamp)
 	{
 		this.endTimestamp = endTimestamp;
 	}

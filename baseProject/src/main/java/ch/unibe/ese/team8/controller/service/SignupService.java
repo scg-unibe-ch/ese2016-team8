@@ -13,7 +13,7 @@ import ch.unibe.ese.team8.model.UserRole;
 import ch.unibe.ese.team8.model.dao.UserDao;
 
 /**
- * Handles the persisting of new users
+ * Handles the persisting of new users.
  */
 @Service
 public class SignupService {
@@ -25,6 +25,7 @@ public class SignupService {
 
 	/**
 	 * Handles persisting a new user to the database.
+	 *
 	 * @param signupForm
 	 */
 	@Transactional
@@ -51,9 +52,9 @@ public class SignupService {
 
 	/**
 	 * Returns whether a user with the given username already exists.
-	 * 
+	 *
 	 * @param username the username to check for.
-	 * 
+	 *
 	 * @return true if the user already exists, false otherwise.
 	 */
 	@Transactional

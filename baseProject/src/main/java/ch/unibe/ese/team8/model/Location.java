@@ -2,7 +2,7 @@ package ch.unibe.ese.team8.model;
 
 /**
  * Represents a zip code and the data that belongs to it. Is not marked as
- * entity, since it is not used in Hibernate.
+ * entity, since it is <b>not used in Hibernate</b>.
  */
 public class Location {
 
@@ -16,7 +16,7 @@ public class Location {
 		return zip;
 	}
 
-	public void setZip(int zip)
+	public void setZip(final int zip)
 	{
 		this.zip = zip;
 	}
@@ -26,7 +26,7 @@ public class Location {
 		return city;
 	}
 
-	public void setCity(String city)
+	public void setCity(final String city)
 	{
 		this.city = city;
 	}
@@ -36,7 +36,7 @@ public class Location {
 		return latitude;
 	}
 
-	public void setLatitude(double latitude)
+	public void setLatitude(final double latitude)
 	{
 		this.latitude = latitude;
 	}
@@ -46,7 +46,7 @@ public class Location {
 		return longitude;
 	}
 
-	public void setLongitude(double longitude)
+	public void setLongitude(final double longitude)
 	{
 		this.longitude = longitude;
 	}

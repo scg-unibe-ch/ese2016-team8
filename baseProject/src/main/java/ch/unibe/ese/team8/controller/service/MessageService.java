@@ -34,9 +34,9 @@ public class MessageService {
 
 	/**
 	 * Gets all messages in the inbox of the given user, sorted newest to oldest.
-	 * 
+	 *
 	 * @param user
-	 * 
+	 *
 	 * @return Iterable<Message>
 	 */
 	@Transactional
@@ -54,21 +54,21 @@ public class MessageService {
 				return message2.getDateSent().compareTo(message1.getDateSent());
 			}
 		});
-		
+
 		if(!messages.isEmpty())
 		{
 			messages.get(0).setState(MessageState.READ);
 			messageDao.save(messages.get(0));
 		}
-		
+
 		return messages;
 	}
 
 	/**
 	 * Gets all messages in the sent folder for the given user.
-	 * 
+	 *
 	 * @param user
-	 * 
+	 *
 	 * @return Iterable<Message>
 	 */
 	@Transactional
@@ -79,9 +79,9 @@ public class MessageService {
 
 	/**
 	 * Gets the message with the given id.
-	 * 
+	 *
 	 * @param id, the id fo the message.
-	 * 
+	 *
 	 * @return message
 	 */
 	@Transactional
@@ -94,7 +94,7 @@ public class MessageService {
 	 * Handles persisting a new message to the database.
 	 *
 	 * @param messageForm, the form to take the data from.
-	 * 
+	 *
 	 * @return Message
 	 */
 	@Transactional
@@ -107,7 +107,7 @@ public class MessageService {
 		message.setText(messageForm.getText());
 		message.setState(MessageState.UNREAD);
 
-		// get logged in user as the sender
+		// Get logged in user as the sender.
 		org.springframework.security.core.userdetails.User securityUser = (org.springframework.security.core.userdetails.User) SecurityContextHolder
 				.getContext().getAuthentication().getPrincipal();
 
@@ -117,7 +117,7 @@ public class MessageService {
 
 		Calendar calendar = Calendar.getInstance();
 		// java.util.Calendar uses a month range of 0-11 instead of the
-		// XMLGregorianCalendar which uses 1-12
+		// XMLGregorianCalendar, which uses 1-12.
 		calendar.setTimeInMillis(System.currentTimeMillis());
 		message.setDateSent(calendar.getTime());
 
@@ -152,7 +152,7 @@ public class MessageService {
 
 	/**
 	 * Sets the MessageState of a given Message to "READ".
-	 * 
+	 *
 	 * @param id
 	 */
 	@Transactional
@@ -164,7 +164,7 @@ public class MessageService {
 
 	/**
 	 * Returns the number of unread messages a user has.
-	 * 
+	 *
 	 * @param id, a long.
 	 */
 	@Transactional

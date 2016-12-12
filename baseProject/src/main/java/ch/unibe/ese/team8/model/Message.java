@@ -14,7 +14,7 @@ import javax.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
- * Represents a message that is sent between two users.
+ * Represents a message that is sent between two <code>users</code>.
  */
 @Entity
 public class Message {
@@ -47,7 +47,7 @@ public class Message {
 		return id;
 	}
 
-	public void setId(long id)
+	public void setId(final long id)
 	{
 		this.id = id;
 	}
@@ -57,7 +57,7 @@ public class Message {
 		return state;
 	}
 
-	public void setState(MessageState state)
+	public void setState(final MessageState state)
 	{
 		this.state = state;
 	}
@@ -67,7 +67,7 @@ public class Message {
 		return subject;
 	}
 
-	public void setSubject(String subject)
+	public void setSubject(final String subject)
 	{
 		this.subject = subject;
 	}
@@ -77,7 +77,7 @@ public class Message {
 		return text;
 	}
 
-	public void setText(String text)
+	public void setText(final String text)
 	{
 		this.text = text;
 	}
@@ -87,7 +87,7 @@ public class Message {
 		return dateSent;
 	}
 
-	public void setDateSent(Date dateSent)
+	public void setDateSent(final Date dateSent)
 	{
 		this.dateSent = dateSent;
 	}
@@ -97,7 +97,7 @@ public class Message {
 		return sender;
 	}
 
-	public void setSender(User sender)
+	public void setSender(final User sender)
 	{
 		this.sender = sender;
 	}
@@ -107,7 +107,7 @@ public class Message {
 		return recipient;
 	}
 
-	public void setRecipient(User recipient)
+	public void setRecipient(final User recipient)
 	{
 		this.recipient = recipient;
 	}

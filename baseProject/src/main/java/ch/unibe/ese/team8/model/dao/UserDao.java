@@ -6,5 +6,6 @@ import ch.unibe.ese.team8.model.User;
 
 public interface UserDao extends CrudRepository<User, Long> {
 	public User findByUsername(String username);
+
 	public User findUserById(long id);
 }

@@ -43,7 +43,7 @@ public class ProfileController {
 
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private SystemService systemService;
 
@@ -55,13 +55,13 @@ public class ProfileController {
 
 	@Autowired
 	private AdService adService;
-	
+
 	@Autowired
 	private GoogleService googleService;
 
 	@Autowired
 	private GoogleLoginService googleLoginService;
-	
+
 	@Autowired
 	@Qualifier("authenticationManager")
 	protected AuthenticationManager authenticationManager;
@@ -69,8 +69,8 @@ public class ProfileController {
 	/**
 	 * Returns the login page by creating a new ModelAndView instance with
 	 * <code>ModelAndView('login')</code>.
-	 * 
-	 * @return mode, a ModelAndView instance.
+	 *
+	 * @return mode, a ModelAndView('login') instance.
 	 */
 	@RequestMapping(value = "/login")
 	public ModelAndView loginPage()
@@ -79,16 +79,16 @@ public class ProfileController {
 		model.addObject("googleForm", new GoogleLoginForm());
 		return model;
 	}
-	
+
 	/**
 	 * Handles the login and return from the google login form.
-	 * 
+	 *
 	 * @param googleForm, a GoogleLoginForm.
-	 * 
+	 *
 	 * @return model, the ModelAndView instance.
 	 */
 	@RequestMapping(value = "/google", method = RequestMethod.POST)
-	public ModelAndView goolgeLogin(GoogleLoginForm googleForm)
+	public ModelAndView goolgeLogin(final GoogleLoginForm googleForm)
 	{
 		ModelAndView model = new ModelAndView("index");
 		if(!googleService.doesUserWithUsernameExist(googleForm.getEmail()))
@@ -102,7 +102,7 @@ public class ProfileController {
 
 	/**
 	 * Returns the signup page.
-	 * 
+	 *
 	 * @return mode, the ModelAndView instance.
 	 */
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
@@ -115,10 +115,10 @@ public class ProfileController {
 
 	/**
 	 * Validates the signup form and on success persists the new user.
-	 * 
+	 *
 	 * @param signupForm
 	 * @param bindingResult
-	 * 
+	 *
 	 * @return model, the ModelAndView instance.
 	 */
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
@@ -141,11 +141,11 @@ public class ProfileController {
 
 	/**
 	 * Checks and returns whether a user with the given email already exists.
-	 * 
+	 *
 	 * @param email
-	 * 
+	 *
 	 * @return boolean, the result of
-	 *                  <code>SignupService*doesUserWithUsernameExist(email)</code>
+	 * <code>SignupService#doesUserWithUsernameExist(email)</code>
 	 */
 	@RequestMapping(value = "/signup/doesEmailExist", method = RequestMethod.POST)
 	public @ResponseBody boolean doesEmailExist(@RequestParam final String email)
@@ -155,9 +155,9 @@ public class ProfileController {
 
 	/**
 	 * Shows the edit profile page.
-	 * 
+	 *
 	 * @param principal
-	 * 
+	 *
 	 * @return mode, the ModelAndView instance.
 	 */
 	@RequestMapping(value = "/profile/editProfile", method = RequestMethod.GET)
@@ -173,11 +173,11 @@ public class ProfileController {
 
 	/**
 	 * Handles the request for editing the user profile.
-	 * 
-	 * @param editProfileForm,
-	 * @param bindingResult,
+	 *
+	 * @param editProfileForm
+	 * @param bindingResult
 	 * @param principal
-	 * 
+	 *
 	 * @return mode, the ModelAndView instance.
 	 */
 	@RequestMapping(value = "/profile/editProfile", method = RequestMethod.POST)
@@ -191,10 +191,9 @@ public class ProfileController {
 		User user = userService.findUserByUsername(username);
 		if (!bindingResult.hasErrors())
 		{
-			if(editProfileForm.getPremium()){
+			if(editProfileForm.getPremium())
 				systemService.sendPremiumInvoice(user);
-			}
-			
+
 			userUpdateService.updateFrom(editProfileForm);
 			model = new ModelAndView("updatedProfile");
 			model.addObject("message", "Your Profile has been updated!");
@@ -202,18 +201,17 @@ public class ProfileController {
 			return model;
 		} else {
 			model = new ModelAndView("updatedProfile");
-			model.addObject("message",
-					"Something went wrong, please contact the WebAdmin if the problem persists!");
+			model.addObject("message", "Something went wrong, please contact the WebAdmin if the problem persists!");
 			return model;
 		}
 	}
 
 	/**
 	 * Displays the public profile of the user with the given id.
-	 * 
+	 *
 	 * @param id, the id of the user.
 	 * @param principal
-	 * 
+	 *
 	 * @return model, the ModelAndView instance.
 	 */
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
@@ -237,9 +235,9 @@ public class ProfileController {
 
 	/**
 	 * Displays the schedule page of the currently logged in user.
-	 * 
+	 *
 	 * @param principal
-	 * 
+	 *
 	 * @return mode, the ModelAndView instance.
 	 */
 	@RequestMapping(value = "/profile/schedule", method = RequestMethod.GET)
@@ -248,11 +246,11 @@ public class ProfileController {
 		ModelAndView model = new ModelAndView("schedule");
 		User user = userService.findUserByUsername(principal.getName());
 
-		// visits, i.e. when the user sees someone else's property
+		// Visits, i.e. when the user sees someone else's property.
 		Iterable<Visit> visits = visitService.getVisitsForUser(user);
 		model.addObject("visits", visits);
 
-		// presentations, i.e. when the user presents a property
+		// Presentations, i.e. when the user presents a property.
 		Iterable<Ad> usersAds = adService.getAdsByUser(user);
 		ArrayList<Visit> usersPresentations = new ArrayList<Visit>();
 
@@ -269,10 +267,10 @@ public class ProfileController {
 	}
 
 	/**
-	 * Returns the visitors page for the visit with the given id
-	 * 
+	 * Returns the visitors page for the visit with the given id.
+	 *
 	 * @param id, the id of the visit.
-	 * 
+	 *
 	 * @return model, the ModelAndView instance.
 	 */
 	@RequestMapping(value = "/profile/visitors", method = RequestMethod.GET)

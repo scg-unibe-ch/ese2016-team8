@@ -34,10 +34,10 @@ public class MessageController {
 	/**
 	 * Shows the messages page for the currently logged in user. The inbox of
 	 * the user is shown.
-	 * 
+	 *
 	 * @param principal
-	 * 
-	 * @return model, the modified ModelAndView instance.
+	 *
+	 * @return model, the modified <code>ModelAndView('message')</code> instance.
 	 */
 	@RequestMapping(value = "/profile/messages", method = RequestMethod.GET)
 	public ModelAndView messages(final Principal principal)
@@ -51,11 +51,10 @@ public class MessageController {
 
 	/**
 	 * Gets all messages in the inbox for the currently logged in user.
-	 * 
+	 *
 	 * @param principal
-	 * 
-	 * @return Iterable<Message>, retrieved by 
-	 *         <code>MessageService#getInboxForuser(user)</code>
+	 *
+	 * @return Iterable<Message>, retrieved by <code>MessageService#getInboxForuser(user)</code>
 	 */
 	@RequestMapping(value = "/profile/message/inbox", method = RequestMethod.POST)
 	public @ResponseBody Iterable<Message> getInbox(final Principal principal)
@@ -66,11 +65,10 @@ public class MessageController {
 
 	/**
 	 * Gets all messages in the sent folder for the currently logged in user.
-	 * 
+	 *
 	 * @param principal
-	 * 
-	 * @return Iterable<Message>, retrieved from
-	 *         <code>MessageService#getSentForUser(user)</code>
+	 *
+	 * @return Iterable<Message>, retrieved from <code>MessageService#getSentForUser(user)</code>
 	 */
 	@RequestMapping(value = "/profile/message/sent", method = RequestMethod.POST)
 	public @ResponseBody Iterable<Message> getSent(final Principal principal)
@@ -81,9 +79,9 @@ public class MessageController {
 
 	/**
 	 * Gets the message with the given id.
-	 * 
+	 *
 	 * @param id, the id of the message to retrieve.
-	 * 
+	 *
 	 * @return Message, from <code>MessageService#getMessage(id)</code>
 	 */
 	@RequestMapping(value = "/profile/messages/getMessage", method = RequestMethod.GET)
@@ -95,15 +93,14 @@ public class MessageController {
 	/**
 	 * Shows the messages page and validates and/or saves the message passed a
 	 * post data.
-	 * 
+	 *
 	 * @param MessageForm
 	 * @param bindingResult
 	 * @param principal
-	 * 
-	 * @return if 'bindingResult' has Errors, a new instance of
-	 *         <code>ModelAndView('messages') is returned,
-	 *         else we modify the model retrieved from <code>ModelAndView('messages')</code>.
-	 * 
+	 *
+	 * @return if 'bindingResult' has Errors, a new instance of <code>ModelAndView('messages')
+	 * is returned, else we modify the model retrieved from
+	 * <code>ModelAndView('messages')</code>.
 	 */
 	@RequestMapping(value = "/profile/messages", method = RequestMethod.POST)
 	public ModelAndView messageSent(
@@ -123,7 +120,7 @@ public class MessageController {
 
 	/**
 	 * Sets the MessageState of a given Message to "READ".
-	 * 
+	 *
 	 * @param id, the id of the message.
 	 */
 	@RequestMapping(value="/profile/readMessage", method = RequestMethod.GET)
@@ -135,11 +132,11 @@ public class MessageController {
 	/**
 	 * Returns the number of unread messages of the logged in user. Uses the principal
 	 * to retrieve the id.
-	 * 
+	 *
 	 * @param principal
-	 * 
+	 *
 	 * @return int, number of unread messages retrieved from
-	 *         <code>MessageService#unread(id)</code>
+	 * <code>MessageService#unread(id)</code>
 	 */
 	@RequestMapping(value="/profile/unread", method = RequestMethod.GET)
 	public @ResponseBody int unread(final Principal principal)
@@ -152,11 +149,11 @@ public class MessageController {
 	 * Checks if the email passed as post parameter is a valid email. In case it
 	 * is valid, the email address is returned. If it is not, a error message is
 	 * returned.
-	 * 
+	 *
 	 * @param email, a String
-	 * 
+	 *
 	 * @retun String, either a simple error message 'this user does not exist',
-	 *                else <code>user.getEmail()</code>.
+	 * else <code>user.getEmail()</code>.
 	 */
 	@RequestMapping(value = "/profile/messages/validateEmail", method = RequestMethod.POST)
 	@ResponseBody
@@ -173,7 +170,7 @@ public class MessageController {
 
 	/**
 	 * Sends a message with the passed parameters
-	 * 
+	 *
 	 * @param subject, a String for the subject of the message.
 	 * @param text
 	 * @param recipientEmail
@@ -190,5 +187,4 @@ public class MessageController {
 		User sender = userService.findUserByUsername(principal.getName());
 		messageService.sendMessage(sender, recipient, subject, text);
 	}
-
 }

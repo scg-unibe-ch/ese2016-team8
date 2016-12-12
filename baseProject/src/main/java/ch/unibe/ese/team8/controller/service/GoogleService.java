@@ -20,7 +20,7 @@ import ch.unibe.ese.team8.model.dao.UserDao;
 
 /**
  * The GoogleService class creates a new User with the information provided from
- * the GoogleLoginForm
+ * the GoogleLoginForm.
  */
 @Service
 public class GoogleService {
@@ -36,11 +36,11 @@ public class GoogleService {
 
 	/**
 	 * Handles persisting a new user to the database.
-	 * 
+	 *
 	 * @param googleForm, a GoogleLoginForm.
 	 */
 	@Transactional
-	public void saveFrom(GoogleLoginForm googleForm)
+	public void saveFrom(final GoogleLoginForm googleForm)
 	{
 		User user = new User();
 		user.setUsername(googleForm.getEmail());
@@ -50,7 +50,7 @@ public class GoogleService {
 
 		final SecureRandom rndm = new SecureRandom();
 		String randomPassword = new BigInteger(50, rndm).toString(32);
-		user.setPassword(randomPassword); // sets a strong random password
+		user.setPassword(randomPassword); // Sets a strong random password.
 
 		user.setEnabled(true);
 		user.setGender(Gender.MALE);
@@ -73,16 +73,14 @@ public class GoogleService {
 
 	/**
 	 * Checks whether a user exists for a given username.
-	 * 
+	 *
 	 * @param username
-	 * 
-	 * @return true, if the user exists.
-	 *         false, else.
+	 *
+	 * @return true, if the user exists. <p> false, else.
 	 */
 	@Transactional
-	public boolean doesUserWithUsernameExist(String username)
+	public boolean doesUserWithUsernameExist(final String username)
 	{
 		return userDao.findByUsername(username) != null;
 	}
-
 }

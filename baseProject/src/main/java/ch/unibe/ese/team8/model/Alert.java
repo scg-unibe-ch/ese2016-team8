@@ -32,7 +32,7 @@ public class Alert {
 
 	@Column(nullable = false)
 	private int radius;
-	
+
 	@Column(nullable = false)
 	private String category;
 
@@ -41,7 +41,7 @@ public class Alert {
 		return id;
 	}
 
-	public void setId(long id)
+	public void setId(final long id)
 	{
 		this.id = id;
 	}
@@ -51,7 +51,7 @@ public class Alert {
 		return user;
 	}
 
-	public void setUser(User user)
+	public void setUser(final User user)
 	{
 		this.user = user;
 	}
@@ -61,7 +61,7 @@ public class Alert {
 		return zipcode;
 	}
 
-	public void setZipcode(int zipcode)
+	public void setZipcode(final int zipcode)
 	{
 		this.zipcode = zipcode;
 	}
@@ -71,7 +71,7 @@ public class Alert {
 		return city;
 	}
 
-	public void setCity(String city)
+	public void setCity(final String city)
 	{
 		this.city = city;
 	}
@@ -81,7 +81,7 @@ public class Alert {
 		return radius;
 	}
 
-	public void setRadius(int radius)
+	public void setRadius(final int radius)
 	{
 		this.radius = radius;
 	}
@@ -91,7 +91,7 @@ public class Alert {
 		return price;
 	}
 
-	public void setPrice(int price)
+	public void setPrice(final int price)
 	{
 		this.price = price;
 	}
@@ -100,8 +100,8 @@ public class Alert {
 	{
 		return category;
 	}
-	
-	public void setCategory(String category)
+
+	public void setCategory(final String category)
 	{
 		this.category = category;
 	}

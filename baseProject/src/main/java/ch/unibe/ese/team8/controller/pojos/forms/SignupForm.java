@@ -69,5 +69,4 @@ public class SignupForm {
 	public void setGender(final Gender gender) {
 		this.gender = gender;
 	}
-
 }

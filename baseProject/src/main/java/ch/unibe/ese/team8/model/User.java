@@ -18,7 +18,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
- * Describes a user on the platform.
+ * Describes a <code>user</code> on the platform.
  */
 @Entity
 @Table(name = "users")
@@ -51,7 +51,7 @@ public class User {
 
 	@Column(nullable = false)
 	private boolean premium;
-	
+
 	@Column(nullable = false)
 	private boolean googleUser;
 
@@ -78,7 +78,7 @@ public class User {
 		return premium;
 	}
 
-	public void setPremium(boolean premium)
+	public void setPremium(final boolean premium)
 	{
 		this.premium = premium;
 	}
@@ -88,7 +88,7 @@ public class User {
 		return id;
 	}
 
-	public void setId(long id)
+	public void setId(final long id)
 	{
 		this.id = id;
 	}
@@ -98,7 +98,7 @@ public class User {
 		return username;
 	}
 
-	public void setUsername(String username)
+	public void setUsername(final String username)
 	{
 		this.username = username;
 	}
@@ -108,7 +108,7 @@ public class User {
 		return email;
 	}
 
-	public void setEmail(String email)
+	public void setEmail(final String email)
 	{
 		this.email = email;
 	}
@@ -118,7 +118,7 @@ public class User {
 		return firstName;
 	}
 
-	public void setFirstName(String firstName)
+	public void setFirstName(final String firstName)
 	{
 		this.firstName = firstName;
 	}
@@ -128,7 +128,7 @@ public class User {
 		return lastName;
 	}
 
-	public void setLastName(String lastName)
+	public void setLastName(final String lastName)
 	{
 		this.lastName = lastName;
 	}
@@ -138,7 +138,7 @@ public class User {
 		return enabled;
 	}
 
-	public void setEnabled(boolean enabled)
+	public void setEnabled(final boolean enabled)
 	{
 		this.enabled = enabled;
 	}
@@ -148,7 +148,7 @@ public class User {
 		return userRoles;
 	}
 
-	public void setUserRoles(Set<UserRole> userRoles)
+	public void setUserRoles(final Set<UserRole> userRoles)
 	{
 		this.userRoles = userRoles;
 	}
@@ -158,7 +158,7 @@ public class User {
 		return password;
 	}
 
-	public void setPassword(String password)
+	public void setPassword(final String password)
 	{
 		this.password = password;
 	}
@@ -168,7 +168,7 @@ public class User {
 		return picture;
 	}
 
-	public void setPicture(UserPicture picture)
+	public void setPicture(final UserPicture picture)
 	{
 		this.picture = picture;
 	}
@@ -178,7 +178,7 @@ public class User {
 		return gender;
 	}
 
-	public void setGender(Gender gender)
+	public void setGender(final Gender gender)
 	{
 		this.gender = gender;
 	}
@@ -188,7 +188,7 @@ public class User {
 		return googleUser;
 	}
 
-	public void setGoogleUser(boolean googleUser)
+	public void setGoogleUser(final boolean googleUser)
 	{
 		this.googleUser = googleUser;
 	}
@@ -198,7 +198,7 @@ public class User {
 		return aboutMe;
 	}
 
-	public void setAboutMe(String aboutMe)
+	public void setAboutMe(final String aboutMe)
 	{
 		this.aboutMe = aboutMe;
 	}
@@ -208,7 +208,7 @@ public class User {
 		return bookmarkedAds;
 	}
 
-	public void setBookmarkedAds(List<Ad> bookmarkedAds)
+	public void setBookmarkedAds(final List<Ad> bookmarkedAds)
 	{
 		this.bookmarkedAds = bookmarkedAds;
 	}
@@ -222,9 +222,16 @@ public class User {
 		return result;
 	}
 
-	// equals method is defined to check for id only
+	/**
+	 * Equals method is defined to check for id only. <p>
+	 * Compares the object given as argument to the current object.
+	 *
+	 * @param object
+	 *
+	 * @return boolean
+	 */
 	@Override
-	public boolean equals(Object obj)
+	public boolean equals(final Object obj)
 	{
 		if (this == obj)
 			return true;

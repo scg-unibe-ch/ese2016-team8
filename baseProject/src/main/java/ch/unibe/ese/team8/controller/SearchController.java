@@ -14,7 +14,9 @@ import ch.unibe.ese.team8.controller.pojos.forms.SearchForm;
 import ch.unibe.ese.team8.controller.service.AdService;
 import ch.unibe.ese.team8.controller.service.UserService;
 
-/** Handles all requests concerning the search for ads. */
+/**
+ * Handles all requests concerning the search for ads.
+ */
 @Controller
 public class SearchController {
 
@@ -32,7 +34,7 @@ public class SearchController {
 
 	/**
 	 * Shows the search ad page.
-	 * 
+	 *
 	 * @return mode, the ModelAndView instance.
 	 */
 	@RequestMapping(value = "/searchAd", method = RequestMethod.GET)
@@ -44,9 +46,10 @@ public class SearchController {
 	/**
 	 * Gets the results when filtering the ads in the database by the parameters
 	 * in the search form.
-	 * 
+	 *
 	 * @param searchForm
-	 * 
+	 * @param result, the BindingResult instance.
+	 *
 	 * @return model, the ModelAndView instance.
 	 */
 	@RequestMapping(value = "/results", method = RequestMethod.POST)
@@ -60,11 +63,11 @@ public class SearchController {
 			model.addObject("results", adService.queryResults(searchForm));
 			return model;
 		} else {
-			// go back
+			// Go back.
 			return searchAd();
 		}
 	}
-	
+
 	@ModelAttribute
 	public SearchForm getSearchForm()
 	{

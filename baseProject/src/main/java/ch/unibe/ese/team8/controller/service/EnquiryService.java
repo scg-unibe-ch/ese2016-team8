@@ -37,9 +37,10 @@ public class EnquiryService {
 
 	/**
 	 * Returns all enquiries that were sent to the given user sorted by date
-	 * sent
+	 * sent.
 	 *
 	 * @param recipient, the user to search for.
+	 *
 	 * @return an Iterable of all matching enquiries.
 	 */
 	@Transactional
@@ -65,7 +66,7 @@ public class EnquiryService {
 
 	/**
 	 * Saves the given visit enquiry.
-	 * 
+	 *
 	 * @param visitEnquiry
 	 */
 	@Transactional
@@ -76,22 +77,23 @@ public class EnquiryService {
 
 	/**
 	 * Accepts the enquiry with the given id.
+	 *
 	 * @param enquiryId
 	 */
 	@Transactional
 	public void acceptEnquiry(final long enquiryId)
 	{
-		// accept visit
+		// Accept visit.
 		VisitEnquiry enquiry = enquiryDao.findOne(enquiryId);
 		enquiry.setState(VisitEnquiryState.ACCEPTED);
 		enquiryDao.save(enquiry);
 
-		// add user to the visitor list
+		// Add user to the visitor list.
 		Visit visit = enquiry.getVisit();
 		visit.addToSearchers(enquiry.getSender());
 		visitDao.save(visit);
 
-		// create a non-initialized rating
+		// Create a non-initialized rating.
 		User ratee = enquiry.getSender();
 		User rater = visit.getAd().getUser();
 		Rating rating = new Rating();
@@ -103,8 +105,8 @@ public class EnquiryService {
 
 	/**
 	 * Declines the enquiry with the given id.
-	 * 
-	 * @param enquiryId
+	 *
+	 * @param enquiryId, a long value.
 	 */
 	@Transactional
 	public void declineEnquiry(final long enquiryId)
@@ -117,7 +119,7 @@ public class EnquiryService {
 	/**
 	 * Resets the enquiry with the given id, meaning that its state will be set
 	 * to open again.
-	 * 
+	 *
 	 * @param enquiryId
 	 */
 	@Transactional
@@ -148,9 +150,9 @@ public class EnquiryService {
 
 	/**
 	 * Returns all ratings that were made by the given user.
-	 * 
+	 *
 	 * @param rater, a user.
-	 * 
+	 *
 	 * @return Iterable<Rating>
 	 */
 	@Transactional
@@ -163,10 +165,10 @@ public class EnquiryService {
 	 * Returns all ratings that were made by the given user for the given ratee.
 	 * This method always returns one rating, because one rater can only give
 	 * one rating to another user.
-	 * 
+	 *
 	 * @param rater, an user.
 	 * @param ratee, an user.
-	 * 
+	 *
 	 * @return next, a Rating.
 	 */
 	@Transactional
@@ -174,7 +176,7 @@ public class EnquiryService {
 	{
 		Iterable<Rating> ratings = ratingDao.findByRaterAndRatee(rater, ratee);
 
-		// ugly hack, but works
+		// Ugly hack, but works
 		Iterator<Rating> iterator = ratings.iterator();
 		Rating next = iterator.next();
 		return next;

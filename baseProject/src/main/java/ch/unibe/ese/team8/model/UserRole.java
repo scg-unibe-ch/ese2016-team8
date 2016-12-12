@@ -30,7 +30,7 @@ public class UserRole {
 		return id;
 	}
 
-	public void setId(long id)
+	public void setId(final long id)
 	{
 		this.id = id;
 	}
@@ -40,7 +40,7 @@ public class UserRole {
 		return user;
 	}
 
-	public void setUser(User user)
+	public void setUser(final User user)
 	{
 		this.user = user;
 	}
@@ -50,7 +50,7 @@ public class UserRole {
 		return role;
 	}
 
-	public void setRole(String role)
+	public void setRole(final String role)
 	{
 		this.role = role;
 	}

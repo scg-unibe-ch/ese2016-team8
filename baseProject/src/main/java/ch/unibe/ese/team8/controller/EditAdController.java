@@ -62,11 +62,10 @@ public class EditAdController {
 
 	/**
 	 * Serves the page that allows the user to edit the ad with the given id.
-	 * 
-	 * @param id,
-	 *            the id of the ad
+	 *
+	 * @param id, the id of the ad.
 	 * @param principal
-	 * 
+	 *
 	 * @return model, a ModelAndView where the new placeAdForm has been added.
 	 */
 	@RequestMapping(value = "/profile/editAd", method = RequestMethod.GET)
@@ -90,13 +89,13 @@ public class EditAdController {
 
 	/**
 	 * Processes the edit ad form and displays the result page to the user.
-	 * 
+	 *
 	 * @param placeAdForm
 	 * @param result, the BiddingResult instance.
 	 * @param principal
 	 * @param redirectAttributes
 	 * @param adId
-	 * 
+	 *
 	 * @return model, the new ModelAndView instance.
 	 */
 	@RequestMapping(value = "/profile/editAd", method = RequestMethod.POST)
@@ -118,10 +117,10 @@ public class EditAdController {
 			List<String> fileNames = pictureUploader.getFileNames();
 			Ad ad = editAdService.saveFrom(placeAdForm, fileNames, user, adId);
 
-			// triggers all alerts that match the placed ad
+			// Triggers all alerts that match the placed ad.
 			alertService.triggerAlerts(ad);
 
-			// reset the picture uploader
+			// Reset the picture uploader.
 			this.pictureUploader = null;
 
 			if (placeAdForm.getAuction()) {
@@ -142,14 +141,14 @@ public class EditAdController {
 	/**
 	 * Deletes the ad picture with the given id from the list of pictures from
 	 * the ad, but not from the server.
-	 * 
+	 *
 	 * @param adId
 	 * @param pictureId
 	 */
 	@RequestMapping(value = "/profile/editAd/deletePictureFromAd", method = RequestMethod.POST)
 	public @ResponseBody void deletePictureFromAd(
 			 			@RequestParam final long adId,
-			 			@RequestParam final long pictureId) 
+			 			@RequestParam final long pictureId)
 	{
 		editAdService.deletePictureFromAd(adId, pictureId);
 	}
@@ -158,8 +157,7 @@ public class EditAdController {
 	 * Gets the descriptions for the pictures that were uploaded with the
 	 * current picture uploader.
 	 *
-	 * @return a list of picture descriptions or null if no pictures were
-	 *         uploaded
+	 * @return List<PictureMeta>, a list of picture descriptions or null if no pictures were uploaded.
 	 */
 	@RequestMapping(value = "/profile/editAd/getUploadedPictures", method = RequestMethod.POST)
 	public @ResponseBody List<PictureMeta> getUploadedPictures() {
@@ -174,7 +172,9 @@ public class EditAdController {
 	 * The JSON representation, that is returned, is generated manually because
 	 * the jQuery Fileupload plugin requires this special format.
 	 *
-	 * @return A JSON representation of the uploaded files
+	 * @param request, a MultipartHttpServletRequest.
+	 *
+	 * @return String, a JSON representation of the uploaded files.
 	 */
 	@RequestMapping(value = "/profile/editAd/uploadPictures", method = RequestMethod.POST)
 	public @ResponseBody String uploadPictures(final MultipartHttpServletRequest request) {
@@ -201,9 +201,9 @@ public class EditAdController {
 	/**
 	 * Deletes the uploaded picture at the given relative url (relative to the
 	 * webapp folder).
-	 * 
+	 *
 	 * @param url, the String respresentation of the url of the picture, which is
-	 *            to be deleted.
+	 * to be deleted.
 	 */
 	@RequestMapping(value = "/profile/editAd/deletePicture", method = RequestMethod.POST)
 	public @ResponseBody void deleteUploadedPicture(@RequestParam final String url) {
@@ -221,8 +221,9 @@ public class EditAdController {
 	 */
 	@RequestMapping(value = "/profile/editAd/deleteRoommate", method = RequestMethod.POST)
 	public @ResponseBody void deleteRoommate(
-				@RequestParam final long userId, 
-				@RequestParam final long adId) {
+				@RequestParam final long userId,
+				@RequestParam final long adId)
+	{
 		editAdService.deleteRoommate(userId, adId);
 	}
 }

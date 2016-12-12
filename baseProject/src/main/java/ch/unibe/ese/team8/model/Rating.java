@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 /**
- * Describes a rating that was given to a ratee by a rater.
+ * Describes a <code>rating</code> that was given to a ratee by a rater.
  */
 @Entity
 public class Rating {
@@ -30,7 +30,7 @@ public class Rating {
 		return id;
 	}
 
-	public void setId(long id)
+	public void setId(final long id)
 	{
 		this.id = id;
 	}
@@ -40,7 +40,7 @@ public class Rating {
 		return rater;
 	}
 
-	public void setRater(User rater)
+	public void setRater(final User rater)
 	{
 		this.rater = rater;
 	}
@@ -50,7 +50,7 @@ public class Rating {
 		return ratee;
 	}
 
-	public void setRatee(User ratee)
+	public void setRatee(final User ratee)
 	{
 		this.ratee = ratee;
 	}
@@ -60,7 +60,7 @@ public class Rating {
 		return rating;
 	}
 
-	public void setRating(int rating)
+	public void setRating(final int rating)
 	{
 		this.rating = rating;
 	}

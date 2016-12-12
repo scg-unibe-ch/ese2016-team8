@@ -10,7 +10,7 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.NotBlank;
 
 /**
- * This form is used for searching for an ad.
+ * This form is used when searching for an ad.
  */
 public class SearchForm {
 
@@ -94,9 +94,7 @@ public class SearchForm {
 		this.bothRentAndSale = bothRentAndSale;
 	}
 
-	// //////////////////
-	// Filtered results//
-	// //////////////////
+//-------------------- Filtered results ---------------------------------------
 
 	public boolean getFiltered() {
 		return filtered;
@@ -123,7 +121,7 @@ public class SearchForm {
 
 	private boolean roomHelper;
 
-	// the ugly stuff
+	// The ugly stuff.
 	private boolean studioHelper;
 
 	private boolean houseHelper;
@@ -285,5 +283,4 @@ public class SearchForm {
 		}
 		return categories;
 	}
-
 }

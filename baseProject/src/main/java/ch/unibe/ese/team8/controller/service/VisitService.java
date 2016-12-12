@@ -1,7 +1,6 @@
 package ch.unibe.ese.team8.controller.service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import javax.transaction.Transactional;
 
@@ -17,7 +16,7 @@ import ch.unibe.ese.team8.model.dao.VisitDao;
 import ch.unibe.ese.team8.model.dao.VisitEnquiryDao;
 
 /**
- * Provides operations for getting and saving visits
+ * Provides operations for getting and saving visits.
  */
 @Service
 public class VisitService {
@@ -43,7 +42,7 @@ public class VisitService {
 			myVisitList.add(v);
 		}
 		myVisitList.sort(new VisitComparator());
-		
+
 		return myVisitList;
 	}
 
@@ -70,12 +69,12 @@ public class VisitService {
 	@Transactional
 	public Iterable<Visit> getVisitsForUser(final User user)
 	{
-		// all enquiries sent by user
+		// All enquiries sent by user.
 		Iterable<VisitEnquiry> usersEnquiries = visitEnquiryDao
 				.findBySender(user);
-		// all visits user has been accepted for
+		// All visits user has been accepted for.
 		ArrayList<Visit> usersVisits = new ArrayList<Visit>();
-		// fill the list
+		// Fill the list.
 		for (VisitEnquiry enquiry : usersEnquiries) {
 			if (enquiry.getState() == VisitEnquiryState.ACCEPTED)
 				(usersVisits).add(enquiry.getVisit());

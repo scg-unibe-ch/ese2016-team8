@@ -42,14 +42,14 @@ public class PlaceAdForm {
 
 	private String preferences;
 
-	// optional free text description
+	// Optional free text description.
 	private String roommates;
 
 	// First user are added as strings, then transformed
-	// to Users and added to the DB in through adService
+	// to Users and added to the DB in through adService.
 	private List<String> registeredRoommateEmails;
 
-	// optional for input
+	// Optional for input.
 	private String roomFriends;
 
 	private String category;
@@ -88,7 +88,7 @@ public class PlaceAdForm {
 		return startPrize;
 	}
 
-	public void setStartPrize(int startPrize) {
+	public void setStartPrize(final int startPrize) {
 		this.startPrize = startPrize;
 	}
 
@@ -207,7 +207,7 @@ public class PlaceAdForm {
 	public String getAuctionEndDate(){
 		return auctionEndDate;
 	}
-	public void setAuctionEndDate(String auctionEndDate){
+	public void setAuctionEndDate(final String auctionEndDate){
 		this.auctionEndDate = auctionEndDate;
 	}
 	public String getMoveOutDate() {
@@ -266,7 +266,7 @@ public class PlaceAdForm {
 		return auction;
 	}
 
-	public void setAuction(boolean auction) {
+	public void setAuction(final boolean auction) {
 		this.auction = auction;
 	}
 

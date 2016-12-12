@@ -1,8 +1,11 @@
 package ch.unibe.ese.team8.model;
 
 /**
- * Enumerates all possible states a message can be in.
+ * Enumerates all possible states a <code>message</code> can be in.
  */
 public enum MessageState {
-	DRAFT, UNREAD, READ, DELETED
+	READ,
+	UNREAD,
+	DRAFT,
+	DELETED
 }
