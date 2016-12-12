@@ -23,7 +23,7 @@ Input from teaching assistant:
 
 TODO:
 - Tests, Refactoring, Javadoc etc.
-- Klassenkommentare empfehlenswert.
+- Classcomments are recommended..
 - Presentation following requirements https://piazza.com/class/is0aix36ick332?cid=20. We (team8) are on 14.12.
 ! Last commit that will be valued before the presentation is before 14.00 on 14.12.2016 !
 - Presentation must be innovative. So it's like a presentation for the customer. So making dem guise laugh is good, including those guys.
