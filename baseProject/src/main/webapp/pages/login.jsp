@@ -39,25 +39,9 @@
 		<br />
 		<div class="g-signin2" data-onsuccess="onSignIn"></div>
 		<br><br>
-		<h2>Test users</h2>
 
-		<ul class="test-users">
-			<li>Email: <i>ese@unibe.ch</i>, password: <i>ese</i></li>
-			<li>Email: <i>jane@doe.com</i>, password: <i>password</i></li>
-			<li>Email: <i>user@bern.com</i>, password: <i>password</i></li>
-			<li>Email: <i>oprah@winfrey.com</i>, password: <i>password</i></li>
-		</ul>
-		<br />
-
-		<h2>Roommates for AdBern</h2>
-		<ul class="test-users">
-			<li>Email: <i>hans@unibe.ch</i>, password: <i>password</i></li>
-			<li>Email: <i>mathilda@unibe.ch</i>, password: <i>password</i></li>
-		</ul>
-		<br />
-		
 			Or <a class="link" href="<c:url value="/signup" />">sign up</a> as a new user.
-		
+
 	</c:otherwise>
 </c:choose>
 
@@ -75,20 +59,20 @@
 							cssClass="form-control" />
 			</spring:bind>
 
-			<spring:bind path="email">	
+			<spring:bind path="email">
 						<form:input type="hidden" path="email" id="field-mail"
 							cssClass="form-control" />
 			</spring:bind>
-			
-			<spring:bind path="picture">	
+
+			<spring:bind path="picture">
 						<form:input type="hidden" path="picture" id="field-picture"
-							cssClass="form-control" />					
+							cssClass="form-control" />
 			</spring:bind>
-			
+
 			<button type="submit" style="visibility:hidden;" class="btn btn-primary" value="signup" id="googleButton"
-					>Sign up</button>	
+					>Sign up</button>
 	</form:form>
-</div>	
+</div>
 
 <script>
 	function onSignIn(googleUser) {
