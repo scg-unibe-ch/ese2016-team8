@@ -90,7 +90,7 @@ public class BidService {
 		for (Ad auction : allAuctions) {
 			if (auction.getAuctionEndDate().before(new Date()))
 			{
-				if (!auction.getAuctionOver())
+				if (!auction.getAuctionOver() && (auction.getMaxBidder().getId() != systemService.getAdmin().getId()))
 				{
 					auction.setAuctionOver(true);
 

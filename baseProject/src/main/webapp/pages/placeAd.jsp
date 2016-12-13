@@ -140,11 +140,21 @@
 	function checkDates(){
 			var moveInDateString = $("#field-moveInDate").val();
 			var moveOutDateString = $("#field-moveOutDate").val();
+			var auctionEndDateString = $("#field-auctionEndDate").val();
 			var moveInDate = new Date();
 			var moveOutDate = new Date();
+			var auctionEndDate = new Date();
+			var today = new Date();
 			
-			moveInDate.setFullYear(moveInDateString.substring(6), moveInDateString.substring(3,5), moveInDateString.substring(0,2));
-			moveOutDate.setFullYear(moveOutDateString.substring(6), moveOutDateString.substring(3,5), moveOutDateString.substring(0,2));
+			moveInDate.setFullYear(moveInDateString.substring(6), moveInDateString.substring(3,5)-1, moveInDateString.substring(0,2));
+			moveOutDate.setFullYear(moveOutDateString.substring(6), moveOutDateString.substring(3,5)-1, moveOutDateString.substring(0,2));
+			auctionEndDate.setFullYear(auctionEndDateString.substring(6),auctionEndDateString.substring(3,5)-1, auctionEndDateString.substring(0,2));
+
+
+			if(auctionEndDate.getTime() <= today.getTime()){
+				alert("Auction has to end in the future!");
+				return false;
+			}
 
 			if(!moveOutDateString || moveOutDateString.length == 0){
 				return true;
@@ -220,7 +230,7 @@
 				<td colspan="6"><form:input type="text" id="field-moveOutDate"
 						path="moveOutDate" />
 					<form:input type="text" id="field-auctionEndDate" style="display:none;"
-						path="auctionEndDate" required="required" value="12-12-2016"/></td>
+						path="auctionEndDate" required="required" value="31-12-2016"/></td>
 			</tr>
 
 			<tr>
