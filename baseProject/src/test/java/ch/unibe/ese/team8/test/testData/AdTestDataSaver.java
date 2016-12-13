@@ -36,6 +36,7 @@ public class AdTestDataSaver {
 		User jane = userDao.findByUsername("jane@doe.com");
 		User hans = userDao.findByUsername("hans@unibe.ch");
 		User mathilda = userDao.findByUsername("mathilda@unibe.ch");
+		User johny = userDao.findByUsername("prem@coolguy.com");
 
 		List<User> regRoommatesAdBern = new LinkedList<User>();
 		regRoommatesAdBern.add(hans);
@@ -150,7 +151,7 @@ public class AdTestDataSaver {
 				studioDescription2,
 				roomPreferences2,
 				"None",
-				ese,
+				johny,
 				null, // Roommates list.
 				"Cheap studio in Bern!",
 				"Längassstr. 40",
@@ -246,7 +247,7 @@ public class AdTestDataSaver {
 				studioDescription4,
 				roomPreferences4,
 				"One roommate",
-				ese,
+				oprah,
 				null, // Roommates list.
 				"Roommate wanted in Olten City",
 				"Zehnderweg 5",
@@ -329,7 +330,7 @@ public class AdTestDataSaver {
 				houseDescription,
 				housePreference,
 				"None",
-				ese,
+				johny,
 				((List<User>) null), // Roommates list
 				"Direkt am See: hübsches Haus",
 				"Am Wald 4",
@@ -371,7 +372,7 @@ public class AdTestDataSaver {
 				studioDescription6,
 				roomPreferences6,
 				"None",
-				ese,
+				johny,
 				null, // Roommates list
 				"Direkt am Quai: hübsches Studio",
 				"Oberer Quai 12",
@@ -701,7 +702,7 @@ public class AdTestDataSaver {
 				studioDescriptionAuction,
 				roomPreferencesAuction,
 				"None",
-				oprah,
+				ese,
 				null, // Roommates list
 				"Studio in Schwamendingen zur Auktion",
 				"Aprikosenstrass 20",
