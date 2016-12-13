@@ -17,7 +17,7 @@
 		var m = confirm("Are you sure you don't want premium status no more?");
 		if(m==true){
 			document.getElementById("premium").value= false;
-			alert("We are sorry to lose you as a premium member.\n Click on Update to confirm");
+			alert("We are sorry to lose you as a premium member.");
 			document.forms['editProfile'].submit();
 		}else{
 			alert("Happy to keep you! ");
