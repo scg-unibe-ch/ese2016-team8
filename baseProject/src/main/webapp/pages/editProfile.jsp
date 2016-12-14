@@ -58,11 +58,11 @@
 <c:choose>
 	<c:when test="${currentUser.premium}">
 		<h2>You are a premium User </h2><br>
-		<button class="button" id="nomorePremium" onclick="revokePremium()">revoke premium</button>
+		<button class="button" id="nomorePremium" onclick="revokePremium()">Revoke Premium</button>
 	</c:when>
 <c:otherwise>
-	<h4> click here to get your premium access: </h4><br>
-	<button class="button" id="premiumButton"  onclick="confirmPremium()">get your Premium</button>
+	<h4> Click here to get your premium access for 5$: </h4><br>
+	<button class="button" id="premiumButton"  onclick="confirmPremium()">Get Premium Access</button>
 	</c:otherwise>
 </c:choose>
 
