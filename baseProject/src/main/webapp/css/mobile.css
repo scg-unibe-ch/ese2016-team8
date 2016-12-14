@@ -259,6 +259,13 @@ button {
 	margin-bottom: 20px;
 }
 
+.adPremStar
+{
+	width:20px;
+	height:20px;
+}
+
+
 /* -------------------------------------------------------------------- */
 /* Header & Footer */
 header {
@@ -600,7 +607,7 @@ footer nav ul li {
 	margin-top: 0px;
 }
 
-#resultsDiv div img {
+#resultsDiv .resultLeft img {
 	width: 90px;
 	float: left;
 	margin-top:10px;
@@ -619,7 +626,7 @@ footer nav ul li {
 	width: 75%;
 }
 
-#resultsDiv img:hover {
+#resultsDiv .resultLeft img:hover {
 	box-shadow: 1px 1px 2px #000;
 }
 
